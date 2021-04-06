@@ -20,7 +20,7 @@ Der (Corona-)Plan zur Durchführung der Veranstaltung ist derzeit wie folgt:
 - das Skript und die Videos werden (spätestens) freitags hochgeladen, 
 - das heißt, "Vorlesungen" finden asynchron statt (im Selbststudium),
 - zusammen mit dem Skript und den Videos werden sowohl die Übung als auch die Aufgabe hochgeladen,
-- die Übung (und die vergangene Aufgabe) werden dienstags (8:00 Uhr und nochmal 14:00 Uhr) besprochen (Sie können frei wählen, welche der beiden Übungen Sie wählen),
+- die Übung (und die vergangene Aufgabe) werden donnerstags (8:00 Uhr und nochmal 14:00 Uhr) besprochen (Sie können frei wählen, welche der beiden Übungen Sie wählen),
 - bei Bedarf können wir auch gerne jederzeit eine Synchron-Video-Vorlesung einschieben, um Fragen zu erklären,
 - die Veranstaltung wird durch ein Tutorium unterstützt, 
 - sollten Sie Wünsche haben, diesen Plan zu ändern, kommen Sie gerne auf mich zu
