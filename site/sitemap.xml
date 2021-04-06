@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>http://freiheit.f4.htw-berlin.de/prog2/</loc>
-     <lastmod>2021-04-05</lastmod>
+     <lastmod>2021-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://freiheit.f4.htw-berlin.de/prog2/wiederholung/</loc>
-     <lastmod>2021-04-05</lastmod>
+     <lastmod>2021-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://freiheit.f4.htw-berlin.de/prog2/git/</loc>
-     <lastmod>2021-04-05</lastmod>
+     <lastmod>2021-04-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://freiheit.f4.htw-berlin.de/prog2/mdarrays/</loc>
+     <lastmod>2021-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://freiheit.f4.htw-berlin.de/prog2/enum/</loc>
-     <lastmod>2021-04-05</lastmod>
+     <lastmod>2021-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://freiheit.f4.htw-berlin.de/prog2/uebungen/</loc>
-     <lastmod>2021-04-05</lastmod>
+     <lastmod>2021-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://freiheit.f4.htw-berlin.de/prog2/aufgaben/</loc>
-     <lastmod>2021-04-05</lastmod>
+     <lastmod>2021-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://freiheit.f4.htw-berlin.de/prog2/hilfen/</loc>
-     <lastmod>2021-04-05</lastmod>
+     <lastmod>2021-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -251,6 +251,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../mdarrays/" class="md-nav__link">
+        Mehrdimensionale Arrays
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../enum/" class="md-nav__link">
         Aufzählungstypen
       </a>
@@ -297,8 +312,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ubung-1" class="md-nav__link">
-    Übung 1
+  <a href="#ubung-1-git" class="md-nav__link">
+    Übung 1 (Git)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-2-enum-und-zweidimensionale-arrays" class="md-nav__link">
+    Übung 2 (enum und zweidimensionale Arrays)
   </a>
   
 </li>
@@ -366,8 +388,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ubung-1" class="md-nav__link">
-    Übung 1
+  <a href="#ubung-1-git" class="md-nav__link">
+    Übung 1 (Git)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-2-enum-und-zweidimensionale-arrays" class="md-nav__link">
+    Übung 2 (enum und zweidimensionale Arrays)
   </a>
   
 </li>
@@ -390,7 +419,91 @@
                 
                 
                 <h1 id="ubungen">Übungen<a class="headerlink" href="#ubungen" title="Permanent link">&para;</a></h1>
-<h2 id="ubung-1">Übung 1<a class="headerlink" href="#ubung-1" title="Permanent link">&para;</a></h2>
+<h5 id="ubung-1-git">Übung 1 (Git)<a class="headerlink" href="#ubung-1-git" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 1</summary><ol>
+<li>Erstellen Sie sich einen GitHub-Account (oder wählen Sie einen anderen Git-Diensteanbieter)</li>
+<li>Erstellen Sie sich dort ein zentrales Repository </li>
+<li>Richten Sie Ihren <code>workspace</code>, in dem Sie alle Ihre Entwicklungen in diesem Semester durchführen wollen (Übungen, Aufgaben, ...) als lokales Git-Repository ein</li>
+<li>Synchroniseren Sie Ihr lokales und Ihr zentrales Git-Repository</li>
+</ol>
+</details>
+<h5 id="ubung-2-enum-und-zweidimensionale-arrays">Übung 2 (enum und zweidimensionale Arrays)<a class="headerlink" href="#ubung-2-enum-und-zweidimensionale-arrays" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 2</summary><ol>
+<li>
+<p>Gegeben ist die folgende Klasse <code>TicTacToe</code>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung2</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TicTacToe</span> 
+<span class="p">{</span>
+    <span class="kd">enum</span> <span class="n">State</span> <span class="p">{</span><span class="n">EMPTY</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">BLACK</span><span class="p">};</span>
+    <span class="n">State</span><span class="o">[][]</span> <span class="n">field</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">TicTacToe</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+          <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]=</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeMove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">State</span> <span class="n">player</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span> <span class="o">&amp;&amp;</span> <span class="n">player</span><span class="o">!=</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span>   
+            <span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]=</span><span class="n">player</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</li>
+<li>
+<p>Fügen Sie alle notwendigen Klammern <code>{ }</code> ein, so dass die Anweisungsblöcke korrekt geklammert sind. </p>
+</li>
+<li>
+<p>Erweitern Sie die Klasse <code>TicTacToe</code> um eine <code>print()</code>-Methode, die das Spielfeld auf die Konsole ausgibt (Setzen Sie z.B. für den Player <code>RED</code> ein <code>x</code> und für den Player <code>Black</code> ein <code>o</code> und für <code>EMPTY</code> ein Leerzeichen oder ein <code>-</code>). Die Ausgabe nach jeweils 2 Zügen von <code>RED</code> und <code>BLACK</code> könnte dann z.B. so aussehen: </p>
+<div class="highlight"><pre><span></span><code>- o o 
+- x - 
+- - x 
+</code></pre></div>
+</li>
+<li>
+<p>Erweitern Sie die Klasse <code>TicTacToe</code> um eine <code>gewonnen()</code>-Methode (<code>true</code>, wenn ein Spieler drei Felder horizontal, diagonal oder vertikal belegt hat; ansonsten <code>false</code>).</p>
+</li>
+<li>Erweitern Sie die Klasse <code>TicTacToe</code> um eine <code>unentschieden()</code>-Methode (<code>true</code>, wenn alle Felder besetzt sind, aber kein Spieler gewonnen hat; ansonsten <code>false</code>).</li>
+<li>Erstellen Sie eine Test-Klasse mit <code>main()</code>-Methode. Erstellen sie darin ein Objekt der Klasse <code>TicTacToe</code>. Führen Sie Züge aus (<code>makeMove()</code>) und prüfen Sie, ob gewonnen wurde oder unentschieden ist (mit entsprechenden Ausgaben). </li>
+<li>
+<p>Für 6. müssen Sie in der Testklasse Ihr <code>enum State</code> importieren. Warum ist das so? Was könnten Sie machen, damit das nicht notwendig ist?</p>
+</li>
+<li>
+<p><em>Zusatz:</em> Sie können die Klasse <code>TicTacToe</code> beliebig erweitern, z.B.:</p>
+<ul>
+<li>um Ausgaben, wenn gewonnen bzw. es unentschieden ist,</li>
+<li>um Fehler in den Indizes <code>i</code> und <code>j</code> bei der <code>makeMove()</code>-Methode abzufangen,</li>
+<li>eine Methode <code>spielen()</code> implementieren, die zufällig für die Spieler die Steine setzt usw.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Viel Spaß!</strong></p>
+</details>
                 
               
               

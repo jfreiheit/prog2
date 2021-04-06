@@ -62,6 +62,7 @@ nav:
     - Home: index.md
     - Wiederholung: wiederholung.md
     - Git: git.md
+    - Mehrdimensionale Arrays: mdarrays.md
     - Aufzählungstypen: enum.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md

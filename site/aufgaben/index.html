@@ -251,6 +251,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../mdarrays/" class="md-nav__link">
+        Mehrdimensionale Arrays
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../enum/" class="md-nav__link">
         Aufzählungstypen
       </a>
@@ -312,8 +327,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#aufgabe-1" class="md-nav__link">
-    Aufgabe 1
+  <a href="#aufgabe-1-wurfelspiel" class="md-nav__link">
+    Aufgabe 1 (Würfelspiel)
   </a>
   
 </li>
@@ -366,8 +381,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#aufgabe-1" class="md-nav__link">
-    Aufgabe 1
+  <a href="#aufgabe-1-wurfelspiel" class="md-nav__link">
+    Aufgabe 1 (Würfelspiel)
   </a>
   
 </li>
@@ -390,7 +405,47 @@
                 
                 
                 <h1 id="aufgaben">Aufgaben<a class="headerlink" href="#aufgaben" title="Permanent link">&para;</a></h1>
-<h2 id="aufgabe-1">Aufgabe 1<a class="headerlink" href="#aufgabe-1" title="Permanent link">&para;</a></h2>
+<h5 id="aufgabe-1-wurfelspiel">Aufgabe 1 (Würfelspiel)<a class="headerlink" href="#aufgabe-1-wurfelspiel" title="Permanent link">&para;</a></h5>
+<details><summary>Aufgabe 1</summary><p><strong>Vorbereitung (Selbstudium)</strong></p>
+<ol>
+<li>Informieren Sie sich über die Klasse <code>JOptionPane</code> aus dem paket <code>javax.swing</code> (z.B. <a href="https://docs.oracle.com/javase/10/docs/api/javax/swing/JOptionPane.html">hier</a> oder <a href="https://www.java-tutorial.org/joptionpane.html">hier</a> oder <a href="https://de.wikibooks.org/wiki/Java_Standard:_Grafische_Oberfl%C3%A4chen_mit_Swing:_Top_Level_Container:_javax_swing_JOptionPane">hier</a>)</li>
+<li>Rufen Sie jeweils die statischen Methoden <ul>
+<li><code>showConfirmDialog()</code>,</li>
+<li><code>showInputDialog()</code>,</li>
+<li><code>showMessageDialog()</code> und</li>
+<li><code>showOptionDialog()</code> 
+auf und werten Sie jeweils die Nutzereingabe aus (Bei <code>showInputDialog()</code> ist die Rückgabe ein <code>String</code>, ansonsten ist die Rückgabe ein <code>int</code>, der mit folgenden Optionen verglichen werden kann:</li>
+<li><code>JOptionPane.YES_OPTION</code>,</li>
+<li><code>JOptionPane.NO_OPTION</code>,</li>
+<li><code>JOptionPane.CANCEL_OPTION</code>,</li>
+<li><code>JOptionPane.OK_OPTION</code>,</li>
+<li><code>JOptionPane.CLOSED_OPTION</code></li>
+</ul>
+</li>
+<li>Erstellen Sie insbesondere folgenden Dialog und prüfen Sie, ob der <code>Nein</code>- oder der <code>Ja</code>-Button gedrückt wurde (im Beispiel steht <code>A</code> für den Namen eines Spielers – siehe Aufgabe unten):
+    <img alt="aufgabe1" src="../files/19_aufgabe1.png" /></li>
+</ol>
+<p><strong>Aufgabe</strong></p>
+<ol>
+<li>Implementieren Sie folgendes Würfelspiel:<ul>
+<li>An dem Spiel können beliebig viele Spieler teilnehmen.</li>
+<li>Die Spieler sind nacheinander an der Reihe.</li>
+<li>Wenn ein Spieler an der Reihe ist, dann befindet er sich in einem <em>Versuch</em>.</li>
+<li>In einem <em>Versuch</em> kann der Spieler so lange würfeln, bis er entweder<ul>
+<li>eine 6 würfelt oder er</li>
+<li>den Versuch freiwillig beendet.  </li>
+</ul>
+</li>
+<li>Hat der Spieler eine 6 gewürfelt, wird der gesamte <em>Versuch</em> mit <code>0</code> Punkten bewertet.</li>
+<li>Hat der Spieler den Versuch freiwillig beendet, wird die in dem <em>Versuch</em> erzielte Summe aus sein Punktekonto addiert (gespeichert).</li>
+</ul>
+</li>
+<li>Der Spieler, der zuerst eine bestimmte Punktzahl (z.B. <code>20</code>) erreicht hat, hat gewonnen. <br/>
+    Beispiel mit zwei Spielern <code>A</code> und <code>B</code> bis Gesamtpunktzahl <code>20</code>:
+    <img alt="aufgabe1" src="../files/20_aufgabe1.png" /></li>
+<li>Committen und pushen Sie Ihre Lösung nach GitHub (oder Ihrem Git-Diensteanbieter).</li>
+</ol>
+</details>
                 
               
               
