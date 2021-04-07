@@ -35,7 +35,7 @@ Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com
 
 ### Grober Inhalt (kann sich noch ändern)
 
-Wir beschäftigen uns dieses Semester mit *Progressive Web Apps (PWA)*. Dieser begriff ist 2015 bei Google entstanden. Progressive Web Apps bieten installierbare nativen Apps ähnliche Nutzererfahrungen sowohl auf dem Desktop als auch auf dem Smartphone, sind aber Webanwendungen, die im Browser laufen, also zum World Wide Web gehören. Typische Eigenschaften von Progressive Web Apps sind die Einbindung von Kamera und Mikrofon, dem eigenen Standort sowie die Fähigkeit, (zumindest teilweise) offline ausführbar zu sein. 
+Wir beschäftigen uns dieses Semester mit weiteren Konzepten der Programmierung. Wir lernen weitere Datenstrukturen kennen (Collections), werden lernen, mit Exceptions umzugehen und implementieren Tests. Wir beschäftigen uns mit Grafischen Nutzeroberflächen (GUIs) und lernen, Nutzereignisse zu behandeln.  
 
 Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesungsvideos finden Sie darunter für die einzelnen Wochen (unter [**Inhalte**](http://freiheit.f4.htw-berlin.de/prog2/#inhalte)).
 
