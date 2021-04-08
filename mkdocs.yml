@@ -64,6 +64,7 @@ nav:
     - Git: git.md
     - Mehrdimensionale Arrays: mdarrays.md
     - Aufzählungstypen: enum.md
+    - Exceptions: exceptions.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
     - Hilfen: hilfen.md
