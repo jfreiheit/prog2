@@ -914,6 +914,10 @@ aus. Damit "holen" Sie sich den aktuellen Stand des zentralen Repositories.
 - [Git-Tutorial: Git und die wichtigsten Befehle kennenlernen](https://www.embedded-software-engineering.de/git-tutorial-git-und-die-wichtigsten-befehle-kennenlernen-a-725074/)
 - [Learn Git Branching](https://learngitbranching.js.org/?locale=de_DE)
 - [Git - Der einfache Einstieg](https://rogerdudler.github.io/git-guide/index.de.html)
+- [Git in Bildern](https://marklodato.github.io/visual-git-guide/index-de.html)
+- [Visualizing Git Concepts](http://onlywei.github.io/explain-git-with-d3/#)
+- [Git Kata](http://blog.schauderhaft.de/gitkata/)
+- [noch mehr Git Katas](https://github.com/eficode-academy/git-katas)
 
 
 
