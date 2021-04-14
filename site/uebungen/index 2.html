@@ -13,14 +13,14 @@
         <meta name="author" content="Jörn Freiheit">
       
       
-        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/aufgaben/">
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/uebungen/">
       
       <link rel="shortcut icon" href="../img/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Aufgaben - Programmieren II</title>
+        <title>Übungen - Programmieren II</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aufgaben" class="md-skip">
+        <a href="#ubungen" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Aufgaben
+              Übungen
             
           </span>
         </div>
@@ -294,21 +294,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../uebungen/" class="md-nav__link">
-        Übungen
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -320,12 +305,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Aufgaben
+          Übungen
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Aufgaben
+        Übungen
       </a>
       
         
@@ -342,15 +327,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#aufgabe-1-wurfelspiel" class="md-nav__link">
-    Aufgabe 1 (Würfelspiel)
+  <a href="#ubung-1-git" class="md-nav__link">
+    Übung 1 (Git)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aufgabe-2-myinteger" class="md-nav__link">
-    Aufgabe 2 (MyInteger)
+  <a href="#ubung-2-enum-und-zweidimensionale-arrays" class="md-nav__link">
+    Übung 2 (enum und zweidimensionale Arrays)
   </a>
   
 </li>
@@ -359,6 +344,21 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aufgaben/" class="md-nav__link">
+        Aufgaben
+      </a>
     </li>
   
 
@@ -403,15 +403,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#aufgabe-1-wurfelspiel" class="md-nav__link">
-    Aufgabe 1 (Würfelspiel)
+  <a href="#ubung-1-git" class="md-nav__link">
+    Übung 1 (Git)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aufgabe-2-myinteger" class="md-nav__link">
-    Aufgabe 2 (MyInteger)
+  <a href="#ubung-2-enum-und-zweidimensionale-arrays" class="md-nav__link">
+    Übung 2 (enum und zweidimensionale Arrays)
   </a>
   
 </li>
@@ -428,80 +428,96 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/jfreiheit/prog2/edit/master/docs/aufgaben.md" title="Seite editieren" class="md-content__button md-icon">
+                  <a href="https://github.com/jfreiheit/prog2/edit/master/docs/uebungen.md" title="Seite editieren" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="aufgaben">Aufgaben<a class="headerlink" href="#aufgaben" title="Permanent link">&para;</a></h1>
-<h5 id="aufgabe-1-wurfelspiel">Aufgabe 1 (Würfelspiel)<a class="headerlink" href="#aufgabe-1-wurfelspiel" title="Permanent link">&para;</a></h5>
-<details><summary>Aufgabe 1</summary><p><strong>Vorbereitung (Selbstudium)</strong></p>
-<ol>
-<li>Informieren Sie sich über die Klasse <code>JOptionPane</code> aus dem Paket <code>javax.swing</code> (z.B. <a href="https://docs.oracle.com/javase/10/docs/api/javax/swing/JOptionPane.html">hier</a> oder <a href="https://www.java-tutorial.org/joptionpane.html">hier</a> oder <a href="https://de.wikibooks.org/wiki/Java_Standard:_Grafische_Oberfl%C3%A4chen_mit_Swing:_Top_Level_Container:_javax_swing_JOptionPane">hier</a>) <br/>
-<em>Sollten Sie mit dem Java-Modulsystem arbeiten, d.h. sollten Sie in Ihrem Java-Projekt eine Datei <code>module-info.java</code> haben, dann müssen Sie in diese Datei (in den Anweisungsblock) die Anweisung <code>requires java.desktop;</code> einfügen - das ist das Modul, in dem sich das Paket <code>javax.swing</code> befindet.</em> </li>
-<li>Rufen Sie jeweils die statischen Methoden <ul>
-<li><code>showConfirmDialog()</code>,</li>
-<li><code>showInputDialog()</code>,</li>
-<li><code>showMessageDialog()</code> und</li>
-<li><code>showOptionDialog()</code> 
-auf und werten Sie jeweils die Nutzereingabe aus (Bei <code>showInputDialog()</code> ist die Rückgabe ein <code>String</code>, ansonsten ist die Rückgabe ein <code>int</code>, der mit folgenden Optionen verglichen werden kann:</li>
-<li><code>JOptionPane.YES_OPTION</code>,</li>
-<li><code>JOptionPane.NO_OPTION</code>,</li>
-<li><code>JOptionPane.CANCEL_OPTION</code>,</li>
-<li><code>JOptionPane.OK_OPTION</code>,</li>
-<li><code>JOptionPane.CLOSED_OPTION</code></li>
-</ul>
-</li>
-<li>Erstellen Sie insbesondere folgenden Dialog und prüfen Sie, ob der <code>Nein</code>- oder der <code>Ja</code>-Button gedrückt wurde (im Beispiel steht <code>A</code> für den Namen eines Spielers – siehe Aufgabe unten):
-    <img alt="aufgabe1" src="../files/19_aufgabe1.png" /></li>
-</ol>
-<p><strong>Aufgabe</strong></p>
-<ol>
-<li>Implementieren Sie folgendes Würfelspiel:<ul>
-<li>An dem Spiel können beliebig viele Spieler teilnehmen.</li>
-<li>Die Spieler sind nacheinander an der Reihe.</li>
-<li>Wenn ein Spieler an der Reihe ist, dann befindet er sich in einem <em>Versuch</em>.</li>
-<li>In einem <em>Versuch</em> kann der Spieler so lange würfeln, bis er entweder<ul>
-<li>eine 6 würfelt oder er</li>
-<li>den Versuch freiwillig beendet.  </li>
-</ul>
-</li>
-<li>Hat der Spieler eine 6 gewürfelt, wird der gesamte <em>Versuch</em> mit <code>0</code> Punkten bewertet.</li>
-<li>Hat der Spieler den Versuch freiwillig beendet, wird die in dem <em>Versuch</em> erzielte Summe aus sein Punktekonto addiert (gespeichert).</li>
-</ul>
-</li>
-<li>Der Spieler, der zuerst eine bestimmte Punktzahl (z.B. <code>20</code>) erreicht hat, hat gewonnen. <br/>
-    Beispiel mit zwei Spielern <code>A</code> und <code>B</code> bis Gesamtpunktzahl <code>20</code>:
-    <img alt="aufgabe1" src="../files/20_aufgabe1.png" /></li>
-<li>Committen und pushen Sie Ihre Lösung nach GitHub (oder Ihrem Git-Diensteanbieter).</li>
+                <h1 id="ubungen">Übungen<a class="headerlink" href="#ubungen" title="Permanent link">&para;</a></h1>
+<h5 id="ubung-1-git">Übung 1 (Git)<a class="headerlink" href="#ubung-1-git" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 1</summary><ol>
+<li>Erstellen Sie sich einen GitHub-Account (oder wählen Sie einen anderen Git-Diensteanbieter)</li>
+<li>Erstellen Sie sich dort ein zentrales Repository </li>
+<li>Richten Sie Ihren <code>workspace</code>, in dem Sie alle Ihre Entwicklungen in diesem Semester durchführen wollen (Übungen, Aufgaben, ...) als lokales Git-Repository ein</li>
+<li>Synchroniseren Sie Ihr lokales und Ihr zentrales Git-Repository</li>
 </ol>
 </details>
-<h5 id="aufgabe-2-myinteger">Aufgabe 2 (MyInteger)<a class="headerlink" href="#aufgabe-2-myinteger" title="Permanent link">&para;</a></h5>
-<details><summary>Aufgabe 2</summary><p><strong>Vorbereitung (Selbstudium)</strong></p>
-<ol>
-<li>Eine <em>statische</em> Variable wird mit dem Schlüsselwort <code>static</code> deklariert, also z.B. <code>static int myVariable = 0;</code>. Der Zugriff auf eine solche statische Variable erfolgt nicht über eine Referenzvariable, sondern über den Klassennamen. Angenommen, die Variable <code>myVariable</code> wurde in der Klasse <code>MyClass</code> deklariert, dann erfolgt der Zugriff auf die Variable über <code>MyClass.myVariable</code>. Für Objektvariablen gilt, dass jedes Objekt seine eigene(n) Objektvariable(n) hat. Statische Variablen gibt es in der Klasse genau einmal. Alle Objekte "teilen" sich eine statische Variable. Eine statische Variable heißt deshalb auch <em>Klassenvariable</em>.</li>
-<li>Eine <em>statische</em> Methode wird ebenfalls mit dem Schlüsselwort <code>static</code> deklariert, also z.B. <code>public static void myMethod() {}</code>. Der Zugriff auf eine solche statische Methode erfolgt nicht über eine Referenzvariable, sondern über den Klassennamen. Angenommen, die Methode <code>myMethod()</code> wurde in der Klasse <code>MyClass</code> deklariert, dann erfolgt der Zugriff auf die Methode über <code>MyClass.myMethod()</code>. Wir kennen solche Methoden bereits, z.B. sind alle Methoden aus der Klasse <code>Math</code> statisch und wir können sie z.B. mit <code>Math.sqrt(value)</code> oder <code>Math.abs(value)</code> aufrufen. </li>
-<li>siehe z.B. <a href="https://javabeginners.de/Grundlagen/Modifikatoren/static.php">hier</a> oder <a href="https://www.programmierenlernenhq.de/statische-variablen-konstanten-und-methoden-in-java/">hier</a> oder <a href="http://www.gailer-net.de/tutorials/java/Notes/chap25/ch25_12.html">hier</a></li>
+<h5 id="ubung-2-enum-und-zweidimensionale-arrays">Übung 2 (enum und zweidimensionale Arrays)<a class="headerlink" href="#ubung-2-enum-und-zweidimensionale-arrays" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 2</summary><ol>
+<li>
+<p>Gegeben ist die folgende Klasse <code>TicTacToe</code>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung2</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TicTacToe</span> 
+<span class="p">{</span>
+    <span class="kd">enum</span> <span class="n">State</span> <span class="p">{</span><span class="n">EMPTY</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">BLACK</span><span class="p">};</span>
+    <span class="n">State</span><span class="o">[][]</span> <span class="n">field</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">TicTacToe</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+          <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]=</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeMove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="n">State</span> <span class="n">player</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span> <span class="o">&amp;&amp;</span> <span class="n">player</span><span class="o">!=</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span>   
+            <span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]=</span><span class="n">player</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</li>
+<li>
+<p>Fügen Sie alle notwendigen Klammern <code>{ }</code> ein, so dass die Anweisungsblöcke korrekt geklammert sind. </p>
+</li>
+<li>
+<p>Erweitern Sie die Klasse <code>TicTacToe</code> um eine <code>print()</code>-Methode, die das Spielfeld auf die Konsole ausgibt (Setzen Sie z.B. für den Player <code>RED</code> ein <code>x</code> und für den Player <code>Black</code> ein <code>o</code> und für <code>EMPTY</code> ein Leerzeichen oder ein <code>-</code>). Die Ausgabe nach jeweils 2 Zügen von <code>RED</code> und <code>BLACK</code> könnte dann z.B. so aussehen: </p>
+<div class="highlight"><pre><span></span><code>- o o 
+- x - 
+- - x 
+</code></pre></div>
+</li>
+<li>
+<p>Erweitern Sie die Klasse <code>TicTacToe</code> um eine <code>gewonnen()</code>-Methode (<code>true</code>, wenn ein Spieler drei Felder horizontal, diagonal oder vertikal belegt hat; ansonsten <code>false</code>).</p>
+</li>
+<li>Erweitern Sie die Klasse <code>TicTacToe</code> um eine <code>unentschieden()</code>-Methode (<code>true</code>, wenn alle Felder besetzt sind, aber kein Spieler gewonnen hat; ansonsten <code>false</code>).</li>
+<li>Erstellen Sie eine Test-Klasse mit <code>main()</code>-Methode. Erstellen sie darin ein Objekt der Klasse <code>TicTacToe</code>. Führen Sie Züge aus (<code>makeMove()</code>) und prüfen Sie, ob gewonnen wurde oder unentschieden ist (mit entsprechenden Ausgaben). </li>
+<li>
+<p>Für 6. müssen Sie in der Testklasse Ihr <code>enum State</code> importieren. Warum ist das so? Was könnten Sie machen, damit das nicht notwendig ist?</p>
+</li>
+<li>
+<p><em>Zusatz:</em> Sie können die Klasse <code>TicTacToe</code> beliebig erweitern, z.B.:</p>
+<ul>
+<li>um Ausgaben, wenn gewonnen bzw. es unentschieden ist,</li>
+<li>um Fehler in den Indizes <code>i</code> und <code>j</code> bei der <code>makeMove()</code>-Methode abzufangen,</li>
+<li>eine Methode <code>spielen()</code> implementieren, die zufällig für die Spieler die Steine setzt usw.</li>
+</ul>
+</li>
 </ol>
-<p><strong>Info</strong>: Die Klasse <code>MyInteger</code> ist eine sogenannte <em>Wrapper</em>-Klasse. Die Idee ist, dass <code>MyInteger</code> eine objektorientierte Hülle um den <code>int</code>-Typ darstellt. Implementieren Sie die Klasse <code>MyInteger</code>. Diese Klasse hat folgende Eigenschaften:</p>
-<ol>
-<li>Statische Konstanten vom Typ <code>int</code> <code>MAX_VALUE</code> und <code>MIN_VALUE</code>, welche als Wert die größte bzw. kleinste <code>int</code>-Zahl enthalten.</li>
-<li>Eine private Objektvariable <code>value</code> vom Typ <code>int</code>. (Dieser <code>value</code> hat jetzt eine "obejktorientierte" Hülle: <code>MyInteger</code>).</li>
-<li>Eine statische Methode <code>parseInt(String s)</code>, die den übergebenen <code>String s</code> als <code>int</code>-Zahl zurückgibt, wenn <code>s</code> einer Zahl entspricht. Wenn nicht, wirft die Methode eine <code>IllegalArgumentException</code>. Beachten Sie:
-    a.  <code>s</code> kann mit <code>+</code> oder <code>–</code> beginnen,
-    b.  <code>s</code> kann führende Nullen aufweisen,
-    c.  die Länge von <code>s</code> kann mit <code>s.length()</code> ermittelt und jedes einzelne Zeichen aus <code>s</code> kann mit <code>s.charAt(index)</code> betrachtet werden. 
-    d.  Ist <code>s</code> leer, wird eine <code>IllegalArgumentException</code> geworfen und wenn <code>s</code> keiner Zahl entspricht auch.
-    e.  Die Exception wird nur weitergereicht, nicht hier behandelt.</li>
-<li>Zwei Konstruktoren <code>MyInteger(int value)</code> und <code>MyInteger(String s)</code>, die jeweils die Objektvariable <code>value</code> initialisieren. Der zweite Konstruktor verwendet <code>parseInt(String)</code> und kann ebenfalls eine <code>IllegalArgumentException</code> werfen (reicht die Exception von <code>parseInt(String)</code> weiter). </li>
-<li>Eine Objektmethode <code>intValue()</code>, die den Wert von <code>value</code> zurückgibt.</li>
-<li>Eine Objektmethode <code>doubleValue()</code>, die den Wert von <code>value</code> als <code>double</code> zurückgibt.</li>
-<li>Eine statische Methode <code>valueOf(String s)</code>, die ein Objekt von <code>MyInteger</code> erzeugt und zurückgibt (und evtl. eine <code>IllegalArgumentException</code> wirft).</li>
-<li>Eine statische Methode <code>valueOf(int value)</code>, die ein Objekt von <code>MyInteger</code> erzeugt und zurückgibt.</li>
-<li>Überschreiben Sie außerdem die Methoden <code>equals()</code> und <code>toString()</code> (<em>Zusatz:</em>  auch <code>hashCode()</code> überschreiben).</li>
-<li>Testen Sie Ihre Klasse ausführlich in einer <code>Testklasse</code> mit <code>main()</code>-Methode.</li>
-<li>Committen und pushen Sie Ihre Lösung nach GitHub (oder Ihrem Git-Diensteanbieter).</li>
-</ol>
+<p><strong>Viel Spaß!</strong></p>
 </details>
                 
               
@@ -521,7 +537,7 @@ auf und werten Sie jeweils die Nutzereingabe aus (Bei <code>showInputDialog()</c
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../uebungen/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../exceptions/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -530,19 +546,19 @@ auf und werten Sie jeweils die Nutzereingabe aus (Bei <code>showInputDialog()</c
                 <span class="md-footer-nav__direction">
                   Zurück
                 </span>
-                Übungen
+                Exceptions
               </div>
             </div>
           </a>
         
         
-          <a href="../hilfen/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../aufgaben/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Weiter
                 </span>
-                Hilfen
+                Aufgaben
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

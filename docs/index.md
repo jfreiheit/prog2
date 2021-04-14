@@ -60,5 +60,15 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 
 ### Inhalte
 
-??? question "Woche 1 - Einführung und Organisatorisches + Wiederholung"
+??? question "05.-09.04.2021 - Einführung und Organisatorisches + Wiederholung"
+	- siehe [**Organisatorisches**](./#organisatorisches)
+	- siehe [**Wiederholung**](./wiederholung/#wiederholung)
+	- siehe [**Aufgabe 1**](./aufgaben/#aufgabe-1-wurfelspiel)
+
+??? question "12.-16.04.2021 - Git"
+	- siehe [**Git**](./git/#git)
+	- Video zu [**Git**](./git/#git)
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=9982fba57a09f97c22c237cb187d556b&width=720&height=405&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="405" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- siehe [**Übung 1**](./uebungen/#ubungsblatter-wochenweise)
+	- siehe [**Aufgabe 2**](./aufgaben/#aufgabe-2-myinteger)
 

@@ -13,14 +13,14 @@
         <meta name="author" content="Jörn Freiheit">
       
       
-        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/aufgaben/">
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/hilfen/">
       
       <link rel="shortcut icon" href="../img/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Aufgaben - Programmieren II</title>
+        <title>Hilfen - Programmieren II</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aufgaben" class="md-skip">
+        <a href="#hilfen" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Aufgaben
+              Hilfen
             
           </span>
         </div>
@@ -309,56 +309,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Aufgaben
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../aufgaben/" class="md-nav__link">
         Aufgaben
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#aufgabe-1-wurfelspiel" class="md-nav__link">
-    Aufgabe 1 (Würfelspiel)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aufgabe-2-myinteger" class="md-nav__link">
-    Aufgabe 2 (MyInteger)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -369,11 +324,20 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../hilfen/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Hilfen
       </a>
+      
     </li>
   
 
@@ -396,28 +360,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#aufgabe-1-wurfelspiel" class="md-nav__link">
-    Aufgabe 1 (Würfelspiel)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aufgabe-2-myinteger" class="md-nav__link">
-    Aufgabe 2 (MyInteger)
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -428,81 +370,13 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/jfreiheit/prog2/edit/master/docs/aufgaben.md" title="Seite editieren" class="md-content__button md-icon">
+                  <a href="https://github.com/jfreiheit/prog2/edit/master/docs/hilfen.md" title="Seite editieren" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="aufgaben">Aufgaben<a class="headerlink" href="#aufgaben" title="Permanent link">&para;</a></h1>
-<h5 id="aufgabe-1-wurfelspiel">Aufgabe 1 (Würfelspiel)<a class="headerlink" href="#aufgabe-1-wurfelspiel" title="Permanent link">&para;</a></h5>
-<details><summary>Aufgabe 1</summary><p><strong>Vorbereitung (Selbstudium)</strong></p>
-<ol>
-<li>Informieren Sie sich über die Klasse <code>JOptionPane</code> aus dem Paket <code>javax.swing</code> (z.B. <a href="https://docs.oracle.com/javase/10/docs/api/javax/swing/JOptionPane.html">hier</a> oder <a href="https://www.java-tutorial.org/joptionpane.html">hier</a> oder <a href="https://de.wikibooks.org/wiki/Java_Standard:_Grafische_Oberfl%C3%A4chen_mit_Swing:_Top_Level_Container:_javax_swing_JOptionPane">hier</a>) <br/>
-<em>Sollten Sie mit dem Java-Modulsystem arbeiten, d.h. sollten Sie in Ihrem Java-Projekt eine Datei <code>module-info.java</code> haben, dann müssen Sie in diese Datei (in den Anweisungsblock) die Anweisung <code>requires java.desktop;</code> einfügen - das ist das Modul, in dem sich das Paket <code>javax.swing</code> befindet.</em> </li>
-<li>Rufen Sie jeweils die statischen Methoden <ul>
-<li><code>showConfirmDialog()</code>,</li>
-<li><code>showInputDialog()</code>,</li>
-<li><code>showMessageDialog()</code> und</li>
-<li><code>showOptionDialog()</code> 
-auf und werten Sie jeweils die Nutzereingabe aus (Bei <code>showInputDialog()</code> ist die Rückgabe ein <code>String</code>, ansonsten ist die Rückgabe ein <code>int</code>, der mit folgenden Optionen verglichen werden kann:</li>
-<li><code>JOptionPane.YES_OPTION</code>,</li>
-<li><code>JOptionPane.NO_OPTION</code>,</li>
-<li><code>JOptionPane.CANCEL_OPTION</code>,</li>
-<li><code>JOptionPane.OK_OPTION</code>,</li>
-<li><code>JOptionPane.CLOSED_OPTION</code></li>
-</ul>
-</li>
-<li>Erstellen Sie insbesondere folgenden Dialog und prüfen Sie, ob der <code>Nein</code>- oder der <code>Ja</code>-Button gedrückt wurde (im Beispiel steht <code>A</code> für den Namen eines Spielers – siehe Aufgabe unten):
-    <img alt="aufgabe1" src="../files/19_aufgabe1.png" /></li>
-</ol>
-<p><strong>Aufgabe</strong></p>
-<ol>
-<li>Implementieren Sie folgendes Würfelspiel:<ul>
-<li>An dem Spiel können beliebig viele Spieler teilnehmen.</li>
-<li>Die Spieler sind nacheinander an der Reihe.</li>
-<li>Wenn ein Spieler an der Reihe ist, dann befindet er sich in einem <em>Versuch</em>.</li>
-<li>In einem <em>Versuch</em> kann der Spieler so lange würfeln, bis er entweder<ul>
-<li>eine 6 würfelt oder er</li>
-<li>den Versuch freiwillig beendet.  </li>
-</ul>
-</li>
-<li>Hat der Spieler eine 6 gewürfelt, wird der gesamte <em>Versuch</em> mit <code>0</code> Punkten bewertet.</li>
-<li>Hat der Spieler den Versuch freiwillig beendet, wird die in dem <em>Versuch</em> erzielte Summe aus sein Punktekonto addiert (gespeichert).</li>
-</ul>
-</li>
-<li>Der Spieler, der zuerst eine bestimmte Punktzahl (z.B. <code>20</code>) erreicht hat, hat gewonnen. <br/>
-    Beispiel mit zwei Spielern <code>A</code> und <code>B</code> bis Gesamtpunktzahl <code>20</code>:
-    <img alt="aufgabe1" src="../files/20_aufgabe1.png" /></li>
-<li>Committen und pushen Sie Ihre Lösung nach GitHub (oder Ihrem Git-Diensteanbieter).</li>
-</ol>
-</details>
-<h5 id="aufgabe-2-myinteger">Aufgabe 2 (MyInteger)<a class="headerlink" href="#aufgabe-2-myinteger" title="Permanent link">&para;</a></h5>
-<details><summary>Aufgabe 2</summary><p><strong>Vorbereitung (Selbstudium)</strong></p>
-<ol>
-<li>Eine <em>statische</em> Variable wird mit dem Schlüsselwort <code>static</code> deklariert, also z.B. <code>static int myVariable = 0;</code>. Der Zugriff auf eine solche statische Variable erfolgt nicht über eine Referenzvariable, sondern über den Klassennamen. Angenommen, die Variable <code>myVariable</code> wurde in der Klasse <code>MyClass</code> deklariert, dann erfolgt der Zugriff auf die Variable über <code>MyClass.myVariable</code>. Für Objektvariablen gilt, dass jedes Objekt seine eigene(n) Objektvariable(n) hat. Statische Variablen gibt es in der Klasse genau einmal. Alle Objekte "teilen" sich eine statische Variable. Eine statische Variable heißt deshalb auch <em>Klassenvariable</em>.</li>
-<li>Eine <em>statische</em> Methode wird ebenfalls mit dem Schlüsselwort <code>static</code> deklariert, also z.B. <code>public static void myMethod() {}</code>. Der Zugriff auf eine solche statische Methode erfolgt nicht über eine Referenzvariable, sondern über den Klassennamen. Angenommen, die Methode <code>myMethod()</code> wurde in der Klasse <code>MyClass</code> deklariert, dann erfolgt der Zugriff auf die Methode über <code>MyClass.myMethod()</code>. Wir kennen solche Methoden bereits, z.B. sind alle Methoden aus der Klasse <code>Math</code> statisch und wir können sie z.B. mit <code>Math.sqrt(value)</code> oder <code>Math.abs(value)</code> aufrufen. </li>
-<li>siehe z.B. <a href="https://javabeginners.de/Grundlagen/Modifikatoren/static.php">hier</a> oder <a href="https://www.programmierenlernenhq.de/statische-variablen-konstanten-und-methoden-in-java/">hier</a> oder <a href="http://www.gailer-net.de/tutorials/java/Notes/chap25/ch25_12.html">hier</a></li>
-</ol>
-<p><strong>Info</strong>: Die Klasse <code>MyInteger</code> ist eine sogenannte <em>Wrapper</em>-Klasse. Die Idee ist, dass <code>MyInteger</code> eine objektorientierte Hülle um den <code>int</code>-Typ darstellt. Implementieren Sie die Klasse <code>MyInteger</code>. Diese Klasse hat folgende Eigenschaften:</p>
-<ol>
-<li>Statische Konstanten vom Typ <code>int</code> <code>MAX_VALUE</code> und <code>MIN_VALUE</code>, welche als Wert die größte bzw. kleinste <code>int</code>-Zahl enthalten.</li>
-<li>Eine private Objektvariable <code>value</code> vom Typ <code>int</code>. (Dieser <code>value</code> hat jetzt eine "obejktorientierte" Hülle: <code>MyInteger</code>).</li>
-<li>Eine statische Methode <code>parseInt(String s)</code>, die den übergebenen <code>String s</code> als <code>int</code>-Zahl zurückgibt, wenn <code>s</code> einer Zahl entspricht. Wenn nicht, wirft die Methode eine <code>IllegalArgumentException</code>. Beachten Sie:
-    a.  <code>s</code> kann mit <code>+</code> oder <code>–</code> beginnen,
-    b.  <code>s</code> kann führende Nullen aufweisen,
-    c.  die Länge von <code>s</code> kann mit <code>s.length()</code> ermittelt und jedes einzelne Zeichen aus <code>s</code> kann mit <code>s.charAt(index)</code> betrachtet werden. 
-    d.  Ist <code>s</code> leer, wird eine <code>IllegalArgumentException</code> geworfen und wenn <code>s</code> keiner Zahl entspricht auch.
-    e.  Die Exception wird nur weitergereicht, nicht hier behandelt.</li>
-<li>Zwei Konstruktoren <code>MyInteger(int value)</code> und <code>MyInteger(String s)</code>, die jeweils die Objektvariable <code>value</code> initialisieren. Der zweite Konstruktor verwendet <code>parseInt(String)</code> und kann ebenfalls eine <code>IllegalArgumentException</code> werfen (reicht die Exception von <code>parseInt(String)</code> weiter). </li>
-<li>Eine Objektmethode <code>intValue()</code>, die den Wert von <code>value</code> zurückgibt.</li>
-<li>Eine Objektmethode <code>doubleValue()</code>, die den Wert von <code>value</code> als <code>double</code> zurückgibt.</li>
-<li>Eine statische Methode <code>valueOf(String s)</code>, die ein Objekt von <code>MyInteger</code> erzeugt und zurückgibt (und evtl. eine <code>IllegalArgumentException</code> wirft).</li>
-<li>Eine statische Methode <code>valueOf(int value)</code>, die ein Objekt von <code>MyInteger</code> erzeugt und zurückgibt.</li>
-<li>Überschreiben Sie außerdem die Methoden <code>equals()</code> und <code>toString()</code> (<em>Zusatz:</em>  auch <code>hashCode()</code> überschreiben).</li>
-<li>Testen Sie Ihre Klasse ausführlich in einer <code>Testklasse</code> mit <code>main()</code>-Methode.</li>
-<li>Committen und pushen Sie Ihre Lösung nach GitHub (oder Ihrem Git-Diensteanbieter).</li>
-</ol>
-</details>
+                <h1 id="hilfen">Hilfen<a class="headerlink" href="#hilfen" title="Permanent link">&para;</a></h1>
+<p>Hier erläutern wir in losem Zusammenhang einzelne Aspekte. </p>
                 
               
               
@@ -521,7 +395,7 @@ auf und werten Sie jeweils die Nutzereingabe aus (Bei <code>showInputDialog()</c
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../uebungen/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../aufgaben/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -530,25 +404,11 @@ auf und werten Sie jeweils die Nutzereingabe aus (Bei <code>showInputDialog()</c
                 <span class="md-footer-nav__direction">
                   Zurück
                 </span>
-                Übungen
+                Aufgaben
               </div>
             </div>
           </a>
         
-        
-          <a href="../hilfen/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Weiter
-                </span>
-                Hilfen
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>
