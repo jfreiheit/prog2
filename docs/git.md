@@ -920,4 +920,12 @@ aus. Damit "holen" Sie sich den aktuellen Stand des zentralen Repositories.
 - [noch mehr Git Katas](https://github.com/eficode-academy/git-katas)
 
 
+## EGit - Git mit Eclipse
+
+Mit [EGit]() integrieren Sie Git in Eclipse. Sie können prüfen, ob Sie EGit bereits in Eclipse installiert haben, indem Sie in Eclipse unter `Help`-->`Eclipse Marketplace` den Reiter `Installed` anklicken und schauen, ob `EGit` in dieser Liste auftaucht. Wenn nicht, wählen Sie den Reiter `Search` und geben in die Suchleiste `EGit` ein und installieren das PlugIn. Sie können auch unter `Help`-->`Install new Software...` diese URL eintragen, um EGit zu installieren: [http://download.eclipse.org/egit/updates](http://download.eclipse.org/egit/updates). 
+
+Sie finden die Installationsanleitung auch unter [https://www.eclipse.org/egit/](https://www.eclipse.org/egit/) oder z.B. auch [hier](https://eclipsesource.com/blogs/tutorials/egit-tutorial/) und [hier](https://www.vogella.com/tutorials/EclipseGit/article.html).
+
+Beim Verbinden Ihres lokalen Repositories mit Eclipse können Sie z.B. vorgehen wie [hier](https://www.vogella.com/tutorials/EclipseGit/article.html) beschrieben oder [hier](https://eclipsesource.com/blogs/tutorials/egit-tutorial/). 
+
 

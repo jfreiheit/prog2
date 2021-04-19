@@ -9,6 +9,13 @@
 	3. Richten Sie Ihren `workspace`, in dem Sie alle Ihre Entwicklungen in diesem Semester durchführen wollen (Übungen, Aufgaben, ...) als lokales Git-Repository ein
 	4. Synchroniseren Sie Ihr lokales und Ihr zentrales Git-Repository
 
+
+??? question "mögliche Lösung für Übung 1"
+
+	- Video zu Übung 1 ([**Git**](../git/#git))
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=5db6028a0361a277e7cff404504dd3e4&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- alles zu [EGit](../git/#egit-git-mit-eclipse) herausgenommen
+
 ##### Übung 2 (enum und zweidimensionale Arrays)
 
 ??? "Übung 2"
