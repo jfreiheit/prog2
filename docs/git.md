@@ -906,6 +906,17 @@ git pull
 
 aus. Damit "holen" Sie sich den aktuellen Stand des zentralen Repositories. 
 
+## git config
+
+Sollten Sie aufgefordert werden, einige Accountdetails in Ihrer Git-Konfiguration zu speichern, dann machen Sie das. Sie können diese Schritte selbst dann vornehmen, wenn Sie nicht dazu aufgefordert werden:
+
+```bash
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+
+In den Strings geben Sie natürlich Ihre Daten an. Weitere Informationen zur Konfiguration von Git finden Sie auch [hier](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+
 ## Nützliche Links zu Git
 
 - [Git Dokumentation](https://git-scm.com/docs)
