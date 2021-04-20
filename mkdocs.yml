@@ -65,6 +65,7 @@ nav:
     - Mehrdimensionale Arrays: mdarrays.md
     - Aufzählungstypen: enum.md
     - Exceptions: exceptions.md
+    - JUnit-Tests: junit.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
     - Hilfen: hilfen.md

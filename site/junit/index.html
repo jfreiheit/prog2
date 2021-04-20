@@ -13,19 +13,21 @@
         <meta name="author" content="Jörn Freiheit">
       
       
-      <link rel="shortcut icon" href="/prog2/img/favicon.png">
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/junit/">
+      
+      <link rel="shortcut icon" href="../img/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Programmieren II</title>
+        <title>JUnit-Tests - Programmieren II</title>
       
     
     
-      <link rel="stylesheet" href="/prog2/assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="/prog2/assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
         
           
           
@@ -44,7 +46,7 @@
     
     
     
-      <link rel="stylesheet" href="/prog2/extra.css">
+      <link rel="stylesheet" href="../extra.css">
     
     
       
@@ -67,6 +69,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#junit-tests" class="md-skip">
+          Zum Inhalt
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -78,7 +85,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="http://freiheit.f4.htw-berlin.de/prog2" title="Programmieren II" class="md-header-nav__button md-logo" aria-label="Programmieren II">
       
-  <img src="/prog2/img/fiw.jpg" alt="logo">
+  <img src="../img/fiw.jpg" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -94,7 +101,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              
+              JUnit-Tests
             
           </span>
         </div>
@@ -170,7 +177,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="http://freiheit.f4.htw-berlin.de/prog2" title="Programmieren II" class="md-nav__button md-logo" aria-label="Programmieren II">
       
-  <img src="/prog2/img/fiw.jpg" alt="logo">
+  <img src="../img/fiw.jpg" alt="logo">
 
     </a>
     Programmieren II
@@ -199,7 +206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Home
       </a>
     </li>
@@ -214,7 +221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/wiederholung/" class="md-nav__link">
+      <a href="../wiederholung/" class="md-nav__link">
         Wiederholung
       </a>
     </li>
@@ -229,7 +236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/git/" class="md-nav__link">
+      <a href="../git/" class="md-nav__link">
         Git
       </a>
     </li>
@@ -244,7 +251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/mdarrays/" class="md-nav__link">
+      <a href="../mdarrays/" class="md-nav__link">
         Mehrdimensionale Arrays
       </a>
     </li>
@@ -259,7 +266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/enum/" class="md-nav__link">
+      <a href="../enum/" class="md-nav__link">
         Aufzählungstypen
       </a>
     </li>
@@ -274,7 +281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/exceptions/" class="md-nav__link">
+      <a href="../exceptions/" class="md-nav__link">
         Exceptions
       </a>
     </li>
@@ -287,11 +294,20 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/prog2/junit/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         JUnit-Tests
       </a>
+      
     </li>
   
 
@@ -304,7 +320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/uebungen/" class="md-nav__link">
+      <a href="../uebungen/" class="md-nav__link">
         Übungen
       </a>
     </li>
@@ -319,7 +335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/aufgaben/" class="md-nav__link">
+      <a href="../aufgaben/" class="md-nav__link">
         Aufgaben
       </a>
     </li>
@@ -334,7 +350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/prog2/hilfen/" class="md-nav__link">
+      <a href="../hilfen/" class="md-nav__link">
         Hilfen
       </a>
     </li>
@@ -348,11 +364,71 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                  <a href="https://github.com/jfreiheit/prog2/edit/master/docs/junit.md" title="Seite editieren" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="junit-tests">JUnit-Tests<a class="headerlink" href="#junit-tests" title="Permanent link">&para;</a></h1>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">UmrechnungTimeZeit.java</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UmrechnungTimeZeit</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">convert</span><span class="p">(</span><span class="n">String</span> <span class="n">time</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+<p><code>File --&gt; New --&gt; JUnit Test Case</code></p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">TestUmrechnungTimeZeit.java</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">import static</span> <span class="nn">org.junit.jupiter.api.Assertions.*</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">TestUmrechnungTimeZeit</span> <span class="p">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">fail</span><span class="p">(</span><span class="s">&quot;Not yet implemented&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">module-info.java</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>    <span class="n">requires</span> <span class="n">org</span><span class="p">.</span><span class="na">junit</span><span class="p">.</span><span class="na">jupiter</span><span class="p">.</span><span class="na">api</span><span class="p">;</span>
+</code></pre></div>
+</div>
+</div>
+<p>Die Methode <code>test()</code> in <code>TestUmrechnungTimeZeit.java</code> umbenennen in <code>testConvert1amTo1(String time)</code>.</p>
+                
+              
+              
+                
+
 
               
             </article>
@@ -362,6 +438,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../exceptions/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Zurück
+                </span>
+                Exceptions
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../uebungen/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Weiter
+                </span>
+                Übungen
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -383,15 +494,15 @@
       
     </div>
     
-      <script src="/prog2/assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="/prog2/assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "In Zwischenablage kopieren", "clipboard.copied": "In Zwischenablage kopiert", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.placeholder": "Suchbegriff eingeben", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.term.missing": "Es fehlt"}</script>
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "In Zwischenablage kopieren", "clipboard.copied": "In Zwischenablage kopiert", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.placeholder": "Suchbegriff eingeben", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.term.missing": "Es fehlt"}</script>
       
       <script>
         app = initialize({
-          base: "/prog2",
+          base: "..",
           features: ['instant', 'tabs'],
           search: Object.assign({
-            worker: "/prog2/assets/javascripts/worker/search.9c0e82ba.min.js"
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
