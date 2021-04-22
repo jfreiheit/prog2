@@ -10,9 +10,8 @@
 	4. Synchroniseren Sie Ihr lokales und Ihr zentrales Git-Repository
 
 
-??? question "mögliche Lösung für Übung 1"
+??? question "Video zu Übung 1 ([**Git**](../git/#git))"
 
-	- Video zu Übung 1 ([**Git**](../git/#git))
 	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=5db6028a0361a277e7cff404504dd3e4&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 	- alles zu [EGit](../git/#egit-git-mit-eclipse) herausgenommen
 
@@ -67,6 +66,244 @@
 
 	**Viel Spaß!**
 
+??? question "Video zu Übung 2 (TicTacToe)"
+
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=a8ecee0fb66531428448ec96de483acc&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+
+
+??? question "mögliche Lösung für Übung 2"
+	
+	=== "TicTacToe.java"
+		```java linenums="1"
+		package uebungen.uebung2;
+
+		import java.util.Random;
+
+		public class TicTacToe 
+		{
+
+			State[][] field;
+
+			public TicTacToe()
+			{
+				this.field = new State[3][3];
+				for(int i=0; i<this.field.length; i++)
+				{
+					for(int j=0; j<this.field[i].length; j++)
+					{
+						field[i][j]=State.EMPTY;
+					}
+				}
+			}
+
+			public void makeMove(int row, int col, State player)
+			{
+				if(row>=0 && row<this.field.length 
+						&& col>=0 && col<this.field[row].length 
+						&& this.field[row][col] == State.EMPTY)
+				{
+					if(player!=State.EMPTY) 
+					{
+						this.field[row][col]=player;
+					}
+				}
+			}
+
+			public void print()
+			{
+				for(int row=0; row<this.field.length; row++)
+				{
+					for(int col=0; col<this.field[row].length; col++)
+					{
+						if(field[row][col]==State.EMPTY)
+						{
+							System.out.print("- ");
+						}
+						else if(field[row][col]==State.RED)
+						{
+							System.out.print("x ");
+						}
+						else // BLACK
+						{
+							System.out.print("o ");
+						}
+					}
+					System.out.println();
+				}
+				System.out.println();
+			}
+			
+			public boolean gewonnen(State player)
+			{
+				if(player == State.EMPTY) return false;
+				
+				// alle drei Zeilen pruefen
+				for(int row=0; row<this.field.length; row++)
+				{
+					if(this.field[row][0] == player && this.field[row][1] == player && this.field[row][2] == player)
+					{
+						return true;
+					}
+				}
+				
+				// alle drei Spalten pruefen
+				for(int col=0; col<this.field.length; col++)
+				{
+					if(this.field[0][col] == player && this.field[1][col] == player && this.field[2][col] == player)
+					{
+						return true;
+					}
+				}
+				
+				// Diagonale von links oben nach rechts unten
+				if(this.field[0][0] == player && this.field[1][1] == player && this.field[2][2] == player)
+				{
+					return true;
+				}
+				
+				// Diagonale von rechts oben nach links unten
+				if(this.field[0][2] == player && this.field[1][1] == player && this.field[2][0] == player)
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			public void printResultat()
+			{
+				if(this.gewonnen(State.RED))
+				{
+					System.out.println("Rot hat gewonnen!!!");
+				}
+				else if(this.gewonnen(State.BLACK))
+				{
+					System.out.println("Schwarz hat gewonnen!!!");
+				}
+				else if(this.unentschieden())
+				{
+					System.out.println("Unentschieden!!!");
+				}
+			}
+			
+			public void makeRandomMove(State player)
+			{
+				if(player != State.EMPTY)
+				{
+					Random r = new Random();
+					int row = r.nextInt(3);
+					int col = r.nextInt(3);
+					while(this.field[row][col]!=State.EMPTY)
+					{
+						row = r.nextInt(3);
+						col = r.nextInt(3);
+					}
+					this.field[row][col]=player;
+				}
+			}
+			
+			public void spielen()
+			{
+				State player = State.RED;
+				while(!(this.unentschieden() || this.gewonnen(State.RED) || this.gewonnen(State.BLACK)))
+				{
+					this.makeRandomMove(player);
+					this.print();
+					this.printResultat();
+					if(player == State.RED)
+					{
+						player = State.BLACK;
+					}
+					else
+					{
+						player = State.RED;
+					}
+					
+					// player = (player == State.RED) ? State.BLACK : State.RED;
+				}
+			}
+			
+			public boolean voll()
+			{
+				for(int row=0; row<this.field.length; row++)
+				{
+					for(int col=0; col<this.field[row].length; col++)
+					{
+						if(field[row][col]==State.EMPTY)
+						{
+							return false;
+						}
+					}
+				}
+				return true;
+			}
+			
+			public boolean unentschieden()
+			{
+				return (this.voll() && !this.gewonnen(State.RED) && !this.gewonnen(State.BLACK));
+			}
+		}
+		```
+
+	=== "State.java"
+		```java linenums="1"
+		package uebungen.uebung2;
+
+		public enum State {
+			EMPTY, RED, BLACK
+		}
+		```
+	
+	=== "TestTicTacToe.java"
+		```java linenums="1"
+		package uebungen.uebung2;
+
+		public class TestTicTacToe {
+
+			public static void main(String[] args) 
+			{
+				TicTacToe ttt = new TicTacToe();
+				ttt.print();
+				/*
+				ttt.makeMove(1, 1, State.RED);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(1, 2, State.BLACK);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(1, -1, State.BLACK);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(0, 1, State.RED);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(2, 1, State.BLACK);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(1, 0, State.RED);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(0, 0, State.BLACK);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(0, 2, State.RED);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(2, 0, State.BLACK);
+				ttt.printResultat();
+				ttt.print();
+				ttt.makeMove(2, 2, State.RED);
+				ttt.printResultat();
+				ttt.print();
+				*/
+				ttt.spielen();
+				// ttt.makeRandomMove(State.RED);
+				// ttt.print();
+			}
+
+		}
+
+		```
+
 
 ##### Übung 3 (Exceptions)
 
@@ -118,6 +355,15 @@
 
 	**Viel Spaß!**
 
+
+##### Übung 4 (Test-driven development)
+
+??? "Übung 4"
+
+	1. In der [Aufgabe 2](../aufgaben/#aufgabe-2-myinteger) sollen Sie für die Klasse `MyInteger` eine Methode `parseInt(String s)` schreiben, die einen String `s` in eine `int`-Zahl umwandelt, wenn dies möglich ist. 
+	2. In dieser Übung wollen wir eine solche (statische) Methode `parseDouble(String s)` für eine Klasse `MyDouble` testgetrieben entwickeln. Überlegen Sie sich dazu einige Strings, die Sie umwandeln wollen und die dazugehörigen erwarteten Ergebnisse. Es muss nicht vollständig implementiert werden. Es geht ums Prinzip. Mithilfe von `assertThrows()` können Sie übrigens prüfen, ob eine Exception geworfen wird (wenn `s` keiner Zahl entspricht) - siehe dazu z.B. [hier](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions) oder [hier](https://mkyong.com/junit5/junit-5-expected-exception/).
+
+	**Viel Spaß!**
 
 
 

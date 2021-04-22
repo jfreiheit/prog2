@@ -362,6 +362,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ubung-4-test-driven-development" class="md-nav__link">
+    Übung 4 (Test-driven development)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -445,6 +452,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ubung-4-test-driven-development" class="md-nav__link">
+    Übung 4 (Test-driven development)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -471,11 +485,8 @@
 <li>Synchroniseren Sie Ihr lokales und Ihr zentrales Git-Repository</li>
 </ol>
 </details>
-<details class="question"><summary>mögliche Lösung für Übung 1</summary><ul>
-<li>Video zu Übung 1 (<a href="../git/#git"><strong>Git</strong></a>)
-<iframe src="https://mediathek.htw-berlin.de/media/embed?key=5db6028a0361a277e7cff404504dd3e4&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe></li>
-<li>alles zu <a href="../git/#egit-git-mit-eclipse">EGit</a> herausgenommen</li>
-</ul>
+<details class="question"><summary>Video zu Übung 1 (<a href="../git/#git"><strong>Git</strong></a>)</summary><p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=5db6028a0361a277e7cff404504dd3e4&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+- alles zu <a href="../git/#egit-git-mit-eclipse">EGit</a> herausgenommen</p>
 </details>
 <h5 id="ubung-2-enum-und-zweidimensionale-arrays">Übung 2 (enum und zweidimensionale Arrays)<a class="headerlink" href="#ubung-2-enum-und-zweidimensionale-arrays" title="Permanent link">&para;</a></h5>
 <details><summary>Übung 2</summary><ol>
@@ -554,6 +565,455 @@
 </ol>
 <p><strong>Viel Spaß!</strong></p>
 </details>
+<details class="question"><summary>Video zu Übung 2 (TicTacToe)</summary><p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=a8ecee0fb66531428448ec96de483acc&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe></p>
+</details>
+<details class="question"><summary>mögliche Lösung für Übung 2</summary><div class="tabbed-set" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">TicTacToe.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung2</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TicTacToe</span> 
+<span class="p">{</span>
+
+    <span class="n">State</span><span class="o">[][]</span> <span class="n">field</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">TicTacToe</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">field</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]=</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeMove</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span> <span class="n">col</span><span class="p">,</span> <span class="n">State</span> <span class="n">player</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">row</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">row</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span> 
+                <span class="o">&amp;&amp;</span> <span class="n">col</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">col</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">]</span><span class="p">.</span><span class="na">length</span> 
+                <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">player</span><span class="o">!=</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span> 
+            <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]=</span><span class="n">player</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;- &quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">RED</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;x &quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="c1">// BLACK</span>
+                <span class="p">{</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;o &quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">gewonnen</span><span class="p">(</span><span class="n">State</span> <span class="n">player</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">player</span> <span class="o">==</span> <span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+        <span class="c1">// alle drei Zeilen pruefen</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// alle drei Spalten pruefen</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Diagonale von links oben nach rechts unten</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Diagonale von rechts oben nach links unten</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">player</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printResultat</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">gewonnen</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="na">RED</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Rot hat gewonnen!!!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">gewonnen</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="na">BLACK</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Schwarz hat gewonnen!!!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">unentschieden</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unentschieden!!!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeRandomMove</span><span class="p">(</span><span class="n">State</span> <span class="n">player</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">player</span> <span class="o">!=</span> <span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Random</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+            <span class="k">while</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]!=</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]=</span><span class="n">player</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">spielen</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">State</span> <span class="n">player</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">RED</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">unentschieden</span><span class="p">()</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="na">gewonnen</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="na">RED</span><span class="p">)</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="na">gewonnen</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="na">BLACK</span><span class="p">)))</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">makeRandomMove</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">printResultat</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">player</span> <span class="o">==</span> <span class="n">State</span><span class="p">.</span><span class="na">RED</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">player</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">BLACK</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">player</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">RED</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// player = (player == State.RED) ? State.BLACK : State.RED;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">voll</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">EMPTY</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">unentschieden</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">voll</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="na">gewonnen</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="na">RED</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="na">gewonnen</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="na">BLACK</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">State.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung2</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="n">State</span> <span class="p">{</span>
+    <span class="n">EMPTY</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">BLACK</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">TestTicTacToe.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung2</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestTicTacToe</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">TicTacToe</span> <span class="n">ttt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TicTacToe</span><span class="p">();</span>
+        <span class="n">ttt</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+        <span class="cm">/*</span>
+<span class="cm">        ttt.makeMove(1, 1, State.RED);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(1, 2, State.BLACK);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(1, -1, State.BLACK);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(0, 1, State.RED);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(2, 1, State.BLACK);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(1, 0, State.RED);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(0, 0, State.BLACK);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(0, 2, State.RED);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(2, 0, State.BLACK);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        ttt.makeMove(2, 2, State.RED);</span>
+<span class="cm">        ttt.printResultat();</span>
+<span class="cm">        ttt.print();</span>
+<span class="cm">        */</span>
+        <span class="n">ttt</span><span class="p">.</span><span class="na">spielen</span><span class="p">();</span>
+        <span class="c1">// ttt.makeRandomMove(State.RED);</span>
+        <span class="c1">// ttt.print();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h5 id="ubung-3-exceptions">Übung 3 (Exceptions)<a class="headerlink" href="#ubung-3-exceptions" title="Permanent link">&para;</a></h5>
 <details><summary>Übung 3</summary><ol>
 <li>
@@ -601,6 +1061,13 @@
 <li>
 <p>Lesen Sie eine Zahl ein und geben Sie die Quersumme der Zahl aus.</p>
 </li>
+</ol>
+<p><strong>Viel Spaß!</strong></p>
+</details>
+<h5 id="ubung-4-test-driven-development">Übung 4 (Test-driven development)<a class="headerlink" href="#ubung-4-test-driven-development" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 4</summary><ol>
+<li>In der <a href="../aufgaben/#aufgabe-2-myinteger">Aufgabe 2</a> sollen Sie für die Klasse <code>MyInteger</code> eine Methode <code>parseInt(String s)</code> schreiben, die einen String <code>s</code> in eine <code>int</code>-Zahl umwandelt, wenn dies möglich ist. </li>
+<li>In dieser Übung wollen wir eine solche (statische) Methode <code>parseDouble(String s)</code> für eine Klasse <code>MyDouble</code> testgetrieben entwickeln. Überlegen Sie sich dazu einige Strings, die Sie umwandeln wollen und die dazugehörigen erwarteten Ergebnisse. Es muss nicht vollständig implementiert werden. Es geht ums Prinzip. Mithilfe von <code>assertThrows()</code> können Sie übrigens prüfen, ob eine Exception geworfen wird (wenn <code>s</code> keiner Zahl entspricht) - siehe dazu z.B. <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions">hier</a> oder <a href="https://mkyong.com/junit5/junit-5-expected-exception/">hier</a>.</li>
 </ol>
 <p><strong>Viel Spaß!</strong></p>
 </details>
