@@ -360,10 +360,53 @@
 
 ??? "Übung 4"
 
-	1. In der [Aufgabe 2](../aufgaben/#aufgabe-2-myinteger) sollen Sie für die Klasse `MyInteger` eine Methode `parseInt(String s)` schreiben, die einen String `s` in eine `int`-Zahl umwandelt, wenn dies möglich ist. 
-	2. In dieser Übung wollen wir eine solche (statische) Methode `parseDouble(String s)` für eine Klasse `MyDouble` testgetrieben entwickeln. Überlegen Sie sich dazu einige Strings, die Sie umwandeln wollen und die dazugehörigen erwarteten Ergebnisse. Es muss nicht vollständig implementiert werden. Es geht ums Prinzip. Mithilfe von `assertThrows()` können Sie übrigens prüfen, ob eine Exception geworfen wird (wenn `s` keiner Zahl entspricht) - siehe dazu z.B. [hier](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions) oder [hier](https://mkyong.com/junit5/junit-5-expected-exception/).
+	1. Implementieren Sie eine Methode `public static int strStr(String haystack, String needle)` durch testgetriebene Entwicklung. Die Methode gibt den Anfangsindex des ersten Auftretens von `needle` in `haystack` aus, z.B. 
+	```bash
+	// Beispiel 1
+	Input: haystack = "hello", needle = "ll"
+	Output: 2		// ll beginnt am Index 2
 
+	// Beispiel 2
+	Input: haystack = "aaaaa", needle = "bba"
+	Output: -1		// bba kommt nicht vor 
+
+	// Beispiel 3
+	Input: haystack = "", needle = ""
+	Output: 0		// "leerer" String ueberall, also auch bei 0
+	```
+	Wenn `needle` nicht in `haystack` enthalten ist, wird `-1` zurückgegeben. 
+
+	2. Implementieren Sie eine Methode `public static int[][] permutations(int[] nums)` durch testgetriebene Entwicklung. Die Methode gibt ein Array von `int`-Arrays zurück, welches alle Permutationen der Zahlen aus `nums` enthält, z.B. 
+	```bash
+	// Beispiel 1
+	Input: nums = [1,2,3]
+	Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
+	// Beispiel 2
+	Input: nums = [0,1]
+	Output: [[0,1],[1,0]]
+
+	// Beispiel 3
+	Input: nums = [1]
+	Output: [[1]]
+	```
+	Sie dürfen folgende Annahmen treffen: 
+		- `1 <= nums.length <= 6`
+		- `-10 <= nums[i] <= 10`
+		- `nums` enthält keine Doppelungen
+	
 	**Viel Spaß!**
 
 
 
+## Zusatz
+
+
+##### Test-driven development
+
+??? "parseDouble(String)"
+
+	1. In der [Aufgabe 2](../aufgaben/#aufgabe-2-myinteger) sollen Sie für die Klasse `MyInteger` eine Methode `parseInt(String s)` schreiben, die einen String `s` in eine `int`-Zahl umwandelt, wenn dies möglich ist. 
+	2. In dieser Übung wollen wir eine solche (statische) Methode `parseDouble(String s)` für eine Klasse `MyDouble` testgetrieben entwickeln. Überlegen Sie sich dazu einige Strings, die Sie umwandeln wollen und die dazugehörigen erwarteten Ergebnisse. Es muss nicht vollständig implementiert werden. Es geht ums Prinzip. Mithilfe von `assertThrows()` können Sie übrigens prüfen, ob eine Exception geworfen wird (wenn `s` keiner Zahl entspricht) - siehe dazu z.B. [hier](https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions) oder [hier](https://mkyong.com/junit5/junit-5-expected-exception/).
+
+	**Viel Spaß!**

@@ -375,6 +375,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#quellcode-aus-dem-video" class="md-nav__link">
+    Quellcode aus dem Video
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -516,6 +523,13 @@
           <li class="md-nav__item">
   <a href="#eine-erste-testmethode-fur-unser-beispiel" class="md-nav__link">
     Eine erste Testmethode für unser Beispiel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quellcode-aus-dem-video" class="md-nav__link">
+    Quellcode aus dem Video
   </a>
   
 </li>
@@ -731,16 +745,23 @@
 <p>In der Testmethode erzeugen wir uns also zunächst ein Objekt von <code>UmrechnungTimeZeit</code>, damit wir die Objektmethode <code>convert()</code> überhaupt aufrufen können (Zeile <code>9</code>). Dann rufen wir die <code>convert()</code>-Methode auf und übergeben ihr den String <code>"1:00 am"</code>. Das Ergebnis der Methode wird in der Variablen <code>zeit</code> gespeichert (Zeile <code>12</code>). Dann vergleichen wir das tatsächliche Ergebnis (<code>zeit</code>) mit dem erwarteten Ergebnis (<code>"1:00"</code>) und wollen, dass beide gleich sind (<code>assertEquals()</code>).</p>
 <p>Somit haben wir einen möglichst kleinen iterativen Schritt hin zur fertigen Implementierung als Test beschrieben. Unsere nächste Aufgabe ist nun, möglichst wenig Programmcode zu schreiben, so dass der Test genau erfüllt wird. Diese Aufgabe erledigen wir auf ganz simple Weise, indem unsere <code>convert()</code>-Methode einfach den String <code>"1:00"</code> zurückgibt. </p>
 <div class="tabbed-set" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">UmrechnungTimeZeit.java</label><div class="tabbed-content">
-<p>```java liennums="1" hl_lines="5"
-public class UmrechnungTimeZeit {</p>
-<div class="codehilite"><pre><span></span><code>public String convert(String time)
-{
-    return &quot;1:00&quot;;
-}
-</code></pre></div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UmrechnungTimeZeit</span> <span class="p">{</span>
 
-<p>}
-```</p>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">convert</span><span class="p">(</span><span class="n">String</span> <span class="n">time</span><span class="p">)</span>
+    <span class="p">{</span>
+<span class="hll">        <span class="k">return</span> <span class="s">&quot;1:00&quot;</span><span class="p">;</span>
+</span>    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
 </div>
 </div>
 <p>Das erscheint uns auf den ersten Blick völlig sinnlos - und das ist es natürlich irgendwie auch. Aber wir erinnern uns: wir wollen möglichst wenig Programmcode schreiben, so dass der Test genau erfüllt wird. Und das machen wir hier. Wenn wir nun unsere Testklasse ausführen, dann sehen wir:</p>
@@ -904,6 +925,538 @@ public class UmrechnungTimeZeit {</p>
 </tbody>
 </table>
 <p>Das Auswahl der Testwerte ist ganz offensichtlich ein wichtiges Thema und bestimmt die Korrektheit der späteren Implementierung mit. Es ist wichtig, keinen Testfall zu vergessen. Leider gibt es dafür keine formalen Regeln, sondern nur intuitive Vorgaben. Es wird immer versucht, "Grenzwerte" zu ermitteln, um wirklich alle Testfälle abzudecken. </p>
+<h3 id="quellcode-aus-dem-video">Quellcode aus dem Video<a class="headerlink" href="#quellcode-aus-dem-video" title="Permanent link">&para;</a></h3>
+<p>Im Video über JUnit wurde folgender Quellcode erzeugt:</p>
+<div class="tabbed-set" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><label for="__tabbed_8_1">UmrechnungTimeZeit.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">videos.video4</span><span class="p">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.jupiter.api.Assertions.assertEquals</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UmrechnungTimeZeit</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">convert</span><span class="p">(</span><span class="n">String</span> <span class="n">time</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">LAST_THREE_CHARS</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// &quot; pm&quot; or &quot; am&quot;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="na">endsWith</span><span class="p">(</span><span class="s">&quot;am&quot;</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">time</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,(</span><span class="n">time</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">-</span><span class="n">LAST_THREE_CHARS</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">else</span>    <span class="c1">// ends with pm</span>
+        <span class="p">{</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">DIFFERENCE_BETWEEN_H_TO_HH</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">hourInt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHoursInt</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+            <span class="n">hourInt</span> <span class="o">+=</span> <span class="n">DIFFERENCE_BETWEEN_H_TO_HH</span><span class="p">;</span>
+            <span class="n">String</span> <span class="n">minutes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getMinutesStr</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+
+            <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">hourInt</span> <span class="o">+</span> <span class="s">&quot;:&quot;</span> <span class="o">+</span> <span class="n">minutes</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">zeit</span><span class="p">;</span>
+        <span class="p">}</span>       
+    <span class="p">}</span>
+
+    <span class="n">String</span> <span class="nf">getHoursStr</span><span class="p">(</span><span class="n">String</span> <span class="n">time</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">allStr</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">allStr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">String</span> <span class="nf">getMinutesStr</span><span class="p">(</span><span class="n">String</span> <span class="n">time</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">FIRST_TWO_CHARS</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">allStr</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">);</span>
+        <span class="n">String</span> <span class="n">afterDouble</span> <span class="o">=</span> <span class="n">allStr</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">minutesStr</span> <span class="o">=</span> <span class="n">afterDouble</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">FIRST_TWO_CHARS</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">minutesStr</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">getHoursInt</span><span class="p">(</span><span class="n">String</span> <span class="n">time</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">String</span> <span class="n">hoursStr</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHoursStr</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">hoursInt</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">hoursStr</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">hoursInt</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><label for="__tabbed_8_2">UmrechnungTimeZeit.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">videos.video4</span><span class="p">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.jupiter.api.Assertions.*</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">UmrechnungTimeZeitTest</span> <span class="p">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert1amTo1</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;1:00 am&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="n">zeit</span><span class="p">,</span> <span class="s">&quot;1:00&quot;</span><span class="p">,</span> <span class="s">&quot;1:00 am to 1:00 not working&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert2amTo2</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;2:00 am&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="n">zeit</span><span class="p">,</span> <span class="s">&quot;2:00&quot;</span><span class="p">,</span> <span class="s">&quot;2:00 am to 2:00 not working&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert9amTo9</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;9:00 am&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;9:00&quot;</span><span class="p">,</span> <span class="n">zeit</span><span class="p">);</span>
+    <span class="p">}</span>   
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert10amTo10</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;10:00 am&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;10:00&quot;</span><span class="p">,</span> <span class="n">zeit</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert1115amTo1115</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;11:15 am&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;11:15&quot;</span><span class="p">,</span> <span class="n">zeit</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert1pmTo13</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;1:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;13:00&quot;</span><span class="p">,</span> <span class="n">zeit</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert3pmTo15</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;3:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;15:00&quot;</span><span class="p">,</span> <span class="n">zeit</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert545pmTo1745</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;5:45 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;17:45&quot;</span><span class="p">,</span> <span class="n">zeit</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConvert11pmTo23</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">zeit</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="s">&quot;11:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;23:00&quot;</span><span class="p">,</span> <span class="n">zeit</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testGetHoursStr11pm</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">getHoursStr</span><span class="p">(</span><span class="s">&quot;11:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;11&quot;</span><span class="p">,</span> <span class="n">hour</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testGetHoursStr1pm</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">getHoursStr</span><span class="p">(</span><span class="s">&quot;1:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="n">hour</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testGetHoursInt1pm</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="kt">int</span> <span class="n">hours</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">getHoursInt</span><span class="p">(</span><span class="s">&quot;1:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">hours</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testGetHoursInt11pm</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="kt">int</span> <span class="n">hours</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">getHoursInt</span><span class="p">(</span><span class="s">&quot;11:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">hours</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testGetMinutes1pm</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">minutes</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">getMinutesStr</span><span class="p">(</span><span class="s">&quot;1:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;00&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testGetMinutes11pm</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// given (preperation)</span>
+        <span class="n">UmrechnungTimeZeit</span> <span class="n">utz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmrechnungTimeZeit</span><span class="p">();</span>
+
+        <span class="c1">// when (execution)</span>
+        <span class="n">String</span> <span class="n">minutes</span> <span class="o">=</span> <span class="n">utz</span><span class="p">.</span><span class="na">getMinutesStr</span><span class="p">(</span><span class="s">&quot;11:00 pm&quot;</span><span class="p">);</span>
+
+        <span class="c1">// than (verification)</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;00&quot;</span><span class="p">,</span> <span class="n">minutes</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><label for="__tabbed_8_3">module-info.java</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">module</span> <span class="n">SoSe2021</span> <span class="p">{</span>
+    <span class="n">requires</span> <span class="n">java</span><span class="p">.</span><span class="na">desktop</span><span class="p">;</span>
+    <span class="n">requires</span> <span class="n">org</span><span class="p">.</span><span class="na">junit</span><span class="p">.</span><span class="na">jupiter</span><span class="p">.</span><span class="na">api</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
 <h2 id="annotationen">Annotationen<a class="headerlink" href="#annotationen" title="Permanent link">&para;</a></h2>
 <p>Neben den Assertions gibt es auch noch <em>Annotationen</em>, die beim Testen eine Rolle spielen. Eine Annotation haben wir bereits verwendet: <code>@Test</code>. Hier einen Überblick über die häufigsten Annotationen:</p>
 <table>

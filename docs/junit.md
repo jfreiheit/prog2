@@ -154,7 +154,7 @@ In der Testmethode erzeugen wir uns also zunächst ein Objekt von `UmrechnungTim
 Somit haben wir einen möglichst kleinen iterativen Schritt hin zur fertigen Implementierung als Test beschrieben. Unsere nächste Aufgabe ist nun, möglichst wenig Programmcode zu schreiben, so dass der Test genau erfüllt wird. Diese Aufgabe erledigen wir auf ganz simple Weise, indem unsere `convert()`-Methode einfach den String `"1:00"` zurückgibt. 
 
 === "UmrechnungTimeZeit.java"
-	```java liennums="1" hl_lines="5"
+	```java linenums="1" hl_lines="5"
 	public class UmrechnungTimeZeit {
 		
 		public String convert(String time)
@@ -249,6 +249,284 @@ Wenn wir nun unsere Testklasse ausführen, dann sind beide Testfälle korrekt. A
 |`"12:00 midnight"` |`"0:00"` |
 
 Das Auswahl der Testwerte ist ganz offensichtlich ein wichtiges Thema und bestimmt die Korrektheit der späteren Implementierung mit. Es ist wichtig, keinen Testfall zu vergessen. Leider gibt es dafür keine formalen Regeln, sondern nur intuitive Vorgaben. Es wird immer versucht, "Grenzwerte" zu ermitteln, um wirklich alle Testfälle abzudecken. 
+
+### Quellcode aus dem Video
+
+Im Video über JUnit wurde folgender Quellcode erzeugt:
+
+=== "UmrechnungTimeZeit.java"
+	```java linenums="1"
+	package videos.video4;
+
+	import static org.junit.jupiter.api.Assertions.assertEquals;
+
+	import org.junit.jupiter.api.Test;
+
+	public class UmrechnungTimeZeit {
+		
+		public String convert(String time)
+		{
+			final int LAST_THREE_CHARS = 3; // " pm" or " am"
+			if(time.endsWith("am"))
+			{
+				return time.substring(0,(time.length()-LAST_THREE_CHARS));
+			}
+			else	// ends with pm
+			{
+				final int DIFFERENCE_BETWEEN_H_TO_HH = 12;
+				int hourInt = this.getHoursInt(time);
+				hourInt += DIFFERENCE_BETWEEN_H_TO_HH;
+				String minutes = this.getMinutesStr(time);
+				
+				String zeit = hourInt + ":" + minutes;
+				return zeit;
+			}		
+		}
+		
+		String getHoursStr(String time)
+		{
+			String[] allStr = time.split(":");
+			return allStr[0];
+		}
+		
+		String getMinutesStr(String time)
+		{
+			final int FIRST_TWO_CHARS = 2;
+			String[] allStr = time.split(":");
+			String afterDouble = allStr[1];
+			String minutesStr = afterDouble.substring(0, FIRST_TWO_CHARS);
+			return minutesStr;
+		}
+		
+		int getHoursInt(String time)
+		{
+			String hoursStr = this.getHoursStr(time);
+			int hoursInt = Integer.valueOf(hoursStr);
+			return hoursInt;
+		}
+
+	}
+	```
+
+=== "UmrechnungTimeZeit.java"
+	```java linenums="1"
+	package videos.video4;
+
+	import static org.junit.jupiter.api.Assertions.*;
+
+	import org.junit.jupiter.api.Test;
+
+	class UmrechnungTimeZeitTest {
+
+		@Test
+		void testConvert1amTo1() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("1:00 am");
+
+			// than (verification)
+			assertEquals(zeit, "1:00", "1:00 am to 1:00 not working");
+		}
+
+		@Test
+		void testConvert2amTo2() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("2:00 am");
+
+			// than (verification)
+			assertEquals(zeit, "2:00", "2:00 am to 2:00 not working");
+		}
+
+
+		@Test
+		void testConvert9amTo9() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("9:00 am");
+
+			// than (verification)
+			assertEquals("9:00", zeit);
+		}	
+
+		@Test
+		void testConvert10amTo10() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("10:00 am");
+
+			// than (verification)
+			assertEquals("10:00", zeit);
+		}
+
+		@Test
+		void testConvert1115amTo1115() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("11:15 am");
+
+			// than (verification)
+			assertEquals("11:15", zeit);
+		}
+
+		@Test
+		void testConvert1pmTo13() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("1:00 pm");
+
+			// than (verification)
+			assertEquals("13:00", zeit);
+		}
+
+
+		@Test
+		void testConvert3pmTo15() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("3:00 pm");
+
+			// than (verification)
+			assertEquals("15:00", zeit);
+		}
+		
+
+		@Test
+		void testConvert545pmTo1745() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("5:45 pm");
+
+			// than (verification)
+			assertEquals("17:45", zeit);
+		}
+		
+		@Test
+		void testConvert11pmTo23() 
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String zeit = utz.convert("11:00 pm");
+
+			// than (verification)
+			assertEquals("23:00", zeit);
+		}
+
+		@Test
+		void testGetHoursStr11pm()
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String hour = utz.getHoursStr("11:00 pm");
+
+			// than (verification)
+			assertEquals("11", hour);
+		}
+		
+		@Test
+		void testGetHoursStr1pm()
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String hour = utz.getHoursStr("1:00 pm");
+
+			// than (verification)
+			assertEquals("1", hour);
+		}
+		
+		
+		@Test
+		void testGetHoursInt1pm()
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			int hours = utz.getHoursInt("1:00 pm");
+
+			// than (verification)
+			assertEquals(1, hours);
+		}
+		
+		
+		@Test
+		void testGetHoursInt11pm()
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			int hours = utz.getHoursInt("11:00 pm");
+
+			// than (verification)
+			assertEquals(11, hours);
+		}
+		
+		@Test
+		void testGetMinutes1pm()
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String minutes = utz.getMinutesStr("1:00 pm");
+
+			// than (verification)
+			assertEquals("00", minutes);
+		}
+			
+		@Test
+		void testGetMinutes11pm()
+		{
+			// given (preperation)
+			UmrechnungTimeZeit utz = new UmrechnungTimeZeit();
+
+			// when (execution)
+			String minutes = utz.getMinutesStr("11:00 pm");
+
+			// than (verification)
+			assertEquals("00", minutes);
+		}
+	}
+	```
+
+=== "module-info.java"
+	```java
+	module SoSe2021 {
+		requires java.desktop;
+		requires org.junit.jupiter.api;
+	}
+	```
 
 ## Annotationen
 

@@ -377,6 +377,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aufgabe-4-test-driven-development" class="md-nav__link">
+    Aufgabe 4 (test-driven development)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -441,6 +448,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-3-solitaire" class="md-nav__link">
     Aufgabe 3 (Solitaire)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aufgabe-4-test-driven-development" class="md-nav__link">
+    Aufgabe 4 (test-driven development)
   </a>
   
 </li>
@@ -865,7 +879,7 @@ public Point getTo()
 
 <span class="p">}</span>
 </code></pre></div>
-<p>Sie können Selbstverständlich beliebig viele weitere (Hilfs-)Methoden hinzufügen. </p>
+<p>Sie können selbstverständlich beliebig viele weitere (Hilfs-)Methoden hinzufügen. </p>
 <p>Testen Sie Ihr Spiel in einer <code>Testklasse</code>. Führen Sie einige Züge aus und geben danach immer das Spielfeld auf die Konsole aus. Die Konsole könnte z.B. dann so aussehen:</p>
 </details>
 <details><summary>mögliche Konsolenausgaben</summary><div class="highlight"><pre><span></span><code>    o o o     
@@ -1353,6 +1367,30 @@ o         o
     ---
 </code></pre></div>
 für die in dem Zustand darüber möglichen Züge.  </p>
+</details>
+<h5 id="aufgabe-4-test-driven-development">Aufgabe 4 (test-driven development)<a class="headerlink" href="#aufgabe-4-test-driven-development" title="Permanent link">&para;</a></h5>
+<details><summary>Aufgabe 4</summary><ol>
+<li>Implementieren Sie eine Methode <code>public static int singleNumber(int[] nums)</code> durch testgetriebene Entwicklung. Für <code>nums</code> soll Folgendes gelten: <ul>
+<li>es ist nicht leer, d.h. <code>1 &lt;= nums.length</code>, </li>
+<li>jede Zahl in <code>nums</code> ist genau zwei Mal in <code>nums</code> enthalten, bis auf eine - diese existiert nur genau ein Mal in <code>nums</code></li>
+</ul>
+</li>
+<li>Die Methode gibt die Zahl zurück, die nur genau ein Mal in <code>nums</code> enthalten ist. Bsp.:
+    <div class="highlight"><pre><span></span><code>// Beispiel <span class="m">1</span>
+Input: <span class="nv">nums</span> <span class="o">=</span> <span class="o">[</span><span class="m">2</span>,2,1<span class="o">]</span>
+Output: <span class="m">1</span>
+
+// Beispiel <span class="m">2</span>
+Input: <span class="nv">nums</span> <span class="o">=</span> <span class="o">[</span><span class="m">4</span>,1,2,1,2<span class="o">]</span>
+Output: <span class="m">4</span>
+
+// Beispiel <span class="m">3</span>
+Input: <span class="nv">nums</span> <span class="o">=</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>
+Output: <span class="m">1</span>
+</code></pre></div></li>
+<li>Sie können beliebig viele weitere Methoden implementieren, die Ihnen helfen. Diese müssen aber auch testgetrieben entwickelt werden. </li>
+<li>Pushen Sie alle Klassen (also natürlich auch die Testklasse) in Ihr Remote-Repository. </li>
+</ol>
 </details>
                 
               

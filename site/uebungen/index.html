@@ -369,6 +369,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#zusatz" class="md-nav__link">
+    Zusatz
+  </a>
+  
+    <nav class="md-nav" aria-label="Zusatz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-driven-development" class="md-nav__link">
+    Test-driven development
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -456,6 +476,26 @@
   <a href="#ubung-4-test-driven-development" class="md-nav__link">
     Übung 4 (Test-driven development)
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zusatz" class="md-nav__link">
+    Zusatz
+  </a>
+  
+    <nav class="md-nav" aria-label="Zusatz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-driven-development" class="md-nav__link">
+    Test-driven development
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1066,6 +1106,49 @@
 </details>
 <h5 id="ubung-4-test-driven-development">Übung 4 (Test-driven development)<a class="headerlink" href="#ubung-4-test-driven-development" title="Permanent link">&para;</a></h5>
 <details><summary>Übung 4</summary><ol>
+<li>
+<p>Implementieren Sie eine Methode <code>public static int strStr(String haystack, String needle)</code> durch testgetriebene Entwicklung. Die Methode gibt den Anfangsindex des ersten Auftretens von <code>needle</code> in <code>haystack</code> aus, z.B. 
+<div class="highlight"><pre><span></span><code>// Beispiel <span class="m">1</span>
+Input: <span class="nv">haystack</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>, <span class="nv">needle</span> <span class="o">=</span> <span class="s2">&quot;ll&quot;</span>
+Output: <span class="m">2</span>       // ll beginnt am Index <span class="m">2</span>
+
+// Beispiel <span class="m">2</span>
+Input: <span class="nv">haystack</span> <span class="o">=</span> <span class="s2">&quot;aaaaa&quot;</span>, <span class="nv">needle</span> <span class="o">=</span> <span class="s2">&quot;bba&quot;</span>
+Output: -1      // bba kommt nicht vor 
+
+// Beispiel <span class="m">3</span>
+Input: <span class="nv">haystack</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>, <span class="nv">needle</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+Output: <span class="m">0</span>       // <span class="s2">&quot;leerer&quot;</span> String ueberall, also auch bei <span class="m">0</span>
+</code></pre></div>
+Wenn <code>needle</code> nicht in <code>haystack</code> enthalten ist, wird <code>-1</code> zurückgegeben. </p>
+</li>
+<li>
+<p>Implementieren Sie eine Methode <code>public static int[][] permutations(int[] nums)</code> durch testgetriebene Entwicklung. Die Methode gibt ein Array von <code>int</code>-Arrays zurück, welches alle Permutationen der Zahlen aus <code>nums</code> enthält, z.B. 
+<div class="highlight"><pre><span></span><code>// Beispiel <span class="m">1</span>
+Input: <span class="nv">nums</span> <span class="o">=</span> <span class="o">[</span><span class="m">1</span>,2,3<span class="o">]</span>
+Output: <span class="o">[[</span><span class="m">1</span>,2,3<span class="o">]</span>,<span class="o">[</span><span class="m">1</span>,3,2<span class="o">]</span>,<span class="o">[</span><span class="m">2</span>,1,3<span class="o">]</span>,<span class="o">[</span><span class="m">2</span>,3,1<span class="o">]</span>,<span class="o">[</span><span class="m">3</span>,1,2<span class="o">]</span>,<span class="o">[</span><span class="m">3</span>,2,1<span class="o">]]</span>
+
+// Beispiel <span class="m">2</span>
+Input: <span class="nv">nums</span> <span class="o">=</span> <span class="o">[</span><span class="m">0</span>,1<span class="o">]</span>
+Output: <span class="o">[[</span><span class="m">0</span>,1<span class="o">]</span>,<span class="o">[</span><span class="m">1</span>,0<span class="o">]]</span>
+
+// Beispiel <span class="m">3</span>
+Input: <span class="nv">nums</span> <span class="o">=</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span>
+Output: <span class="o">[[</span><span class="m">1</span><span class="o">]]</span>
+</code></pre></div>
+Sie dürfen folgende Annahmen treffen: </p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 6</code></li>
+<li><code>-10 &lt;= nums[i] &lt;= 10</code></li>
+<li><code>nums</code> enthält keine Doppelungen</li>
+</ul>
+</li>
+</ol>
+<p><strong>Viel Spaß!</strong></p>
+</details>
+<h2 id="zusatz">Zusatz<a class="headerlink" href="#zusatz" title="Permanent link">&para;</a></h2>
+<h5 id="test-driven-development">Test-driven development<a class="headerlink" href="#test-driven-development" title="Permanent link">&para;</a></h5>
+<details><summary>parseDouble(String)</summary><ol>
 <li>In der <a href="../aufgaben/#aufgabe-2-myinteger">Aufgabe 2</a> sollen Sie für die Klasse <code>MyInteger</code> eine Methode <code>parseInt(String s)</code> schreiben, die einen String <code>s</code> in eine <code>int</code>-Zahl umwandelt, wenn dies möglich ist. </li>
 <li>In dieser Übung wollen wir eine solche (statische) Methode <code>parseDouble(String s)</code> für eine Klasse <code>MyDouble</code> testgetrieben entwickeln. Überlegen Sie sich dazu einige Strings, die Sie umwandeln wollen und die dazugehörigen erwarteten Ergebnisse. Es muss nicht vollständig implementiert werden. Es geht ums Prinzip. Mithilfe von <code>assertThrows()</code> können Sie übrigens prüfen, ob eine Exception geworfen wird (wenn <code>s</code> keiner Zahl entspricht) - siehe dazu z.B. <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions">hier</a> oder <a href="https://mkyong.com/junit5/junit-5-expected-exception/">hier</a>.</li>
 </ol>

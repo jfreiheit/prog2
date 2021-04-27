@@ -44,10 +44,10 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 | 1. | 05.-09.04.2021 | Einführung und Organisatorisches, Wiederholung | - | - | - | 
 | 1. | 12.-16.04.2021 | Git | Übung 1 | Aufgabe 1 | 25.04.2021 | 
 | 2. | 19.-23.04.2021 | Enumerations und Exceptions | Übung 2 | Aufgabe 2 | 02.05.2021 | 
-| 3. | 26.-30.04.2021 | Wrapper-Klassen (boxing und unboxing) | Übung 3 | Aufgabe 3 | 09.05.2021 | 
-| 4. | 03.-07.05.2021 | Testen mit JUnit | Übung 4 | Aufgabe 4 | 16.05.2021 | 
-| 5. | 10.-14.05.2021 | Collections (List und Set) + Generics | Übung 5 | Aufgabe 5 | 23.05.2021 | 
-| 6. | 17.-21.05.2021 | Collections (Map) + Abstrakte Klassen | Übung 6 | Aufgabe 6 | 30.05.2021 | 
+| 3. | 26.-30.04.2021 | Testen mit JUnit | Übung 3 | Aufgabe 3 | 09.05.2021 | 
+| 4. | 03.-07.05.2021 | Collections (List und Set) + Generics | Übung 4 | Aufgabe 4 | 16.05.2021 | 
+| 5. | 10.-14.05.2021 | Collections (Map) + Abstrakte Klassen | Übung 5 | Aufgabe 5 | 23.05.2021 | 
+| 6. | 17.-21.05.2021 | Wrapper-Klassen (boxing und unboxing)| Übung 6 | Aufgabe 6 | 30.05.2021 | 
 | 7. | 24.-28.05.2021 | Interfaces | Übung 7 | Aufgabe 7 | 06.06.2021 | 
 | 8. | 31.-04.06.2021 | GUI | Übung 8 | Aufgabe 8 | 13.06.2021 | 
 | 9. | 07.-11.06.2021 | Ereignisse  | Übung 9 | Aufgabe 9 | 20.06.2021 | 
@@ -60,10 +60,12 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 
 ### Inhalte
 
+
 ??? question "05.-09.04.2021 - Einführung und Organisatorisches + Wiederholung"
 	- siehe [**Organisatorisches**](./#organisatorisches)
 	- siehe [**Wiederholung**](./wiederholung/#wiederholung)
 	- siehe [**Aufgabe 1**](./aufgaben/#aufgabe-1-wurfelspiel)
+
 
 ??? question "12.-16.04.2021 - Git"
 	- siehe [**Git**](./git/#git)
@@ -72,13 +74,24 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 	- siehe [**Übung 1**](./uebungen/#ubung-1-git)
 	- siehe [**Aufgabe 2**](./aufgaben/#aufgabe-2-myinteger)
 
+
 ??? question "19.-23.04.2021 - Enum und Exceptions"
 	- siehe [**Mehrdimensionale Arrays**](./mdarrays/#mehrdimensionale-arrays) und [**Aufzählungstypen**](./enum/#aufzahlungstypen-enum)
 	- Video zu [**Mehrdimensionale Arrays**](./mdarrays/#mehrdimensionale-arrays) und [**Aufzählungstypen**](./enum/#aufzahlungstypen-enum)
 		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=1cdb1e6aab2bf59a3b54e6fd82a05ae9&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 	- siehe [**Exceptions**](./exceptions/#exceptions)
-	- Video zu [**Exceptions**](./exceptions/#exceptions) - das ist Teil 1; nächste Woche kommt noch Teil 2 zu Exceptions
+	- Video zu [**Exceptions**](./exceptions/#exceptions) - das ist Teil 1 (Einführung)
 		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=1b26500326bef4387d985f562a6f5daf&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- noch ein Video zu [**Exceptions**](./exceptions/#exceptions) - das ist Teil 2 (eigene Exceptions)
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=41070eac03d171dca1f02ca999290c57&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 	- siehe [**Übung 2**](./uebungen/#ubung-2-enum-und-zweidimensionale-arrays)
 	- siehe [**Aufgabe 3**](./aufgaben/#aufgabe-3-solitaire)
 
+
+??? question "26.-30.04.2021 - Testen mit JUnit"
+	- siehe auch **Teil 2 des Videos zu Exceptions** (unter *19.-23.04.2021 - Enum und Exceptions* eins drüber) - das kam erst diese Woche hinzu, deshalb hier der Verweis, gehört aber thematisch in die Woche davor, deshalb dort
+	- siehe [**JUnit-Tests**](./junit/#junit-tests)
+	- siehe Video zu [**JUnit-Tests**](./junit/#junit-tests) 
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=93a3784711126e3fa3712c112ea65251&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- siehe [**Übung 3**](./uebungen/#ubung-3-exceptions)
+	- siehe [**Aufgabe 4**](./aufgaben/#aufgabe-4-test-driven-development)

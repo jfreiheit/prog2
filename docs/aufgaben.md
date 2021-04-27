@@ -420,7 +420,7 @@
 		}
 		```
 
-		Sie können Selbstverständlich beliebig viele weitere (Hilfs-)Methoden hinzufügen. 
+		Sie können selbstverständlich beliebig viele weitere (Hilfs-)Methoden hinzufügen. 
 
 		Testen Sie Ihr Spiel in einer `Testklasse`. Führen Sie einige Züge aus und geben danach immer das Spielfeld auf die Konsole aus. Die Konsole könnte z.B. dann so aussehen:
  
@@ -915,3 +915,26 @@
 	```
 	für die in dem Zustand darüber möglichen Züge.	
 
+
+##### Aufgabe 4 (test-driven development)
+
+??? "Aufgabe 4"
+	1. Implementieren Sie eine Methode `public static int singleNumber(int[] nums)` durch testgetriebene Entwicklung. Für `nums` soll Folgendes gelten: 
+		- es ist nicht leer, d.h. `1 <= nums.length`, 
+		- jede Zahl in `nums` ist genau zwei Mal in `nums` enthalten, bis auf eine - diese existiert nur genau ein Mal in `nums`
+	2. Die Methode gibt die Zahl zurück, die nur genau ein Mal in `nums` enthalten ist. Bsp.:
+		```bash
+		// Beispiel 1
+		Input: nums = [2,2,1]
+		Output: 1
+
+		// Beispiel 2
+		Input: nums = [4,1,2,1,2]
+		Output: 4
+
+		// Beispiel 3
+		Input: nums = [1]
+		Output: 1
+		```
+	3. Sie können beliebig viele weitere Methoden implementieren, die Ihnen helfen. Diese müssen aber auch testgetrieben entwickelt werden. 
+	4. Pushen Sie alle Klassen (also natürlich auch die Testklasse) in Ihr Remote-Repository. 
