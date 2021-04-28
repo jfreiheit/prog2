@@ -95,3 +95,118 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=93a3784711126e3fa3712c112ea65251&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 	- siehe [**Übung 3**](./uebungen/#ubung-3-exceptions)
 	- siehe [**Aufgabe 4**](./aufgaben/#aufgabe-4-test-driven-development)
+	- Video aus der Vorlesung vom 28.04.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=7a383114d68bc113a2c1ae9ad6bb55fd&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- Quellcode aus der Vorlesung vom 28.04.2021
+
+		=== "MyMath.java"
+
+			```java linenums="1"
+			package vorlesungen.testen;
+
+			public class MyMath 
+			{
+				public static int abs(int number)
+				{
+					if(number < 0 )
+					{
+						return -number;
+					}
+					else
+					{
+						return number;
+					}
+				}
+				
+				public static double abs(double number)
+				{
+					if(number < 0 )
+					{
+						return -number;
+					}
+					else
+					{
+						return number;
+					}
+				}
+				
+				public static double sqrt(double number)
+				{
+					double a = number;
+					double b = 1.0;
+					final double AREA = number;
+					final double ERROR = 0.000001;
+					while(abs(a-b) >= ERROR)
+					{
+						a = (a + b) / 2.0;
+						b = AREA / a;
+					}
+					return a;
+				}
+				
+				public static int ggT(int a, int b)
+				{
+					while(b!=0)
+					{
+						int rest = a % b;
+						a = b;
+						b = rest;
+					}
+					return a;
+				}
+			}
+			```
+
+		=== "MyMathTest.java"
+
+			```java linenums="1"
+			package vorlesungen.testen;
+
+			import static org.junit.jupiter.api.Assertions.*;
+
+			import org.junit.jupiter.api.Test;
+
+			class MyMathTest {
+
+				@Test
+				void testAbs3() {
+					int result = MyMath.abs(3);
+					assertEquals(3, result, "abs(3) not 3");
+				}
+				
+				@Test
+				void testAbsMinus3() {
+					int result = MyMath.abs(-3);
+					assertEquals(3, result, "abs(-3) not 3");
+				}
+
+				
+				@Test
+				void testSqrt9() {
+					double result = MyMath.sqrt(9.0);
+					assertEquals(3.0, result, 0.00001);
+				}
+				
+				
+				@Test
+				void testSqrt25() {
+					double result = MyMath.sqrt(25.0);
+					assertTrue(MyMath.abs(5.0 - result) <= 0.00001);
+				}	
+				
+				@Test
+				void testGgT44und12() {
+					int result = MyMath.ggT(44, 12);
+					assertEquals(4, result, "ggT of 44 and 12 not 4");
+				}
+			}
+			```
+
+		=== "module-info.java"
+		
+			```java linenums="1"
+			module SoSe2021 {
+				requires java.desktop;
+				requires org.junit.jupiter.api;
+			}
+			```
