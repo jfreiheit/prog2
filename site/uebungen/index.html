@@ -1104,6 +1104,234 @@
 </ol>
 <p><strong>Viel Spaß!</strong></p>
 </details>
+<details class="question"><summary>Video zu Übung 3 (Exceptions)</summary><p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=b18e9318e77865ab2f923c454a28886a&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe></p>
+</details>
+<details class="question"><summary>mögliche Lösung für Übung 3</summary><div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Uebung3.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung3</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.JOptionPane</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Uebung3</span> 
+<span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">inputInt</span><span class="p">(</span><span class="kt">int</span> <span class="n">min</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">,</span> <span class="n">String</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">boolean</span> <span class="n">eingabeOk</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">zahl</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">// String message = &quot;Geben Sie eine Zahl ein : &quot;;</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">eingabeOk</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">String</span> <span class="n">eingabe1</span> <span class="o">=</span> <span class="n">JOptionPane</span><span class="p">.</span><span class="na">showInputDialog</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">zahl</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">eingabe1</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">zahl</span><span class="o">&gt;=</span><span class="n">min</span> <span class="o">&amp;&amp;</span> <span class="n">zahl</span><span class="o">&lt;=</span><span class="n">max</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">eingabeOk</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Zahl muss zwischen &quot;</span> <span class="o">+</span> <span class="n">min</span> <span class="o">+</span> <span class="s">&quot; und &quot;</span> <span class="o">+</span> <span class="n">max</span> <span class="o">+</span> <span class="s">&quot; liegen!&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span> 
+            <span class="k">catch</span> <span class="p">(</span><span class="n">NumberFormatException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Eingabe war keine Zahl! Bitte Zahl eingeben&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">zahl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">inputInt</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">inputInt</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">,</span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">division</span><span class="p">(</span><span class="kt">int</span> <span class="n">divident</span><span class="p">,</span> <span class="kt">int</span> <span class="n">divisor</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">ArithmeticException</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">quotient</span> <span class="o">=</span> <span class="n">divident</span> <span class="o">/</span> <span class="n">divisor</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">quotient</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printDivision</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">zahl1</span> <span class="o">=</span> <span class="n">inputInt</span><span class="p">(</span><span class="s">&quot;Geben Sie eine Zahl1 ein : &quot;</span><span class="p">);</span>
+        <span class="kt">boolean</span> <span class="n">zahl2NotZero</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Geben Sie eine Zahl2 ein : &quot;</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">zahl2NotZero</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">zahl2</span> <span class="o">=</span> <span class="n">inputInt</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">division</span><span class="p">(</span><span class="n">zahl1</span><span class="p">,</span> <span class="n">zahl2</span><span class="p">);</span>
+                <span class="n">zahl2NotZero</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">ArithmeticException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Zahl2 darf nicht 0 sein!&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">zahl1</span> <span class="o">+</span> <span class="s">&quot; / &quot;</span> <span class="o">+</span> <span class="n">zahl2</span> <span class="o">+</span> <span class="s">&quot; = &quot;</span> <span class="o">+</span> <span class="n">result</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">quersumme</span><span class="p">(</span><span class="kt">int</span> <span class="n">zahl</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">ganz</span> <span class="o">=</span> <span class="n">zahl</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">quersumme</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">ganz</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">rest</span> <span class="o">=</span> <span class="n">ganz</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">quersumme</span> <span class="o">+=</span> <span class="n">rest</span><span class="p">;</span>
+            <span class="n">ganz</span> <span class="o">=</span> <span class="n">ganz</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">quersumme</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printUmrechnungSek</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">sek</span> <span class="o">=</span> <span class="n">inputInt</span><span class="p">(</span><span class="s">&quot;Anzahl Sekunden : &quot;</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">tage</span>     <span class="o">=</span> <span class="n">sek</span><span class="o">/</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">stunden</span>  <span class="o">=</span> <span class="n">sek</span><span class="o">/</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>  <span class="o">-</span> <span class="p">(</span><span class="n">tage</span><span class="o">*</span><span class="mi">24</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">minuten</span>  <span class="o">=</span> <span class="n">sek</span><span class="o">/</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>     <span class="o">-</span> <span class="p">(</span><span class="n">tage</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>      <span class="o">-</span> <span class="p">(</span><span class="n">stunden</span><span class="o">*</span><span class="mi">60</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">sekunden</span> <span class="o">=</span> <span class="n">sek</span>          <span class="o">-</span> <span class="p">(</span><span class="n">tage</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>   <span class="o">-</span> <span class="p">(</span><span class="n">stunden</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">minuten</span><span class="o">*</span><span class="mi">60</span><span class="p">);</span>
+
+        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">sek</span> <span class="o">+</span> <span class="s">&quot; Sekunden sind &quot;</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tage</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>  <span class="n">s</span> <span class="o">+=</span> <span class="n">tage</span> <span class="o">+</span><span class="s">&quot; Tage, &quot;</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">tage</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="n">s</span><span class="o">+=</span> <span class="s">&quot;1 Tag, &quot;</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">stunden</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">s</span> <span class="o">+=</span> <span class="n">stunden</span> <span class="o">+</span><span class="s">&quot; Stunden, &quot;</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">stunden</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="n">s</span> <span class="o">+=</span> <span class="s">&quot;1 Stunden, &quot;</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">minuten</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">s</span> <span class="o">+=</span> <span class="n">minuten</span> <span class="o">+</span> <span class="s">&quot; Minuten, &quot;</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">minuten</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="n">s</span> <span class="o">+=</span> <span class="s">&quot;1 Minute, &quot;</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">sekunden</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">s</span> <span class="o">+=</span> <span class="n">sekunden</span> <span class="o">+</span><span class="s">&quot; Sekunden.&quot;</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">sekunden</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="n">s</span> <span class="o">+=</span> <span class="s">&quot;1 Sekunde.&quot;</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">printDivision</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">zahl</span> <span class="o">=</span> <span class="n">inputInt</span><span class="p">(</span><span class="s">&quot;Geben Sie eine Zahl ein&quot;</span><span class="p">);</span>
+        <span class="c1">// System.out.println(&quot;Quersumme von &quot; + zahl + &quot; ist &quot; + quersumme(zahl));</span>
+        <span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s">&quot;Quersumme von &quot;</span> <span class="o">+</span> <span class="n">zahl</span> <span class="o">+</span> <span class="s">&quot; ist &quot;</span> <span class="o">+</span> <span class="n">quersumme</span><span class="p">(</span><span class="n">zahl</span><span class="p">));</span>
+
+        <span class="n">printUmrechnungSek</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">module-info.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">module</span> <span class="n">SoSe2021</span> <span class="p">{</span>
+    <span class="n">requires</span> <span class="n">java</span><span class="p">.</span><span class="na">desktop</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h5 id="ubung-4-test-driven-development">Übung 4 (Test-driven development)<a class="headerlink" href="#ubung-4-test-driven-development" title="Permanent link">&para;</a></h5>
 <details><summary>Übung 4</summary><ol>
 <li>
