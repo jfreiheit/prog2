@@ -45,9 +45,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 | 1. | 12.-16.04.2021 | Git | Übung 1 | Aufgabe 1 | 25.04.2021 | 
 | 2. | 19.-23.04.2021 | Enumerations und Exceptions | Übung 2 | Aufgabe 2 | 02.05.2021 | 
 | 3. | 26.-30.04.2021 | Testen mit JUnit | Übung 3 | Aufgabe 3 | 09.05.2021 | 
-| 4. | 03.-07.05.2021 | Collections (List und Set) + Generics | Übung 4 | Aufgabe 4 | 16.05.2021 | 
-| 5. | 10.-14.05.2021 | Collections (Map) + Abstrakte Klassen | Übung 5 | Aufgabe 5 | 23.05.2021 | 
-| 6. | 17.-21.05.2021 | Wrapper-Klassen (boxing und unboxing)| Übung 6 | Aufgabe 6 | 30.05.2021 | 
+| 4. | 03.-07.05.2021 | Collections (List und Set) | Übung 4 | Aufgabe 4 | 16.05.2021 | 
+| 5. | 10.-14.05.2021 | Wrapper-Klassen (boxing und unboxing) | Übung 5 | Aufgabe 5 | 23.05.2021 | 
+| 6. | 17.-21.05.2021 | Collections (Map) + Abstrakte Klassen | Übung 6 | Aufgabe 6 | 30.05.2021 | 
 | 7. | 24.-28.05.2021 | Interfaces | Übung 7 | Aufgabe 7 | 06.06.2021 | 
 | 8. | 31.-04.06.2021 | GUI | Übung 8 | Aufgabe 8 | 13.06.2021 | 
 | 9. | 07.-11.06.2021 | Ereignisse  | Übung 9 | Aufgabe 9 | 20.06.2021 | 
@@ -55,7 +55,7 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 | 12. | 21.-25.06.2021 | Neuerungen in Java 10-14 | Übung 11 | - | - |
 | 13. | 28.-02.07.2021 | - | Übung 12 | - | - |
 | 14. | 05.-09.07.2021 | Klausurvorbereitung | Übung 13 | - | - |
-| 15. | 12.-16.07.2021 | Klausurvorbereitung | - | - | - |
+| 15. | 12.-16.07.2021 | Klausurvorbereitung | - | - | - | 
 
 
 ### Inhalte
@@ -210,3 +210,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 				requires org.junit.jupiter.api;
 			}
 			```
+
+
+??? question "03.-07.05.2021 Collections (List und Set)"
+	- siehe [**Collections**](./collections/#collections)
+	- siehe [**Übung 4**](./uebungen/#ubung-4-test-driven-development)
+	- siehe [**Aufgabe 5**](./aufgaben/#aufgabe-5-operationen-uber-mengen)

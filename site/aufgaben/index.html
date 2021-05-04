@@ -311,6 +311,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../collections/" class="md-nav__link">
+        Collections
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../uebungen/" class="md-nav__link">
         Übungen
       </a>
@@ -380,6 +395,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-4-test-driven-development" class="md-nav__link">
     Aufgabe 4 (test-driven development)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aufgabe-5-operationen-uber-mengen" class="md-nav__link">
+    Aufgabe 5 (Operationen über Mengen)
   </a>
   
 </li>
@@ -455,6 +477,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-4-test-driven-development" class="md-nav__link">
     Aufgabe 4 (test-driven development)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aufgabe-5-operationen-uber-mengen" class="md-nav__link">
+    Aufgabe 5 (Operationen über Mengen)
   </a>
   
 </li>
@@ -1391,6 +1420,26 @@ Output: <span class="m">1</span>
 <li>Sie können beliebig viele weitere Methoden implementieren, die Ihnen helfen. Diese müssen aber auch testgetrieben entwickelt werden. </li>
 <li>Pushen Sie alle Klassen (also natürlich auch die Testklasse) in Ihr Remote-Repository. </li>
 </ol>
+</details>
+<h5 id="aufgabe-5-operationen-uber-mengen">Aufgabe 5 (Operationen über Mengen)<a class="headerlink" href="#aufgabe-5-operationen-uber-mengen" title="Permanent link">&para;</a></h5>
+<details><summary>Aufgabe 5</summary><p>Implementieren Sie eine Klasse <code>SetOperations</code>. </p>
+<ol>
+<li>Erstellen Sie drei Objektvariablen (z.B. <code>numbers1</code>, <code>numbers2</code> und <code>both</code>) vom Typ <code>Set&lt;Integer&gt;</code>. Erzeugen Sie für diese Objektvariablen <code>TreeSet</code>-Objekte.</li>
+<li>Erstellen Sie eine Objektmethode <code>fill()</code>. In dieser Methode sollen die beiden Sets <code>numbers1</code> und <code>numbers2</code> mit Zufallszahlen aus dem Wertebereich <code>0..99</code> befüllt werden. Erzeugen Sie jeweils <code>100</code> Zufallszahlen (die <code>number</code>s-Sets werden dann aber jeweils weniger als 100 Einträge haben, da doppelte Elemente nicht aufgenommen werden.) <br>
+Beachten Sie, dass die <code>nextInt()</code>-Methode ein <code>int</code> zurückliefert. Dieses int muss zunächst in ein <code>Integer</code>-Objekt umgewandelt werden (<code>Integer.valueOf(int)</code>) und dieses <code>Integer</code>-Objekt wird dann dem Set hinzugefügt (wenn es nicht schon enthalten ist).</li>
+<li>Erstellen Sie eine Objektmethode <code>fillBothUnion()</code>. In dieser Methode wird die <code>both</code>-Menge derart befüllt, dass <code>both</code> einer <strong>Vereinigung</strong> der Mengen <code>numbers1</code> und <code>numbers2</code> entspricht. Für Methoden auf Mengen siehe z.B. <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Set.html">https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Set.html</a>.</li>
+<li>Erstellen Sie eine Objektmethode <code>fillBothIntersection()</code>. In dieser Methode wird die <code>both</code>-Menge derart befüllt, dass <code>both</code> einem <strong>Schnitt</strong> der Mengen <code>numbers1</code> und <code>numbers2</code> entspricht. </li>
+<li>Erstellen Sie eine Objektmethode <code>fillBothDifference()</code>. In dieser Methode wird die <code>both</code>-Menge derart befüllt, dass <code>both</code> der <strong>Differenz</strong> der Menge <code>numbers1</code> minus der Menge <code>numbers2</code> entspricht. </li>
+<li>Schreiben Sie eine Methode <code>print()</code> so, dass jede Menge als ein Quadrat (10x10) aus Punkten auf der Konsole erscheint. Es wird ein Punkt gezeichnet, wenn die entsprechende Zahl (die 100 Punkte bilden die Zahlen 0..99 ab) in der Menge enthalten ist und es wird kein Punkt gezeichnet, wenn die Zahl nicht vorhanden ist. (Anstelle von Punkten können Sie auch jedes beliebige Zeichen (<code>o, *, #, x, ...</code>) verwenden). <br>
+Gestalten Sie die Ausgabe so, dass die drei Mengen <code>numbers1</code>, <code>numbers2</code> und <code>both</code> nebeneinander auf der Konsole erscheinen. </li>
+<li>
+<p>Testen Sie alle drei Methoden <code>fillBothUnion()</code>, <code>fillBothIntersection()</code> und <code>fillBothDifference()</code>. Die Ausgabe könnte wie folgt sein (<code>A</code> stellt die Menge <code>numbers1</code> dar, <code>B</code> die Menge <code>numbers2</code> und rechts ist jeweils die <code>both</code>-Menge dargestellt): </p>
+<p><img alt="aufgabe5" src="../files/39_aufgabe5.png" /></p>
+<p><img alt="aufgabe5" src="../files/40_aufgabe5.png" /></p>
+<p><img alt="aufgabe5" src="../files/41_aufgabe5.png" /></p>
+</li>
+</ol>
+<p><strong>Tipp</strong>: für die schwarzen Punkte habe ich das Character <code>'\u25cf'</code> verwendet (ein passendes Leerzeichen dazu ist <code>'\u2009'</code>). Das Zeichen für die Vereinigung ist <code>'\u222a'</code> und für den Schnitt <code>'\u2229'</code>. </p>
 </details>
                 
               

@@ -66,6 +66,7 @@ nav:
     - Aufzählungstypen: enum.md
     - Exceptions: exceptions.md
     - JUnit-Tests: junit.md
+    - Collections: collections.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
     - Hilfen: hilfen.md

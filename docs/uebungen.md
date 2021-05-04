@@ -523,6 +523,156 @@
 
 
 
+##### Übung 5 (Listen und Mengen)
+
+??? "Übung 5"
+
+	1. Erstellen Sie eine Klasse `Uebung5` mit `main()`-Methode.
+	2. Definieren Sie in der `main()`-Methode eine Variable `words` vom Typ `String[]` und weisen Sie dieser Variablen folgende Werte zu:
+		```java
+		String[] words = {"Linux", "Apple", "Facebook", "Amazon", "IBM", "Lenovo", "Google", "IBM", "Microsoft", "Apple", "Google", "Twitter", "Skype", "Chrome", "Linux", "Firefox"};
+		```
+
+	**A. Listen (`List`)**
+
+	1. Erstellen Sie eine Methode `public static List<String> createArrayList(String[] words)`. In dieser Methode soll eine `ArrayList` erstellt werden. Alle Elemente in dieser Liste sind vom Typ `String`. Befüllen Sie diese Liste mit allen Wörtern aus dem `words`-Array. Die Methode gibt die befüllte Liste (`List`) zurück. 
+	2. Erstellen Sie eine Methode `public static void printList(List<String> list)`. Diese Methode gibt alle Elemente der Liste `list` auf der Konsole aus. Geben Sie auch die Anzahl der Elemente der Liste aus. 
+	3. Erstellen Sie in der `main()`-Methode mithilfe der Methode `createArrayList(words)` eine Liste und speichern Sie diese Liste in einer Variablen vom Typ `List<String>`. Geben Sie alle Elemente dieser Liste mithilfe der Methode `printList()` auf der Konsole aus. 
+	4. Studieren Sie alle Methoden für `List` unter [https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html).
+
+		- Ermitteln Sie den Index in der Liste, in der `"Apple"` das **erste** Mal auftaucht. Erzeugen Sie folgende Ausgabe: 
+			```bash
+			Index des ersten Auftretens von Apple  : 1
+			```
+
+		- Ermitteln Sie den Index in der Liste, in der `"Apple"` das **letzte** Mal auftaucht. Erzeugen Sie folgende Ausgabe: 
+			```bash
+			Index des letzten Auftretens von Apple : 9
+			```
+
+		- Geben Sie den Wert des **ersten** Elementes der Liste aus. Erzeugen Sie folgende Ausgabe: 
+			```bash
+			erstes Element der Liste : Linux
+			```	
+
+		- Geben Sie den Wert des **letzten** Elementes der Liste aus. Erzeugen Sie folgende Ausgabe: 
+			```bash
+			letztes Element der Liste : Firefox
+			```	
+
+		- Löschen Sie die Werte `"Apple"`, `"Google"` und `"Facebook"`. Geben Sie die Liste erneut mithilfe der `printList(list)`-Methode aus.
+
+	**B. Mengen (`Set`)**
+
+	1. Erstellen Sie eine Methode `public static Set<String> createHashSet(String[] words)`. In dieser Methode soll eine `HashSet` erstellt werden. Alle Elemente in dieser Liste sind vom Typ `String`. Befüllen Sie diese Liste mit allen Wörtern aus dem `words`-Array. Die Methode gibt die befüllte Menge (`Set`) zurück. 
+	2. Erstellen Sie eine Methode `public static void printSet(Set<String> set)`. Diese Methode gibt alle Elemente der Menge `set` auf der Konsole aus. Geben Sie auch die Anzahl der Elemente der Menge aus. 
+	3. Erstellen Sie in der `main()`-Methode mithilfe der Methode `createHashSet(words)` eine Menge und speichern Sie diese Menge in einer Variablen vom Typ `Set<String>`. Geben Sie alle Elemente dieser Menge mithilfe der Methode `printSet()` auf der Konsole aus. Was beobachten Sie in Bezug auf die Anzahl der Elemente im Vergleich zur Anzahl der Elemente in der Liste? Warum ist das so?
+	4. Erstellen Sie eine Methode `public static Set<String> createTreeSet(String[] words)`. In dieser Methode soll eine `TreeSet` erstellt werden. Alle Elemente in dieser Liste sind vom Typ `String`. Befüllen Sie diese Menge (`Set`) mit allen Wörtern aus dem `words`-Array. Die Methode gibt die befüllte Menge (`Set`) zurück. 
+	5. Erstellen Sie in der `main()`-Methode mithilfe der Methode `createTreeSet(words)` eine Menge und speichern Sie diese Menge in einer Variablen. Geben Sie alle Elemente dieser Menge mithilfe der Methode `printSet()` auf der Konsole aus. Was beobachten Sie in Bezug auf die Sortierung der Elemente im Vergleich zur `HashSet`?
+
+	**Zusatz**
+
+	1. Erstellen Sie für die Liste eine Methode `public static List<String> findDoublets(List<String> list)`. Diese Methode erstellt eine Liste, in der alle Elemente enthalten sind, die in `list` doppelt vorkommen. Diese Elemente werden dann auch doppelt in die Resultat-Liste übernommen. Geben Sie diese Liste mithilfe der `printList()`-Methode in der `main()`-Methode aus.
+
+	??? "Mögliche Ausgabe (je nach Reihenfolge des Aufrufs der Methoden)"
+
+		```bash
+		Liste mit 16 Elementen :
+		--------------------------
+		Linux
+		Apple
+		Facebook
+		Amazon
+		IBM
+		Lenovo
+		Google
+		IBM
+		Microsoft
+		Apple
+		Google
+		Twitter
+		Skype
+		Chrome
+		Linux
+		Firefox
+		Index des ersten Auftretens von Apple  : 1
+		Index des letzten Auftretens von Apple : 9
+		erstes Element in der Liste  : Linux
+		letztes Element in der Liste : Firefox
+
+		Liste mit 13 Elementen :
+		--------------------------
+		Linux
+		Amazon
+		IBM
+		Lenovo
+		IBM
+		Microsoft
+		Apple
+		Google
+		Twitter
+		Skype
+		Chrome
+		Linux
+		Firefox
+
+		Doublets-
+		Liste mit 4 Elementen :
+		--------------------------
+		Linux
+		IBM
+		IBM
+		Linux
+
+		ohne Doublets-
+		Liste mit 9 Elementen :
+		--------------------------
+		Amazon
+		Lenovo
+		Microsoft
+		Apple
+		Google
+		Twitter
+		Skype
+		Chrome
+		Firefox
+
+		Menge mit 12 Elementen :
+		--------------------------
+		Lenovo
+		Google
+		Apple
+		Skype
+		Linux
+		IBM
+		Twitter
+		Chrome
+		Microsoft
+		Amazon
+		Facebook
+		Firefox
+
+		Menge mit 12 Elementen :
+		--------------------------
+		Amazon
+		Apple
+		Chrome
+		Facebook
+		Firefox
+		Google
+		IBM
+		Lenovo
+		Linux
+		Microsoft
+		Skype
+		Twitter
+		```
+
+
+
+
+
+
 ## Zusatz
 
 
