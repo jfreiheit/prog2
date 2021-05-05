@@ -899,9 +899,266 @@
 </li>
 </ul>
 </details>
-<details class="question"><summary>03.-07.05.2021 Collections (List und Set)</summary><ul>
+<details class="question"><summary>03.-07.05.2021 - Collections (List und Set)</summary><ul>
 <li>siehe <a href="./collections/#collections"><strong>Collections</strong></a></li>
-<li>siehe <a href="./uebungen/#ubung-4-test-driven-development"><strong>Übung 4</strong></a></li>
+<li>siehe Video zu <a href="./collections/#collections"><strong>Collections</strong></a> - Vorlesung 05.05.2021
+    <iframe src="https://mediathek.htw-berlin.de/media/embed?key=fbbae10549cbd81fc1385d4757e1d674&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe></li>
+<li>
+<p>Quellcode aus der Vorlesung vom 05.05.2021</p>
+<div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">ListenUndMengen.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">vorlesungen.listenmengen</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Collections: aehnlich wie Arrays, viele Elemente speichern</span>
+<span class="cm"> * keine feste Laenge</span>
+<span class="cm"> * wir koennen nur Referenztypen speichern (also nicht int, boolean, char, double, ...)</span>
+<span class="cm"> * Elemente verschiedenen Typs speicherbar --&gt; gar nicht gut, deshalb Typisieren</span>
+<span class="cm"> * Arten von Collections: List (wie Arrays), Set (keine Doppelungen), Stack, Queue</span>
+<span class="cm"> * Map (2-spaltige Tabellen Schlüssel-/Werte-Paare)</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListenUndMengen</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n-------------- Listen ------------------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">&quot;erster&quot;</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">&quot;zweiter&quot;</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="s">&quot;dritter&quot;</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">s4</span> <span class="o">=</span> <span class="s">&quot;zweiter&quot;</span><span class="p">;</span>
+
+        <span class="n">Integer</span> <span class="n">i1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s1</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s2</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s3</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s4</span><span class="p">));</span>
+        <span class="c1">// System.out.println(set1.add(i1));</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">set1</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">element</span> <span class="p">:</span> <span class="n">set1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">element</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;erster&quot;</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set1</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;vierter&quot;</span><span class="p">));</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">element</span> <span class="p">:</span> <span class="n">set1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">element</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n-------------- Listen ------------------%n%n&quot;</span><span class="p">);</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">l1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">l2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="n">l1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+        <span class="n">l1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+        <span class="n">l1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s3</span><span class="p">);</span>
+        <span class="n">l1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s4</span><span class="p">);</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span> <span class="p">:</span> <span class="n">l1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">l1</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">l1</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;zweiter&quot;</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">l1</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;vierter&quot;</span><span class="p">));</span>
+
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span> <span class="p">:</span> <span class="n">l1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;geloescht : &quot;</span> <span class="o">+</span> <span class="n">l1</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span> <span class="p">:</span> <span class="n">l1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+        <span class="n">l2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;neu&quot;</span><span class="p">);</span>
+        <span class="n">l2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;alt&quot;</span><span class="p">);</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span> <span class="p">:</span> <span class="n">l2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+        <span class="n">l1</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">l2</span><span class="p">);</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span> <span class="p">:</span> <span class="n">l1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
+
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+
+        <span class="n">l1</span><span class="p">.</span><span class="na">removeAll</span><span class="p">(</span><span class="n">l2</span><span class="p">);</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span> <span class="p">:</span> <span class="n">l1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</li>
+<li>
+<p>siehe <a href="./uebungen/#ubung-5-listen-und-mengen"><strong>Übung 5</strong></a></p>
+</li>
 <li>siehe <a href="./aufgaben/#aufgabe-5-operationen-uber-mengen"><strong>Aufgabe 5</strong></a></li>
 </ul>
 </details>

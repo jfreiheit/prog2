@@ -962,4 +962,7 @@
 
 		![aufgabe5](./files/41_aufgabe5.png)
 
-	**Tipp**: für die schwarzen Punkte habe ich das Character `'\u25cf'` verwendet (ein passendes Leerzeichen dazu ist `'\u2009'`). Das Zeichen für die Vereinigung ist `'\u222a'` und für den Schnitt `'\u2229'`. 
+	**Tipps**: 
+
+	- Für die schwarzen Punkte habe ich das Character `'\u25cf'` verwendet (ein passendes Leerzeichen dazu ist `'\u2009'`). Das Zeichen für die Vereinigung ist `'\u222a'` und für den Schnitt `'\u2229'`. 
+	- Schauen Sie sich auch im Skript [Mengenoperationen](./collections/#mengenoperationen) an. 

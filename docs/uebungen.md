@@ -482,6 +482,10 @@
 
 ##### Übung 4 (Test-driven development)
 
+!!! warning
+
+	Diese Übung lassen wir weg. Am 6.5.2021 machen wir stattdessen gleich [Übung 5](./#ubung-5-listen-und-mengen). Das hat den Vorteil, dass wir den Stoff von Vorlesung und Übung wieder zeitlich dichter zusammenziehen (Mittwoch Vorlesung und Donnerstag dazugehörige Übung). Außerdem fällt die Übung am 13.5. wegen des Feiertages weg und somit wäre die Lücke noch größer.
+
 ??? "Übung 4"
 
 	1. Implementieren Sie eine Methode `public static int strStr(String haystack, String needle)` durch testgetriebene Entwicklung. Die Methode gibt den Anfangsindex des ersten Auftretens von `needle` in `haystack` aus, z.B. 

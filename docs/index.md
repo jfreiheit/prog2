@@ -212,7 +212,140 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 			```
 
 
-??? question "03.-07.05.2021 Collections (List und Set)"
+??? question "03.-07.05.2021 - Collections (List und Set)"
 	- siehe [**Collections**](./collections/#collections)
-	- siehe [**Übung 4**](./uebungen/#ubung-4-test-driven-development)
+	- siehe Video zu [**Collections**](./collections/#collections) - Vorlesung 05.05.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=fbbae10549cbd81fc1385d4757e1d674&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- Quellcode aus der Vorlesung vom 05.05.2021
+
+		=== "ListenUndMengen.java"
+
+			```java linenums="1"
+			package vorlesungen.listenmengen;
+
+			import java.util.*;
+
+			/*
+			 * Collections: aehnlich wie Arrays, viele Elemente speichern
+			 * keine feste Laenge
+			 * wir koennen nur Referenztypen speichern (also nicht int, boolean, char, double, ...)
+			 * Elemente verschiedenen Typs speicherbar --> gar nicht gut, deshalb Typisieren
+			 * Arten von Collections: List (wie Arrays), Set (keine Doppelungen), Stack, Queue
+			 * Map (2-spaltige Tabellen Schlüssel-/Werte-Paare)
+			 */
+			public class ListenUndMengen {
+
+				public static void main(String[] args) {
+					
+					System.out.printf("%n%n-------------- Listen ------------------%n%n");
+					Set<String> set1 = new HashSet<>();
+					Set<String> set2 = new TreeSet<>();
+					
+					String s1 = "erster";
+					String s2 = "zweiter";
+					String s3 = "dritter";
+					String s4 = "zweiter";
+					
+					Integer i1 = 1;
+					
+					System.out.println(set1.add(s1));
+					System.out.println(set1.add(s2));
+					System.out.println(set1.add(s3));
+					System.out.println(set1.add(s4));
+					// System.out.println(set1.add(i1));
+					
+					System.out.println(set1.size());
+					
+					Iterator<String> it = set1.iterator();
+					while(it.hasNext())
+					{
+						System.out.println(it.next());
+					}
+					
+					System.out.println();
+					
+					for(String element : set1)
+					{
+						System.out.println(element);
+					}
+					
+					System.out.println(set1.remove("erster"));
+					System.out.println(set1.remove("vierter"));
+					
+					System.out.println();
+					
+					for(String element : set1)
+					{
+						System.out.println(element);
+					}
+					
+					System.out.printf("%n%n-------------- Listen ------------------%n%n");
+					
+					List<String> l1 = new ArrayList<>();
+					List<String> l2 = new LinkedList<>();
+					
+					l1.add(s1);
+					l1.add(s2);
+					l1.add(s3);
+					l1.add(s4);
+					
+					for(String s : l1)
+					{
+						System.out.println(s);
+					}
+					
+					System.out.println(l1.size());
+					
+					System.out.println(l1.remove("zweiter"));
+					System.out.println(l1.remove("vierter"));
+					
+					
+					for(String s : l1)
+					{
+						System.out.println(s);
+					}
+					System.out.println();
+					System.out.println("geloescht : " + l1.remove(1));
+					
+					for(String s : l1)
+					{
+						System.out.println(s);
+					}
+					
+					System.out.println();
+					
+					l2.add("neu");
+					l2.add("alt");
+					
+					for(String s : l2)
+					{
+						System.out.println(s);
+					}
+					
+					System.out.println();
+					
+					l1.addAll(l2);
+					
+					for(String s : l1)
+					{
+						System.out.println(s);
+					}
+					
+
+					System.out.println();
+					
+					
+					l1.removeAll(l2);
+					
+					for(String s : l1)
+					{
+						System.out.println(s);
+					}
+				}
+
+			}
+
+			```
+
+	- siehe [**Übung 5**](./uebungen/#ubung-5-listen-und-mengen)
 	- siehe [**Aufgabe 5**](./aufgaben/#aufgabe-5-operationen-uber-mengen)
