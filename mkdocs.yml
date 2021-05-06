@@ -67,6 +67,7 @@ nav:
     - Exceptions: exceptions.md
     - JUnit-Tests: junit.md
     - Collections: collections.md
+    - Wrapper-Klassen: wrapper.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
     - Hilfen: hilfen.md

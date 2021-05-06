@@ -672,8 +672,143 @@
 		Twitter
 		```
 
+??? question "Video zu Übung 5 (Listen und Mengen)"
+
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=3a37fb70dc3e7bb31cb8e88867827133&width=720&height=339&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="339" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 
 
+??? question "mögliche Lösung für Übung 5"
+	
+	=== "Uebung5.java"
+		```java linenums="1"
+		package uebungen.uebung5.loesung;
+
+		import java.util.ArrayList;
+		import java.util.HashSet;
+		import java.util.Iterator;
+		import java.util.List;
+		import java.util.Set;
+		import java.util.TreeSet;
+
+		public class Uebung5 {
+
+			public static void main(String[] args) 
+			{
+				String[] words = {"Linux", "Apple", "Facebook", "Amazon", "IBM",  
+						"Lenovo", "Google", "IBM", "Microsoft", "Apple", "Google", 
+						"Twitter", "Skype", "Chrome", "Linux", "Firefox"};
+				
+				System.out.printf("%n%n ----------- Array-Liste und Ausgabe (A1.+ A2.)-----------%n%n");
+				List<String> list = createArrayList(words);
+				printList(list);
+				
+				System.out.printf("%n%n ----------- Methoden fuer Listen (A4.1.- A4.4)-----------%n%n");
+				System.out.println("Index des ersten Auftretens von Apple  : " + list.indexOf("Apple"));
+				System.out.println("Index des letzten Auftretens von Apple : " + list.lastIndexOf("Apple"));
+				System.out.println("erstes Element der Liste  : " + list.get(0));
+				System.out.println("letztes Element der Liste : " + list.get(list.size()-1));
+				
+				System.out.printf("%n%n --------- Finde doppelte Eintraege (Zusatz)-----------%n%n");
+				List<String> doublets = findDoublets(list);
+				System.out.println("Doublets-");
+				printList(doublets);
+				
+				System.out.printf("%n%n ------ Liste ohne doppelte Eintraege (Zusatz)---------%n%n");
+				List<String> copy = new ArrayList<>();
+				Iterator<String> it = list.iterator();
+				while(it.hasNext()) copy.add(it.next());
+				copy.removeAll(doublets);
+				System.out.println("ohne Doublets-");
+				printList(copy);
+				
+				System.out.printf("%n%n ------------ Loeschen von Eintraegen (A4.5) -----------%n%n");
+				list.remove("Apple");		// while(list.remove("Apple")); loescht alle "Apple"
+				list.remove("Google");
+				list.remove("Facebook");
+				printList(list);
+				
+				System.out.printf("%n%n ----------- HashSet und Ausgabe (B1.- B3.)-----------%n%n");
+				Set<String> set = createHashSet(words);
+				printSet(set);
+				
+				System.out.printf("%n%n ----------- TreeSet und Ausgabe (B4.- B6.)-----------%n%n");
+				Set<String> treeset = createTreeSet(words);
+				printSet(treeset);
+
+			}
+			
+			public static List<String> findDoublets(List<String> list)
+			{
+				List<String> copy = new ArrayList<>();
+				Iterator<String> it = list.iterator();
+				while(it.hasNext()) copy.add(it.next());
+				
+				List<String> singles = new ArrayList<>();
+				it = copy.iterator();
+				while(it.hasNext())
+				{
+					String s = it.next();
+					if(copy.indexOf(s)==copy.lastIndexOf(s)) singles.add(s);
+				}
+				copy.removeAll(singles);
+				return copy;
+			}
+
+			public static List<String> createArrayList(String[] words)
+			{
+				List<String> list = new ArrayList<>();
+				for(int i=0; i<words.length; i++)
+				{
+					list.add(words[i]);
+				}
+				return list;
+			}
+			
+			public static void printList(List<String> list)
+			{
+				System.out.println("Liste mit " +list.size()+ " Elementen :");
+				System.out.println("------------------------");
+				Iterator<String> it = list.iterator();
+				while(it.hasNext())
+				{
+					System.out.println(it.next());
+				}
+			}
+			
+			public static Set<String> createHashSet(String[] words)
+			{
+				Set<String> set = new HashSet<>();
+				for(int i=0; i<words.length; i++)
+				{
+					set.add(words[i]);
+				}
+				return set;	
+			}
+			
+			public static Set<String> createTreeSet(String[] words)
+			{
+				Set<String> set = new TreeSet<>();
+				for(int i=0; i<words.length; i++)
+				{
+					set.add(words[i]);
+				}
+				return set;	
+			}
+			
+			
+			public static void printSet(Set<String> set)
+			{
+				System.out.println("Menge mit " +set.size()+ " Elementen :");
+				System.out.println("------------------------");
+				Iterator<String> it = set.iterator();
+				while(it.hasNext())
+				{
+					System.out.println(it.next());
+				}
+			}
+			
+		}
+		```
 
 
 

@@ -324,6 +324,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../wrapper/" class="md-nav__link">
+        Wrapper-Klassen
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -1552,6 +1567,267 @@ Twitter
 </code></pre></div>
 </details>
 </details>
+<details class="question"><summary>Video zu Übung 5 (Listen und Mengen)</summary><p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=3a37fb70dc3e7bb31cb8e88867827133&width=720&height=339&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="339" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe></p>
+</details>
+<details class="question"><summary>mögliche Lösung für Übung 5</summary><div class="tabbed-set" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Uebung5.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung5.loesung</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.HashSet</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.TreeSet</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Uebung5</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">words</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;Linux&quot;</span><span class="p">,</span> <span class="s">&quot;Apple&quot;</span><span class="p">,</span> <span class="s">&quot;Facebook&quot;</span><span class="p">,</span> <span class="s">&quot;Amazon&quot;</span><span class="p">,</span> <span class="s">&quot;IBM&quot;</span><span class="p">,</span>  
+                <span class="s">&quot;Lenovo&quot;</span><span class="p">,</span> <span class="s">&quot;Google&quot;</span><span class="p">,</span> <span class="s">&quot;IBM&quot;</span><span class="p">,</span> <span class="s">&quot;Microsoft&quot;</span><span class="p">,</span> <span class="s">&quot;Apple&quot;</span><span class="p">,</span> <span class="s">&quot;Google&quot;</span><span class="p">,</span> 
+                <span class="s">&quot;Twitter&quot;</span><span class="p">,</span> <span class="s">&quot;Skype&quot;</span><span class="p">,</span> <span class="s">&quot;Chrome&quot;</span><span class="p">,</span> <span class="s">&quot;Linux&quot;</span><span class="p">,</span> <span class="s">&quot;Firefox&quot;</span><span class="p">};</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n ----------- Array-Liste und Ausgabe (A1.+ A2.)-----------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">createArrayList</span><span class="p">(</span><span class="n">words</span><span class="p">);</span>
+        <span class="n">printList</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n ----------- Methoden fuer Listen (A4.1.- A4.4)-----------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Index des ersten Auftretens von Apple  : &quot;</span> <span class="o">+</span> <span class="n">list</span><span class="p">.</span><span class="na">indexOf</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Index des letzten Auftretens von Apple : &quot;</span> <span class="o">+</span> <span class="n">list</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;erstes Element der Liste  : &quot;</span> <span class="o">+</span> <span class="n">list</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;letztes Element der Liste : &quot;</span> <span class="o">+</span> <span class="n">list</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n --------- Finde doppelte Eintraege (Zusatz)-----------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">doublets</span> <span class="o">=</span> <span class="n">findDoublets</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Doublets-&quot;</span><span class="p">);</span>
+        <span class="n">printList</span><span class="p">(</span><span class="n">doublets</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n ------ Liste ohne doppelte Eintraege (Zusatz)---------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">copy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="n">copy</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">());</span>
+        <span class="n">copy</span><span class="p">.</span><span class="na">removeAll</span><span class="p">(</span><span class="n">doublets</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;ohne Doublets-&quot;</span><span class="p">);</span>
+        <span class="n">printList</span><span class="p">(</span><span class="n">copy</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n ------------ Loeschen von Eintraegen (A4.5) -----------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">list</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">);</span>       <span class="c1">// while(list.remove(&quot;Apple&quot;)); loescht alle &quot;Apple&quot;</span>
+        <span class="n">list</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;Google&quot;</span><span class="p">);</span>
+        <span class="n">list</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;Facebook&quot;</span><span class="p">);</span>
+        <span class="n">printList</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n ----------- HashSet und Ausgabe (B1.- B3.)-----------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">createHashSet</span><span class="p">(</span><span class="n">words</span><span class="p">);</span>
+        <span class="n">printSet</span><span class="p">(</span><span class="n">set</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n%n ----------- TreeSet und Ausgabe (B4.- B6.)-----------%n%n&quot;</span><span class="p">);</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">treeset</span> <span class="o">=</span> <span class="n">createTreeSet</span><span class="p">(</span><span class="n">words</span><span class="p">);</span>
+        <span class="n">printSet</span><span class="p">(</span><span class="n">treeset</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">findDoublets</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">copy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="n">copy</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">());</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">singles</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">copy</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">copy</span><span class="p">.</span><span class="na">indexOf</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">==</span><span class="n">copy</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="n">singles</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">copy</span><span class="p">.</span><span class="na">removeAll</span><span class="p">(</span><span class="n">singles</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">createArrayList</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">words</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printList</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Liste mit &quot;</span> <span class="o">+</span><span class="n">list</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">+</span> <span class="s">&quot; Elementen :&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;------------------------&quot;</span><span class="p">);</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">createHashSet</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">words</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">set</span><span class="p">;</span> 
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">createTreeSet</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">words</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">set</span><span class="p">;</span> 
+    <span class="p">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printSet</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Menge mit &quot;</span> <span class="o">+</span><span class="n">set</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">+</span> <span class="s">&quot; Elementen :&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;------------------------&quot;</span><span class="p">);</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">set</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h2 id="zusatz">Zusatz<a class="headerlink" href="#zusatz" title="Permanent link">&para;</a></h2>
 <h5 id="test-driven-development">Test-driven development<a class="headerlink" href="#test-driven-development" title="Permanent link">&para;</a></h5>
 <details><summary>parseDouble(String)</summary><ol>
@@ -1578,7 +1854,7 @@ Twitter
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../collections/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../wrapper/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1587,7 +1863,7 @@ Twitter
                 <span class="md-footer-nav__direction">
                   Zurück
                 </span>
-                Collections
+                Wrapper-Klassen
               </div>
             </div>
           </a>
