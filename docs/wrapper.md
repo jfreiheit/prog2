@@ -208,5 +208,5 @@ Hier sind die Links zu den jeweiligen Java-Dokumentationen der Klassen aufgelist
 
 !!! Übung 
 
-	Schauen Sie sich einmal die Java-Dokumentation der Klasse `Integer` an. Welche Exception kann die `valueOf(String)`-Methode werfen? Welche Methode aus der Klasse `Integer` wird durch die `valueOf(String)`_methode aufgerufen? 
+	Schauen Sie sich einmal die Java-Dokumentation der Klasse `Integer` an. Welche Exception kann die `valueOf(String)`-Methode werfen? Welche Methode aus der Klasse `Integer` wird durch die `valueOf(String)`-Methode aufgerufen? 
 

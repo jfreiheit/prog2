@@ -810,6 +810,116 @@
 		}
 		```
 
+##### Übung 6 (Wrapper-Klassen und Maps)
+
+??? "Übung 6"
+
+	1. Erstellen Sie eine Klasse `Stadt` mit folgenden Objektvariablen:
+		- `String name;`
+		- `List<Integer> bevoelkerung;`
+		- `float flaeche;`
+
+	2. Erstellen Sie für die Klasse `Stadt` einen parametrisierten Konstruktor `public Stadt(String name, List<Integer> bevoelkerung, float flaeche)`, der die Objektvariablen initialisiert.
+	3. Erstellen Sie für die Klasse `Stadt` eine `print()`-Methode, so dass eine Ausgabe auf der Konsole in folgender Form erscheint (Bsp.):
+		```bash
+		Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		```
+	4. Erstellen Sie eine Klasse `StadtTest` mit `main()`-Methode. Kopieren Sie in die Klasse die Methode `public static Stadt[] staedte()` hinein:
+		```java
+		public static Stadt[] staedte()
+		{
+			Stadt[] staedte = new Stadt[6];
+			List<Integer> berlinBevoelkerung = new ArrayList<>();
+			berlinBevoelkerung.add(3382169);	
+			berlinBevoelkerung.add(3460725);	
+			berlinBevoelkerung.add(3574830);
+			staedte[0] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+			
+			List<Integer> hamburgBevoelkerung = new ArrayList<>();
+			hamburgBevoelkerung.add(1715392);	
+			hamburgBevoelkerung.add(1786448);	
+			hamburgBevoelkerung.add(1810438);	
+			staedte[1] = new Stadt("Hamburg", hamburgBevoelkerung, 755.22f);
+			
+			List<Integer> muenchenBevoelkerung = new ArrayList<>();
+			muenchenBevoelkerung.add(1210223);	
+			muenchenBevoelkerung.add(1353186);	
+			muenchenBevoelkerung.add(1464301);
+			staedte[2] = new Stadt("Muenchen", muenchenBevoelkerung, 310.70f);
+			
+			List<Integer> koelnBevoelkerung = new ArrayList<>();
+			koelnBevoelkerung.add(962884);	
+			koelnBevoelkerung.add(1007119);	
+			koelnBevoelkerung.add(1075935);	
+			staedte[3] = new Stadt("Koeln", koelnBevoelkerung, 405.02f);
+			
+			List<Integer> frankfurtBevoelkerung = new ArrayList<>();
+			frankfurtBevoelkerung.add(648550);	
+			frankfurtBevoelkerung.add(679664);	
+			frankfurtBevoelkerung.add(736414);
+			staedte[4] = new Stadt("Frankfurt/Main", frankfurtBevoelkerung, 248.31f);
+			
+			berlinBevoelkerung = new ArrayList<>();
+			berlinBevoelkerung.add(3382169);	
+			berlinBevoelkerung.add(3460725);	
+			berlinBevoelkerung.add(3574830);
+			staedte[5] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+			
+			return staedte;
+		}		
+		```
+
+	**Liste**
+
+	5. Erstellen Sie in der `main()`-Methode eine `List<Stadt> staedteListe = new ArrayList<>();`. Fügen Sie der `staedteListe` alle Städte aus dem durch Aufruf der `staedte()`-Methode erzeugtem Array zu.
+	6. Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der `print()`-Methode aus der Klasse `Stadt` aus.
+
+	**Menge**
+
+	5. Erstellen Sie in der `main()`-Methode eine `Set<Stadt> staedteMenge = new HashSet<>();`. Fügen Sie der `staedteMenge` alle Städte aus dem durch Aufruf der `staedte()`-Methode erzeugtem Array zu.
+	6. Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der `print()`-Methode aus der Klasse `Stadt` aus.
+	7. Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?
+	8. Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.
+	9. Ändern Sie den Konstruktor von `HashSet<>()` in `TreeSet<>()`. Was passiert und warum?
+
+	**Stadt - Teil 2**
+
+	5. Implementieren Sie in der Klasse `Stadt` die `equals(Object)`- und die `hashCode()`-Methode.
+	6. Führen Sie danach die `StadtTest`-Klasse erneut aus. Was hat sich an der Menge geändert?
+	7. Kommentieren Sie `hashCode()` wieder aus und führen `StadtTest` erneut aus. Was ändert sich?
+	8. Kommentieren Sie `equals()` wieder aus und führen `StadtTest` erneut aus. Was ändert sich?
+
+	**Maps**
+
+	5. Erstellen Sie in der `main()`-Methode eine `Map<Integer, Stadt> staedteMap = new HashMap<>();`. Fügen Sie der `staedteMap` einen fortlaufenden, eindeutigen `Integer`-Wert beginnend mit `1` als *Key* sowie alle alle Städte aus dem durch Aufruf der `staedte()`-Methode erzeugtem Array als *Value* hinzu.
+	6. Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der `print()`-Methode aus der Klasse `Stadt` aus. Beginnen Sie die Zeile jeweils mit der Ausgabe des *Keys*.
+
+	**Ausgaben**
+
+	```bash
+	------------ Liste --------------
+	Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+	Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+	Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+	Koeln              405,02 km2      962.884   1.007.119   1.075.935
+	Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+	Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+
+	------------ Menge --------------
+	Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+	Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+	Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+	Koeln              405,02 km2      962.884   1.007.119   1.075.935
+	Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+
+	------------ Maps --------------
+	1  Berlin            891,68 km2    3.382.169   3.460.725   3.574.830
+	2  Hamburg           755,22 km2    1.715.392   1.786.448   1.810.438
+	3  Muenchen          310,70 km2    1.210.223   1.353.186   1.464.301
+	4  Koeln             405,02 km2      962.884   1.007.119   1.075.935
+	5  Frankfurt/Main    248,31 km2      648.550     679.664     736.414
+	6  Berlin            891,68 km2    3.382.169   3.460.725   3.574.830
+	``` 
 
 
 ## Zusatz

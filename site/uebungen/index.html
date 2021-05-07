@@ -339,6 +339,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../maps/" class="md-nav__link">
+        Maps
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -402,6 +417,13 @@
         <li class="md-nav__item">
   <a href="#ubung-5-listen-und-mengen" class="md-nav__link">
     Übung 5 (Listen und Mengen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-6-wrapper-klassen-und-maps" class="md-nav__link">
+    Übung 6 (Wrapper-Klassen und Maps)
   </a>
   
 </li>
@@ -519,6 +541,13 @@
         <li class="md-nav__item">
   <a href="#ubung-5-listen-und-mengen" class="md-nav__link">
     Übung 5 (Listen und Mengen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-6-wrapper-klassen-und-maps" class="md-nav__link">
+    Übung 6 (Wrapper-Klassen und Maps)
   </a>
   
 </li>
@@ -1828,6 +1857,116 @@ Twitter
 </div>
 </div>
 </details>
+<h5 id="ubung-6-wrapper-klassen-und-maps">Übung 6 (Wrapper-Klassen und Maps)<a class="headerlink" href="#ubung-6-wrapper-klassen-und-maps" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 6</summary><ol>
+<li>
+<p>Erstellen Sie eine Klasse <code>Stadt</code> mit folgenden Objektvariablen:</p>
+<ul>
+<li><code>String name;</code></li>
+<li><code>List&lt;Integer&gt; bevoelkerung;</code></li>
+<li><code>float flaeche;</code></li>
+</ul>
+</li>
+<li>
+<p>Erstellen Sie für die Klasse <code>Stadt</code> einen parametrisierten Konstruktor <code>public Stadt(String name, List&lt;Integer&gt; bevoelkerung, float flaeche)</code>, der die Objektvariablen initialisiert.</p>
+</li>
+<li>Erstellen Sie für die Klasse <code>Stadt</code> eine <code>print()</code>-Methode, so dass eine Ausgabe auf der Konsole in folgender Form erscheint (Bsp.):
+    <div class="highlight"><pre><span></span><code>Berlin             <span class="m">891</span>,68 km2    <span class="m">3</span>.382.169   <span class="m">3</span>.460.725   <span class="m">3</span>.574.830
+</code></pre></div></li>
+<li>Erstellen Sie eine Klasse <code>StadtTest</code> mit <code>main()</code>-Methode. Kopieren Sie in die Klasse die Methode <code>public static Stadt[] staedte()</code> hinein:
+    <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stadt</span><span class="o">[]</span> <span class="nf">staedte</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Stadt</span><span class="o">[]</span> <span class="n">staedte</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="o">[</span><span class="mi">6</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">berlinBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3382169</span><span class="p">);</span>    
+    <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3460725</span><span class="p">);</span>    
+    <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3574830</span><span class="p">);</span>
+    <span class="n">staedte</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Berlin&quot;</span><span class="p">,</span> <span class="n">berlinBevoelkerung</span><span class="p">,</span> <span class="mf">891.68f</span><span class="p">);</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">hamburgBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1715392</span><span class="p">);</span>   
+    <span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1786448</span><span class="p">);</span>   
+    <span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1810438</span><span class="p">);</span>   
+    <span class="n">staedte</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Hamburg&quot;</span><span class="p">,</span> <span class="n">hamburgBevoelkerung</span><span class="p">,</span> <span class="mf">755.22f</span><span class="p">);</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">muenchenBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1210223</span><span class="p">);</span>  
+    <span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1353186</span><span class="p">);</span>  
+    <span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1464301</span><span class="p">);</span>
+    <span class="n">staedte</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Muenchen&quot;</span><span class="p">,</span> <span class="n">muenchenBevoelkerung</span><span class="p">,</span> <span class="mf">310.70f</span><span class="p">);</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">koelnBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">962884</span><span class="p">);</span>  
+    <span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1007119</span><span class="p">);</span> 
+    <span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1075935</span><span class="p">);</span> 
+    <span class="n">staedte</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Koeln&quot;</span><span class="p">,</span> <span class="n">koelnBevoelkerung</span><span class="p">,</span> <span class="mf">405.02f</span><span class="p">);</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">frankfurtBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">648550</span><span class="p">);</span>  
+    <span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">679664</span><span class="p">);</span>  
+    <span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">736414</span><span class="p">);</span>
+    <span class="n">staedte</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Frankfurt/Main&quot;</span><span class="p">,</span> <span class="n">frankfurtBevoelkerung</span><span class="p">,</span> <span class="mf">248.31f</span><span class="p">);</span>
+
+    <span class="n">berlinBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3382169</span><span class="p">);</span>    
+    <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3460725</span><span class="p">);</span>    
+    <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3574830</span><span class="p">);</span>
+    <span class="n">staedte</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Berlin&quot;</span><span class="p">,</span> <span class="n">berlinBevoelkerung</span><span class="p">,</span> <span class="mf">891.68f</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">staedte</span><span class="p">;</span>
+<span class="p">}</span>       
+</code></pre></div></li>
+</ol>
+<p><strong>Liste</strong></p>
+<ol>
+<li>Erstellen Sie in der <code>main()</code>-Methode eine <code>List&lt;Stadt&gt; staedteListe = new ArrayList&lt;&gt;();</code>. Fügen Sie der <code>staedteListe</code> alle Städte aus dem durch Aufruf der <code>staedte()</code>-Methode erzeugtem Array zu.</li>
+<li>Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der <code>print()</code>-Methode aus der Klasse <code>Stadt</code> aus.</li>
+</ol>
+<p><strong>Menge</strong></p>
+<ol>
+<li>Erstellen Sie in der <code>main()</code>-Methode eine <code>Set&lt;Stadt&gt; staedteMenge = new HashSet&lt;&gt;();</code>. Fügen Sie der <code>staedteMenge</code> alle Städte aus dem durch Aufruf der <code>staedte()</code>-Methode erzeugtem Array zu.</li>
+<li>Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der <code>print()</code>-Methode aus der Klasse <code>Stadt</code> aus.</li>
+<li>Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?</li>
+<li>Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.</li>
+<li>Ändern Sie den Konstruktor von <code>HashSet&lt;&gt;()</code> in <code>TreeSet&lt;&gt;()</code>. Was passiert und warum?</li>
+</ol>
+<p><strong>Stadt - Teil 2</strong></p>
+<ol>
+<li>Implementieren Sie in der Klasse <code>Stadt</code> die <code>equals(Object)</code>- und die <code>hashCode()</code>-Methode.</li>
+<li>Führen Sie danach die <code>StadtTest</code>-Klasse erneut aus. Was hat sich an der Menge geändert?</li>
+<li>Kommentieren Sie <code>hashCode()</code> wieder aus und führen <code>StadtTest</code> erneut aus. Was ändert sich?</li>
+<li>Kommentieren Sie <code>equals()</code> wieder aus und führen <code>StadtTest</code> erneut aus. Was ändert sich?</li>
+</ol>
+<p><strong>Maps</strong></p>
+<ol>
+<li>Erstellen Sie in der <code>main()</code>-Methode eine <code>Map&lt;Integer, Stadt&gt; staedteMap = new HashMap&lt;&gt;();</code>. Fügen Sie der <code>staedteMap</code> einen fortlaufenden, eindeutigen <code>Integer</code>-Wert beginnend mit <code>1</code> als <em>Key</em> sowie alle alle Städte aus dem durch Aufruf der <code>staedte()</code>-Methode erzeugtem Array als <em>Value</em> hinzu.</li>
+<li>Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der <code>print()</code>-Methode aus der Klasse <code>Stadt</code> aus. Beginnen Sie die Zeile jeweils mit der Ausgabe des <em>Keys</em>.</li>
+</ol>
+<p><strong>Ausgaben</strong></p>
+<div class="highlight"><pre><span></span><code>------------ Liste --------------
+Berlin             <span class="m">891</span>,68 km2    <span class="m">3</span>.382.169   <span class="m">3</span>.460.725   <span class="m">3</span>.574.830
+Hamburg            <span class="m">755</span>,22 km2    <span class="m">1</span>.715.392   <span class="m">1</span>.786.448   <span class="m">1</span>.810.438
+Muenchen           <span class="m">310</span>,70 km2    <span class="m">1</span>.210.223   <span class="m">1</span>.353.186   <span class="m">1</span>.464.301
+Koeln              <span class="m">405</span>,02 km2      <span class="m">962</span>.884   <span class="m">1</span>.007.119   <span class="m">1</span>.075.935
+Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</span>.550     <span class="m">679</span>.664     <span class="m">736</span>.414
+Berlin             <span class="m">891</span>,68 km2    <span class="m">3</span>.382.169   <span class="m">3</span>.460.725   <span class="m">3</span>.574.830
+
+------------ Menge --------------
+Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</span>.550     <span class="m">679</span>.664     <span class="m">736</span>.414
+Berlin             <span class="m">891</span>,68 km2    <span class="m">3</span>.382.169   <span class="m">3</span>.460.725   <span class="m">3</span>.574.830
+Muenchen           <span class="m">310</span>,70 km2    <span class="m">1</span>.210.223   <span class="m">1</span>.353.186   <span class="m">1</span>.464.301
+Koeln              <span class="m">405</span>,02 km2      <span class="m">962</span>.884   <span class="m">1</span>.007.119   <span class="m">1</span>.075.935
+Hamburg            <span class="m">755</span>,22 km2    <span class="m">1</span>.715.392   <span class="m">1</span>.786.448   <span class="m">1</span>.810.438
+
+------------ Maps --------------
+<span class="m">1</span>  Berlin            <span class="m">891</span>,68 km2    <span class="m">3</span>.382.169   <span class="m">3</span>.460.725   <span class="m">3</span>.574.830
+<span class="m">2</span>  Hamburg           <span class="m">755</span>,22 km2    <span class="m">1</span>.715.392   <span class="m">1</span>.786.448   <span class="m">1</span>.810.438
+<span class="m">3</span>  Muenchen          <span class="m">310</span>,70 km2    <span class="m">1</span>.210.223   <span class="m">1</span>.353.186   <span class="m">1</span>.464.301
+<span class="m">4</span>  Koeln             <span class="m">405</span>,02 km2      <span class="m">962</span>.884   <span class="m">1</span>.007.119   <span class="m">1</span>.075.935
+<span class="m">5</span>  Frankfurt/Main    <span class="m">248</span>,31 km2      <span class="m">648</span>.550     <span class="m">679</span>.664     <span class="m">736</span>.414
+<span class="m">6</span>  Berlin            <span class="m">891</span>,68 km2    <span class="m">3</span>.382.169   <span class="m">3</span>.460.725   <span class="m">3</span>.574.830
+</code></pre></div>
+</details>
 <h2 id="zusatz">Zusatz<a class="headerlink" href="#zusatz" title="Permanent link">&para;</a></h2>
 <h5 id="test-driven-development">Test-driven development<a class="headerlink" href="#test-driven-development" title="Permanent link">&para;</a></h5>
 <details><summary>parseDouble(String)</summary><ol>
@@ -1854,7 +1993,7 @@ Twitter
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../wrapper/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../maps/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1863,7 +2002,7 @@ Twitter
                 <span class="md-footer-nav__direction">
                   Zurück
                 </span>
-                Wrapper-Klassen
+                Maps
               </div>
             </div>
           </a>

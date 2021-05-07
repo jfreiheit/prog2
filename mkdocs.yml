@@ -68,6 +68,7 @@ nav:
     - JUnit-Tests: junit.md
     - Collections: collections.md
     - Wrapper-Klassen: wrapper.md
+    - Maps: maps.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
     - Hilfen: hilfen.md
