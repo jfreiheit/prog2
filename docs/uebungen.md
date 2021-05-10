@@ -676,8 +676,7 @@
 
 	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=3a37fb70dc3e7bb31cb8e88867827133&width=720&height=339&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="339" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 
-
-??? question "mögliche Lösung für Übung 5"
+??? question "mögliche Lösung für Übung 5 - aus der Übung von Frau Busjahn (mit Kommentaren)"
 	
 	=== "Uebung5.java"
 		```java linenums="1"
@@ -692,123 +691,202 @@
 
 		public class Uebung5 {
 
-			public static void main(String[] args) 
-			{
-				String[] words = {"Linux", "Apple", "Facebook", "Amazon", "IBM",  
-						"Lenovo", "Google", "IBM", "Microsoft", "Apple", "Google", 
-						"Twitter", "Skype", "Chrome", "Linux", "Firefox"};
-				
-				System.out.printf("%n%n ----------- Array-Liste und Ausgabe (A1.+ A2.)-----------%n%n");
-				List<String> list = createArrayList(words);
-				printList(list);
-				
-				System.out.printf("%n%n ----------- Methoden fuer Listen (A4.1.- A4.4)-----------%n%n");
-				System.out.println("Index des ersten Auftretens von Apple  : " + list.indexOf("Apple"));
-				System.out.println("Index des letzten Auftretens von Apple : " + list.lastIndexOf("Apple"));
-				System.out.println("erstes Element der Liste  : " + list.get(0));
-				System.out.println("letztes Element der Liste : " + list.get(list.size()-1));
-				
-				System.out.printf("%n%n --------- Finde doppelte Eintraege (Zusatz)-----------%n%n");
-				List<String> doublets = findDoublets(list);
-				System.out.println("Doublets-");
-				printList(doublets);
-				
-				System.out.printf("%n%n ------ Liste ohne doppelte Eintraege (Zusatz)---------%n%n");
-				List<String> copy = new ArrayList<>();
-				Iterator<String> it = list.iterator();
-				while(it.hasNext()) copy.add(it.next());
-				copy.removeAll(doublets);
-				System.out.println("ohne Doublets-");
-				printList(copy);
-				
-				System.out.printf("%n%n ------------ Loeschen von Eintraegen (A4.5) -----------%n%n");
-				list.remove("Apple");		// while(list.remove("Apple")); loescht alle "Apple"
-				list.remove("Google");
-				list.remove("Facebook");
-				printList(list);
-				
-				System.out.printf("%n%n ----------- HashSet und Ausgabe (B1.- B3.)-----------%n%n");
-				Set<String> set = createHashSet(words);
-				printSet(set);
-				
-				System.out.printf("%n%n ----------- TreeSet und Ausgabe (B4.- B6.)-----------%n%n");
-				Set<String> treeset = createTreeSet(words);
-				printSet(treeset);
-
-			}
-			
-			public static List<String> findDoublets(List<String> list)
-			{
-				List<String> copy = new ArrayList<>();
-				Iterator<String> it = list.iterator();
-				while(it.hasNext()) copy.add(it.next());
-				
-				List<String> singles = new ArrayList<>();
-				it = copy.iterator();
-				while(it.hasNext())
-				{
-					String s = it.next();
-					if(copy.indexOf(s)==copy.lastIndexOf(s)) singles.add(s);
-				}
-				copy.removeAll(singles);
-				return copy;
-			}
-
-			public static List<String> createArrayList(String[] words)
-			{
+			//A1. Erstellen Sie eine Methode public static List<String> createArrayList(String[] words). 
+			//In dieser Methode soll eine ArrayList erstellt werden. Alle Elemente in dieser Liste sind vom Typ String. 
+			//Befüllen Sie diese Liste mit allen Wörtern aus dem words-Array. Die Methode gibt die befüllte Liste (List) zurück.
+			public static List<String> createArrayList(String[] words){
+				// neue ArrayList mit String als Type anlegen
 				List<String> list = new ArrayList<>();
-				for(int i=0; i<words.length; i++)
-				{
+
+				// jedes Element aus words in die Liste einfügen
+				for(int i=0; i<words.length; i++) {
 					list.add(words[i]);
 				}
-				return list;
+
+				return list;		
 			}
-			
+
+
+			//A2. Erstellen Sie eine Methode public static void printList(List<String> list). 
+			//Diese Methode gibt alle Elemente der Liste list auf der Konsole aus. 
+			//Geben Sie auch die Anzahl der Elemente der Liste aus.
 			public static void printList(List<String> list)
 			{
-				System.out.println("Liste mit " +list.size()+ " Elementen :");
-				System.out.println("------------------------");
+				//Variante 1: Iterator
+				System.out.println("--Iterator--");					
 				Iterator<String> it = list.iterator();
-				while(it.hasNext())
-				{
+				while(it.hasNext()) {
 					System.out.println(it.next());
 				}
+
+
+				//Variante 2: for-Schleife
+				System.out.println("--Schleife--");
+				for(String s : list)
+				{
+					System.out.println(s);
+				}
+
+				//Anzahl der Elemente ausgeben
+				System.out.println("Die Liste hat "+ list.size() + " Elemente.");
 			}
-			
+
+			//B1. Erstellen Sie eine Methode public static Set<String> createHashSet(String[] words). 
+			//In dieser Methode soll eine HashSet erstellt werden. 
+			//Alle Elemente in dieser Liste sind vom Typ String. 
+			//Befüllen Sie diese Liste mit allen Wörtern aus dem words-Array. 
+			//Die Methode gibt die befüllte Menge (Set) zurück.
 			public static Set<String> createHashSet(String[] words)
 			{
-				Set<String> set = new HashSet<>();
-				for(int i=0; i<words.length; i++)
-				{
+				Set<String> set = new HashSet<>();		
+				for(int i=0; i<words.length; i++) {
 					set.add(words[i]);
 				}
 				return set;	
 			}
-			
-			public static Set<String> createTreeSet(String[] words)
-			{
-				Set<String> set = new TreeSet<>();
-				for(int i=0; i<words.length; i++)
-				{
-					set.add(words[i]);
-				}
-				return set;	
-			}
-			
-			
+
+			//B2. Erstellen Sie eine Methode public static void printSet(Set<String> set). 
+			//Diese Methode gibt alle Elemente der Menge set auf der Konsole aus. 
+			//Geben Sie auch die Anzahl der Elemente der Menge aus. 
 			public static void printSet(Set<String> set)
 			{
-				System.out.println("Menge mit " +set.size()+ " Elementen :");
-				System.out.println("------------------------");
-				Iterator<String> it = set.iterator();
-				while(it.hasNext())
+				for(String s : set)
 				{
-					System.out.println(it.next());
+					System.out.println(s);
 				}
+
+				System.out.println("Das Set hat "+ set.size() + " Elemente.");
 			}
-			
+
+			//B4. Erstellen Sie eine Methode public static Set<String> createTreeSet(String[] words). 
+			//In dieser Methode soll eine TreeSet erstellt werden. 
+			//Alle Elemente in dieser Liste sind vom Typ String. 
+			//Befüllen Sie diese Menge (Set) mit allen Wörtern aus dem words-Array. 
+			//Die Methode gibt die befüllte Menge (Set) zurück. 
+			public static Set<String> createTreeSet(String[] words)
+			{		
+				Set<String> set = new TreeSet<>();
+				for(int i=0; i<words.length; i++) {
+					set.add(words[i]);
+				}
+				return set;	
+			}
+
+			//Zusatz: Erstellen Sie für die Liste eine Methode public static List<String> findDoublets(List<String> list). 
+			//Diese Methode erstellt eine Liste, in der alle Elemente enthalten sind, die in list doppelt vorkommen. 
+			//Diese Elemente werden dann auch doppelt in die Resultat-Liste übernommen. 
+			//Geben Sie diese Liste mithilfe der printList()-Methode in der main()-Methode aus.
+			public static List<String> findDoublets(List<String> list)
+			{
+				//Grundidee 
+				//Beispiel-Liste: "a" "b" "a" "c" "a"
+
+				//Index:  0 1 2 3 4
+				//Inhalt: a b a c a
+
+				//erster Index von "a": 0
+				//letzter Index von "a":4 
+				//0 != 4 -> es gibt Duplikate 
+				//erster Index von "b":1
+				//letzter Index von "b":1
+				//1 == 1 -> keine Duplikate, also diesen Eintrag als Einzeleintrag merken
+				//...
+
+				//leere Liste "singles" für Einzeleinträge anlegen
+				List<String> singles = new ArrayList<>();
+
+				//durch list iterieren und testen ob das Element Duplikate hat, 
+				//wenn nicht in "singles" speichern 
+				Iterator<String> it = list.iterator();
+				//it = copy.iterator();
+				while(it.hasNext()) {
+					String s = it.next();
+					if(list.indexOf(s) == list.lastIndexOf(s)) singles.add(s);
+				}
+
+				//Kopie von list anlegen
+				List<String> copy = new ArrayList<>();
+				it = list.iterator();
+				while(it.hasNext()) copy.add(it.next());
+
+				//alle singles aus der kopierten Liste entfernen
+				copy.removeAll(singles);
+				return copy;
+				//um zu testen, warum die Kopie nötig ist:
+				//copy.removeAll(singles); und return copy; ersetzen durch
+				//list.removeAll(singles); 
+				//return list;
+				//und dann die Ausgabe von l2 in der main anschauen
+
+			}
+
+			public static void main(String[] args) {
+				String[] words = {"Linux", "Apple", "Facebook", "Amazon", "IBM", "Lenovo", "Google", "IBM", "Microsoft", "Apple", "Google", "Twitter", "Skype", "Chrome", "Linux", "Firefox"};
+
+				System.out.println("---------- A ----------");
+				//A3. Erstellen Sie in der main()-Methode mithilfe der Methode createArrayList(words) eine 
+				//Liste und speichern Sie diese Liste in einer Variablen vom Typ List<String>. 
+				List<String> l1 = createArrayList(words);		
+				//Geben Sie alle Elemente dieser Liste mithilfe der Methode printList() auf der Konsole aus. 
+				printList(l1);
+
+				//A4. Ermitteln Sie den Index in der Liste, in der "Apple" das erste Mal auftaucht. 
+				//Erzeugen Sie folgende Ausgabe:  Index des ersten Auftretens von Apple  : 1
+				System.out.println("Index des ersten Auftretens von Apple: " + l1.indexOf("Apple"));
+
+				//Ermitteln Sie den Index in der Liste, in der "Apple" das letzte Mal auftaucht. 
+				//Erzeugen Sie folgende Ausgabe: Index des letzten Auftretens von Apple : 9
+				System.out.println("Index des letzten Auftretens von Apple: " + l1.lastIndexOf("Apple"));
+
+				//Geben Sie den Wert des ersten Elementes der Liste aus. 
+				//Erzeugen Sie folgende Ausgabe: erstes Element der Liste : Linux
+				System.out.println("erstes Element der Liste: " + l1.get(0));
+
+				//Geben Sie den Wert des letzten Elementes der Liste aus. 
+				//Erzeugen Sie folgende Ausgabe: letztes Element der Liste : Firefox
+				System.out.println("letztes Element der Liste: " + l1.get(l1.size()-1));
+
+				//Löschen Sie die Werte "Apple", "Google" und "Facebook". 
+				//Geben Sie die Liste erneut mithilfe der printList(list)-Methode aus.
+				//1. Möglichkeit: nur 1. Vorkommen löschen
+				l1.remove("Apple");
+				l1.remove("Google");
+				l1.remove("Facebook");
+				printList(l1);
+				//2. Möglichkeit: alle löschen
+				while(l1.remove("Apple"));
+				while(l1.remove("Google"));
+				while(l1.remove("Facebook"));
+				printList(l1);
+
+				System.out.println("---------- B ----------");
+				System.out.println("-------HashSet------");
+				//B3. Erstellen Sie in der main()-Methode mithilfe der Methode createHashSet(words) 
+				//eine Menge und speichern Sie diese Menge in einer Variablen vom Typ Set<String>. 
+				Set<String> h1 = createHashSet(words);
+				//Geben Sie alle Elemente dieser Menge mithilfe der Methode printSet() auf der Konsole aus. 
+				//Was beobachten Sie in Bezug auf die Anzahl der Elemente im Vergleich zur Anzahl der Elemente 
+				//in der Liste? Warum ist das so?
+				printSet(h1);
+
+				System.out.println("-------TreeSet------");
+				//B5. Erstellen Sie in der main()-Methode mithilfe der Methode createTreeSet(words) 
+				//eine Menge und speichern Sie diese Menge in einer Variablen. 
+				Set<String> t1 = createTreeSet(words);
+				//Geben Sie alle Elemente dieser Menge mithilfe der Methode printSet() auf der Konsole aus. 
+				//Was beobachten Sie in Bezug auf die Sortierung der Elemente im Vergleich zur HashSet? 
+				printSet(t1);
+
+				System.out.println("-------Duplicates------");
+				List<String> l2 =  createArrayList(words);	
+				List<String> d = findDoublets(l2);
+				printList(d);	
+				printList(l2);
+			}
+
 		}
 		```
+
 
 ##### Übung 6 (Wrapper-Klassen und Maps)
 
