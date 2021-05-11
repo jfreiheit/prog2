@@ -999,6 +999,196 @@
 	6  Berlin            891,68 km2    3.382.169   3.460.725   3.574.830
 	``` 
 
+??? question "die von Frau Busjahn vorkommentierten Klassen"
+	
+	=== "Stadt.java"
+		```java linenums="1"
+		//import
+
+		//1. Erstellen Sie eine Klasse Stadt mit folgenden Objektvariablen:
+		public class Stadt implements ???<???> 
+		// Der Teil mit "implements" wird nicht von Anfang an benötigt, es kann also auch erstmal mit "public class Stadt" begonnen werden. 
+		// Während es bei primitiven Datentypen meist eindeutig ist, ob ein Wert größer, kleiner oder gleich groß ist wie ein anderer Wert, ist die Ordnung bei Objekten nicht so klar.
+		// Daher muss Stadt Klasse ein bestimmtes Interface implementieren, um festzulegen, was verglichen werden soll. 
+		{
+			String name;
+			List<Integer> bevoelkerung;
+			float flaeche;
+			
+			//2. Erstellen Sie für die Klasse Stadt einen parametrisierten Konstruktor 
+			//public Stadt(String name, List<Integer> bevoelkerung, float flaeche), 
+			//der die Objektvariablen initialisiert.
+			public Stadt(String name, List<Integer> bevoelkerung, float flaeche)
+			{
+				//Da es sich um einen Konstruktor einer Kindklasse handelt, sollte zuerst explizit der Konstruktor der Elternklasse aufrufen werden
+				//kann aber wie implements erst später ergänzt werden
+				
+				//Objektvariablen initialisieren
+				this.??? = ???;
+				...
+			}
+			
+			//3. Erstellen Sie für die Klasse Stadt eine print()-Methode, 
+			//so dass eine Ausgabe auf der Konsole in folgender Form erscheint (Bsp.): 
+			//Berlin     891,68 km2    3.382.169   3.460.725   3.574.830
+			void print()
+			{
+				//Namen der Stadt, ihre Fläche und "km2" ausgeben
+				
+				//mithilfe einer Schleife oder Iterator Einträge der Bevölkerungs-Liste ausgeben
+				//Beispiel für Schleife: 
+				//https://freiheit.f4.htw-berlin.de/prog2/collections/#die-for-each-schleife
+				//Beispiel für Iterator:
+				//https://freiheit.f4.htw-berlin.de/prog2/collections/#listen
+				
+			}
+			
+			//Teil 2
+			//1. Implementieren Sie in der Klasse Stadt die equals(Object)- und die hashCode()-Methode.
+			//Führen Sie danach die StadtTest-Klasse erneut aus. Was hat sich an der Menge geändert?
+			//Kommentieren Sie hashCode() wieder aus und führen StadtTest erneut aus. Was ändert sich?
+			//Kommentieren Sie equals() wieder aus und führen StadtTest erneut aus. Was ändert sich?
+
+			@Override
+			public boolean equals(Object o)
+			{
+				//Es soll getestet werden, ob der Name des übergebenen Stadt-Objekts o gleich dem Namen des aktuellen Stadt-Objekts ist
+				//Vorher müssen erst ein paar Fälle abgeklärt werden:		
+				// wenn übergebenes Objekt o null ist, gib false zurück
+				// wenn übergebenes Objekt o gleich dem aktuellen Objekt der Klasse ist, gib true zurück
+				// wenn die Laufzeitklasse des übergebenen Objekts o nicht gleich der Laufzeitklasse des aktuellen Objekts ist,
+				// gib false zurück
+				
+				//Wenn diese drei Fälle nicht eingetreten sind:
+				//Stadt-Objekt anlegen vom übergebenen Objekt o		
+				//testen ob der Name des übergebenen Stadt-Objekts gleich dem Namen des aktuellen Stadt-Objekts ist
+				//Ergebnis zurückgeben		
+						
+			}
+			
+			@Override
+			public int hashCode()
+			{
+				//Hashcode des Stadtnamens zurückgeben
+			}
+
+			
+			//Festlegen, dass der Name des übergebenen Stadt-Objekts o mit dem Namen des aktuellen Stadt-Objekts verglichen werden soll
+			@Override
+			public int compareTo(Stadt o)
+			{
+				return ...
+			}
+		}
+		```
+	
+	=== "StadtTest.java"
+		```java linenums="1"
+
+		//import 
+
+		//4. Erstellen Sie eine Klasse StadtTest mit main()-Methode. 
+		//Kopieren Sie in die Klasse die Methode public static Stadt[] staedte() hinein: 
+		public class StadtTest
+		{
+			public static Stadt[] staedte()
+			{
+				Stadt[] staedte = new Stadt[6];
+				List<Integer> berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[0] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+				
+				List<Integer> hamburgBevoelkerung = new ArrayList<>();
+				hamburgBevoelkerung.add(1715392);	
+				hamburgBevoelkerung.add(1786448);	
+				hamburgBevoelkerung.add(1810438);	
+				staedte[1] = new Stadt("Hamburg", hamburgBevoelkerung, 755.22f);
+				
+				List<Integer> muenchenBevoelkerung = new ArrayList<>();
+				muenchenBevoelkerung.add(1210223);	
+				muenchenBevoelkerung.add(1353186);	
+				muenchenBevoelkerung.add(1464301);
+				staedte[2] = new Stadt("Muenchen", muenchenBevoelkerung, 310.70f);
+				
+				List<Integer> koelnBevoelkerung = new ArrayList<>();
+				koelnBevoelkerung.add(962884);	
+				koelnBevoelkerung.add(1007119);	
+				koelnBevoelkerung.add(1075935);	
+				staedte[3] = new Stadt("Koeln", koelnBevoelkerung, 405.02f);
+				
+				List<Integer> frankfurtBevoelkerung = new ArrayList<>();
+				frankfurtBevoelkerung.add(648550);	
+				frankfurtBevoelkerung.add(679664);	
+				frankfurtBevoelkerung.add(736414);
+				staedte[4] = new Stadt("Frankfurt/Main", frankfurtBevoelkerung, 248.31f);
+				
+				berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[5] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+				
+				return staedte;
+			}
+			
+			public static void main(String[] args)
+			{	
+				System.out.printf("%n------------ Liste --------------%n");
+				
+				//1. Erstellen Sie in der main()-Methode eine List<Stadt> staedteListe = new ArrayList<>();. 
+				//Fügen Sie der staedteListe alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array zu.
+				List<Stadt> staedteListe = new ArrayList<>();
+				
+				//durch staedte iterieren und die Städte zur staedteListe hinzufügen
+						
+				//2. Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung 
+				//der print()-Methode aus der Klasse Stadt aus.
+				
+				//durch staedteListe iterieren und für jeden Eintrag die print()-Methode aufrufen
+						
+				System.out.printf("%n------------ Menge --------------%n");
+				
+				//1. Erstellen Sie in der main()-Methode eine Set<Stadt> staedteMenge = new HashSet<>();. 
+				Set<Stadt> staedteMenge1 = new HashSet<>();
+				
+				//Fügen Sie der staedteMenge alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array zu.
+				
+				//analog zur gleichen Aufgabe mit der Liste oben
+				
+		    		//Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der 
+		    		//print()-Methode aus der Klasse Stadt aus.
+		    		//analog zur gleichen Aufgabe mit der Liste oben
+		    		
+		   		//Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?
+		   		//Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.
+		   		//Ändern Sie den Konstruktor von HashSet<>() in TreeSet<>(). Was passiert und warum?		
+				Set<Stadt> staedteMenge2 = new TreeSet<>();
+				//analog zu oben
+
+				
+				System.out.printf("%n------------ Maps --------------%n");
+
+				//1. Erstellen Sie in der main()-Methode eine Map<Integer, Stadt> staedteMap = new HashMap<>();. 
+				Map<Integer, Stadt> staedteMap = new HashMap<>();
+				
+				//Fügen Sie der staedteMap einen fortlaufenden, eindeutigen Integer-Wert beginnend mit 1 als Key 
+				//sowie alle alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array als Value hinzu.
+		    	
+		    		//Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der print()-Methode aus der Klasse Stadt aus. 
+		    		//Beginnen Sie die Zeile jeweils mit der Ausgabe des Keys.
+				
+				//Beispiel, wie man eine Map durchgeht: https://freiheit.f4.htw-berlin.de/prog2/maps/#durch-eine-map-laufen
+				//erst den key ausgeben
+				//dann die Werte
+				
+				
+			}
+
+		}
+		```
+
 
 ## Zusatz
 

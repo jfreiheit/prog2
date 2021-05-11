@@ -2123,6 +2123,372 @@ Hamburg            <span class="m">755</span>,22 km2    <span class="m">1</span>
 <span class="m">6</span>  Berlin            <span class="m">891</span>,68 km2    <span class="m">3</span>.382.169   <span class="m">3</span>.460.725   <span class="m">3</span>.574.830
 </code></pre></div>
 </details>
+<details class="question"><summary>die von Frau Busjahn vorkommentierten Klassen</summary><div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Stadt.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//import</span>
+
+<span class="c1">//1. Erstellen Sie eine Klasse Stadt mit folgenden Objektvariablen:</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stadt</span> <span class="kd">implements</span> <span class="o">???&lt;???&gt;</span> 
+<span class="c1">// Der Teil mit &quot;implements&quot; wird nicht von Anfang an benötigt, es kann also auch erstmal mit &quot;public class Stadt&quot; begonnen werden. </span>
+<span class="c1">// Während es bei primitiven Datentypen meist eindeutig ist, ob ein Wert größer, kleiner oder gleich groß ist wie ein anderer Wert, ist die Ordnung bei Objekten nicht so klar.</span>
+<span class="c1">// Daher muss Stadt Klasse ein bestimmtes Interface implementieren, um festzulegen, was verglichen werden soll. </span>
+<span class="p">{</span>
+    <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">bevoelkerung</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">flaeche</span><span class="p">;</span>
+
+    <span class="c1">//2. Erstellen Sie für die Klasse Stadt einen parametrisierten Konstruktor </span>
+    <span class="c1">//public Stadt(String name, List&lt;Integer&gt; bevoelkerung, float flaeche), </span>
+    <span class="c1">//der die Objektvariablen initialisiert.</span>
+    <span class="kd">public</span> <span class="nf">Stadt</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">bevoelkerung</span><span class="p">,</span> <span class="kt">float</span> <span class="n">flaeche</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//Da es sich um einen Konstruktor einer Kindklasse handelt, sollte zuerst explizit der Konstruktor der Elternklasse aufrufen werden</span>
+        <span class="c1">//kann aber wie implements erst später ergänzt werden</span>
+
+        <span class="c1">//Objektvariablen initialisieren</span>
+        <span class="k">this</span><span class="p">.</span><span class="o">???</span> <span class="o">=</span> <span class="o">???</span><span class="p">;</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+
+    <span class="c1">//3. Erstellen Sie für die Klasse Stadt eine print()-Methode, </span>
+    <span class="c1">//so dass eine Ausgabe auf der Konsole in folgender Form erscheint (Bsp.): </span>
+    <span class="c1">//Berlin     891,68 km2    3.382.169   3.460.725   3.574.830</span>
+    <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">//Namen der Stadt, ihre Fläche und &quot;km2&quot; ausgeben</span>
+
+        <span class="c1">//mithilfe einer Schleife oder Iterator Einträge der Bevölkerungs-Liste ausgeben</span>
+        <span class="c1">//Beispiel für Schleife: </span>
+        <span class="c1">//https://freiheit.f4.htw-berlin.de/prog2/collections/#die-for-each-schleife</span>
+        <span class="c1">//Beispiel für Iterator:</span>
+        <span class="c1">//https://freiheit.f4.htw-berlin.de/prog2/collections/#listen</span>
+
+    <span class="p">}</span>
+
+    <span class="c1">//Teil 2</span>
+    <span class="c1">//1. Implementieren Sie in der Klasse Stadt die equals(Object)- und die hashCode()-Methode.</span>
+    <span class="c1">//Führen Sie danach die StadtTest-Klasse erneut aus. Was hat sich an der Menge geändert?</span>
+    <span class="c1">//Kommentieren Sie hashCode() wieder aus und führen StadtTest erneut aus. Was ändert sich?</span>
+    <span class="c1">//Kommentieren Sie equals() wieder aus und führen StadtTest erneut aus. Was ändert sich?</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="p">(</span><span class="n">Object</span> <span class="n">o</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//Es soll getestet werden, ob der Name des übergebenen Stadt-Objekts o gleich dem Namen des aktuellen Stadt-Objekts ist</span>
+        <span class="c1">//Vorher müssen erst ein paar Fälle abgeklärt werden:       </span>
+        <span class="c1">// wenn übergebenes Objekt o null ist, gib false zurück</span>
+        <span class="c1">// wenn übergebenes Objekt o gleich dem aktuellen Objekt der Klasse ist, gib true zurück</span>
+        <span class="c1">// wenn die Laufzeitklasse des übergebenen Objekts o nicht gleich der Laufzeitklasse des aktuellen Objekts ist,</span>
+        <span class="c1">// gib false zurück</span>
+
+        <span class="c1">//Wenn diese drei Fälle nicht eingetreten sind:</span>
+        <span class="c1">//Stadt-Objekt anlegen vom übergebenen Objekt o     </span>
+        <span class="c1">//testen ob der Name des übergebenen Stadt-Objekts gleich dem Namen des aktuellen Stadt-Objekts ist</span>
+        <span class="c1">//Ergebnis zurückgeben      </span>
+
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">//Hashcode des Stadtnamens zurückgeben</span>
+    <span class="p">}</span>
+
+
+    <span class="c1">//Festlegen, dass der Name des übergebenen Stadt-Objekts o mit dem Namen des aktuellen Stadt-Objekts verglichen werden soll</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Stadt</span> <span class="n">o</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">StadtTest.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//import </span>
+
+<span class="c1">//4. Erstellen Sie eine Klasse StadtTest mit main()-Methode. </span>
+<span class="c1">//Kopieren Sie in die Klasse die Methode public static Stadt[] staedte() hinein: </span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StadtTest</span>
+<span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Stadt</span><span class="o">[]</span> <span class="nf">staedte</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Stadt</span><span class="o">[]</span> <span class="n">staedte</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="o">[</span><span class="mi">6</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">berlinBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3382169</span><span class="p">);</span>    
+        <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3460725</span><span class="p">);</span>    
+        <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3574830</span><span class="p">);</span>
+        <span class="n">staedte</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Berlin&quot;</span><span class="p">,</span> <span class="n">berlinBevoelkerung</span><span class="p">,</span> <span class="mf">891.68f</span><span class="p">);</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">hamburgBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1715392</span><span class="p">);</span>   
+        <span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1786448</span><span class="p">);</span>   
+        <span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1810438</span><span class="p">);</span>   
+        <span class="n">staedte</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Hamburg&quot;</span><span class="p">,</span> <span class="n">hamburgBevoelkerung</span><span class="p">,</span> <span class="mf">755.22f</span><span class="p">);</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">muenchenBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1210223</span><span class="p">);</span>  
+        <span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1353186</span><span class="p">);</span>  
+        <span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1464301</span><span class="p">);</span>
+        <span class="n">staedte</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Muenchen&quot;</span><span class="p">,</span> <span class="n">muenchenBevoelkerung</span><span class="p">,</span> <span class="mf">310.70f</span><span class="p">);</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">koelnBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">962884</span><span class="p">);</span>  
+        <span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1007119</span><span class="p">);</span> 
+        <span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1075935</span><span class="p">);</span> 
+        <span class="n">staedte</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Koeln&quot;</span><span class="p">,</span> <span class="n">koelnBevoelkerung</span><span class="p">,</span> <span class="mf">405.02f</span><span class="p">);</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">frankfurtBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">648550</span><span class="p">);</span>  
+        <span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">679664</span><span class="p">);</span>  
+        <span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">736414</span><span class="p">);</span>
+        <span class="n">staedte</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Frankfurt/Main&quot;</span><span class="p">,</span> <span class="n">frankfurtBevoelkerung</span><span class="p">,</span> <span class="mf">248.31f</span><span class="p">);</span>
+
+        <span class="n">berlinBevoelkerung</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3382169</span><span class="p">);</span>    
+        <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3460725</span><span class="p">);</span>    
+        <span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3574830</span><span class="p">);</span>
+        <span class="n">staedte</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Berlin&quot;</span><span class="p">,</span> <span class="n">berlinBevoelkerung</span><span class="p">,</span> <span class="mf">891.68f</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">staedte</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>   
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n------------ Liste --------------%n&quot;</span><span class="p">);</span>
+
+        <span class="c1">//1. Erstellen Sie in der main()-Methode eine List&lt;Stadt&gt; staedteListe = new ArrayList&lt;&gt;();. </span>
+        <span class="c1">//Fügen Sie der staedteListe alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array zu.</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Stadt</span><span class="o">&gt;</span> <span class="n">staedteListe</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="c1">//durch staedte iterieren und die Städte zur staedteListe hinzufügen</span>
+
+        <span class="c1">//2. Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung </span>
+        <span class="c1">//der print()-Methode aus der Klasse Stadt aus.</span>
+
+        <span class="c1">//durch staedteListe iterieren und für jeden Eintrag die print()-Methode aufrufen</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n------------ Menge --------------%n&quot;</span><span class="p">);</span>
+
+        <span class="c1">//1. Erstellen Sie in der main()-Methode eine Set&lt;Stadt&gt; staedteMenge = new HashSet&lt;&gt;();. </span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Stadt</span><span class="o">&gt;</span> <span class="n">staedteMenge1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="c1">//Fügen Sie der staedteMenge alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array zu.</span>
+
+        <span class="c1">//analog zur gleichen Aufgabe mit der Liste oben</span>
+
+            <span class="c1">//Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der </span>
+            <span class="c1">//print()-Methode aus der Klasse Stadt aus.</span>
+            <span class="c1">//analog zur gleichen Aufgabe mit der Liste oben</span>
+
+        <span class="c1">//Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?</span>
+        <span class="c1">//Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.</span>
+        <span class="c1">//Ändern Sie den Konstruktor von HashSet&lt;&gt;() in TreeSet&lt;&gt;(). Was passiert und warum?        </span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Stadt</span><span class="o">&gt;</span> <span class="n">staedteMenge2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="c1">//analog zu oben</span>
+
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n------------ Maps --------------%n&quot;</span><span class="p">);</span>
+
+        <span class="c1">//1. Erstellen Sie in der main()-Methode eine Map&lt;Integer, Stadt&gt; staedteMap = new HashMap&lt;&gt;();. </span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Stadt</span><span class="o">&gt;</span> <span class="n">staedteMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="c1">//Fügen Sie der staedteMap einen fortlaufenden, eindeutigen Integer-Wert beginnend mit 1 als Key </span>
+        <span class="c1">//sowie alle alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array als Value hinzu.</span>
+
+            <span class="c1">//Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der print()-Methode aus der Klasse Stadt aus. </span>
+            <span class="c1">//Beginnen Sie die Zeile jeweils mit der Ausgabe des Keys.</span>
+
+        <span class="c1">//Beispiel, wie man eine Map durchgeht: https://freiheit.f4.htw-berlin.de/prog2/maps/#durch-eine-map-laufen</span>
+        <span class="c1">//erst den key ausgeben</span>
+        <span class="c1">//dann die Werte</span>
+
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h2 id="zusatz">Zusatz<a class="headerlink" href="#zusatz" title="Permanent link">&para;</a></h2>
 <h5 id="test-driven-development">Test-driven development<a class="headerlink" href="#test-driven-development" title="Permanent link">&para;</a></h5>
 <details><summary>parseDouble(String)</summary><ol>
