@@ -349,3 +349,14 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 
 	- siehe [**Übung 5**](./uebungen/#ubung-5-listen-und-mengen)
 	- siehe [**Aufgabe 5**](./aufgaben/#aufgabe-5-operationen-uber-mengen)
+
+
+??? question "10.-14.05.2021 - Wrapper-Klassen (boxing und unboxing)"
+	- siehe [**Wrapper-Klassen**](./wrapper/#wrapper-klassen)
+	- siehe Video zu [**Wrapper-Klassen**](./wrapper/#wrapper-klassen) - Vorlesung 12.05.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=ba28b8fce6c53d1210cd6168531bac75&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- diese Woche **keine** neue Übung (Donnerstag ist Feiertag)
+	- diese Woche **keine** neue Aufgabe (Möglichkeit, bisher "Liegengebliebenes" aufzuarbeiten)
+	- Lösungen für [Aufgaben 1 - 3](./aufgaben/#aufgaben) hochgeladen
+
+
