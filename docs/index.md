@@ -360,3 +360,116 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 	- Lösungen für [Aufgaben 1 - 3](./aufgaben/#aufgaben) hochgeladen
 
 
+??? question "17.-21.05.2021 - Collections (Map)"
+	- siehe [**Maps**](./maps/#maps)
+	- siehe Video zu [**Maps**](./maps/#maps) - Vorlesung 19.05.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=f1f5ae0174949915060d53e0e03fa3d1&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- Quellcode aus der Vorlesung vom 19.05.2021
+
+		=== "Maps.java"
+
+			```java linenums="1"
+			package vorlesungen.maps;
+
+			import java.util.*;
+
+			public class Maps {
+
+				public static void main(String[] args) {
+					/*
+					 * in Maps speichern wir Schluessel-Werte-Paare
+					 * Schluessel sind eindeutig, Schluesseltyp K
+					 * Werte koennen sich doppel, Wertetyp V
+					 * statt add(), addAll() hier put(), putAll()
+					 */
+					
+					Map<String, Integer> mapA = new HashMap<>();
+					mapA.put("A", 1);
+					mapA.put("B", 2);
+					mapA.put("C", 3);
+					
+					/*
+					 * ein einzelnes Schluessel-Werte-Paar ist vom 
+					 * Typ Map.Entry
+					 * typisiert: Map.Entry<K,V>
+					 * unser Beispiel: Map.Entry<String, Integer>
+					 */
+					
+					/* 
+					 * leider nicht iterator(), sondern entrySet()
+					 * entrySet() erzeugt eine Set von lauter Schluessel-Werte-Paaren
+					 */
+					
+					// Variante 1
+					Set<Map.Entry<String, Integer>> allEntriesFromMapA = mapA.entrySet();	
+					for(Map.Entry<String, Integer> entry : allEntriesFromMapA)
+					{
+						System.out.println("Schluessel : " + entry.getKey() + " Wert : " + entry.getValue());
+					}
+					
+					System.out.println(allEntriesFromMapA.size());
+					
+					// Iterator<Map.Entry<String, Integer>> it = allEntriesFromMapA.iterator();
+					
+					System.out.println();
+					
+					// Variante 2
+					for(Map.Entry<String, Integer> entry : mapA.entrySet())
+					{
+						System.out.println("Schluessel : " + entry.getKey() + " Wert : " + entry.getValue());
+					}
+					
+					System.out.println(mapA.containsKey("B"));
+					System.out.println(mapA.containsKey("D"));
+					
+					System.out.println(mapA.get("B"));
+					
+					
+					System.out.printf("%n%n------------ alle keys von mapA ---------------%n%n");
+					Set<String> allKeys = mapA.keySet();	
+					for(String key : allKeys)
+					{
+						System.out.println("key : " + key);
+					}
+					
+					System.out.printf("%n%n------------ mapA ---------------%n%n");
+					mapA.put("B", 5);
+					for(Map.Entry<String, Integer> entry : mapA.entrySet())
+					{
+						System.out.println("Schluessel : " + entry.getKey() + " Wert : " + entry.getValue());
+					}
+					
+					System.out.printf("%n%n------------ mapB ---------------%n%n");
+					Map<String, Integer> mapB = new HashMap<>();
+					mapB.put("B", 6);
+					mapB.put("D", 7);
+					for(Map.Entry<String, Integer> entry : mapB.entrySet())
+					{
+						System.out.println("Schluessel : " + entry.getKey() + " Wert : " + entry.getValue());
+					}
+					
+					mapA.putAll(mapB);
+					System.out.printf("%n%n------------ mapA ---------------%n%n");
+
+					for(Map.Entry<String, Integer> entry : mapA.entrySet())
+					{
+						System.out.println("Schluessel : " + entry.getKey() + " Wert : " + entry.getValue());
+					}
+					mapA.put("E", 1);
+					
+					
+					System.out.printf("%n%n------------ alle values von mapA ---------------%n%n");
+					Collection<Integer> allValues = mapA.values();
+					for(Integer val : allValues)
+					{
+						System.out.println("value : " + val);
+					}
+				}
+
+			}
+			```
+
+	- siehe [**Übung 6**](./uebungen/#ubung-6-wrapper-klassen-und-maps)
+	- Aufgabe 6 kommt heute Abend...
+
+
