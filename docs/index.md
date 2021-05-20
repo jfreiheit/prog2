@@ -470,6 +470,6 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 			```
 
 	- siehe [**Übung 6**](./uebungen/#ubung-6-wrapper-klassen-und-maps)
-	- Aufgabe 6 kommt heute Abend...
+	- siehe [**Aufgabe 6**](./aufgaben/#aufgabe-6-maps) 
 
 

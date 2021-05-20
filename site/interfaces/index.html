@@ -369,6 +369,59 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Interfaces
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Interfaces
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#das-interface-comparable" class="md-nav__link">
+    Das Interface Comparable
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../uebungen/" class="md-nav__link">
@@ -426,6 +479,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#das-interface-comparable" class="md-nav__link">
+    Das Interface Comparable
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -453,11 +521,313 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
+<td>können abstrakte und nicht-abstrakte (also implementierte) Methoden haben</td>
+<td>können nur abstrakte Methoden beinhalten</td>
+</tr>
+<tr>
+<td>es kann nur von einer (abstrakten) Klasse geerbt werden (Schlüsselwort <code>extends</code>)</td>
+<td>es können beliebig viele Interfaces implementiert werden (Schlüsselwort <code>implemenets</code>), mehrere Interfaces durch Komma getrennt</td>
+</tr>
+<tr>
+<td>abstrakte Klassen können selbst Interfaces implementieren</td>
+<td>Interfaces können keine abstrakten Klassen implementieren (alle Methoden müssen ja abstrakt sein)</td>
+</tr>
+<tr>
+<td>das Schlüsselwort <code>abstract</code> deklariert eine abstrakte Klasse (und eine abstrakte Methode)</td>
+<td>das Schlüsselwort <code>interface</code> deklariert ein Interface</td>
+</tr>
+<tr>
+<td>eine abstrakte Klasse kann von einer anderen abstrakten Klasse erben und mehrere Interfaces implementieren</td>
+<td>ein Interface kann nur von <em>einem</em> anderen Interface erben</td>
+</tr>
+<tr>
+<td>abtrakte Klassen können <code>final</code> Variablen (Konstanten), nicht-finale Variablen, statische und nicht-statische Variablen als Eigenschaften beinhalten</td>
+<td>Interfaces können nur statische Konstanten (<code>static final</code>) als Eigenschaften beinhalten</td>
+</tr>
+<tr>
+<td>die Eigenschaften einer abstrakten Klasse können <code>private</code>, <code>protected</code>, <em>default</em> und <code>public</code> sein</td>
+<td>in Interfaces sind alle Eigenschaften <code>public</code></td>
+</tr>
+<tr>
+<td>Bsp.: <code>public abstract class Shape{ public abstract void draw(); }</code></td>
+<td>Bsp.: <code>public interface Drawable{ void draw(); }</code></td>
 </tr>
 </tbody>
 </table>
+<h2 id="das-interface-comparable">Das Interface <code>Comparable</code><a class="headerlink" href="#das-interface-comparable" title="Permanent link">&para;</a></h2>
+<p>Ehe wir uns ein eigenes Interface schreiben, schauen wir uns zunächst die Verwendung eines bereits existierenden Interfaces an. Es handelt sich um das Interface <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Comparable.html">Comparable</a> aus dem <code>java.lang</code>-Paket. Wenn Sie sich die Java-Dokumentation dieses Interfaces einmal anschauen, dann sehen Sie, dass es von sehr vielen Klassen implementiert wird. Dieses Interface enthält genau eine (natürlich abstrakte) Methode <code>compareTo()</code>. Diese Methode kennen wir auch schon, denn wir haben sie betrachtet, als wir <a href="https://freiheit.f4.htw-berlin.de/prog1/hilfsklassen/#die-klasse-string">in Prog1 Strings</a> kennengelernt haben. </p>
+<p>Die Methode <code>this.compareTo(Object obj)</code> wird verwendet, um zu vergleichen, ob <code>this</code> größer, kleiner oder gleich <code>obj</code> ist. Das bedeutet, dass wir <code>compareTo()</code> in unserer Klasse implementieren sollten, wenn wir die Objekte unserer Klasse der Größe nach ordnen wollen, wenn wir also ermöglichen wollen, dass die Objekte der Klasse sortiert werden können. </p>
+<p>Die Methode <code>this.compareTo(Object obj)</code> gibt ein <code>int</code> zurück, für dessen Wert Folgendes gelten soll:</p>
+<ul>
+<li>ist der zurückgegebene <code>int</code>-Wert positiv (<code>&gt; 0</code>), dann ist <code>this</code> <strong>größer</strong> als <code>obj</code>,</li>
+<li>ist der zurückgegebene <code>int</code>-Wert negativ (<code>&lt; 0</code>), dann ist <code>this</code> <strong>kleiner</strong> als <code>obj</code>,</li>
+<li>ist der zurückgegebene <code>int</code>-Wert <code>0</code>, dann ist <code>this</code> <strong>gleich</strong> <code>obj</code>.</li>
+</ul>
+<p>Angenommen, wir wollen für die folgende Klasse <code>Rectangle</code> (aus dem Abschnitt <a href="../abstrakt/#rectangle-erbt-von-shape">Abstrakte Klassen</a>) festlegen, dass die Rechtecke der Größe nach geordnet werden können. Gegeben ist also zunächst folgende Klasse (wir verwenden hier auch <code>Shape</code> aus <a href="../abstrakt/#ein-beispiel-die-abstrakte-klasse-shape">Abstrakte Klassen</a>):</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rectangle</span> <span class="kd">extends</span> <span class="n">Shape</span>
+<span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Rectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">perimeter</span><span class="p">()</span> 
+    <span class="p">{</span>   
+        <span class="k">return</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Die Klasse <code>Rectangle</code> erbt also von der abstrakten Klasse <code>Shape</code> und <code>Rectangle</code> <strong>muss</strong> deshalb die Methoden <code>perimeter()</code> und <code>area()</code> implementieren. Nun geben wir an, dass <code>Rectangle</code> auch das Interface <code>Comparable</code> implementieren soll. Dazu ergänzen wir die erste Zeile um <code>implements Comparable</code>, d.h. die Klassendeklaration sieht jetzt so aus:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rectangle</span> <span class="kd">extends</span> <span class="n">Shape</span> <span class="kd">implements</span> <span class="n">Comparable</span>
+<span class="p">{</span>
+</code></pre></div>
+</td></tr></table>
+<p>Wenn Sie das hinzufügen, stellen wir fest, dass ein <strong>Fehler</strong> erzeugt wird (die Klasse lässt sich nicht compilieren). Die Fehlerausgabe besagt: <code>The type Rectangle must implement the inherited abstract method Comparable.compareTo(Object)</code>. Es werden zwei <code>QuickFixes</code> angeboten, </p>
+<ul>
+<li>entweder <code>Add unimplemented methods</code> </li>
+<li>oder <code>Make type Rectangle abstract</code>. </li>
+</ul>
+<p>Letzteres wollen wir aber nicht (<code>Rectangle</code> soll nicht zu einer abstrakten Klasse gemacht werden). Also wählen wir <code>Add unimplemented methods</code>. Eclipse fügt uns die <code>compareTo()</code>-Methode in den Code ein:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rectangle</span> <span class="kd">extends</span> <span class="n">Shape</span> <span class="kd">implements</span> <span class="n">Comparable</span>
+<span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Rectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">perimeter</span><span class="p">()</span> 
+    <span class="p">{</span>   
+        <span class="k">return</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="hll">    <span class="nd">@Override</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Object</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">        <span class="c1">// TODO Auto-generated method stub</span>
+</span><span class="hll">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="hll">    <span class="p">}</span>
+</span><span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Jetzt lässt sich der Code bereits compilieren, wir erhalten aber noch eine Warnung:</p>
+<div class="highlight"><pre><span></span><code>Comparable is a raw type. References to generic <span class="nb">type</span> Comparable&lt;T&gt; should be parameterized
+</code></pre></div>
+<p>Diese Warnung besagt, dass wir, wie wir das von Collections bereits kennen, auch das Interface <code>Comparable</code> <strong>typisieren</strong> sollen. Das wollen wir auch tun, denn wir implementieren dieses Interface hier für unsere Klasse <code>Rectangle</code>. Wir typisieren deshalb <code>Comparable</code> mit <code>Rectangle</code>: </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="hll"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rectangle</span> <span class="kd">extends</span> <span class="n">Shape</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Rectangle</span><span class="o">&gt;</span>
+</span><span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Rectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">perimeter</span><span class="p">()</span> 
+    <span class="p">{</span>   
+        <span class="k">return</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Object</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Interssanterweise ist nun zwar unsere Warnung weg, aber dafür erhalten wir erneut einen Fehler:</p>
+<div class="highlight"><pre><span></span><code>The <span class="nb">type</span> Rectangle must implement the inherited abstract method Comparable&lt;Rectangle&gt;.compareTo<span class="o">(</span>Rectangle<span class="o">)</span>
+</code></pre></div>
+<p>Dadurch, dass wir <code>Comparable</code> mit <code>Rectangle</code> typisieren (was korrekt ist), wird nun verlangt, dass wir nicht mehr die Methode </p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Object</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>implementieren, sondern die Methode </p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Rectangle</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>Der Typ des Parameters hat sich durch unsere Typisierung also geändert. Das ist gut, denn dann müssen wir nicht mehr, wie z.B. bei <code>equals(Object o)</code>, prüfen, ob es sich bei dem übergebenen Objekt tatsächlich um ein <code>Rectangle</code> handelt. Wir ändern also den Parametertyp in <code>compareTo()</code>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rectangle</span> <span class="kd">extends</span> <span class="n">Shape</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Rectangle</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Rectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">perimeter</span><span class="p">()</span> 
+    <span class="p">{</span>   
+        <span class="k">return</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+<span class="hll">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Rectangle</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span>
+</span>        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>In Zukunft typisieren wir das <code>Comparable</code>-Interface noch bevor wir <code>Add unimplemented methods</code> wählen. Wir typisieren es stets mit der Klasse, in der wir das Interface implementieren. </p>
+<p>Für die Implementierung müssen wir uns nun überlegen, wann ein <code>Rectangle</code>-Objekt größer (kleiner/gleich) sein soll, als ein anderes. Da <code>compareTo()</code> ein <code>int</code> zurückgibt, könnten wir z.B. die Summen von <code>height</code> und <code>width</code> verwenden:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Rectangle</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="na">width</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="na">height</span><span class="o">+</span><span class="n">o</span><span class="p">.</span><span class="na">width</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">diff</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Wenn die Summe von <code>height</code> und <code>width</code> von <code>this</code> größer ist, als von <code>o</code>, dann geben wir eine positive <code>int</code>-Zahl zurück, wenn sie kleiner ist, dann eine negative <code>int</code>-Zahl und wenn sie gleich sind, dann <code>0</code>. Damit entsprechen wir den Vorgaben von <code>compareTo()</code>. </p>
                 
               
               
@@ -472,6 +842,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../abstrakt/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Zurück
+                </span>
+                Abstrakte Klassen
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../uebungen/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Weiter
+                </span>
+                Übungen
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
