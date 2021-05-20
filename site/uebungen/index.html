@@ -2098,15 +2098,11 @@ Twitter
 <li>Erstellen Sie in der <code>main()</code>-Methode eine <code>Set&lt;Stadt&gt; staedteMenge = new HashSet&lt;&gt;();</code>. Fügen Sie der <code>staedteMenge</code> alle Städte aus dem durch Aufruf der <code>staedte()</code>-Methode erzeugtem Array zu.</li>
 <li>Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der <code>print()</code>-Methode aus der Klasse <code>Stadt</code> aus.</li>
 <li>Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?</li>
-<li>Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.</li>
-<li>Ändern Sie den Konstruktor von <code>HashSet&lt;&gt;()</code> in <code>TreeSet&lt;&gt;()</code>. Was passiert und warum?</li>
 </ol>
 <p><strong>Stadt - Teil 2</strong></p>
 <ol>
 <li>Implementieren Sie in der Klasse <code>Stadt</code> die <code>equals(Object)</code>- und die <code>hashCode()</code>-Methode.</li>
 <li>Führen Sie danach die <code>StadtTest</code>-Klasse erneut aus. Was hat sich an der Menge geändert?</li>
-<li>Kommentieren Sie <code>hashCode()</code> wieder aus und führen <code>StadtTest</code> erneut aus. Was ändert sich?</li>
-<li>Kommentieren Sie <code>equals()</code> wieder aus und führen <code>StadtTest</code> erneut aus. Was ändert sich?</li>
 </ol>
 <p><strong>Maps</strong></p>
 <ol>
@@ -2204,24 +2200,10 @@ Hamburg            <span class="m">755</span>,22 km2    <span class="m">1</span>
 63
 64
 65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//import</span>
+66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//import</span>
 
 <span class="c1">//1. Erstellen Sie eine Klasse Stadt mit folgenden Objektvariablen:</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stadt</span> <span class="kd">implements</span> <span class="o">???&lt;???&gt;</span> 
-<span class="c1">// Der Teil mit &quot;implements&quot; wird nicht von Anfang an benötigt, es kann also auch erstmal mit &quot;public class Stadt&quot; begonnen werden. </span>
-<span class="c1">// Während es bei primitiven Datentypen meist eindeutig ist, ob ein Wert größer, kleiner oder gleich groß ist wie ein anderer Wert, ist die Ordnung bei Objekten nicht so klar.</span>
-<span class="c1">// Daher muss Stadt Klasse ein bestimmtes Interface implementieren, um festzulegen, was verglichen werden soll. </span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stadt</span> 
 <span class="p">{</span>
     <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
     <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">bevoelkerung</span><span class="p">;</span>
@@ -2283,121 +2265,109 @@ Hamburg            <span class="m">755</span>,22 km2    <span class="m">1</span>
     <span class="p">{</span>
         <span class="c1">//Hashcode des Stadtnamens zurückgeben</span>
     <span class="p">}</span>
-
-
-    <span class="c1">//Festlegen, dass der Name des übergebenen Stadt-Objekts o mit dem Namen des aktuellen Stadt-Objekts verglichen werden soll</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Stadt</span> <span class="n">o</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="p">...</span>
-    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
 </div>
 <input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">StadtTest.java</label><div class="tabbed-content">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
- 29
- 30
- 31
- 32
- 33
- 34
- 35
- 36
- 37
- 38
- 39
- 40
- 41
- 42
- 43
- 44
- 45
- 46
- 47
- 48
- 49
- 50
- 51
- 52
- 53
- 54
- 55
- 56
- 57
- 58
- 59
- 60
- 61
- 62
- 63
- 64
- 65
- 66
- 67
- 68
- 69
- 70
- 71
- 72
- 73
- 74
- 75
- 76
- 77
- 78
- 79
- 80
- 81
- 82
- 83
- 84
- 85
- 86
- 87
- 88
- 89
- 90
- 91
- 92
- 93
- 94
- 95
- 96
- 97
- 98
- 99
-100
-101
-102</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//import </span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//import </span>
 
 <span class="c1">//4. Erstellen Sie eine Klasse StadtTest mit main()-Methode. </span>
 <span class="c1">//Kopieren Sie in die Klasse die Methode public static Stadt[] staedte() hinein: </span>
@@ -2463,7 +2433,7 @@ Hamburg            <span class="m">755</span>,22 km2    <span class="m">1</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n------------ Menge --------------%n&quot;</span><span class="p">);</span>
 
         <span class="c1">//1. Erstellen Sie in der main()-Methode eine Set&lt;Stadt&gt; staedteMenge = new HashSet&lt;&gt;();. </span>
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Stadt</span><span class="o">&gt;</span> <span class="n">staedteMenge1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Stadt</span><span class="o">&gt;</span> <span class="n">staedteMenge</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
         <span class="c1">//Fügen Sie der staedteMenge alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array zu.</span>
 
@@ -2474,10 +2444,6 @@ Hamburg            <span class="m">755</span>,22 km2    <span class="m">1</span>
             <span class="c1">//analog zur gleichen Aufgabe mit der Liste oben</span>
 
         <span class="c1">//Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?</span>
-        <span class="c1">//Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.</span>
-        <span class="c1">//Ändern Sie den Konstruktor von HashSet&lt;&gt;() in TreeSet&lt;&gt;(). Was passiert und warum?        </span>
-        <span class="n">Set</span><span class="o">&lt;</span><span class="n">Stadt</span><span class="o">&gt;</span> <span class="n">staedteMenge2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="c1">//analog zu oben</span>
 
 
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%n------------ Maps --------------%n&quot;</span><span class="p">);</span>

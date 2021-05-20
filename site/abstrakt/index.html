@@ -417,14 +417,62 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ein-beispiel" class="md-nav__link">
-    Ein Beispiel
+  <a href="#ein-beispiel-die-abstrakte-klasse-shape" class="md-nav__link">
+    Ein Beispiel - die abstrakte Klasse Shape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rectangle-erbt-von-shape" class="md-nav__link">
+    Rectangle erbt von Shape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circle-erbt-von-shape" class="md-nav__link">
+    Circle erbt von Shape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testen-der-klassen" class="md-nav__link">
+    Testen der Klassen
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beispiele-aus-den-java-paketen" class="md-nav__link">
+    Beispiele aus den Java-Paketen
+  </a>
+  
+    <nav class="md-nav" aria-label="Beispiele aus den Java-Paketen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#die-abstrakte-klasse-number" class="md-nav__link">
+    Die abstrakte Klasse Number
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstrakte-klassen-fur-collections" class="md-nav__link">
+    Abstrakte Klassen für Collections
+  </a>
   
 </li>
         
@@ -541,14 +589,62 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ein-beispiel" class="md-nav__link">
-    Ein Beispiel
+  <a href="#ein-beispiel-die-abstrakte-klasse-shape" class="md-nav__link">
+    Ein Beispiel - die abstrakte Klasse Shape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rectangle-erbt-von-shape" class="md-nav__link">
+    Rectangle erbt von Shape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circle-erbt-von-shape" class="md-nav__link">
+    Circle erbt von Shape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testen-der-klassen" class="md-nav__link">
+    Testen der Klassen
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beispiele-aus-den-java-paketen" class="md-nav__link">
+    Beispiele aus den Java-Paketen
+  </a>
+  
+    <nav class="md-nav" aria-label="Beispiele aus den Java-Paketen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#die-abstrakte-klasse-number" class="md-nav__link">
+    Die abstrakte Klasse Number
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstrakte-klassen-fur-collections" class="md-nav__link">
+    Abstrakte Klassen für Collections
+  </a>
   
 </li>
         
@@ -624,7 +720,7 @@
 <li>als Basisklasse, d.h. von abstrakten Klassen wird geerbt.</li>
 </ol>
 <p>Von abstrakten Klassen abgeleitete Klassen (also Klassen, die von einer abstrakten Klasse erben), <strong>müssen</strong> die geerbten Methoden implementieren (ansonsten wären sie selbst wieder abstrakt)!</p>
-<h4 id="ein-beispiel">Ein Beispiel<a class="headerlink" href="#ein-beispiel" title="Permanent link">&para;</a></h4>
+<h4 id="ein-beispiel-die-abstrakte-klasse-shape">Ein Beispiel - die abstrakte Klasse <code>Shape</code><a class="headerlink" href="#ein-beispiel-die-abstrakte-klasse-shape" title="Permanent link">&para;</a></h4>
 <p>Wir erstellen uns eine abstrakte Klasse <code>Shape</code>, welche zwei abstrakte Methoden enthält, <code>perimeter()</code> und <code>area()</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Shape</span> 
 <span class="p">{</span>   
@@ -634,6 +730,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Beachten Sie, dass eine Klasse selbst als <code>abstract</code> deklariert werden muss, wenn sie abstrakte Methoden enthält. Deshalb enthält die Klassendeklaration in Zeile <code>1</code> ebanfalls das Schlüsselwort <code>abstract</code>. Sie liesse sich auch sonst gar nicht compilieren. </p>
+<h4 id="rectangle-erbt-von-shape"><code>Rectangle</code> erbt von <code>Shape</code><a class="headerlink" href="#rectangle-erbt-von-shape" title="Permanent link">&para;</a></h4>
 <p><code>Shape</code> kann nun bereits als Typ verwendet werden. Es lassen sich aber keine Objekte von der Klasse <code>Shape</code> erzeugen. Vielmehr ist die Klasse <code>Shape</code> auch dazu da, um von ihr zu erben. Wir erzeugen uns deshalb eine Klasse <code>Rectangle</code>, die von <code>Shape</code> erbt. </p>
 <p>Wenn wir nun schreiben:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -736,6 +833,7 @@
 </code></pre></div>
 </td></tr></table>
 <p>Natürlich könnte (und sollte) die Klasse auch noch um geeignete Implementierungen für mindestens die von <code>Object</code> geerbten Methoden <code>equals()</code> und <code>toString()</code> enthalten. </p>
+<h4 id="circle-erbt-von-shape"><code>Circle</code> erbt von <code>Shape</code><a class="headerlink" href="#circle-erbt-von-shape" title="Permanent link">&para;</a></h4>
 <p>Wir können beliebig oft von der Klasse <code>Shape</code> erben, d.h. wir können nun beliebig viele Klasse erstellen, die von der Klasse <code>Shape</code> erben. Für jede dieser Klassen gilt nun:</p>
 <ul>
 <li>ein Objekt dieser Klasse (z.B. ein Objekt der Klasse <code>Rectangle</code>) "besitzt" die Methoden <code>perimeter()</code> und <code>area()</code>,</li>
@@ -787,6 +885,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+<h4 id="testen-der-klassen">Testen der Klassen<a class="headerlink" href="#testen-der-klassen" title="Permanent link">&para;</a></h4>
 <p>Beispielsweise könnte nun in einer beliebigen Klasse eine Methode implementiert werden, in der ein <code>Shape</code> als Parameter verwendet wird und die für dieses <code>Shape</code> die Methode <code>perimeter()</code> oder <code>area()</code> aufruft. Es ist ja sicher, dass jedes Objekt vom Typ <code>Shape</code> diese Methoden als Eigenschaft "besitzt". Betrachten wir folgende <code>TestklasseShape</code>:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -871,24 +970,43 @@
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Shape</span> <span class="n">s1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
-    <span class="n">Shape</span> <span class="n">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">(</span><span class="mf">6.0</span><span class="p">);</span>
-    <span class="n">printPerimeter</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
-    <span class="n">printPerimeter</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
-    <span class="n">printArea</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
-    <span class="n">printArea</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+        <span class="n">Shape</span> <span class="n">s1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+        <span class="n">Shape</span> <span class="n">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">(</span><span class="mf">6.0</span><span class="p">);</span>
+        <span class="n">printPerimeter</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+        <span class="n">printPerimeter</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+        <span class="n">printArea</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+        <span class="n">printArea</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
 
-    <span class="n">Shape</span><span class="o">[]</span> <span class="n">shapes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Shape</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">;</span>
-    <span class="n">shapes</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
-    <span class="n">shapes</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">s2</span><span class="p">;</span>
-    <span class="n">shapes</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">);</span>
-    <span class="n">shapes</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span>
-    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;sum of perimeters : %.2f cm%n&quot;</span><span class="p">,</span> <span class="n">sumPerimeters</span><span class="p">(</span><span class="n">shapes</span><span class="p">));</span>
-    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;sum of areas      : %.2f cm%n&quot;</span><span class="p">,</span> <span class="n">sumAreas</span><span class="p">(</span><span class="n">shapes</span><span class="p">));</span>
+        <span class="n">Shape</span><span class="o">[]</span> <span class="n">shapes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Shape</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">shapes</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+        <span class="n">shapes</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">s2</span><span class="p">;</span>
+        <span class="n">shapes</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">);</span>
+        <span class="n">shapes</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Circle</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;sum of perimeters : %.2f cm%n&quot;</span><span class="p">,</span> <span class="n">sumPerimeters</span><span class="p">(</span><span class="n">shapes</span><span class="p">));</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;sum of areas      : %.2f cm%n&quot;</span><span class="p">,</span> <span class="n">sumAreas</span><span class="p">(</span><span class="n">shapes</span><span class="p">));</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+<p>In dieser Testklasse sind vier Methoden implementiert, die als Parameter entweder Objekte vom Typ <code>Shape</code> oder vom Typ <code>Shape[]</code> erwarten. Von Objekten, die vom (Laufzeit-)Typ <code>Shape</code> sind, wissen wir, dass sie die Methoden <code>perimeter()</code> bzw. <code>area()</code> als Eigenschaften besitzen. Deshalb können wir diese Methoden auch in den jeweiligen Methoden für die <code>Shape</code>-Objekte aufrufen. </p>
+<p>Abstrakte Klassen fungieren also ein ein Muster für Klassen, die von den abstrakten Klassen erben, denn die abgeleiteten Klassen <strong>müssen</strong> genau diese Methoden implementieren, die von den abstrakten Klassen vorgegeben sind. Ohne jetzt wirklich zu wissen, welche <em>konkreten</em> Klassen von dieser abstrakten Klasse erben und auch, ohne wirklich zu wissen, von welcher <em>konkreten</em> Klasse die Objekte erzeugt wurden (z.B. <code>Rectangle</code> oder <code>Circle</code>), so wissen wir doch, dass diese Objekte zumindest über die Methoden <code>perimeter()</code> und <code>area()</code> verfügen. </p>
+<h2 id="beispiele-aus-den-java-paketen">Beispiele aus den Java-Paketen<a class="headerlink" href="#beispiele-aus-den-java-paketen" title="Permanent link">&para;</a></h2>
+<p>In Java finden sich sehr viele abstrakte Klassen. Wir betrachten im Folgenden einige, zu denen wir bereits einen Bezug haben. </p>
+<h3 id="die-abstrakte-klasse-number">Die abstrakte Klasse <code>Number</code><a class="headerlink" href="#die-abstrakte-klasse-number" title="Permanent link">&para;</a></h3>
+<p>Die Klasse <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Number.html">Number</a> aus dem <code>java.lang</code>-Paket ist eine abstrakte Klasse. In dieser Klasse sind folgende abstrakte Methoden definiert: </p>
+<ul>
+<li><code>abstract double doubleValue()</code></li>
+<li><code>abstract float  floatValue()</code></li>
+<li><code>abstract int    intValue()</code></li>
+<li><code>abstract long   longValue()</code></li>
+</ul>
+<p>Alle numerischen Wrapper-Klassen erben von <code>Number</code>, d.h. die Klassen <code>Byte</code>, <code>Double</code>, <code>Float</code>, <code>Integer</code>, <code>Long</code> und <code>Short</code> sind von <code>Number</code> abgeleitet. Das bedeutet, dass alle Objekte dieser <em>konkreten</em> Wrapper-Klassen auch vom Typ <code>Number</code> sind und somit die Methoden <code>doubleValue()</code>, <code>floatValue()</code>, <code>intValue()</code> und <code>longValue()</code> als Eigenschaften besitzen. Wir können also für alle solche Objekte diese Methoden aufrufen. </p>
+<h3 id="abstrakte-klassen-fur-collections">Abstrakte Klassen für Collections<a class="headerlink" href="#abstrakte-klassen-fur-collections" title="Permanent link">&para;</a></h3>
+<p>Beispiele für abstrakte Klassen finden wir auch im <code>java.util</code>-Paket für die Collections. Beispielsweise definiert die abstrakte Klasse <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/AbstractCollection.html">AbstractCollection</a> eine Reihe uns bereits bekannter Methoden, wie z.B. <code>add()</code>, <code>addAll()</code>, <code>clear()</code>, <code>contains()</code>, <code>isEmpty()</code>, <code>iterator()</code>, <code>remove()</code> usw. Alle Klassen, die von dieser Klasse erben, wie z.B. <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/AbstractList.html">AbstractList</a> und <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/AbstractSet.html">AbstractSet</a> verfügen also ebenfalls über diese Methoden. Beachten Sie, dass diese beiden Klassen <code>AbstractList</code> und <code>AbstractSet</code> ebenfalls abstrakt sind! Von <code>AbstractSet</code> erben z.B. die Klassen <code>HashSet</code>, <code>TreeSet</code> und <code>EnumSet</code>. Erst von diesen <em>konkreten</em> Klassen können tatsächlich Objekte erzeugt werden. Alle diese Objekte besitzen aber (natürlich) die bereits in <code>AbstractCollection</code> definierten Methoden. </p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Wir kennen jetzt abstrakte Klassen. Abstrakte Klassen sind Klassen, die abstrakte Methoden enthalten. Abstrakte Methoden sind Methoden, die nicht implementiert sind. Von abstrakten Klassen können wir keine Objekte erzeugen. Abstrakte Klassen dienen uns als Typen und wir können von abstrakten Klassen erben. Eine Klasse, die von einer abstrakten Klasse erbt, muss die geerbten abstrakten Methoden implementieren (oder sie ist selbst wieder abstrakt). Alle Klassen, die von einer abstrakten Klasse erben, implementieren also die Methoden genau so, wie sie von der abstrakten Klasse vorgegeben wurden, also mit der Methodensignatur (Name der Methode, Parameter, Rückgabetyp und Sichtbarkeitsmodifizierer). Jedes Objekt einer Klasse, welche von der abstrakten Klasse geerbt hat, ist auch vom Typ der abstrakten Klasse.</p>
+</div>
                 
               
               

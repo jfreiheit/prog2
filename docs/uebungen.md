@@ -957,15 +957,11 @@
 	5. Erstellen Sie in der `main()`-Methode eine `Set<Stadt> staedteMenge = new HashSet<>();`. Fügen Sie der `staedteMenge` alle Städte aus dem durch Aufruf der `staedte()`-Methode erzeugtem Array zu.
 	6. Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der `print()`-Methode aus der Klasse `Stadt` aus.
 	7. Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?
-	8. Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.
-	9. Ändern Sie den Konstruktor von `HashSet<>()` in `TreeSet<>()`. Was passiert und warum?
 
 	**Stadt - Teil 2**
 
 	5. Implementieren Sie in der Klasse `Stadt` die `equals(Object)`- und die `hashCode()`-Methode.
 	6. Führen Sie danach die `StadtTest`-Klasse erneut aus. Was hat sich an der Menge geändert?
-	7. Kommentieren Sie `hashCode()` wieder aus und führen `StadtTest` erneut aus. Was ändert sich?
-	8. Kommentieren Sie `equals()` wieder aus und führen `StadtTest` erneut aus. Was ändert sich?
 
 	**Maps**
 
@@ -1006,10 +1002,7 @@
 		//import
 
 		//1. Erstellen Sie eine Klasse Stadt mit folgenden Objektvariablen:
-		public class Stadt implements ???<???> 
-		// Der Teil mit "implements" wird nicht von Anfang an benötigt, es kann also auch erstmal mit "public class Stadt" begonnen werden. 
-		// Während es bei primitiven Datentypen meist eindeutig ist, ob ein Wert größer, kleiner oder gleich groß ist wie ein anderer Wert, ist die Ordnung bei Objekten nicht so klar.
-		// Daher muss Stadt Klasse ein bestimmtes Interface implementieren, um festzulegen, was verglichen werden soll. 
+		public class Stadt 
 		{
 			String name;
 			List<Integer> bevoelkerung;
@@ -1070,14 +1063,6 @@
 			public int hashCode()
 			{
 				//Hashcode des Stadtnamens zurückgeben
-			}
-
-			
-			//Festlegen, dass der Name des übergebenen Stadt-Objekts o mit dem Namen des aktuellen Stadt-Objekts verglichen werden soll
-			@Override
-			public int compareTo(Stadt o)
-			{
-				return ...
 			}
 		}
 		```
@@ -1151,7 +1136,7 @@
 				System.out.printf("%n------------ Menge --------------%n");
 				
 				//1. Erstellen Sie in der main()-Methode eine Set<Stadt> staedteMenge = new HashSet<>();. 
-				Set<Stadt> staedteMenge1 = new HashSet<>();
+				Set<Stadt> staedteMenge = new HashSet<>();
 				
 				//Fügen Sie der staedteMenge alle Städte aus dem durch Aufruf der staedte()-Methode erzeugtem Array zu.
 				
@@ -1162,10 +1147,6 @@
 		    		//analog zur gleichen Aufgabe mit der Liste oben
 		    		
 		   		//Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?
-		   		//Notieren Sie sich die Reihenfolge, in der Städte ausgegeben werden.
-		   		//Ändern Sie den Konstruktor von HashSet<>() in TreeSet<>(). Was passiert und warum?		
-				Set<Stadt> staedteMenge2 = new TreeSet<>();
-				//analog zu oben
 
 				
 				System.out.printf("%n------------ Maps --------------%n");
