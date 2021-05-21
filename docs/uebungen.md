@@ -1636,6 +1636,229 @@
 		```
 
 
+##### Übung 7 (Interfaces)
+
+??? "Übung 7"
+
+	1. Wir beschäftigen uns nochmal mit der Übung 6, d.h. mit `Stadt` und `StadtTest`. Dieses Mal geht es uns aber mehr um die Verwendung des Interfaces `Comparable`. Zunächst sind die beiden Klassen `Stadt` und `StadtTest` wie folgt gegeben (das haben wir so in Übung 6 erarbeitet - es gibt eine Änderung in `StadtTest`, dort benutzen wir jetzt ): 
+
+		=== "Stadt.java" 
+		```java
+		import java.util.*;
+
+		public class Stadt
+		{
+			String name;
+			List<Integer> bevoelkerung;
+			float flaeche;
+			
+			public Stadt(String name, List<Integer> bevoelkerung, float flaeche)
+			{
+				super();
+				this.name = name;
+				this.bevoelkerung = bevoelkerung;
+				this.flaeche = flaeche;
+			}
+			
+			void print()
+			{
+				System.out.printf("%-15s %9.2f km2 ", name, flaeche);
+				for(Integer i : bevoelkerung)
+				{
+					System.out.printf("%,12d", i);
+				}
+				System.out.println();
+			}
+			
+			@Override
+			public boolean equals(Object o)
+			{
+				if(o==null) return false;
+				if(o==this) return true;
+				if(this.getClass()!=o.getClass()) return false;
+				
+				Stadt other = (Stadt)o;
+				return (this.name.equals(other.name));
+			}
+			
+			@Override
+			public int hashCode()
+			{
+				return this.name.hashCode();
+			}
+
+		}
+		```
+
+		=== "StadtTest.java" 
+		```java
+		public class StadtTest
+		{
+			public static Stadt[] staedte()
+			{
+				Stadt[] staedte = new Stadt[6];
+				List<Integer> berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[0] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+				
+				List<Integer> hamburgBevoelkerung = new ArrayList<>();
+				hamburgBevoelkerung.add(1715392);	
+				hamburgBevoelkerung.add(1786448);	
+				hamburgBevoelkerung.add(1810438);	
+				staedte[1] = new Stadt("Hamburg", hamburgBevoelkerung, 755.22f);
+				
+				List<Integer> muenchenBevoelkerung = new ArrayList<>();
+				muenchenBevoelkerung.add(1210223);	
+				muenchenBevoelkerung.add(1353186);	
+				muenchenBevoelkerung.add(1464301);
+				staedte[2] = new Stadt("Muenchen", muenchenBevoelkerung, 310.70f);
+				
+				List<Integer> koelnBevoelkerung = new ArrayList<>();
+				koelnBevoelkerung.add(962884);	
+				koelnBevoelkerung.add(1007119);	
+				koelnBevoelkerung.add(1075935);	
+				staedte[3] = new Stadt("Koeln", koelnBevoelkerung, 405.02f);
+				
+				List<Integer> frankfurtBevoelkerung = new ArrayList<>();
+				frankfurtBevoelkerung.add(648550);	
+				frankfurtBevoelkerung.add(679664);	
+				frankfurtBevoelkerung.add(736414);
+				staedte[4] = new Stadt("Frankfurt/Main", frankfurtBevoelkerung, 248.31f);
+				
+				berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[5] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+				
+				return staedte;
+			}
+			
+			public static void main(String[] args)
+			{
+				System.out.printf("%n------------ Menge --------------%n");
+				Set<Stadt> staedteMenge = new HashSet<>();
+				for(Stadt s : staedte())
+				{
+					staedteMenge.add(s);
+				}
+				for(Stadt s : staedteMenge)
+				{
+					s.print();
+				}
+				
+				System.out.printf("%n------------ Maps --------------%n");
+				Map<MyInteger, Stadt> staedteMap = new HashMap<>();
+				int i = 1;
+				for(Stadt s : staedte())
+				{
+					staedteMap.put(new MyInteger(i++), s);
+				}
+				for(Map.Entry<MyInteger, Stadt> entry : staedteMap.entrySet())
+				{
+					MyInteger key = entry.getKey();
+					System.out.printf("%-3d",key.intValue());
+					entry.getValue().print();
+				}
+			}
+		}
+		```
+
+	2. Für die Schlüssel in der `Map` benutzen wir die selbstgeschriebne Klasse `MyInteger`:
+
+		=== "MyInteger.java" 
+		```java
+		public class MyInteger 
+		{
+			private int value;
+			
+			public MyInteger(int value)
+			{
+				this.value = value;
+			}
+			
+			public int intValue()
+			{
+				return this.value;
+			}
+			
+			public static MyInteger valueOf(int value)
+			{
+				return new MyInteger(value);
+			}
+		}
+		```
+
+	3. Ändern Sie in der `StadtTest.java` den Konstruktoraufruf der `Set` von `HashSet` nach `TreeSet` und führen Sie die Klasse aus - es wird eine Exception geworfen (`Stadt cannot be cast to class java.lang.Comparable`). Implementieren Sie für `Stadt` das Interface `Comparable<Stadt>` so, dass nach den Namen der Städte sortiert wird. Führen Sie dann erneut `StadtTest.java` aus. Es sollte folgende Ausgabe für die `Set` erzeugt werden:
+
+		```bash
+		------------ Menge --------------
+		Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+		Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+		Koeln              405,02 km2      962.884   1.007.119   1.075.935
+		Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+		```
+
+	4. Ändern Sie `compareTo()` in `Stadt` so, dass die Namen der Städte **absteigend** sortiert werden und führen Sie dann `StadtTest.java` erneut aus. Es sollte folgende Ausgabe erzeugt werden:
+
+		```bash
+		------------ Menge --------------
+		Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+		Koeln              405,02 km2      962.884   1.007.119   1.075.935
+		Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+		Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+		Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		```
+
+	5. Ändern Sie `compareTo()` in `Stadt` so, dass die Städte **absteigend** nach ihrer Fläche sortiert werden und führen Sie dann `StadtTest.java` erneut aus. Es sollte folgende Ausgabe erzeugt werden:
+
+		```bash
+		------------ Menge --------------
+		Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+		Koeln              405,02 km2      962.884   1.007.119   1.075.935
+		Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+		Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+		```
+
+	6. Ändern Sie in der `StadtTest.java` den Konstruktoraufruf der `Map` von `HashMap` nach `TreeSet` und führen Sie die Klasse aus - es wird eine Exception geworfen (`MyInteger cannot be cast to class java.lang.Comparable`). Implementieren Sie für `MyInteger` das Interface `Comparable<MyInteger>` so, dass nach den Größen der Werte sortiert wird. Führen Sie dann erneut `StadtTest.java` aus. Es sollte folgende Ausgabe für die `Map` erzeugt werden:
+
+		```bash
+		------------ Maps --------------
+		1  Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		2  Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+		3  Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+		4  Koeln              405,02 km2      962.884   1.007.119   1.075.935
+		5  Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+		6  Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		```
+
+	7. Ändern Sie `compareTo()` in `MyInteger` so, dass die Werte der Schlüssel **absteigend** sortiert werden und führen Sie dann `StadtTest.java` erneut aus. Es sollte folgende Ausgabe erzeugt werden:
+
+		```bash
+		------------ Maps --------------
+		6  Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		5  Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+		4  Koeln              405,02 km2      962.884   1.007.119   1.075.935
+		3  Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+		2  Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+		1  Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		```
+
+	- **Zusatz**: Schreiben Sie in `StadtTest.java` eine Methode `public static boolean contains(Map<MyInteger, Stadt> staedteMap, Stadt stadt)`, die ein `true` zurückgibt, wenn die Stadt `stadt` bereits in der `staedteMap` als ein `value` existiert. *Tipp*: Die Methode `get(Object key)` aus `Map` gibt den zu `key` gehörigen `value` zurück und mit `keySet()` bekommt man die Menge aller `keys` aus der `Map` ermittelt. Testen Sie die Methode, indem Sie zur Menge nur dann die `stadt` hinzufügen, wenn sie nicht bereits in der Menge aufgeführt ist. Sie sollten folgende Ausgabe erhalten: 
+
+		```bash
+		------------ Maps --------------
+		5  Frankfurt/Main     248,31 km2      648.550     679.664     736.414
+		4  Koeln              405,02 km2      962.884   1.007.119   1.075.935
+		3  Muenchen           310,70 km2    1.210.223   1.353.186   1.464.301
+		2  Hamburg            755,22 km2    1.715.392   1.786.448   1.810.438
+		1  Berlin             891,68 km2    3.382.169   3.460.725   3.574.830
+		```
+
 
 ## Zusatz
 

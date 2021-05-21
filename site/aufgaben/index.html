@@ -473,6 +473,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aufgabe-7-interfaces" class="md-nav__link">
+    Aufgabe 7 (Interfaces)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -558,6 +565,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-6-maps" class="md-nav__link">
     Aufgabe 6 (Maps)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aufgabe-7-interfaces" class="md-nav__link">
+    Aufgabe 7 (Interfaces)
   </a>
   
 </li>
@@ -3054,6 +3068,157 @@ Mögliche Pizzen: <span class="o">[</span>Margherita, Veggie<span class="o">]</s
 </li>
 <li>
 <p>Finden Sie in Ihrem Code ein Beispiel für Auto-Boxing und schreiben Sie einen entsprechenden Kommentar.</p>
+</li>
+</ol>
+</details>
+<h5 id="aufgabe-7-interfaces">Aufgabe 7 (Interfaces)<a class="headerlink" href="#aufgabe-7-interfaces" title="Permanent link">&para;</a></h5>
+<details><summary>Aufgabe 7</summary><ol>
+<li>
+<p>Das <a href="https://de.wikipedia.org/wiki/Beobachter_(Entwurfsmuster)"><em>Observer</em>-Entwurfsmuster</a> gehört zu den am meisten verwendeten <em>Designmustern/Designpattern/Pattern</em> in der Programmierung. Es wird auch <em>Beobachter</em>-Muster oder <em>Publisher</em>-Pattern genannt. Wir werden dieses Muster in Kürze sehr häufig anwenden, wenn wir <em>Nutzerereignisse</em>  in grafischen Oberflächen behandeln. Man kann sich dieses Pattern so vorstellen, dass der <em>Publisher</em> eine Zeitung oder auch Slack ist und dass <em>Listener</em> diese Zeitung (oder Slack) "abonnieren". Immer, wenn eine Nachricht veröffentlicht wird, dann erfahren alle Abonnenten davon. Wir werden eine (einfache) Implementierung dieses Entwurfsmusters durchführen.</p>
+</li>
+<li>
+<p>Erstellen Sie ein Interface <code>Publisher</code> mit folgenden (abstrakten) Methoden:</p>
+<ul>
+<li><code>public boolean register(Listener listener);</code></li>
+<li><code>public boolean unregister(Listener listener);</code></li>
+<li><code>public void notifyListeners();</code> </li>
+<li><code>public String getUpdate(Listener listener);</code></li>
+</ul>
+</li>
+<li>
+<p>Erstellen Sie ein weiteres Interface <code>Listener</code> mit folgenden (abstrakten) Methoden:</p>
+<ul>
+<li><code>public void update();</code></li>
+<li><code>public void setPublisher(Publisher publisher);</code></li>
+<li><code>public void removePublisher(Publisher publisher);</code></li>
+</ul>
+</li>
+<li>
+<p>Erstellen Sie eine Klasse <code>Slack</code>, die das <code>Publisher</code>-Interface implementiert. Objektvariablen der Klasse sind</p>
+<ul>
+<li><code>private Set&lt;Listener&gt; listeners;</code> (speichert alle "Abonnenten"; kann gerne auch eine Liste sein)</li>
+<li>
+<p><code>private int nrOfMessages;</code> (speichert die aktuelle Nummer einer veröffentlichten Nachricht - die Nachrichten, die veröffentlicht werden, sollen fortlaufend nummeriert werden) </p>
+</li>
+<li>
+<p>Im parameterlosen Konstruktor werden die Menge (oder Liste) erzeugt un die <code>nrOfMessages</code> auf `0 gesetzt. </p>
+</li>
+<li>
+<p>In der Methode <code>register(Listener listener)</code> wird der <code>listener</code> in die Set <code>listeners</code> eingefügt. Geben Sie ein <code>true</code> zurück, wenn <code>listener</code> tatsächlich eingefügt wurde und <code>false</code> sonst (falls er schon in der Menge (oder Liste) war.</p>
+</li>
+<li>
+<p>In der Methode <code>unregister(Listener listener)</code> wird der <code>listener</code> wieder aus der Set <code>listeners</code> gelöscht. Geben Sie ein <code>true</code> zurück, wenn <code>listener</code> tatsächlich gelöscht wurde und <code>false</code> sonst (falls er nicht in der Menge (oder Liste) war.</p>
+</li>
+<li>
+<p>In der Methode <code>notifyListeners()</code> wird für alle <code>listener</code> aus der Menge <code>listeners</code> die <code>update()</code>-Methode aufgerufen (siehe <code>Listener</code> und <code>Student</code>). </p>
+</li>
+<li>
+<p>Die Methode <code>getUpdate(Listener obj)</code> liefert einfach folgenden String zurück: <code>"Breaking News " + this.nrOfMessages</code>.</p>
+</li>
+<li>
+<p>Erstellen Sie eine Methode <code>public void publishNews()</code>, in der die <code>nrOfMessages</code> um 1 erhöht und die 
+    Methode <code>notifyListeners()</code> aufgerufen wird. </p>
+</li>
+</ul>
+</li>
+<li>
+<p>Erstellen Sie eine Klasse <code>Student</code>, die das <code>Listener</code>-Interface implementiert. Objektvariablen der Klasse sind</p>
+<ul>
+<li><code>private String name;</code> (speichert den Namen von <code>Student</code>)</li>
+<li>
+<p><code>private Publisher publisher;</code> (speichert den <code>Publisher</code>, an den sich <code>Student</code> anmeldet) </p>
+</li>
+<li>
+<p>Im parametrisierten Konstruktor <code>public Student(String name)</code> wird der Name initalisiert. </p>
+</li>
+<li>
+<p>In der Methode <code>setPublisher(Publisher publisher)</code> wird die <code>register()</code>-Methode des <code>publisher</code> aufgerufen und der Wert der Objektvariable <code>publisher</code> gesetzt. Geben Sie bei erfolgreicher Anmeldung an den <code>publisher</code> auf die Konsole <code>this.name + " registered!"</code> aus. </p>
+</li>
+<li>
+<p>In der Methode <code>removePublisher(Publisher publisher)</code> meldet sich <code>Student</code> wieder vom <code>publisher</code> ab (Aufruf von <code>unregister()</code> und Ausgabe auf die Konsole <code>this.name + " deregistered!"</code>.</p>
+</li>
+<li>
+<p>In der Methode <code>update()</code> wird die <code>getUpdate()</code>-Methode des <code>publisher</code> aufgerufen und die zurückgegebene Nachricht <code>msg</code> wie folgt auf die Konsole ausgegben: <code>this.name + " received " + msg</code>. </p>
+</li>
+<li>
+<p>Implementieren Sie für <code>Student</code> auch die Methoden <code>equals()</code> und <code>hashCode()</code>. </p>
+</li>
+</ul>
+</li>
+<li>
+<p>Wenn Sie Ihre Implementierung mit folgender Klasse testen:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Testklasse</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>       
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">NR_OF_STUDENTS</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="n">Slack</span> <span class="n">slack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Slack</span><span class="p">();</span>
+
+        <span class="n">Student</span><span class="o">[]</span> <span class="n">students</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="o">[</span><span class="n">NR_OF_STUDENTS</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">Character</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">students</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">index</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">students</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+            <span class="n">c</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">students</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="p">.</span><span class="na">setPublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">.</span><span class="na">setPublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span> 
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">.</span><span class="na">setPublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>dann sollte die Ausgabe ungefähr so sein: </p>
+<div class="highlight"><pre><span></span><code>A registered!
+B registered!
+C registered!
+D registered!
+E registered!
+D received Breaking News <span class="m">1</span>
+C received Breaking News <span class="m">1</span>
+B received Breaking News <span class="m">1</span>
+A received Breaking News <span class="m">1</span>
+E received Breaking News <span class="m">1</span>
+
+B deregistered!
+D deregistered!
+
+C received Breaking News <span class="m">2</span>
+A received Breaking News <span class="m">2</span>
+E received Breaking News <span class="m">2</span>
+
+B registered!
+C deregistered!
+E deregistered!
+
+B received Breaking News <span class="m">3</span>
+A received Breaking News <span class="m">3</span>
+
+A deregistered!
+B deregistered!
+D registered!
+
+D received Breaking News <span class="m">4</span>
+</code></pre></div>
 </li>
 </ol>
 </details>
