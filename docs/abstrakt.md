@@ -121,7 +121,7 @@ public class Rectangle extends Shape
 }
 ```
 
-Eclipse fügt die zu implementierenden Methoden genau so ein, wie wir sie geerbt haben (also als `public` und mit Rückgabetyp `double` sowie den in `Shape` definierten Namen). Nun sind die bedien Methoden aber jeweils implementiert (aber noch nicht richtig - `TODO`). Da beide Methoden nun einen Methodenrumpf enthalten (Zeilen `6-9` und `13-16`), sind sie nicht mehr abstrakt und somit ist auch die Klasse `Rectangle` keine abstrakte Klasse. 
+Eclipse fügt die zu implementierenden Methoden genau so ein, wie wir sie geerbt haben (also als `public` und mit Rückgabetyp `double` sowie den in `Shape` definierten Namen). Nun sind die beiden Methoden aber jeweils implementiert (aber noch nicht richtig - `TODO`). Da beide Methoden nun einen Methodenrumpf enthalten (Zeilen `6-9` und `13-16`), sind sie nicht mehr abstrakt und somit ist auch die Klasse `Rectangle` keine abstrakte Klasse. 
 
 Eine sinnvolle Implementierung der Klasse `Rectangle` sieht z.B. so aus, dass wir zwei Objektvariablen definieren, die die Breite und Höhe eines Rechtecks beschreiben, dass wir einen parametrisierten Konstruktor hinzufügen und dass wir unter Verwendung der Werte der Objektvariablen die Methoden `perimeter()` und `area()` sinnvoll implementieren: 
 

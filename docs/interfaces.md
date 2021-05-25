@@ -1,6 +1,6 @@
 # Interfaces
 
-*Interfaces* sind auch abstrakte Klassen. Interfaces enthalten ausschließlich abstrakte Methoden (keine Methode darf implementiert sein). Interfaces beschreiben **Schnittstellen**. Für Interfaces wird nicht das Schlüsselwort `class`, sondern `interface` verwendet. Klassen erben nicht von Interfaces, sondern **implementieren** sie. Deshalb wird auch nicht das Schlüsselwort `extends`, sondern das Schlüsselwort `implements` verwendet. Während in Java nur von genau einer Klasse geerbt werden kann (also auch nur von genau einer abstrakten Klasse), kann eine Klasse kann beliebig viele Interfaces implementieren. 
+*Interfaces* sind auch abstrakte Klassen. Interfaces enthalten ausschließlich abstrakte Methoden (keine Methode darf implementiert sein). Interfaces beschreiben **Schnittstellen**. Für Interfaces wird nicht das Schlüsselwort `class`, sondern `interface` verwendet. Klassen erben nicht von Interfaces, sondern **implementieren** sie. Deshalb wird auch nicht das Schlüsselwort `extends`, sondern das Schlüsselwort `implements` verwendet. Während in Java nur von genau einer Klasse geerbt werden kann (also auch nur von genau einer abstrakten Klasse), kann eine Klasse beliebig viele Interfaces implementieren. 
 
 Interfaces sind automatisch `abstract`, d.h. das Schlüsselwort `abstract` muss nicht angegeben werden. Auch die Methoden in Interfaces müssen nicht als abstrakt gekennzeichnet werden. Interfaces können, wie abstrakte Klassen auch, als Typen verwendet werden. 
 
@@ -55,7 +55,7 @@ public class Rectangle extends Shape
 }
 ```
 
-Die Klasse `Rectangle` erbt also von der abstrakten Klasse `Shape` und `Rectangle` **muss** deshalb die Methoden `perimeter()` und `area()` implementieren. Nun geben wir an, dass `Rectangle` auch das Interface `Comparable` implementieren soll. Dazu ergänzen wir die erste Zeile um `implements Comparable`, d.h. die Klassendeklaration sieht jetzt so aus:
+Die Klasse `Rectangle` erbt also von der abstrakten Klasse `Shape` und **muss** deshalb die Methoden `perimeter()` und `area()` implementieren. Nun geben wir an, dass `Rectangle` auch das Interface `Comparable` implementieren soll. Dazu ergänzen wir die erste Zeile um `implements Comparable`, d.h. die Klassendeklaration sieht jetzt so aus:
 
 ```java linenums="1"
 public class Rectangle extends Shape implements Comparable
@@ -309,7 +309,7 @@ Wir haben nun schon mehrere Methoden kennengelernt, die wir für eigene Klassen 
 
 - Die `toString()`-Methode erben wir von `Objects`. Wir sollten `toString()` für "unsere" Klassen überschreiben, damit wir eine textuelle Repräsentation unserer Objekte haben. `toString()`wird implizit angewendet, sobald eine `String`-Repräsentation erforderlich ist, z.B. ist `System.out.println(refVariable);`das Gleiche wie `System.out.println(refVariable.toString());`. 
 - Die `equals()`-Methode erben wir ebenfalls von `Objects`. Wir sollten `equals()` für "unsere" Klassen implementieren, um zu definieren, wann Objekte "unserer" Klasse *gleich* sind. Hierbei ist wichtig, zu beachten, dass `refVar1 == refVar2` ein reiner *Referenzvergleich* ist, der nichts darüber aussagt, ob die Objekte *gleich*  sind, sondern nur ein `true` ergibt, wenn beide Variablen auf dasselbe Objekt zeigen. Die *Gleichheit* von Objekten wird mittels `equals()`-Methode definiert. 
-- Die `hashCode()`-Methode erben wir ebenfalls von `Objects`. Wir sollten `hashCode()`genau dann implementieren, wenn wir `equals()` implementieren. Wichtig ist, dass zwei Objekte den gleichen Hash-Code haben (`hashCode()` liefert den gleichen `int`-Wert zurück), wenn die beiden Objekte laut `equals()` gleich sind. Gut ist darüber hinaus (aber nicht Bedingung), dass zwei Objekte einen unterschiedlichen Hash-Code haben, wenn sie laut `equals()`-Methide nicht gleich sind (`equals()`liefert `false` zurück). Der Hash-Code wird bei Hash-basierten Datentypen, wie z.B. Collections verwendet, um diese einzusortieren. 
+- Die `hashCode()`-Methode erben wir ebenfalls von `Objects`. Wir sollten `hashCode()`genau dann implementieren, wenn wir `equals()` implementieren. Wichtig ist, dass zwei Objekte den gleichen Hash-Code haben (`hashCode()` liefert den gleichen `int`-Wert zurück), wenn die beiden Objekte laut `equals()` gleich sind. Gut ist darüber hinaus (aber nicht Bedingung), dass zwei Objekte einen unterschiedlichen Hash-Code haben, wenn sie laut `equals()`-Methode nicht gleich sind (`equals()`liefert `false` zurück). Der Hash-Code wird bei Hash-basierten Datentypen, wie z.B. Collections verwendet, um diese einzusortieren. 
 - Die Methode `compareTo()` muss implementiert werden, wenn wir das Interface `Comparable` implementieren. Mithilfe von `compareTo()` legen wir eine Ordnung über die Objekte der Klasse fest, d.h. wir geben an, wann ein Objekt größer/kleiner/gleich einem anderen Objekt der gleichen Klasse ist. Dadurch, dass wir das `Comparable`-Interface implementieren, zeigen wir nach "außen", dass die Objekte unserer Klasse *sortierbar*  sind. 
 
 ---
@@ -620,7 +620,7 @@ Wir können nun alle Objekte sortieren lassen, die auf der Klasse `Shape` basier
 
 ### Eine noch bessere Implementierung
 
-Obwohl wir nun in `Shape` das Interface `Comparable` implementieren, geben wir die Verantwortung der IMplementierung der Methode `compareTo()` an die konkreten Klassen `Rectangle und `Circle` weiter. Es stellt sich die Frage, ob sich die `compareTo()`-Methode nicht bereits in `Shape` implementieren ließe. Die Antwort auf diese Frage sollte **ja** lauten, denn ansonsten sollten wir das Interface gar nicht bereits durch die abstrakte Klasse `Shape` implementieren lassen. Wir haben in `Shape` genügend Informationen, um die `compareTo()`-Methode zu implementieren. Wir können dafür entweder `perimeter()` oder `area()` verwenden. Wir entscheiden uns für die Verwendung von `area()`:
+Obwohl wir nun in `Shape` das Interface `Comparable` implementieren, geben wir die Verantwortung der Implementierung der Methode `compareTo()` an die konkreten Klassen `Rectangle` und `Circle` weiter. Es stellt sich die Frage, ob sich die `compareTo()`-Methode nicht bereits in `Shape` implementieren ließe. Die Antwort auf diese Frage sollte **ja** lauten, denn ansonsten sollten wir das Interface gar nicht bereits durch die abstrakte Klasse `Shape` implementieren lassen. Wir haben in `Shape` genügend Informationen, um die `compareTo()`-Methode zu implementieren. Wir können dafür entweder `perimeter()` oder `area()` verwenden. Wir entscheiden uns für die Verwendung von `area()`:
 
 === "Shape.java"
 	```java linenums="1" hl_lines="7-13"
@@ -641,7 +641,7 @@ Obwohl wir nun in `Shape` das Interface `Comparable` implementieren, geben wir d
 	}
 	```
 
-In abstrakten Klassen müssen nicht, im Gegensatz zu Interfaces, alle Methoden abstrakt sein. Es können auch Methoden bereits implementiert werden. Diese Methoden müssen dann nicht mehr in den Klassen implementiert werden, die von der abstrakten Klasse erben. Die Klassen `Rectangle` udn `Circle` benötigen also keine eigene Implementierung der `compareTo()`-Methode mehr:
+In abstrakten Klassen müssen nicht, im Gegensatz zu Interfaces, alle Methoden abstrakt sein. Es können auch Methoden bereits implementiert werden. Diese Methoden müssen dann nicht mehr in den Klassen implementiert werden, die von der abstrakten Klasse erben. Die Klassen `Rectangle` und `Circle` benötigen also keine eigene Implementierung der `compareTo()`-Methode mehr:
 
 === "Rectangle.java"
 	```java linenums="1" hl_lines="1 24 26"
