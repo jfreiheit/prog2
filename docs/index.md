@@ -47,8 +47,8 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 | 3. | 26.-30.04.2021 | Testen mit JUnit | Übung 3 | Aufgabe 3 | 09.05.2021 | 
 | 4. | 03.-07.05.2021 | Collections (List und Set) | Übung 4 | Aufgabe 4 | 16.05.2021 | 
 | 5. | 10.-14.05.2021 | Wrapper-Klassen (boxing und unboxing) | Übung 5 | Aufgabe 5 | 23.05.2021 | 
-| 6. | 17.-21.05.2021 | Collections (Map) + Abstrakte Klassen | Übung 6 | - | - | 
-| 7. | 24.-28.05.2021 | Interfaces | Übung 7 | Aufgabe 6 | 06.06.2021 | 
+| 6. | 17.-21.05.2021 | Collections (Map) | Übung 6 | - | - | 
+| 7. | 24.-28.05.2021 | Abstrakte Klassen + Interfaces | Übung 7 | Aufgabe 6 | 06.06.2021 | 
 | 8. | 31.-04.06.2021 | GUI | Übung 8 | Aufgabe 7 | 13.06.2021 | 
 | 9. | 07.-11.06.2021 | Ereignisse  | Übung 9 | Aufgabe 8 | 20.06.2021 | 
 | 10. | 14.-18.06.2021 | Dialoge und Graphics | Übung 10 | Aufgabe 9 | 04.07.2021 | 
@@ -471,5 +471,155 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 
 	- siehe [**Übung 6**](./uebungen/#ubung-6-wrapper-klassen-und-maps)
 	- siehe [**Aufgabe 6**](./aufgaben/#aufgabe-6-maps) 
+
+
+??? question "24.-28.05.2021 - Abstrakte Klassen und Interfaces"
+	- siehe [**Abstrakte Klassen**](./abstrakt/#abstrakte-klassen) und [**Interfaces**](./interfaces/#interfaces)
+	- siehe Video zu [**Abstrakte Klassen**](./abstrakt/#abstrakte-klassen) und [**Interfaces**](./interfaces/#interfaces) - Vorlesung 26.05.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=e24e8150a0c109b755e276bb42c9c243&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- Quellcode aus der Vorlesung vom 26.05.2021
+
+		=== "Shape.java"
+
+			```java linenums="1"
+			public abstract class Shape 
+			{
+				public abstract double perimeter();
+				public abstract double area();
+			}
+			```
+
+		=== "Rectangle.java"
+
+			```java linenums="1"
+			public class Rectangle extends Shape implements Comparable<Rectangle>
+			{
+				private int width;
+				private int height;
+				
+				public Rectangle(int width, int height)
+				{
+					this.width = width;
+					this.height = height;
+				}
+				
+				@Override
+				public double perimeter() 
+				{
+					return (2.0 * (this.width + this.height));
+				}
+
+				@Override
+				public double area() 
+				{
+					return this.width * this.height;
+				}
+
+				@Override
+				public int compareTo(Rectangle o) 
+				{
+					/*
+					 * this > o --> positiver int-Wert
+					 * this < o --> negativer int-Wert
+					 * this == o --> 0
+					 */
+					return ((this.width + this.height) - (o.width + o.height));
+				}
+
+
+			}
+			```
+
+		=== "Circle.java"
+
+			```java linenums="1"
+			public class Circle extends Shape
+			{
+				private double radius;
+				
+				public Circle(double radius) 
+				{
+					this.radius = radius;
+				}
+
+				@Override
+				public double perimeter() 
+				{
+					return Math.PI * 2.0 * this.radius;
+				}
+
+				@Override
+				public double area() 
+				{
+					return Math.PI * this.radius * this.radius;
+				}
+
+			}
+			```
+
+		=== "TestShape.java"
+
+			```java linenums="1"
+			public class TestShape 
+			{
+				public static void printPerimeter(Shape s)
+				{
+					System.out.printf("perimeter : %.2f cm%n", s.perimeter());
+				}
+				
+				public static void printArea(Shape s)
+				{
+					System.out.printf("area : %.2f cm%n", s.area());
+				}
+				
+				public static void sortieren(Comparable[] unsorted)
+				{
+					for(int bubble=1; bubble<unsorted.length; bubble++)
+					{
+						for(int index=0; index<unsorted.length-bubble; index++)
+						{
+							if(unsorted[index].compareTo(unsorted[index+1]) > 0)
+							{
+								Comparable tmp = unsorted[index];
+								unsorted[index] = unsorted[index+1];
+								unsorted[index+1] = tmp;
+							}
+						}
+					}
+				}
+				
+				public static void main(String[] args) 
+				{
+					Shape s1 = new Rectangle(10,20);
+					System.out.println(s1.perimeter());
+					System.out.println(s1.area());
+					
+					Shape s2 = new Circle(1.0);
+					System.out.println(s2.perimeter());
+					System.out.println(s2.area());
+					
+					printPerimeter(new Rectangle(5,15));
+					printPerimeter(new Circle(5.0));
+					
+					System.out.println("A".compareTo("B"));
+					System.out.println("B".compareTo("A"));
+					System.out.println("A".compareTo("A"));
+
+					Rectangle[] rectArr = new Rectangle[6];
+			        rectArr[0] = new Rectangle(9, 13);
+			        rectArr[1] = new Rectangle(4, 17);
+			        rectArr[2] = new Rectangle(12, 5);
+			        rectArr[3] = new Rectangle(8, 9);
+			        rectArr[4] = new Rectangle(10, 11);
+			        rectArr[5] = new Rectangle(5, 15);
+			        System.out.printf("%n%n------------------------ unsortiert --------------------------%n%n");
+			        sortieren(rectArr);
+				}
+
+			}
+			```
+
+	- siehe [**Übung 7**](./uebungen/#ubung-7-interfaces)
+	- siehe [**Aufgabe 7**](./aufgaben/#aufgabe-7-interfaces) 
 
 
