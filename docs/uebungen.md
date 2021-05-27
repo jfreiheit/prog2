@@ -2082,6 +2082,206 @@
 		}
 		```
 
+
+??? question "mögliche Lösung für Übung 7"
+	
+	=== "Stadt.java"
+		```java linenums="1"
+		package uebungen.uebung7;
+
+		import java.util.*;
+
+		public class Stadt implements Comparable<Stadt>
+		{
+			String name;
+			List<Integer> bevoelkerung;
+			float flaeche;
+			
+			public Stadt(String name, List<Integer> bevoelkerung, float flaeche)
+			{
+				super();
+				this.name = name;
+				this.bevoelkerung = bevoelkerung;
+				this.flaeche = flaeche;
+			}
+			
+			void print()
+			{
+				System.out.printf("%-15s %9.2f km2 ", name, flaeche);
+				for(Integer i : bevoelkerung)
+				{
+					System.out.printf("%,12d", i);
+				}
+				System.out.println();
+			}
+			
+			@Override
+			public boolean equals(Object o)
+			{
+				if(o==null) return false;
+				if(o==this) return true;
+				if(this.getClass()!=o.getClass()) return false;
+				
+				Stadt other = (Stadt)o;
+				return (this.name.equals(other.name));
+			}
+			
+			@Override
+			public int hashCode()
+			{
+				return this.name.hashCode();
+			}
+
+			@Override
+			public int compareTo(Stadt o) {
+				if(this.flaeche < o.flaeche) return 1;
+				else if(this.flaeche > o.flaeche) return -1;
+				else return 0;
+			}
+			
+			
+
+		}
+		```
+	
+	=== "StadtTest.java"
+		```java linenums="1"
+		package uebungen.uebung7;
+				
+		import java.util.*;
+
+		public class StadtTest
+		{
+			public static Stadt[] staedte()
+			{
+				Stadt[] staedte = new Stadt[6];
+				List<Integer> berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[0] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+				
+				List<Integer> hamburgBevoelkerung = new ArrayList<>();
+				hamburgBevoelkerung.add(1715392);	
+				hamburgBevoelkerung.add(1786448);	
+				hamburgBevoelkerung.add(1810438);	
+				staedte[1] = new Stadt("Hamburg", hamburgBevoelkerung, 755.22f);
+				
+				List<Integer> muenchenBevoelkerung = new ArrayList<>();
+				muenchenBevoelkerung.add(1210223);	
+				muenchenBevoelkerung.add(1353186);	
+				muenchenBevoelkerung.add(1464301);
+				staedte[2] = new Stadt("Muenchen", muenchenBevoelkerung, 310.70f);
+				
+				List<Integer> koelnBevoelkerung = new ArrayList<>();
+				koelnBevoelkerung.add(962884);	
+				koelnBevoelkerung.add(1007119);	
+				koelnBevoelkerung.add(1075935);	
+				staedte[3] = new Stadt("Koeln", koelnBevoelkerung, 405.02f);
+				
+				List<Integer> frankfurtBevoelkerung = new ArrayList<>();
+				frankfurtBevoelkerung.add(648550);	
+				frankfurtBevoelkerung.add(679664);	
+				frankfurtBevoelkerung.add(736414);
+				staedte[4] = new Stadt("Frankfurt/Main", frankfurtBevoelkerung, 248.31f);
+				
+				berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[5] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+				
+				return staedte;
+			}
+			
+			public static boolean contains(Map<MyInteger, Stadt> staedteMap, Stadt stadt)
+			{
+				Set<MyInteger> allKeys = staedteMap.keySet();
+				for(MyInteger key : allKeys)
+				{
+					if(staedteMap.get(key).equals(stadt)) return true;
+				}
+				return false;
+			}
+			
+			public static void main(String[] args)
+			{
+				
+				System.out.printf("%n------------ Menge --------------%n");
+				Set<Stadt> staedteMenge = new TreeSet<>();
+				for(Stadt s : staedte())
+				{
+					staedteMenge.add(s);
+				}
+				for(Stadt s : staedteMenge)
+				{
+					s.print();
+				}
+				
+				System.out.printf("%n------------ Maps --------------%n");
+				Map<MyInteger, Stadt> staedteMap = new TreeMap<>();
+				int i = 1;
+				for(Stadt s : staedte())
+				{
+					if(!contains(staedteMap, s))
+					{
+						staedteMap.put(new MyInteger(i++), s);
+					}
+				}
+				for(Map.Entry<MyInteger, Stadt> entry : staedteMap.entrySet())
+				{
+					MyInteger key = entry.getKey();
+					System.out.printf("%-3d",key.intValue());
+					entry.getValue().print();
+				}
+				
+			}
+
+		}		
+		```
+	
+	=== "MyInteger.java"
+		```java linenums="1"
+		package uebungen.uebung7;
+
+		public class MyInteger implements Comparable<MyInteger>
+		{
+			private int value;
+			
+			public MyInteger(int value)
+			{
+				this.value = value;
+			}
+			
+			public int intValue()
+			{
+				return this.value;
+			}
+			
+			public static MyInteger valueOf(int value)
+			{
+				return new MyInteger(value);
+			}
+
+			@Override
+			public int compareTo(MyInteger o) {
+				return -(this.value - o.value);
+			}
+		}
+		```
+
+
+##### Übung 8 (GUI)
+
+??? "Übung 8"
+
+	1. Erstellen Sie die GUI für einen solchen Taschenrechner:
+
+		![uebung8](./files/61_uebung8.png)
+
+		Kann auch schicker sein :-) Viel Spaß!
+
+
 ## Zusatz
 
 
