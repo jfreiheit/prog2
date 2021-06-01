@@ -72,6 +72,7 @@ nav:
     - Abstrakte Klassen: abstrakt.md
     - Interfaces: interfaces.md
     - GUI Einführung: gui.md
+    - GUI Ereignisse: ereignisse.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
     - Hilfen: hilfen.md

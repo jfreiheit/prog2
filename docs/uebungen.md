@@ -2271,6 +2271,222 @@
 		```
 
 
+??? question "mögliche Lösung für Übung 7 - aus der Übung von Frau Busjahn"
+	
+	=== "Stadt.java"
+		```java linenums="1"
+		package uebungen.uebung7;
+
+		import java.util.*;
+
+		public class Stadt implements Comparable<Stadt>
+		{
+			String name;
+			List<Integer> bevoelkerung;
+			float flaeche;
+			
+			public Stadt(String name, List<Integer> bevoelkerung, float flaeche)
+			{
+				super();
+				this.name = name;
+				this.bevoelkerung = bevoelkerung;
+				this.flaeche = flaeche;
+			}
+			
+			void print()
+			{
+				System.out.printf("%-15s %9.2f km2 ", name, flaeche);
+				for(Integer i : bevoelkerung)
+				{
+					System.out.printf("%,12d", i);
+				}
+				System.out.println();
+			}
+			
+			@Override
+			public boolean equals(Object o)
+			{
+				if(o==null) return false;
+				if(o==this) return true;
+				if(this.getClass()!=o.getClass()) return false;
+				
+				Stadt other = (Stadt)o;
+				return (this.name.equals(other.name));
+			}
+			
+			@Override
+			public int hashCode()
+			{
+				return this.name.hashCode();
+			}
+
+			@Override
+			public int compareTo(Stadt o) {
+				
+				//Um aufsteigend nach Stadtnamen zu sortieren:
+				//return this.name.compareTo(o.name);		
+				
+				//Um absteigend nach Stadtnamen zu sortieren:
+				//return -this.name.compareTo(o.name);		
+				
+		    	//Um anhand der Fläche absteigend zu sortieren:
+				if(this.flaeche < o.flaeche) return 1;
+				else if(this.flaeche > o.flaeche) return -1;
+				else return 0;
+				
+				//Alternativen:		
+				
+				//return this.flaeche < o.flaeche ? 1: (this.flaeche == o.flaeche ? 0 : -1); 
+				
+				//Float f1 = this.flaeche;
+		    	//Float f2 = o.flaeche;    	
+				//return -f1.compareTo(f2); 
+
+			}	
+
+		}
+		```
+	
+	=== "StadtTest.java"
+		```java linenums="1"
+		package uebungen.uebung7;
+						
+		import java.util.*;
+
+		public class StadtTest
+		{
+			public static Stadt[] staedte()
+			{
+				Stadt[] staedte = new Stadt[6];
+				List<Integer> berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[0] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+
+				List<Integer> hamburgBevoelkerung = new ArrayList<>();
+				hamburgBevoelkerung.add(1715392);	
+				hamburgBevoelkerung.add(1786448);	
+				hamburgBevoelkerung.add(1810438);	
+				staedte[1] = new Stadt("Hamburg", hamburgBevoelkerung, 755.22f);
+
+				List<Integer> muenchenBevoelkerung = new ArrayList<>();
+				muenchenBevoelkerung.add(1210223);	
+				muenchenBevoelkerung.add(1353186);	
+				muenchenBevoelkerung.add(1464301);
+				staedte[2] = new Stadt("Muenchen", muenchenBevoelkerung, 310.70f);
+
+				List<Integer> koelnBevoelkerung = new ArrayList<>();
+				koelnBevoelkerung.add(962884);	
+				koelnBevoelkerung.add(1007119);	
+				koelnBevoelkerung.add(1075935);	
+				staedte[3] = new Stadt("Koeln", koelnBevoelkerung, 405.02f);
+
+				List<Integer> frankfurtBevoelkerung = new ArrayList<>();
+				frankfurtBevoelkerung.add(648550);	
+				frankfurtBevoelkerung.add(679664);	
+				frankfurtBevoelkerung.add(736414);
+				staedte[4] = new Stadt("Frankfurt/Main", frankfurtBevoelkerung, 248.31f);
+
+				berlinBevoelkerung = new ArrayList<>();
+				berlinBevoelkerung.add(3382169);	
+				berlinBevoelkerung.add(3460725);	
+				berlinBevoelkerung.add(3574830);
+				staedte[5] = new Stadt("Berlin", berlinBevoelkerung, 891.68f);
+
+				return staedte;
+			}
+
+			public static boolean contains(Map<MyInteger, Stadt> staedteMap, Stadt stadt)
+			{
+				Set<MyInteger> allKeys = staedteMap.keySet();
+				for(MyInteger key : allKeys)
+				{
+					if(staedteMap.get(key).equals(stadt)) return true;
+				}
+
+				//Alternative ohne keyset
+				//for(Map.Entry<MyInteger, Stadt> entry : staedteMap.entrySet())
+				//{
+				//	if (entry.getValue().equals(stadt)) return true;			
+				//}
+				
+				return false;
+			}
+
+			public static void main(String[] args)
+			{
+
+				System.out.printf("%n------------ Menge --------------%n");
+				Set<Stadt> staedteMenge = new TreeSet<>();
+				for(Stadt s : staedte())
+				{
+					staedteMenge.add(s);
+				}
+				for(Stadt s : staedteMenge)
+				{
+					s.print();
+				}
+
+				System.out.printf("%n------------ Maps --------------%n");
+				Map<MyInteger, Stadt> staedteMap = new TreeMap<>();
+				int i = 1;
+				for(Stadt s : staedte())
+				{
+					if(!contains(staedteMap, s))
+					{
+						staedteMap.put(new MyInteger(i++), s);
+					}
+				}
+				for(Map.Entry<MyInteger, Stadt> entry : staedteMap.entrySet())
+				{
+					MyInteger key = entry.getKey();
+					System.out.printf("%-3d",key.intValue());
+					entry.getValue().print();
+				}
+
+			}
+
+		}	
+		```
+	
+	=== "MyInteger.java"
+		```java linenums="1"
+		package uebungen.uebung7;
+
+		public class MyInteger implements Comparable<MyInteger>
+		{
+			private int value;
+
+			public MyInteger(int value)
+			{
+				this.value = value;
+			}
+
+			public int intValue()
+			{
+				return this.value;
+			}
+
+			public static MyInteger valueOf(int value)
+			{
+				return new MyInteger(value);
+			}
+
+			@Override
+			public int compareTo(MyInteger o) {
+				return -(this.value - o.value);
+
+				//Alternative:
+				//if(this.value > o.value) return -1;
+				//else if(this.value < o.value) return 1;
+				//else return 0;   	
+			}
+		}
+		```
+
+
+
 ##### Übung 8 (GUI)
 
 ??? "Übung 8"
@@ -2278,6 +2494,85 @@
 	1. Erstellen Sie folgende GUI:
 
 		![uebung8](./files/62_uebung8.png)
+
+
+??? question "vorkommentierte Klasse"
+	
+	=== "GUIUebung.java"
+		```java linenums="1"
+		//import
+
+
+		public class GUIUebung extends JFrame
+		{
+
+			public GUIUebung()
+			{
+				super();
+				
+				//Titel		
+				//Verhalten beim Schließen		
+				//Größe 		
+				//Sichtbarkeit 		
+				//...
+				//gute Vorlage:
+				//https://freiheit.f4.htw-berlin.de/prog2/gui/#erweitern-des-fensters-um-ein-jpanel
+				
+			}
+
+			private JPanel initContent()
+			{
+				//Ein paar Tipps:		
+				//mehrere Panels verwenden
+				//JTextField hat verschiedene Konstruktoren, nicht nur JTextField(int columns)
+				//Rahmen können mit BorderFactory erzeugt werden
+				//Beim FlowLayout ändert sich die Größe der Steuerelemente nicht,
+				//bei GridLayout passt sich die Größe an den Container an
+				
+			}
+
+			public static void main(String[] args) 
+			{
+				new GUIUebung();
+			}
+
+		}
+		```
+
+
+
+
+
+##### Übung 9 (Ereignisbehandlung - ActionListener)
+
+??? "Übung 9"
+
+	1. Erstellen Sie ein Fenster mit einem Textfeld und zwei Buttons `add` und `remove`. Sowohl das Textfeld als auch die beiden Buttons sollen Objektvariablen (und somit zugreifbar von allen Methoden der Klasse) sein.
+	2. Unterteilen Sie das `main`-`JPanel` zunächst in zwei `JPanel`s `unten` und `oben`. Dem `JPanel oben` werden das Textfeld und die beiden Buttons hinzugefügt. Setzen Sie die Hintergrundfarbe des JPanels `oben` auf `YELLOW`.  Setzen Sie die Hintergrundfarbe des JPanels `unten` auf `CYAN`. Das JPanel `unten` soll ebenfalls eine Objektvariable sein.
+	3. Setzen Sie die Größe des Fensters auf Werte, so dass es wie folgt erscheint:
+		![uebung9](./files/67_uebung9.png)
+
+	4. Fügen Sie folgende Objektvariable hinzu: `List<JLabel> list = new ArrayList<>();`
+	5. Implementieren Sie den `ActionListener` wie folgt: <br/>
+		Wird der `add`-Button gedrückt, 
+
+		- wird der Liste `list` ein `JLabel` hinzugefügt, wobei der Text des JLabels dem Text im Textfeld entspricht (der Text des Textfeldes kann über die Objektmethode `getText()` von JTextField ausgelesen werden).
+
+		- Die Liste `list` wird vollständig ausgelesen und jedes `JLabel` aus `list` wird dem `JPanel unten` mithilfe der `add()`-Methode von `JPanel` hinzugefügt.
+
+		- Rufen Sie `this.unten.revalidate();` auf – dies stößt ein Neuzeichnen des JPanels `unten` an.
+
+		Wird der „remove“-Button gedrückt,
+
+		- wird das `JLabel` aus der Liste `list` gelöscht, das den gleichen Text hat wie der Text, der im Textfeld eingegeben wurde.
+
+		- Außerdem wird das `JLabel` aus den `JPanel unten` entfernt (Objektmethode `remove()` von `JPanel`).
+
+		- Rufen Sie `this.unten.revalidate();` auf – dies stößt ein Neuzeichnen des JPanels unten an.
+
+		![uebung9](./files/68_uebung9.png)
+
+	6. **Tipp**: wenn Sie einem `JLabel` eine Hintergrundfarbe mit `setBackground(Color c)` setzen, dann sieht man diese nur, wenn Sie für dieses `JLabel` die Methode `setOpaque(true)` aufrufen. Nur dadurch werden für dieses `JLabel` alle Pixel gezeichnet, die in dessen *Grenzen* sind, d.h. das komplette Rechteck, das das `JLabel` ausfüllt. Ansonsten würde nur der Text "gezeichnet" und die Hintergrundfarbe wäre hinter dem Text versteckt. 
 
 
 
