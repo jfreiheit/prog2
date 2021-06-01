@@ -1809,7 +1809,7 @@
 		- `private Set<Listener> listeners;` (speichert alle "Abonnenten"; kann gerne auch eine Liste sein)
 	- `private int nrOfMessages;` (speichert die aktuelle Nummer einer veröffentlichten Nachricht - die Nachrichten, die veröffentlicht werden, sollen fortlaufend nummeriert werden) 
 
-		- Im parameterlosen Konstruktor werden die Menge (oder Liste) erzeugt un die `nrOfMessages` auf `0 gesetzt. 
+		- Im parameterlosen Konstruktor werden die Menge (oder Liste) erzeugt und die `nrOfMessages` auf `0 gesetzt. 
 
 		- In der Methode `register(Listener listener)` wird der `listener` in die Set `listeners` eingefügt. Geben Sie ein `true` zurück, wenn `listener` tatsächlich eingefügt wurde und `false` sonst (falls er schon in der Menge (oder Liste) war.
 
@@ -1915,4 +1915,16 @@
 
 		D received Breaking News 4
 		```
+
+
+##### Aufgabe 8 (GUI)
+
+??? "Aufgabe 8"
+
+	1. Erstellen Sie die GUI für einen solchen Taschenrechner:
+
+		![uebung8](./files/61_uebung8.png)
+
+		Kann auch schicker sein :-) Viel Spaß!
+
 

@@ -778,12 +778,12 @@
 <li><strong>Komponenten</strong> sind alle Oberflächen- bzw. Steuerelemente, d.h. Buttons (siehe oben <code>&lt; Back</code> und <code>Next &gt;</code>), Labels (Texte, z.B. <code>Checkbox</code>), Checkboxes (die Quadrate, die ein Häkchen haben können oder auch nicht), Ein- und Ausgabefelder, Auswahllisten usw. <em>Steuerlemente</em> sind also alle Elemente, die direkt der Ein- und Ausgabe dienen. Darüber hinaus gibt es noch die Komponente <em>Container</em>. Ein <em>Container</em> kann selbst wieder <em>Container</em>  enhalten oder <em>Steuerelemente</em>. <em>Container</em> sind nicht direkt sichtbar, sondern sie dienen der Strukturierung einer grafischen Oberfläche. </li>
 <li><strong>Layoutmanager</strong> organisieren die Positionierung von Komponenten. Mithilfe von Layoutmanagern kann man Container unter- und/oder nebeneinander positionieren und organisiert somit die Anordnung der Steuerelmente. </li>
 <li><strong>Menüs</strong> sind einblendbare Befehlsleisten. Es gibt die Menüs, die meistens oben in der Menüleiste verankert sind und <em>Kontextmenüs</em>, die dort erscheinen, wo man, meistens mit der rechten, Maustaste hinklickt. </li>
-<li><strong>Events</strong> (<em>Ereignisse</em>) haben zunächst nichts mit der Darstellung selbst zu tun. Sie sind aber für die Benutzbarkeit sehr wichtig, denn jede Nutzeraktion löst ein Ereignis aus, welches wir im programm behandeln können, z.B. Mausklicks, Mausbewegungen, Tastatureingaben, Bewegen, Vergrößern, Verkleinern des Fensters usw. Wir werden uns sehr ausführlich mit der <em>Behandlung von Ereignissen</em> beschäftigen.</li>
+<li><strong>Events</strong> (<em>Ereignisse</em>) haben zunächst nichts mit der Darstellung selbst zu tun. Sie sind aber für die Benutzbarkeit sehr wichtig, denn jede Nutzeraktion löst ein Ereignis aus, welches wir im Programm behandeln können, z.B. Mausklicks, Mausbewegungen, Tastatureingaben, Bewegen, Vergrößern, Verkleinern des Fensters usw. Wir werden uns sehr ausführlich mit der <em>Behandlung von Ereignissen</em> beschäftigen.</li>
 <li><strong>Zeichenoperationen</strong> dienen der Erstellung von Punkten, Linien, Text usw. in Fenstern. Während die Steuerelemente ein festes Aussehen besitzen (anpassbar, je nach Betriebssystem und unterschiedlichen <em>Look&amp;Feel</em>-Frameworks), können mit Zeichenoperationen beliebige Elemente erstellt und dargestellt werden, z.B. Grafiken, Kurven oder Diagramme.</li>
 </ul>
 <p>Wir werden auf alle diese Elemente eingehen und starten jetzt aber mit unserem ersten Fenster. </p>
 <h3 id="ein-erstes-fenster-mit-swing">Ein erstes Fenster mit Swing<a class="headerlink" href="#ein-erstes-fenster-mit-swing" title="Permanent link">&para;</a></h3>
-<p>Wir erstellen uns eine Klasse <code>MyFirstWindow</code>. Von dieser Klasse erzeugen wir uns ein Objekt. Dazu implementieren wir den parameterlosen Konstruktor dieser Klasse. In diesem Konstruktor wird ein <code>JFrame</code> erzeugt - das ist das <strong>Fenster</strong> bei Swing. Wir haben in dieser Klasse auch eine <code>main()</code>-Methode. das ist nicht ganz sauber, da die <code>main()</code>-methode ja eigentlich keine Eigenschaft unserer Klasse ist, deren <em>Responsibility</em> die Erstellung eines Fensters ist, aber wir vereinfachen hier zu Anfang:</p>
+<p>Wir erstellen uns eine Klasse <code>MyFirstWindow</code>. Von dieser Klasse erzeugen wir uns ein Objekt. Dazu implementieren wir den parameterlosen Konstruktor dieser Klasse. In diesem Konstruktor wird ein <code>JFrame</code> erzeugt - das ist das <strong>Fenster</strong> bei Swing. Wir haben in dieser Klasse auch eine <code>main()</code>-Methode. Das ist nicht ganz sauber, da die <code>main()</code>-methode ja eigentlich keine Eigenschaft unserer Klasse ist, deren <em>Responsibility</em> die Erstellung eines Fensters ist, aber wir vereinfachen hier zu Anfang:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -860,7 +860,7 @@
 </tr>
 <tr>
 <td>DISPOSE_ON_CLOSE</td>
-<td>Das Fenster wird vom Bildschirm entfernt und alle Objekte und Ressourcen freigegeben. Wenn das letzte Fenster mit dieser Eigenschaft geschlossen wird verhält sich die Anwendung wir bei EXIT_ON_CLOSE.</td>
+<td>Das Fenster wird vom Bildschirm entfernt und alle Objekte und Ressourcen freigegeben. Wenn das letzte Fenster mit dieser Eigenschaft geschlossen wird verhält sich die Anwendung wie bei EXIT_ON_CLOSE.</td>
 </tr>
 <tr>
 <td>EXIT_ON_CLOSE</td>
@@ -1191,11 +1191,11 @@
 </td></tr></table>
 <p>Das Fenster sieht nun so aus:</p>
 <p><img alt="gui" src="../files/55_gui.png" /></p>
-<p>Wir haben also ein <code>JLabel</code> (einen Text) hinzugefügt ("Name"), ein <code>JTextField</code> (ein Eingabefeld, für das die Breite <code>10</code> Zeichen definiert wurde) sowie ein <code>JButton</code> (ein Button, auf dem "Klick mich!" steht). Bei allen drei Elementen handelt es sich um <em>Steeurelemente</em>. </p>
+<p>Wir haben also ein <code>JLabel</code> (einen Text) hinzugefügt ("Name"), ein <code>JTextField</code> (ein Eingabefeld, für das die Breite <code>10</code> Zeichen definiert wurde) sowie ein <code>JButton</code> (ein Button, auf dem "Klick mich!" steht). Bei allen drei Elementen handelt es sich um <em>Steuerelemente</em>. </p>
 <p>Beachten Sie, dass die Elemente nebeneinander angeordnet sind. Das ist die Standardeinstellung für ein <code>JPanel</code>. Solche Einstellungen können später mit einem <em>Layout-Manager</em> geändert werden. Die Steuerelemente werden solange nebeneinander angeordnet, solange sie nebeneinander passen. Wenn Sie die Fensterbreite schmaler gestalten (mit der Maus zusammenschieben), schieben sich die Steuerlemente untereinander. Um aber Kontrolle über die Anordnung der Steuerlemente zu gelangen, betrachten wir nun <em>Layout-Manager</em>. </p>
 <h3 id="layout-manager">Layout-Manager<a class="headerlink" href="#layout-manager" title="Permanent link">&para;</a></h3>
-<p><em>Layout-Manager</em> dienen der Anordnung von Komponenten. Es gibt viele Layout-Manager (<code>FlowLayout</code>, <code>BorderLAyout</code>, <code>CardLayout</code>, <code>OverlayLayout</code>, <code>GridLayout</code>, <code>GridBagLayout</code>, <code>BoxLayout</code>, <code>GroupLayout</code>, ...). Wir werden aber nicht alle betrachten, da dies erstens auf Dauer langweilig ist und zweitens Layout-Manager ineinander verschachtelt werden können. Vielmehr können <em>Container</em> ineinander verschachtelt werden und diesen <em>Containern</em> unterschiedliche Layout-Manager zugewiesen werden. </p>
-<p>Es wird also einem <em>Container</em> ein Layout-manager zugewisen und die <em>Komponenten</em> in diesem <em>Container</em> sind dann so angeordnet, wie der Layout-Manager es definiert (nebeneinander oder untereinander oder übereinander ...). Das Zuweisen 
+<p><em>Layout-Manager</em> dienen der Anordnung von Komponenten. Es gibt viele Layout-Manager (<code>FlowLayout</code>, <code>BorderLAyout</code>, <code>CardLayout</code>, <code>OverlayLayout</code>, <code>GridLayout</code>, <code>GridBagLayout</code>, <code>BoxLayout</code>, <code>GroupLayout</code>, ...). Wir werden aber nicht alle betrachten, da dies erstens auf Dauer langweilig ist und zweitens <a href="./#verschachteln-von-layout-managern">Layout-Manager ineinander verschachtelt</a> werden können. Vielmehr können <em>Container</em> ineinander verschachtelt werden und diesen <em>Containern</em> unterschiedliche Layout-Manager zugewiesen werden. </p>
+<p>Es wird also einem <em>Container</em> ein Layout-Manager zugewisen und die <em>Komponenten</em> in diesem <em>Container</em> sind dann so angeordnet, wie der Layout-Manager es definiert (nebeneinander oder untereinander oder übereinander ...). Das Zuweisen 
 eines Layout-Managers zu einem <em>Container</em> erfolgt mithilfe von</p>
 <div class="highlight"><pre><span></span><code><span class="n">setLayout</span><span class="p">(</span><span class="k">new</span> <span class="n">Layoutmanager</span><span class="p">())</span> <span class="c1">// Layoutmanager durch entsprechenden Namen ersetzen</span>
 </code></pre></div>
@@ -1258,7 +1258,7 @@ eines Layout-Managers zu einem <em>Container</em> erfolgt mithilfe von</p>
 <ul>
 <li><code>BorderLayout.NORTH</code>; fügt <code>comp</code> dem oberen Feld hinzu, </li>
 <li><code>BorderLayout.SOUTH</code>; fügt <code>comp</code> dem unteren Feld hinzu, </li>
-<li><code>BorderLayout.EAST</code>; fügt <code>comp</code> dem linken feld hinzu, </li>
+<li><code>BorderLayout.EAST</code>; fügt <code>comp</code> dem linken Feld hinzu, </li>
 <li><code>BorderLayout.WEST</code>; fügt <code>comp</code> dem rechten Feld hinzu, </li>
 <li><code>BorderLayout.CENTER</code>; fügt <code>comp</code> der Mitte hinzu.</li>
 </ul>
@@ -1305,7 +1305,7 @@ eines Layout-Managers zu einem <em>Container</em> erfolgt mithilfe von</p>
 <p>Verwenden Sie die <code>initContent()</code>-Methode von oben (mit den 5 Buttons). Lassen Sie einzelne Buttons weg. Erklären Sie jeweils das Ergebnis!</p>
 </div>
 <h4 id="verschachteln-von-layout-managern">Verschachteln von Layout-Managern<a class="headerlink" href="#verschachteln-von-layout-managern" title="Permanent link">&para;</a></h4>
-<p>Eigentlich ist die Überschrift irreführend, denn es werden nicht die Layout-Manger verschachtelt, sondern die Container, denen aber jeweils andere Layout-Manager zugewiesen werden können. Wir wollen das an einem Beispiel demonstrieren. Wir betrachten dazu wieder nur die <code>initContent()</code>-Methode. Alles andere bleibt in unserem "Grundgerüst", das wir in der Klasse <code>MyFirstWindow</code> erstellt haben, gleich. </p>
+<p>Eigentlich ist die Überschrift irreführend, denn es werden nicht die Layout-Manger verschachtelt, sondern die Container, denen jeweils andere Layout-Manager zugewiesen werden können. Wir wollen das an einem Beispiel demonstrieren. Wir betrachten dazu wieder nur die <code>initContent()</code>-Methode. Alles andere bleibt in unserem "Grundgerüst", das wir in der Klasse <code>MyFirstWindow</code> erstellt haben, gleich. </p>
 <ul>
 <li>Wir beginnen damit, dass das <code>mainPanel</code> im <code>BorderLayout</code> ist und dass diesem <code>mainPanel</code> drei weitere <code>JPanel</code> hinzugefügt werden. </li>
 <li>Das erste <code>JPanel</code> heißt <code>oben</code>, ist im <code>FlowLayout</code> und wird dem Norden des <code>mainPanel</code>s hinzugefügt. </li>
@@ -1424,7 +1424,7 @@ eines Layout-Managers zu einem <em>Container</em> erfolgt mithilfe von</p>
 <p>Zur besseren Erkennung wurde den einzelnen <code>JPanel</code> auch noch jeweils eine Hintergrundfarbe zugeordnet (Zeilen <code>32</code>, <code>42</code> und <code>48</code>). Somit ergibt sich folgende Ansicht: </p>
 <p><img alt="gui" src="../files/60_gui.png" /></p>
 <ul>
-<li>Das <code>JPanel oben</code> ist im <code>FlowLayout</code>. Diesem Panel werden zwei Steuerelemente hinzugefügt: ein <code>JLabel</code> (<code>"Name"</code>) und ein <code>JTextField</code> der Breite 10 (Zeichen). Das das Panel im <code>FlowLayout</code> ist, erscheinen beide Steuerelmente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind zentriert angeordnet (<code>FlowLayout.CENTER</code>) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von <code>10</code> Pixeln. Dem Panel wurde die Hintergrundfarbe <code>LIGHT-GRAY</code> zugewiesen. </li>
+<li>Das <code>JPanel oben</code> ist im <code>FlowLayout</code>. Diesem Panel werden zwei Steuerelemente hinzugefügt: ein <code>JLabel</code> (<code>"Name"</code>) und ein <code>JTextField</code> der Breite 10 (Zeichen). Da das Panel im <code>FlowLayout</code> ist, erscheinen beide Steuerelmente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind zentriert angeordnet (<code>FlowLayout.CENTER</code>) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von <code>10</code> Pixeln. Dem Panel wurde die Hintergrundfarbe <code>LIGHT-GRAY</code> zugewiesen. </li>
 <li>Das <code>JPanel mitte</code> ist im <code>GridLayout</code> mit 3 Zeilen und 2 Spalten. Diesem Panel werden 6 <code>JButton</code> zugeordnet. Die Buttons haben einen vertikalen und horizontalen Abstand von jeweils 10 Pixeln (zwischen den Buttons ist der Abstand also 20). Beachten Sie, dass die Größe der Buttons an die Fenstergröße angepasst sind. Mit wachsender Fenstergröße wachsen auch die Button-Größen. Dem Panel wurde die Hintergrundfarbe <code>GREEN</code> zugewiesen. </li>
 <li>Das <code>JPanel unten</code> ist im <code>FlowLayout</code>. Diesem Panel werden zwei <code>JButton</code> hinzugefügt. Das das Panel im <code>FlowLayout</code> ist, erscheinen beide Steuerelmente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind rechtsbündig angeordnet (<code>FlowLayout.RIGHT</code>) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von jeweils <code>5</code> Pixeln. Beachten Sie, dass die Buttons in ihrer Standardgröße sind (und stets bleiben). Dem Panel wurde die Hintergrundfarbe <code>LIGHT-GRAY</code> zugewiesen.</li>
 </ul>

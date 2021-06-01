@@ -2275,11 +2275,10 @@
 
 ??? "Übung 8"
 
-	1. Erstellen Sie die GUI für einen solchen Taschenrechner:
+	1. Erstellen Sie folgende GUI:
 
-		![uebung8](./files/61_uebung8.png)
+		![uebung8](./files/62_uebung8.png)
 
-		Kann auch schicker sein :-) Viel Spaß!
 
 
 ## Zusatz

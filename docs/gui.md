@@ -25,14 +25,14 @@ Folgende Elemente sind in einer GUI von Bedeutung:
 - **Komponenten** sind alle Oberflächen- bzw. Steuerelemente, d.h. Buttons (siehe oben `< Back` und `Next >`), Labels (Texte, z.B. `Checkbox`), Checkboxes (die Quadrate, die ein Häkchen haben können oder auch nicht), Ein- und Ausgabefelder, Auswahllisten usw. *Steuerlemente* sind also alle Elemente, die direkt der Ein- und Ausgabe dienen. Darüber hinaus gibt es noch die Komponente *Container*. Ein *Container* kann selbst wieder *Container*  enhalten oder *Steuerelemente*. *Container* sind nicht direkt sichtbar, sondern sie dienen der Strukturierung einer grafischen Oberfläche. 
 - **Layoutmanager** organisieren die Positionierung von Komponenten. Mithilfe von Layoutmanagern kann man Container unter- und/oder nebeneinander positionieren und organisiert somit die Anordnung der Steuerelmente. 
 - **Menüs** sind einblendbare Befehlsleisten. Es gibt die Menüs, die meistens oben in der Menüleiste verankert sind und *Kontextmenüs*, die dort erscheinen, wo man, meistens mit der rechten, Maustaste hinklickt. 
-- **Events** (*Ereignisse*) haben zunächst nichts mit der Darstellung selbst zu tun. Sie sind aber für die Benutzbarkeit sehr wichtig, denn jede Nutzeraktion löst ein Ereignis aus, welches wir im programm behandeln können, z.B. Mausklicks, Mausbewegungen, Tastatureingaben, Bewegen, Vergrößern, Verkleinern des Fensters usw. Wir werden uns sehr ausführlich mit der *Behandlung von Ereignissen* beschäftigen.
+- **Events** (*Ereignisse*) haben zunächst nichts mit der Darstellung selbst zu tun. Sie sind aber für die Benutzbarkeit sehr wichtig, denn jede Nutzeraktion löst ein Ereignis aus, welches wir im Programm behandeln können, z.B. Mausklicks, Mausbewegungen, Tastatureingaben, Bewegen, Vergrößern, Verkleinern des Fensters usw. Wir werden uns sehr ausführlich mit der *Behandlung von Ereignissen* beschäftigen.
 - **Zeichenoperationen** dienen der Erstellung von Punkten, Linien, Text usw. in Fenstern. Während die Steuerelemente ein festes Aussehen besitzen (anpassbar, je nach Betriebssystem und unterschiedlichen *Look&Feel*-Frameworks), können mit Zeichenoperationen beliebige Elemente erstellt und dargestellt werden, z.B. Grafiken, Kurven oder Diagramme.
 
 Wir werden auf alle diese Elemente eingehen und starten jetzt aber mit unserem ersten Fenster. 
 
 ### Ein erstes Fenster mit Swing
 
-Wir erstellen uns eine Klasse `MyFirstWindow`. Von dieser Klasse erzeugen wir uns ein Objekt. Dazu implementieren wir den parameterlosen Konstruktor dieser Klasse. In diesem Konstruktor wird ein `JFrame` erzeugt - das ist das **Fenster** bei Swing. Wir haben in dieser Klasse auch eine `main()`-Methode. das ist nicht ganz sauber, da die `main()`-methode ja eigentlich keine Eigenschaft unserer Klasse ist, deren *Responsibility* die Erstellung eines Fensters ist, aber wir vereinfachen hier zu Anfang:
+Wir erstellen uns eine Klasse `MyFirstWindow`. Von dieser Klasse erzeugen wir uns ein Objekt. Dazu implementieren wir den parameterlosen Konstruktor dieser Klasse. In diesem Konstruktor wird ein `JFrame` erzeugt - das ist das **Fenster** bei Swing. Wir haben in dieser Klasse auch eine `main()`-Methode. Das ist nicht ganz sauber, da die `main()`-methode ja eigentlich keine Eigenschaft unserer Klasse ist, deren *Responsibility* die Erstellung eines Fensters ist, aber wir vereinfachen hier zu Anfang:
 
 ```java linenums="1"
 import javax.swing.JFrame;
@@ -83,7 +83,7 @@ Mit der Objektmethode `setDefaultCloseOperation()` wird das Verhalten bei Schlie
 |----------|----------|
 |DO_NOTHING_ON_CLOSE |Es wird keine Aktion ausgeführt. Die Reaktion auf das Schließen muss vom Benutzer selbst über einen WindowListener realisiert werden. (windowClosing) |
 |HIDE_ON_CLOSE |Versteckt das Fenster vor dem Benutzer. Alle Objekte und Ressourcen bleiben im Speicher erhalten und das Fenster kann jederzeit wieder sichtbar gemacht werden. |
-|DISPOSE_ON_CLOSE |Das Fenster wird vom Bildschirm entfernt und alle Objekte und Ressourcen freigegeben. Wenn das letzte Fenster mit dieser Eigenschaft geschlossen wird verhält sich die Anwendung wir bei EXIT_ON_CLOSE. |
+|DISPOSE_ON_CLOSE |Das Fenster wird vom Bildschirm entfernt und alle Objekte und Ressourcen freigegeben. Wenn das letzte Fenster mit dieser Eigenschaft geschlossen wird verhält sich die Anwendung wie bei EXIT_ON_CLOSE. |
 | EXIT_ON_CLOSE |Beendet die Anwendung und alle Fenster werden geschlossen und Ressourcen freigegeben. (System.exit(0)) |
 
 #### Kurzer Überblick JFrame
@@ -331,15 +331,15 @@ Das Fenster sieht nun so aus:
 
 ![gui](./files/55_gui.png)
 
-Wir haben also ein `JLabel` (einen Text) hinzugefügt ("Name"), ein `JTextField` (ein Eingabefeld, für das die Breite `10` Zeichen definiert wurde) sowie ein `JButton` (ein Button, auf dem "Klick mich!" steht). Bei allen drei Elementen handelt es sich um *Steeurelemente*. 
+Wir haben also ein `JLabel` (einen Text) hinzugefügt ("Name"), ein `JTextField` (ein Eingabefeld, für das die Breite `10` Zeichen definiert wurde) sowie ein `JButton` (ein Button, auf dem "Klick mich!" steht). Bei allen drei Elementen handelt es sich um *Steuerelemente*. 
 
 Beachten Sie, dass die Elemente nebeneinander angeordnet sind. Das ist die Standardeinstellung für ein `JPanel`. Solche Einstellungen können später mit einem *Layout-Manager* geändert werden. Die Steuerelemente werden solange nebeneinander angeordnet, solange sie nebeneinander passen. Wenn Sie die Fensterbreite schmaler gestalten (mit der Maus zusammenschieben), schieben sich die Steuerlemente untereinander. Um aber Kontrolle über die Anordnung der Steuerlemente zu gelangen, betrachten wir nun *Layout-Manager*. 
 
 ### Layout-Manager
 
-*Layout-Manager* dienen der Anordnung von Komponenten. Es gibt viele Layout-Manager (`FlowLayout`, `BorderLAyout`, `CardLayout`, `OverlayLayout`, `GridLayout`, `GridBagLayout`, `BoxLayout`, `GroupLayout`, ...). Wir werden aber nicht alle betrachten, da dies erstens auf Dauer langweilig ist und zweitens Layout-Manager ineinander verschachtelt werden können. Vielmehr können *Container* ineinander verschachtelt werden und diesen *Containern* unterschiedliche Layout-Manager zugewiesen werden. 
+*Layout-Manager* dienen der Anordnung von Komponenten. Es gibt viele Layout-Manager (`FlowLayout`, `BorderLAyout`, `CardLayout`, `OverlayLayout`, `GridLayout`, `GridBagLayout`, `BoxLayout`, `GroupLayout`, ...). Wir werden aber nicht alle betrachten, da dies erstens auf Dauer langweilig ist und zweitens [Layout-Manager ineinander verschachtelt](./#verschachteln-von-layout-managern) werden können. Vielmehr können *Container* ineinander verschachtelt werden und diesen *Containern* unterschiedliche Layout-Manager zugewiesen werden. 
 
-Es wird also einem *Container* ein Layout-manager zugewisen und die *Komponenten* in diesem *Container* sind dann so angeordnet, wie der Layout-Manager es definiert (nebeneinander oder untereinander oder übereinander ...). Das Zuweisen 
+Es wird also einem *Container* ein Layout-Manager zugewisen und die *Komponenten* in diesem *Container* sind dann so angeordnet, wie der Layout-Manager es definiert (nebeneinander oder untereinander oder übereinander ...). Das Zuweisen 
 eines Layout-Managers zu einem *Container* erfolgt mithilfe von
 
 ```java
@@ -411,7 +411,7 @@ Um Komponenten zu einem Container im `BoderLayout` hinzuzufügen, gibt es nun zw
 
 	- `BorderLayout.NORTH`; fügt `comp` dem oberen Feld hinzu, 
 	- `BorderLayout.SOUTH`; fügt `comp` dem unteren Feld hinzu, 
-	- `BorderLayout.EAST`; fügt `comp` dem linken feld hinzu, 
+	- `BorderLayout.EAST`; fügt `comp` dem linken Feld hinzu, 
 	- `BorderLayout.WEST`; fügt `comp` dem rechten Feld hinzu, 
 	- `BorderLayout.CENTER`; fügt `comp` der Mitte hinzu.
 
@@ -450,7 +450,7 @@ Angenommen, die `initContent()`-Methode sieht so aus:
 
 #### Verschachteln von Layout-Managern
 
-Eigentlich ist die Überschrift irreführend, denn es werden nicht die Layout-Manger verschachtelt, sondern die Container, denen aber jeweils andere Layout-Manager zugewiesen werden können. Wir wollen das an einem Beispiel demonstrieren. Wir betrachten dazu wieder nur die `initContent()`-Methode. Alles andere bleibt in unserem "Grundgerüst", das wir in der Klasse `MyFirstWindow` erstellt haben, gleich. 
+Eigentlich ist die Überschrift irreführend, denn es werden nicht die Layout-Manger verschachtelt, sondern die Container, denen jeweils andere Layout-Manager zugewiesen werden können. Wir wollen das an einem Beispiel demonstrieren. Wir betrachten dazu wieder nur die `initContent()`-Methode. Alles andere bleibt in unserem "Grundgerüst", das wir in der Klasse `MyFirstWindow` erstellt haben, gleich. 
 
 - Wir beginnen damit, dass das `mainPanel` im `BorderLayout` ist und dass diesem `mainPanel` drei weitere `JPanel` hinzugefügt werden. 
 - Das erste `JPanel` heißt `oben`, ist im `FlowLayout` und wird dem Norden des `mainPanel`s hinzugefügt. 
@@ -523,7 +523,7 @@ Zur besseren Erkennung wurde den einzelnen `JPanel` auch noch jeweils eine Hinte
 
 ![gui](./files/60_gui.png)
 
-- Das `JPanel oben` ist im `FlowLayout`. Diesem Panel werden zwei Steuerelemente hinzugefügt: ein `JLabel` (`"Name"`) und ein `JTextField` der Breite 10 (Zeichen). Das das Panel im `FlowLayout` ist, erscheinen beide Steuerelmente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind zentriert angeordnet (`FlowLayout.CENTER`) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von `10` Pixeln. Dem Panel wurde die Hintergrundfarbe `LIGHT-GRAY` zugewiesen. 
+- Das `JPanel oben` ist im `FlowLayout`. Diesem Panel werden zwei Steuerelemente hinzugefügt: ein `JLabel` (`"Name"`) und ein `JTextField` der Breite 10 (Zeichen). Da das Panel im `FlowLayout` ist, erscheinen beide Steuerelmente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind zentriert angeordnet (`FlowLayout.CENTER`) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von `10` Pixeln. Dem Panel wurde die Hintergrundfarbe `LIGHT-GRAY` zugewiesen. 
 - Das `JPanel mitte` ist im `GridLayout` mit 3 Zeilen und 2 Spalten. Diesem Panel werden 6 `JButton` zugeordnet. Die Buttons haben einen vertikalen und horizontalen Abstand von jeweils 10 Pixeln (zwischen den Buttons ist der Abstand also 20). Beachten Sie, dass die Größe der Buttons an die Fenstergröße angepasst sind. Mit wachsender Fenstergröße wachsen auch die Button-Größen. Dem Panel wurde die Hintergrundfarbe `GREEN` zugewiesen. 
 - Das `JPanel unten` ist im `FlowLayout`. Diesem Panel werden zwei `JButton` hinzugefügt. Das das Panel im `FlowLayout` ist, erscheinen beide Steuerelmente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind rechtsbündig angeordnet (`FlowLayout.RIGHT`) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von jeweils `5` Pixeln. Beachten Sie, dass die Buttons in ihrer Standardgröße sind (und stets bleiben). Dem Panel wurde die Hintergrundfarbe `LIGHT-GRAY` zugewiesen.
 

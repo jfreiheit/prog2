@@ -623,3 +623,17 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 	- siehe [**Aufgabe 7**](./aufgaben/#aufgabe-7-interfaces) 
 
 
+??? question "31.-04.06.2021 - GUI"
+	- siehe [**Grafical User Interfaces**](./gui/#graphical-user-interfaces)
+	- siehe Video zu [**Grafical User Interfaces**](./gui/#graphical-user-interfaces) - Vorlesung 02.06.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=e24e8150a0c109b755e276bb42c9c243&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- Quellcode aus der Vorlesung vom 02.06.2021
+
+		=== "MyFirstWindow.java"
+
+			```java linenums="1"
+			
+			```
+
+	- siehe [**Übung 8**](./uebungen/#ubung-8-gui)
+	- siehe [**Aufgabe 8**]() 
