@@ -49,8 +49,8 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 | 5. | 10.-14.05.2021 | Wrapper-Klassen (boxing und unboxing) | Übung 5 | Aufgabe 5 | 23.05.2021 | 
 | 6. | 17.-21.05.2021 | Collections (Map) | Übung 6 | - | - | 
 | 7. | 24.-28.05.2021 | Abstrakte Klassen + Interfaces | Übung 7 | Aufgabe 6 | 06.06.2021 | 
-| 8. | 31.-04.06.2021 | GUI | Übung 8 | Aufgabe 7 | 13.06.2021 | 
-| 9. | 07.-11.06.2021 | Ereignisse  | Übung 9 | Aufgabe 8 | 20.06.2021 | 
+| 8. | 31.-04.06.2021 | GUI Einführung | Übung 8 | Aufgabe 7 | 13.06.2021 | 
+| 9. | 07.-11.06.2021 | GUI Ereignisse  | Übung 9 | Aufgabe 8 | 20.06.2021 | 
 | 10. | 14.-18.06.2021 | Dialoge und Graphics | Übung 10 | Aufgabe 9 | 04.07.2021 | 
 | 12. | 21.-25.06.2021 | Neuerungen in Java 10-14 | Übung 11 | - | - |
 | 13. | 28.-02.07.2021 | - | Übung 12 | - | - |
@@ -623,16 +623,147 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 	- siehe [**Aufgabe 7**](./aufgaben/#aufgabe-7-interfaces) 
 
 
-??? question "31.-04.06.2021 - GUI"
+??? question "31.-04.06.2021 - GUI Einführung"
 	- siehe [**Grafical User Interfaces**](./gui/#graphical-user-interfaces)
 	- siehe Video zu [**Grafical User Interfaces**](./gui/#graphical-user-interfaces) - Vorlesung 02.06.2021
-		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=e24e8150a0c109b755e276bb42c9c243&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=7066a52fe2151457203128108aa7a6ec&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 	- Quellcode aus der Vorlesung vom 02.06.2021
 
 		=== "MyFirstWindow.java"
 
 			```java linenums="1"
-			
+			import java.awt.BorderLayout;
+			import java.awt.Color;
+			import java.awt.FlowLayout;
+			import java.awt.GridLayout;
+
+			import javax.swing.JButton;
+			import javax.swing.JCheckBox;
+			import javax.swing.JFrame;
+			import javax.swing.JLabel;
+			import javax.swing.JPanel;
+			import javax.swing.JRadioButton;
+			import javax.swing.JTextField;
+
+			public class MyFirstWindow extends JFrame
+			{
+				
+				public MyFirstWindow() 
+				{
+					super();	// Konstruktor von JFrame
+					this.setTitle("My first window");
+					this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+					JPanel content = this.initContent();
+					this.getContentPane().add(content);
+					// this.getContentPane().setBackground(Color.CYAN);
+					
+					this.setSize(400, 300);
+					this.setLocation(200, 100);
+					this.setVisible(true);
+				}
+				/*
+				 * FlowLayout - alles nebeneinander, so lange es passt, sonst untereinander (Standardlayout JPanel)
+				 * GridLayout - Gitterstruktur (Zeilen und Spalten)
+				 * BorderLayout - Norden, Sueden, Osten, Westen, Center (Stanfdardlayout eines JFrame)
+				 */
+				private JPanel initContent()
+				{
+					JPanel mainPanel = new JPanel();
+					
+					mainPanel.setLayout(new BorderLayout());
+					
+					JPanel center = new JPanel();
+					center.setLayout(new GridLayout(3, 2));
+					
+					JButton cb1 = new JButton("EAST");
+					JButton cb2 = new JButton("WEST");
+					JButton cb3 = new JButton("NORTH");
+					JButton cb4 = new JButton("SOUTH");
+					JButton cb5 = new JButton("CENTER");
+					
+					center.add(cb1);
+					center.add(cb2);
+					center.add(cb3);
+					center.add(cb4);	
+					center.add(cb5);
+					
+					JButton b1 = new JButton("EAST");
+					JButton b2 = new JButton("WEST");
+					JButton b3 = new JButton("NORTH");
+					JButton b4 = new JButton("SOUTH");
+					JButton b5 = new JButton("CENTER");
+					
+					mainPanel.add(b1, BorderLayout.EAST);
+					mainPanel.add(center, BorderLayout.CENTER);
+					mainPanel.add(b3, BorderLayout.NORTH);
+					mainPanel.add(b4, BorderLayout.SOUTH);
+					mainPanel.add(b2, BorderLayout.WEST);
+					
+					/*
+					mainPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 40));
+					
+					JButton b1 = new JButton("EAST");
+					JButton b2 = new JButton("WEST");
+					JButton b3 = new JButton("NORTH");
+					JButton b4 = new JButton("SOUTH");
+					JButton b5 = new JButton("CENTER");
+					
+					mainPanel.add(b1);
+					mainPanel.add(b2);
+					mainPanel.add(b3);
+					mainPanel.add(b4);
+					mainPanel.add(b5);
+					*/
+					
+					/*
+					mainPanel.setLayout(new BorderLayout());
+					
+					JButton b1 = new JButton("EAST");
+					JButton b2 = new JButton("WEST");
+					JButton b3 = new JButton("NORTH");
+					JButton b4 = new JButton("SOUTH");
+					JButton b5 = new JButton("CENTER");
+					JLabel l1 = new JLabel("Test");
+					
+					JPanel east = new JPanel();
+					east.setLayout(new FlowLayout());
+					east.add(b1);
+					east.add(l1);
+					
+					mainPanel.add(east, BorderLayout.EAST);
+					mainPanel.add(b2, BorderLayout.WEST);
+					mainPanel.add(b3, BorderLayout.NORTH);
+					mainPanel.add(b4, BorderLayout.SOUTH);
+					mainPanel.add(b5, BorderLayout.CENTER);
+					*/
+					
+					/*
+					// hier weitere Container oder Steuerelemente hinzufuegen
+					JLabel label = new JLabel("Name : ");
+					JTextField input = new JTextField(10);
+					JButton button = new JButton("Klick mich!");
+					JCheckBox cb = new JCheckBox();
+					JRadioButton rb = new JRadioButton();
+					
+					mainPanel.add(label);
+					mainPanel.add(input);
+					mainPanel.add(button);
+					mainPanel.add(cb);
+					mainPanel.add(rb);
+					*/
+					
+					return mainPanel;
+				}
+
+				
+				public static void main(String[] args) 
+				{
+					new MyFirstWindow();
+				}
+				
+			}
+
 			```
 
 	- siehe [**Übung 8**](./uebungen/#ubung-8-gui)

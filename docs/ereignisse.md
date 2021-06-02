@@ -514,7 +514,247 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 	Wir kennen nun das Konzept, das hinter der Behandlung von Ereignissen steckt. Wir melden die Komponente, für die wir eine Ereignisbehandlung für ein Ereignis implementieren wollen, an den entsprechenden *Listener* an und wir implementieren das zugehörige Interface. Wir haben Buttons erfolgreich an den `ActionListener` angemeldet und das `ActionListener`-Interface implementiert. Dieses Interface enthält nur genau eine Methode, `actionPerformed()`. Wir können in dieser Methode auch bereits ermitteln, welche Komponente das `ActionEvent` ausgelöst hat, das gerade behandelt wird. Dadurch können wir in derselben `actionPerformed()`-Methode die (unterschiedliche) Ereignisbehandlung für mehrere Buttons implementieren. Damit können wir nun schonmal einen funktionsfähigen Taschenrechner bauen! Der Lösung für [Aufgabe 9](../aufgaben/#aufgabe-9-ereignisbehandlung) steht nichts mehr im Wege!
 
 
+## Innere Klassen
+
+Mit der Implementierung des `ActionListener` hat alles geklappt und funktional ist auch alles in Ordnung, **aber** so richtig schön ist es nicht - kein *clean code*. Dafür gibt es mehrere Gründe:
+
+1. Unsere Klasse verstößt auf jeden Fall gegen das *Single Responsibility Principle* ([SRP](https://de.wikipedia.org/wiki/Single-Responsibility-Prinzip)). Unsere Klasse ist einerseits ein Fenster und andererseits kümmern wir uns in der Klasse auch um Funktionalitäten. Bei der Erstellung von Anwendungen mit grafischen Nutzeroberflächen hat sich sogar eine Dreiteilung etabliert, das sogenannte *Model-View-Controller-Pattern*. Darin ist die Darstellung der GUI die *View*, das Verwalten und Manipulieren der Daten das *Model* und die Steuerung mittels Nutzeraktionen der *Controller*. Langfristig streben wir eine solche Dreiteilung ebenfalls an. 
+2. Wenn wir sehr viele Buttons (und später auch noch Textfelder, Menüs usw.) haben, dann kann die `actionPerformed()`-Methode schon allein dadurch sehr lang werden, dass wir viele Fallunterscheidungen benötigen, um zu ermitteln, welche Komponente das `ActionEvent` überhaupt ausgelöst hat. Wenn dann jeweils noch viel Funktionalität hinzukommt, wird die `actionPerformed()`-Methode viel zu lang. 
+3. Wir haben bis jetzt nur ein einziges Interface, das `ActionListener`-Interface, implementiert und dieses enthält auch nur eine einzige Methode. Wenn wir nun auch noch auf Maus-, Mausbewegungs-, Tastatur- und Fenstereignisse reagieren wollen, dann implementieren wir mindestens vier weitere Interfaces, die jeweils bis zu sechs Methoden enthalten. Unsere Klasse würde sehr lang werden.
+
+Wir benötigen Ideen, wie wir diese Konflikte auflösen können. Dazu benötigen wir neue Strukturierungsmöglichkeiten. Ein erster Schritt dahin sind *Innere Klassen*. Wir betrachten *Innere Klassen* aber nur als einen Zwischenschritt hin zu *anonymen Klassen*. Wir werden uns ansonsten nicht weiter mit *inneren Klassen* auseinandersetzen. 
+
+### Begriffsbestimmung
+
+Prinzipiell handelt es sich bei inneren Klassen um Klassen **in** einer Klasse. Der Oberbegriff für eine Klasse in einer Klasse ist *nested class*. In *nested classes* unterscheidet man zwischen
+
+- statischen und
+- nicht-statischen Klassen.
+
+Die nicht-statischen *nested* Klassen (also Klassen, wie wir sie bisher kennen - wir kennen noch gar keine statischen Klassen) heißen *innere Klassen*. Wir wollen uns gar nicht mit statischen verschachtelten Klassen auseinandersetzen. Es sei an dieser Stelle aber der wesentliche Unterschied zwischen den statischen und den nicht-statischen verschachtelten Klassen genannt: nicht-statische Klassen (also innere Klassen) haben Zugriff auf die Eigenschaften der äußeren Klasse, statische verschachtelte Klassen haben diesen Zugriff nicht. Wenn wir schon bei Sachen sind, die uns nicht interessieren ;-) : sogenannte *lokale* Klassen sind Klassen **in** einer Methode. 
+
+Innere Klassen sind aber nützlich und sinnvoll. Wir kennen auch schon eine, nämlich `Map.Entry` - die Klasse `Entry` ist eine innere Klasse von `Map` (ganz exakt handelt es sich bei beiden nicht um Klassen, sondern um Interfaces, das macht hier aber keinen Unterschied). In der Klasse `Integer` gibt es übrigens auch eine innere Klasse. Die fungiert als ein *Cache* für häufig verwendete Zahlen. Wenn Sie ein `Integer`-Objekt mit einem Wert kleiner als `128` erstellen, dann kommt dieses Objekt in den Cache und wenn Sie ein weiteres Objekt mit dem gleichen Wert erzeugen, dann wird dafür einfach das Objekt aus dem Cache verwendet. Das führt zu diesem "komischen" Verhalten:
+
+```java
+		Integer i1 = Integer.valueOf(1001);
+		Integer i2 = Integer.valueOf(1001);
+		Integer i3 = Integer.valueOf(101);
+		Integer i4 = Integer.valueOf(101);
+		System.out.println(i1 == i2);		// false
+		System.out.println(i3 == i4);		// true
+```
+
+Der erste Vergleich ist `false`, weil es sich bei `i1` und `i2` um Referenzen auf zwei verschiedene Objekte handelt. Der zweite Vergleich ist aber `true`, weil es sich bei `i3` und `i4` um referenzen auf dasselbe Objekt (aus dem Cache) handelt. Aber das nur nebenbei, um zu erläutern, dass es sinnvolle Verwendungen für innere Klassen gibt. 
+
+### Ereignisbehandlung mit innerer Klasse
+
+Wir verwenden unsere Klasse `Ereignisbehandlung` von oben. Aber wir lagern die eigentliche Behandlung des `ActionEvent`s in eine innere Klasse aus. Das heißt, wir trennen die Erstellung der GUI und die Behandlung der Ereignisse strukturell, in dem diese Dinge in zwei unterschiedlichen Klassen implementiert sind. Da es sich aber um die Ereignisbehandlung für genau die erstellte GUI handelt, ergibt es wenig Sinn, diese in eine "normale" top-level-Klasse zu überführen. Deshalb verwenden wir dafür eine innere Klasse:
+
+
+```java linenums="1" hl_lines="8 34-35 54-55 65 69 72 74"
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class Ereignisbehandlung extends JFrame
+{
+	JLabel unten;
+	Integer anzKlicks = 0;
+	
+	public Ereignisbehandlung()
+	{
+		super();
+		setTitle("Ereignisbehandlung");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel mainPanel = init();
+
+		this.add(mainPanel, BorderLayout.CENTER);
+		setSize(200,150);
+		setVisible(true);
+	}
+	
+	private JPanel init()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		JPanel oben = new JPanel();
+		JButton minus = new JButton("-");
+		JButton plus = new JButton("+");
+		minus.setActionCommand("minus");
+		plus.setActionCommand("plus");
+		minus.addActionListener(new ActionHandler());
+		plus.addActionListener(new ActionHandler());
+		oben.add(minus);
+		oben.add(plus);
+		
+		this.unten = new JLabel(this.anzKlicks.toString());
+		unten.setFont(new Font("Verdana", Font.BOLD, 24));
+		unten.setHorizontalAlignment(JLabel.CENTER);
+	
+		panel.add(oben, BorderLayout.NORTH);
+		panel.add(unten, BorderLayout.CENTER);
+		
+		return panel;
+	}
+
+	public static void main(String[] args) 
+	{
+		new Ereignisbehandlung();		
+	}
+
+	class ActionHandler implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			Object quelle = e.getSource();
+			if(quelle instanceof JButton )
+			{
+				JButton button = (JButton) quelle;
+				if(button.getActionCommand().equals("plus"))
+				{
+					Ereignisbehandlung.this.anzKlicks++;
+				}
+				else if(button.getActionCommand().equals("minus"))
+				{
+					Ereignisbehandlung.this.anzKlicks--;
+				}
+			}
+			Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+		}
+	}
+
+}
+```
+
+So viel hat sich gar nicht geändert: 
+
+- Die Klasse `Ereignisbehandlung` implementiert jetzt nicht mehr selbst das Interface `ActionListener` (Zeile `8`).
+- Das hat jetzt die neue (innere) Klasse `ActionHandler` übernommen (Zeile `54`). 
+- Da der `ActionListener` nun nicht mehr in `Ereignisbehandlung` implementiert ist, sondern in `ActionHandler`, muss beim Anmelden an den `ActionListener` nun nicht mehr das `this`-Objekt, sondern ein Objekt von `ActionHandler` übergeben werden (Zeilen `34` und `35`).
+- Da sich die Methode `actionPerformed()` nun in der Klasse `ActionHandler` befindet, handelt es sich dort bei der `this`-referenz um eine Referenz auf ein `ActionHandler`-Objekt. Wir können also nicht mehr einfach `this.anzKlicks++;` schreiben, da es sich bei `anzKlicks` ja nicht um eine Eigenschaft der `ActionHandler`-Klasse, sondern um eine Eigenschaft der `Ereignisbehandlung`-Klasse handelt. Das Gleiche gilt auch für das `JLabel unten` (Zeilen `65`, `69` und `72`).
+
+Um auf die Eigenschaften der *äußeren* Klasse zuzugreifen, kann in der *inneren* Klasse über den Klassennamen der *äußeren* Klasse auf die Eigenschaften der *äußeren* Klasse referenziert werden. Das heißt, wenn die äußere Klasse `AeussereKlasse` heißt und eine Eigenschaft `eigenschaft_AeK` hat, dann kann aus der inneren Klasse heraus wie folgt auf diese Eigenschaft zugegriffen werden:
+
+> AeussereKlasse.this.eigenschaft_AeK
+
+In unserem Fall bedeutet das, dass wir nun über `Ereignisbehandlung.this.anzKlicks++;` und `Ereignisbehandlung.this.anzKlicks--;` den Wert der Eigenschaft `anzKlicks` der äußeren Klasse `Ereignisbehandlung` ändern können (Zeilen `65` und `69`). Um auf das JPanel `unten` aus der inneren Eigenschaft zugreifen zu können, schreiben wir deshalb `Ereignisbehandlung.this.unten` (Zeile `72`). 
+
+**Beachten** Sie, dass das `this` darin notwendig ist. Wenn wir schreiben würden
+
+```java
+Ereignisbehandlung.anzKlicks++;
+```
+
+, dann würde das bedeuten, dass es sich bei `anzKlicks` um eine statische (Klassen-)Variable handeln würde. Um auf (nicht-statische) Objektvariablen zuzugreifen, verwenden wir in der Klasse ja die Referenz `this` und um also auf die Objektvariablen der äußeren Klasse zuzugreifen, schreiben wir
+
+
+```java
+Ereignisbehandlung.this.anzKlicks++;
+```
+
+Dasselbe gilt für Methoden. 
+
+Wir haben nun immerhin die Verantwortlichkeiten zur Erstellung der GUI und zur Behandlung der Ereignisse in zwei verschiedene Klassen aufgeteilt. Das *Single Responsibility Principle* ist somit erfüllt. Das ist schonmal gut! Wir ahben aber eingangs erwähnt, dass wir uns die inneren Klassen nur als ein Zwischenschritt anschauen. Dazu überlegen wir uns nochmal Folgendes:
+
+- Wir haben für die Ereignisbehandlung eine eigene Klasse `ActionHandler` geschrieben. 
+- Um sich an den `ActionListener` anzumelden, wurde der `addActionListener()`-Methode dafür ein Objekt von `ActionHandler` übergeben (siehe oben die Zeilen `34` und `35`).
+
+Nun machen wir etwas Verrücktes ;-) : wir übergeben der `addActionListener()`-Methode auch wieder ein Objekt, in dem wir den `ActionListener` implementiert haben (implementieren), aber diese Implementierung erfolgt nicht in einer separaten Klasse, die einen Namen hat (`ActionHandler`), sondern die Implementierung erfolgt direkt dort, wo das Objekt übergeben wird, dafür ohne einen Klassennamen - eine *anonyme* Klasse. 
+
+
+### Ereignisbehandlung mit anonymer Klasse
+
+Jede Komponente, für die auf das `ActionEvent` reagiert werden soll, muss an den `ActionListener` mithilfe der `addActionListener()`-Methode angemeldet werden. Dieser Methode wird ein Objekt übergeben, in dem der `ActionListener` implementiert ist. Wir implementieren jetzt direkt dort, wo wir das Objekt übergeben, genau diese Klasse, geben ihr aber keinen Namen. Stattdessen geben wir `ActionListener` wie einen Konstruktor an, obwohl es sich bei `ActionListener` um ein Interface handelt, welches erstens keinen Konstruktor besitzt und zweitens von dem gar kein Objekt erzeugt werden kann. Wir schauen uns das am Beispiel des `-`-Buttons an:
+
+```java linenums="1"
+	minus.addActionListener(new ActionListener() {		// Objekt einer anonymen Klasse
+		
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			Ereignisbehandlung.this.anzKlicks--;
+			Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+		}
+	});
+```
+
+Wir übergeben der `addActionListener()`-Methode ein Objekt einer *anonymen* Klasse. Diese *anonyme* Klasse implementiert das `ActionListener`-Interface. Zunächst gehen wir nochmal einen Schritt zurück und schauen uns die Varianten an, die wir davor hatten:
+
+```java
+minus.addActionListener(this);		// ActionListener war in der Fenster-Klasse implementiert
+minus.addActionListener(new ActionHandler());		// ActionListener war in der inneren Klasse ActionHandler implementiert
+```
+
+Nun implementieren wir das `ActionListener`-Interface direkt "vor Ort" - dort, wo es auch übergeben wird. Der Aufruf der `addActionListener()`-methode ist übrigens noch exakt der gleiche
+
+
+```java linenums="1"
+	minus.addActionListener(
 
 
 
 
+
+
+
+	 );
+```
+
+, nur das übergebene Objekt sieht etwas "komisch" aus:
+
+
+```java linenums="1"
+						new ActionListener() {		// Objekt einer anonymen Klasse
+		
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			Ereignisbehandlung.this.anzKlicks--;
+			Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+		}
+	}
+```
+
+Wir erkennen aber den Klassenrumpf, der ganz normal mit einer geschweiften Klammer `{` in Zeile `1`) beginnt und mit einer schließenden geschweiften Klammer `}` in Zeile `9` endet. Darin ist, auch ganz normal, die `actionPerformed()`-Methode implementiert, die ja implementiert werden muss, wenn das `ActionListener`-Interface implementiert wird. Innerhalb der Methode greifen wir auch, wie bei inneren Klassen üblich, auf die Objekteigenschaften der äußeren Klasse zu. 
+
+Eigentlich ist nur dieser Ausdruck neu: `new ActionListener() { }`. Hier müssen wir uns einfach merken, dass es sich dabei um drei Sachen hadelt, die zugleich passieren:
+
+1. Es wird das `ActionListener`-Interface implementiert. Dies geschieht "ganz normal" in einem Klassenrumpf, der mit `{` beginnt und mit `}` endet.
+2. Die Klasse, in der das Interface implemntiert wird, hat aber keinen Namen, deshalb schreiben wir auch nicht `Klassenmane implements ActionListener`, sondern nur `ActionListener`.
+3. Es wird ein Objekt erzeugt. Dazu wird, ganz normal, das Schlüsselwort `new` verwendet und ein Konstruktor - allerdings hier der Konstruktor einer Klasse, die keinen Namen hat. Da diese Klasse aber das `ActionListener`-Interface implementiert, kann dieser Name für den Konstruktor verwendet werden.
+
+Der große Vorteil dieser Art der Implementierung des `ActionListener`-Interfaces liegt darin, dass jede Komponente ihre eigene Implementierung bekommt und dass es deshalb nicht notwendig ist, eine Fallunterscheidung zu treffen, welche Komponente das Ereignis ausgelöst hat. Hier kann es nur der `minus`-Button gewesen sein!
+
+Die beiden Implementierungen des `ActionListener`s mithilfe einer anonymen Klasse sehen so aus:
+
+```java linenums="1"
+
+	minus.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			Ereignisbehandlung.this.anzKlicks--;
+			Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+		}
+	});
+	
+	plus.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			Ereignisbehandlung.this.anzKlicks++;
+			Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+		}
+	});
+	
+```
+
+Den `ActionListener` mithilfe anonymer Klassen zu implementieren, ist ein *Best Practise*. In sehr vielen Fällen gewinnt man an Übersichtlichkeit. Wir werden im Rest des Semesters immer mal diskutieren, wann die Verwendung anonymer Klassen sinnvoll ist und wann nicht. Manchmal ist es aber auch nur Geschmackssache. 
+
+Für diejenigen, die sich für *nested classes* interessieren, sei [dieser Link](https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html) empfohlen.
