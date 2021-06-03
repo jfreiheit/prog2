@@ -2541,6 +2541,89 @@
 
 
 
+??? question "mögliche Lösung für Übung 8"
+	
+	=== "Uebung8.java"
+		```java linenums="1"
+		package uebungen.uebung8;
+
+		import java.awt.*;
+		import javax.swing.*;
+		import javax.swing.border.Border;
+
+		public class Uebung8 extends JFrame
+		{
+
+			public Uebung8()
+			{
+				super();
+				this.setTitle("GUI Übung");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+
+				JPanel content = this.initContent();
+				this.getContentPane().add(content);
+
+				this.setSize(400, 300);
+				this.setLocation(300,200);
+				this.setVisible(true);
+			}
+
+			private JPanel initContent()
+			{
+				JPanel mainPanel = new JPanel();
+				mainPanel.setLayout(new BorderLayout());
+
+				Border redline = BorderFactory.createLineBorder(Color.RED);
+				JPanel oben = new JPanel();
+				oben.setLayout(new FlowLayout());
+				JLabel text1 = new JLabel("Text");
+				text1.setForeground(Color.WHITE); 
+				oben.add(text1);		
+				oben.setBackground(Color.BLUE);
+				oben.setBorder(redline);
+				
+				JPanel links = new JPanel();
+				links.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
+				JLabel text2 = new JLabel("Weiterer Text");
+				links.add(text2);
+				JTextField input = new JTextField("Feld",10);
+				links.add(input);		
+				links.setBackground(Color.LIGHT_GRAY);
+				
+
+				JPanel rechts = new JPanel();
+				rechts.setLayout(new GridLayout(2,1,20,20));
+				rechts.add(new JButton("Button 1"));
+				rechts.add(new JButton("Button 2"));
+				rechts.setBackground(Color.LIGHT_GRAY);
+
+				mainPanel.add(oben, BorderLayout.NORTH);
+				mainPanel.add(links, BorderLayout.CENTER);
+				mainPanel.add(rechts, BorderLayout.EAST);
+
+				return mainPanel;
+			}
+
+			public static void main(String[] args) 
+			{
+				new Uebung8();
+			}
+
+		}
+		```
+
+
+??? question "sehr hilfreiche Grafiken zur Übung von Frau Busjahn"
+	
+	1. Unterscheidung zwischen Containern und Steuerelementen:
+		![uebung](./files/69_uebung8.png)
+
+
+	2. Visualisierung der Panels (Container) in der GUI der Übung
+		![uebung](./files/70_uebung8.png)
+
+
+
 
 
 ##### Übung 9 (Ereignisbehandlung - ActionListener)
