@@ -719,7 +719,7 @@
 <p><img alt="ereignisse" src="../files/63_ereignisse.png" /></p>
 <p>Der <em>Listener</em> lauscht permanent auf Ereignisse. Sobald ein Ereignis aufritt, auf das der <em>Listener</em> lauscht, ruft er eine entsprechende Methode auf. Damit wir im Programm auf dieses Ereignis reagieren können (die Ereignisbehandlung implementieren), müssen wir zwei Dinge tun:</p>
 <ol>
-<li>uns an dem listener anmelden, der auf die Ereignisse lauscht, die uns interessieren (die wir behandeln wollen) und</li>
+<li>uns an dem Listener anmelden, der auf die Ereignisse lauscht, die uns interessieren (die wir behandeln wollen) und</li>
 <li>die Ereignisbehandlung in der vom <em>Listener</em> aufgerufenen Methode implementieren.  </li>
 </ol>
 <p>Die Methoden, die wir implementieren sind <em>abstrakt</em> in <em>Interfaces</em> festgelegt. Das bedeutet also, dass wir für die Ereignisbehandlung <em>Interfaces</em> implementieren. </p>
@@ -838,7 +838,7 @@
 </code></pre></div>
 <p>Wenn wir nun auf den Button klicken, passiert aber noch nichts, denn wir müssen den Button noch am <code>ActionListener</code> anmelden (siehe oben Punkt 2 in der Liste). </p>
 <h4 id="am-actionlistener-anmelden">Am <code>ActionListener</code> anmelden<a class="headerlink" href="#am-actionlistener-anmelden" title="Permanent link">&para;</a></h4>
-<p>Damit das Klick-Ereignis auf den Button auch so behandelt wird, wie wir das in der <code>actionPerformed()</code>-Methode definiert haben, müssen wir diesen Button an den <code>ActionListener</code> anmelden. Dazu existiert für einen <code>JButton</code> (für alle Komponenten <code>JComponent</code>) die Methode <code>addActionListener(ActionListener l)</code>. Dieser Methode muss nun ein <code>ActionListener</code>-Objekt übergeben werden, also ein Objekt, das das Interface <code>ActionListener</code> implementiert hat. Da wir den <code>ActionListener</code> in unserer fensterklasse implementiert haben, ist das Fenster ein solches Objekt, das den <code>ActionListener</code> implementiert hat. Wir verwenden also <code>this</code>. </p>
+<p>Damit das Klick-Ereignis auf den Button auch so behandelt wird, wie wir das in der <code>actionPerformed()</code>-Methode definiert haben, müssen wir diesen Button an den <code>ActionListener</code> anmelden. Dazu existiert für einen <code>JButton</code> (für alle Komponenten <code>JComponent</code>) die Methode <code>addActionListener(ActionListener l)</code>. Dieser Methode muss nun ein <code>ActionListener</code>-Objekt übergeben werden, also ein Objekt, das das Interface <code>ActionListener</code> implementiert hat. Da wir den <code>ActionListener</code> in unserer Fensterklasse implementiert haben, ist das Fenster ein solches Objekt, das den <code>ActionListener</code> implementiert hat. Wir verwenden also <code>this</code>. </p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1069,7 +1069,7 @@ Button gedrueckt!
 </code></pre></div>
 </td></tr></table>
 <p>Nun ändert sich mit jedem Button-Klick der angezeigte Wert.</p>
-<p><img alt="ereignisse" src="../files/65_ereignisse.png" /></p>
+<p><img alt="ereignisse" src="../files/66_ereignisse.png" /></p>
 <h4 id="mehrere-buttons-actionevent">Mehrere Buttons - <code>ActionEvent</code><a class="headerlink" href="#mehrere-buttons-actionevent" title="Permanent link">&para;</a></h4>
 <p>Wir ändern unsere GUI, indem wir die <code>init()</code>-Methode ändern:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>25
@@ -1309,7 +1309,7 @@ Button gedrueckt!
 <li>Buttons können auch einfach nur Icons enthalten, d.h. gar keinen Text.</li>
 <li>Der auf Buttons angezeigte Text kann sehr "kryptisch" sein, also irgendwelche Sonderzeichen oder Schriftzeichen enthalten. Es kann z.B. auch <a href="https://de.wikipedia.org/wiki/Hypertext_Markup_Language">HTML</a>-Code sein. </li>
 </ol>
-<p>Das alles macht die Abfrage des Textes und insbesondere den Vergleich kompliziert bis gar unmöglich. Deshalb sollte man stattdessen besser das <code>ActionCommand</code> abfragen. Das <code>ActionCommand</code> wird mithilfe der <code>setActionCommand(String command</code>-Methode gesetzt und mithilfe der <code>getActionCommand()</code>-Methode abgefragt. </p>
+<p>Das alles macht die Abfrage des Textes und insbesondere den Vergleich kompliziert bis gar unmöglich. Deshalb sollte man stattdessen besser das <code>ActionCommand</code> abfragen. Das <code>ActionCommand</code> wird mithilfe der <code>setActionCommand(String command)</code>-Methode gesetzt und mithilfe der <code>getActionCommand()</code>-Methode abgefragt. </p>
 <p>Wenn für einen Button <strong>nicht</strong> mithilfe der <code>setActionCommand()</code>-Methode ein <code>ActionCommand</code> definiert wurde, dann entspricht das <code>ActionCommand</code> dem Text auf dem Button. Das bedeutet, dass die <code>getActionCommand()</code>-Methode trotzdem verwendet werden könnte. </p>
 <p>Wir bräuchten also nur in der <code>actionPerformed()</code>-Methode <code>getText()</code> durch <code>getActionCommand()</code> ersetzen und hätten das gleiche Ergebnis:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>53
@@ -1453,10 +1453,10 @@ Button gedrueckt!
         <span class="n">JPanel</span> <span class="n">oben</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
         <span class="n">JButton</span> <span class="n">minus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">);</span>
         <span class="n">JButton</span> <span class="n">plus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;+&quot;</span><span class="p">);</span>
-        <span class="n">minus</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="s">&quot;minus&quot;</span><span class="p">);</span>
-<span class="hll">        <span class="n">plus</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="s">&quot;plus&quot;</span><span class="p">);</span>
-</span><span class="hll">        <span class="n">minus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span>        <span class="n">plus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="hll">        <span class="n">minus</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="s">&quot;minus&quot;</span><span class="p">);</span>
+</span><span class="hll">        <span class="n">plus</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="s">&quot;plus&quot;</span><span class="p">);</span>
+</span>        <span class="n">minus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">plus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
         <span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">minus</span><span class="p">);</span>
         <span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">plus</span><span class="p">);</span>
 
@@ -1524,7 +1524,7 @@ Button gedrueckt!
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i1</span> <span class="o">==</span> <span class="n">i2</span><span class="p">);</span>       <span class="c1">// false</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i3</span> <span class="o">==</span> <span class="n">i4</span><span class="p">);</span>       <span class="c1">// true</span>
 </code></pre></div>
-<p>Der erste Vergleich ist <code>false</code>, weil es sich bei <code>i1</code> und <code>i2</code> um Referenzen auf zwei verschiedene Objekte handelt. Der zweite Vergleich ist aber <code>true</code>, weil es sich bei <code>i3</code> und <code>i4</code> um referenzen auf dasselbe Objekt (aus dem Cache) handelt. Aber das nur nebenbei, um zu erläutern, dass es sinnvolle Verwendungen für innere Klassen gibt. </p>
+<p>Der erste Vergleich ist <code>false</code>, weil es sich bei <code>i1</code> und <code>i2</code> um Referenzen auf zwei verschiedene Objekte handelt. Der zweite Vergleich ist aber <code>true</code>, weil es sich bei <code>i3</code> und <code>i4</code> um Referenzen auf dasselbe Objekt (aus dem Cache) handelt. Aber das nur nebenbei, um zu erläutern, dass es sinnvolle Verwendungen für innere Klassen gibt. </p>
 <h3 id="ereignisbehandlung-mit-innerer-klasse">Ereignisbehandlung mit innerer Klasse<a class="headerlink" href="#ereignisbehandlung-mit-innerer-klasse" title="Permanent link">&para;</a></h3>
 <p>Wir verwenden unsere Klasse <code>Ereignisbehandlung</code> von oben. Aber wir lagern die eigentliche Behandlung des <code>ActionEvent</code>s in eine innere Klasse aus. Das heißt, wir trennen die Erstellung der GUI und die Behandlung der Ereignisse strukturell, in dem diese Dinge in zwei unterschiedlichen Klassen implementiert sind. Da es sich aber um die Ereignisbehandlung für genau die erstellte GUI handelt, ergibt es wenig Sinn, diese in eine "normale" top-level-Klasse zu überführen. Deshalb verwenden wir dafür eine innere Klasse:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -1699,7 +1699,7 @@ Button gedrueckt!
 <div class="highlight"><pre><span></span><code><span class="n">Ereignisbehandlung</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">anzKlicks</span><span class="o">++</span><span class="p">;</span>
 </code></pre></div>
 <p>Dasselbe gilt für Methoden. </p>
-<p>Wir haben nun immerhin die Verantwortlichkeiten zur Erstellung der GUI und zur Behandlung der Ereignisse in zwei verschiedene Klassen aufgeteilt. Das <em>Single Responsibility Principle</em> ist somit erfüllt. Das ist schonmal gut! Wir ahben aber eingangs erwähnt, dass wir uns die inneren Klassen nur als ein Zwischenschritt anschauen. Dazu überlegen wir uns nochmal Folgendes:</p>
+<p>Wir haben nun immerhin die Verantwortlichkeiten zur Erstellung der GUI und zur Behandlung der Ereignisse in zwei verschiedene Klassen aufgeteilt. Das <em>Single Responsibility Principle</em> ist somit erfüllt. Das ist schonmal gut! Wir haben aber eingangs erwähnt, dass wir uns die inneren Klassen nur als ein Zwischenschritt anschauen. Dazu überlegen wir uns nochmal Folgendes:</p>
 <ul>
 <li>Wir haben für die Ereignisbehandlung eine eigene Klasse <code>ActionHandler</code> geschrieben. </li>
 <li>Um sich an den <code>ActionListener</code> anzumelden, wurde der <code>addActionListener()</code>-Methode dafür ein Objekt von <code>ActionHandler</code> übergeben (siehe oben die Zeilen <code>34</code> und <code>35</code>).</li>
@@ -1730,7 +1730,7 @@ Button gedrueckt!
 <div class="highlight"><pre><span></span><code><span class="n">minus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>      <span class="c1">// ActionListener war in der Fenster-Klasse implementiert</span>
 <span class="n">minus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span> <span class="n">ActionHandler</span><span class="p">());</span>       <span class="c1">// ActionListener war in der inneren Klasse ActionHandler implementiert</span>
 </code></pre></div>
-<p>Nun implementieren wir das <code>ActionListener</code>-Interface direkt "vor Ort" - dort, wo es auch übergeben wird. Der Aufruf der <code>addActionListener()</code>-methode ist übrigens noch exakt der gleiche</p>
+<p>Nun implementieren wir das <code>ActionListener</code>-Interface direkt "vor Ort" - dort, wo es auch übergeben wird. Der Aufruf der <code>addActionListener()</code>-Methode ist übrigens noch exakt der gleiche</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -1818,7 +1818,7 @@ Button gedrueckt!
     <span class="p">});</span>
 </code></pre></div>
 </td></tr></table>
-<p>Den <code>ActionListener</code> mithilfe anonymer Klassen zu implementieren, ist ein <em>Best Practise</em>. In sehr vielen Fällen gewinnt man an Übersichtlichkeit. Wir werden im Rest des Semesters immer mal diskutieren, wann die Verwendung anonymer Klassen sinnvoll ist und wann nicht. Manchmal ist es aber auch nur Geschmackssache. </p>
+<p>Den <code>ActionListener</code> mithilfe anonymer Klassen zu implementieren, ist ein <em>Best Practice</em>. In sehr vielen Fällen gewinnt man an Übersichtlichkeit. Wir werden im Rest des Semesters immer mal diskutieren, wann die Verwendung anonymer Klassen sinnvoll ist und wann nicht. Manchmal ist es aber auch nur Geschmackssache. </p>
 <p>Für diejenigen, die sich für <em>nested classes</em> interessieren, sei <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html">dieser Link</a> empfohlen.</p>
                 
               

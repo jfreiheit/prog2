@@ -4906,17 +4906,17 @@ Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</s
     <img alt="uebung9" src="../files/67_uebung9.png" /></p>
 </li>
 <li>
-<p>Fügen Sie folgende Objektvariable hinzu: <code>List&lt;JLabel&gt; list = new ArrayList&lt;&gt;();</code></p>
+<p>Fügen Sie folgende Objektvariable hinzu: <code>List&lt;JLabel&gt; labels = new ArrayList&lt;&gt;();</code></p>
 </li>
 <li>
 <p>Implementieren Sie den <code>ActionListener</code> wie folgt: <br/>
     Wird der <code>add</code>-Button gedrückt, </p>
 <ul>
 <li>
-<p>wird der Liste <code>list</code> ein <code>JLabel</code> hinzugefügt, wobei der Text des JLabels dem Text im Textfeld entspricht (der Text des Textfeldes kann über die Objektmethode <code>getText()</code> von JTextField ausgelesen werden).</p>
+<p>wird der Liste <code>labels</code> ein <code>JLabel</code> hinzugefügt, wobei der Text des JLabels dem Text im Textfeld entspricht (der Text des Textfeldes kann über die Objektmethode <code>getText()</code> von JTextField ausgelesen werden).</p>
 </li>
 <li>
-<p>Die Liste <code>list</code> wird vollständig ausgelesen und jedes <code>JLabel</code> aus <code>list</code> wird dem <code>JPanel unten</code> mithilfe der <code>add()</code>-Methode von <code>JPanel</code> hinzugefügt.</p>
+<p>Die Liste <code>labels</code> wird vollständig ausgelesen und jedes <code>JLabel</code> aus <code>labels</code> wird dem <code>JPanel unten</code> mithilfe der <code>add()</code>-Methode von <code>JPanel</code> hinzugefügt.</p>
 </li>
 <li>
 <p>Rufen Sie <code>this.unten.revalidate();</code> auf – dies stößt ein Neuzeichnen des JPanels <code>unten</code> an.</p>
@@ -4925,7 +4925,7 @@ Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</s
 <p>Wird der „remove“-Button gedrückt,</p>
 <ul>
 <li>
-<p>wird das <code>JLabel</code> aus der Liste <code>list</code> gelöscht, das den gleichen Text hat wie der Text, der im Textfeld eingegeben wurde.</p>
+<p>wird das <code>JLabel</code> aus der Liste <code>labels</code> gelöscht, das den gleichen Text hat wie der Text, der im Textfeld eingegeben wurde.</p>
 </li>
 <li>
 <p>Außerdem wird das <code>JLabel</code> aus den <code>JPanel unten</code> entfernt (Objektmethode <code>remove()</code> von <code>JPanel</code>).</p>

@@ -20,7 +20,7 @@ Das Vorgehen kann man sich wie in der Abbildung gezeigt vorstellen:
 
 Der *Listener* lauscht permanent auf Ereignisse. Sobald ein Ereignis aufritt, auf das der *Listener* lauscht, ruft er eine entsprechende Methode auf. Damit wir im Programm auf dieses Ereignis reagieren können (die Ereignisbehandlung implementieren), müssen wir zwei Dinge tun:
 
-1. uns an dem listener anmelden, der auf die Ereignisse lauscht, die uns interessieren (die wir behandeln wollen) und
+1. uns an dem Listener anmelden, der auf die Ereignisse lauscht, die uns interessieren (die wir behandeln wollen) und
 2. die Ereignisbehandlung in der vom *Listener* aufgerufenen Methode implementieren.  
 
 Die Methoden, die wir implementieren sind *abstrakt* in *Interfaces* festgelegt. Das bedeutet also, dass wir für die Ereignisbehandlung *Interfaces* implementieren. 
@@ -114,7 +114,7 @@ Wenn wir nun auf den Button klicken, passiert aber noch nichts, denn wir müssen
 
 #### Am `ActionListener` anmelden
 
-Damit das Klick-Ereignis auf den Button auch so behandelt wird, wie wir das in der `actionPerformed()`-Methode definiert haben, müssen wir diesen Button an den `ActionListener` anmelden. Dazu existiert für einen `JButton` (für alle Komponenten `JComponent`) die Methode `addActionListener(ActionListener l)`. Dieser Methode muss nun ein `ActionListener`-Objekt übergeben werden, also ein Objekt, das das Interface `ActionListener` implementiert hat. Da wir den `ActionListener` in unserer fensterklasse implementiert haben, ist das Fenster ein solches Objekt, das den `ActionListener` implementiert hat. Wir verwenden also `this`. 
+Damit das Klick-Ereignis auf den Button auch so behandelt wird, wie wir das in der `actionPerformed()`-Methode definiert haben, müssen wir diesen Button an den `ActionListener` anmelden. Dazu existiert für einen `JButton` (für alle Komponenten `JComponent`) die Methode `addActionListener(ActionListener l)`. Dieser Methode muss nun ein `ActionListener`-Objekt übergeben werden, also ein Objekt, das das Interface `ActionListener` implementiert hat. Da wir den `ActionListener` in unserer Fensterklasse implementiert haben, ist das Fenster ein solches Objekt, das den `ActionListener` implementiert hat. Wir verwenden also `this`. 
 
 
 ```java linenums="1" hl_lines="3 4 29 46-50"
@@ -252,7 +252,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 
 Nun ändert sich mit jedem Button-Klick der angezeigte Wert.
 
-![ereignisse](./files/65_ereignisse.png)
+![ereignisse](./files/66_ereignisse.png)
 
 
 #### Mehrere Buttons - `ActionEvent`
@@ -402,7 +402,7 @@ Die Abfrage des Textes auf den Buttons zur Unterscheidung der Buttons ist nicht 
 2. Buttons können auch einfach nur Icons enthalten, d.h. gar keinen Text.
 3. Der auf Buttons angezeigte Text kann sehr "kryptisch" sein, also irgendwelche Sonderzeichen oder Schriftzeichen enthalten. Es kann z.B. auch [HTML](https://de.wikipedia.org/wiki/Hypertext_Markup_Language)-Code sein. 
 
-Das alles macht die Abfrage des Textes und insbesondere den Vergleich kompliziert bis gar unmöglich. Deshalb sollte man stattdessen besser das `ActionCommand` abfragen. Das `ActionCommand` wird mithilfe der `setActionCommand(String command`-Methode gesetzt und mithilfe der `getActionCommand()`-Methode abgefragt. 
+Das alles macht die Abfrage des Textes und insbesondere den Vergleich kompliziert bis gar unmöglich. Deshalb sollte man stattdessen besser das `ActionCommand` abfragen. Das `ActionCommand` wird mithilfe der `setActionCommand(String command)`-Methode gesetzt und mithilfe der `getActionCommand()`-Methode abgefragt. 
 
 Wenn für einen Button **nicht** mithilfe der `setActionCommand()`-Methode ein `ActionCommand` definiert wurde, dann entspricht das `ActionCommand` dem Text auf dem Button. Das bedeutet, dass die `getActionCommand()`-Methode trotzdem verwendet werden könnte. 
 
@@ -433,7 +433,7 @@ Wir bräuchten also nur in der `actionPerformed()`-Methode `getText()` durch `ge
 Wenn wir allerdings eigene (andere) `ActionCommands` für die Buttons setzen, dann müssen wir auch den Vergleich anpassen:
 
 
-```java linenums="1" hl_lines="33-34 61 65"
+```java linenums="1" hl_lines="32-33 61 65"
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -544,7 +544,7 @@ Innere Klassen sind aber nützlich und sinnvoll. Wir kennen auch schon eine, nä
 		System.out.println(i3 == i4);		// true
 ```
 
-Der erste Vergleich ist `false`, weil es sich bei `i1` und `i2` um Referenzen auf zwei verschiedene Objekte handelt. Der zweite Vergleich ist aber `true`, weil es sich bei `i3` und `i4` um referenzen auf dasselbe Objekt (aus dem Cache) handelt. Aber das nur nebenbei, um zu erläutern, dass es sinnvolle Verwendungen für innere Klassen gibt. 
+Der erste Vergleich ist `false`, weil es sich bei `i1` und `i2` um Referenzen auf zwei verschiedene Objekte handelt. Der zweite Vergleich ist aber `true`, weil es sich bei `i3` und `i4` um Referenzen auf dasselbe Objekt (aus dem Cache) handelt. Aber das nur nebenbei, um zu erläutern, dass es sinnvolle Verwendungen für innere Klassen gibt. 
 
 ### Ereignisbehandlung mit innerer Klasse
 
@@ -658,7 +658,7 @@ Ereignisbehandlung.this.anzKlicks++;
 
 Dasselbe gilt für Methoden. 
 
-Wir haben nun immerhin die Verantwortlichkeiten zur Erstellung der GUI und zur Behandlung der Ereignisse in zwei verschiedene Klassen aufgeteilt. Das *Single Responsibility Principle* ist somit erfüllt. Das ist schonmal gut! Wir ahben aber eingangs erwähnt, dass wir uns die inneren Klassen nur als ein Zwischenschritt anschauen. Dazu überlegen wir uns nochmal Folgendes:
+Wir haben nun immerhin die Verantwortlichkeiten zur Erstellung der GUI und zur Behandlung der Ereignisse in zwei verschiedene Klassen aufgeteilt. Das *Single Responsibility Principle* ist somit erfüllt. Das ist schonmal gut! Wir haben aber eingangs erwähnt, dass wir uns die inneren Klassen nur als ein Zwischenschritt anschauen. Dazu überlegen wir uns nochmal Folgendes:
 
 - Wir haben für die Ereignisbehandlung eine eigene Klasse `ActionHandler` geschrieben. 
 - Um sich an den `ActionListener` anzumelden, wurde der `addActionListener()`-Methode dafür ein Objekt von `ActionHandler` übergeben (siehe oben die Zeilen `34` und `35`).
@@ -689,7 +689,7 @@ minus.addActionListener(this);		// ActionListener war in der Fenster-Klasse impl
 minus.addActionListener(new ActionHandler());		// ActionListener war in der inneren Klasse ActionHandler implementiert
 ```
 
-Nun implementieren wir das `ActionListener`-Interface direkt "vor Ort" - dort, wo es auch übergeben wird. Der Aufruf der `addActionListener()`-methode ist übrigens noch exakt der gleiche
+Nun implementieren wir das `ActionListener`-Interface direkt "vor Ort" - dort, wo es auch übergeben wird. Der Aufruf der `addActionListener()`-Methode ist übrigens noch exakt der gleiche
 
 
 ```java linenums="1"
@@ -755,6 +755,6 @@ Die beiden Implementierungen des `ActionListener`s mithilfe einer anonymen Klass
 	
 ```
 
-Den `ActionListener` mithilfe anonymer Klassen zu implementieren, ist ein *Best Practise*. In sehr vielen Fällen gewinnt man an Übersichtlichkeit. Wir werden im Rest des Semesters immer mal diskutieren, wann die Verwendung anonymer Klassen sinnvoll ist und wann nicht. Manchmal ist es aber auch nur Geschmackssache. 
+Den `ActionListener` mithilfe anonymer Klassen zu implementieren, ist ein *Best Practice*. In sehr vielen Fällen gewinnt man an Übersichtlichkeit. Wir werden im Rest des Semesters immer mal diskutieren, wann die Verwendung anonymer Klassen sinnvoll ist und wann nicht. Manchmal ist es aber auch nur Geschmackssache. 
 
 Für diejenigen, die sich für *nested classes* interessieren, sei [dieser Link](https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html) empfohlen.

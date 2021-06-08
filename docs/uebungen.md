@@ -2635,19 +2635,19 @@
 	3. Setzen Sie die Größe des Fensters auf Werte, so dass es wie folgt erscheint:
 		![uebung9](./files/67_uebung9.png)
 
-	4. Fügen Sie folgende Objektvariable hinzu: `List<JLabel> list = new ArrayList<>();`
+	4. Fügen Sie folgende Objektvariable hinzu: `List<JLabel> labels = new ArrayList<>();`
 	5. Implementieren Sie den `ActionListener` wie folgt: <br/>
 		Wird der `add`-Button gedrückt, 
 
-		- wird der Liste `list` ein `JLabel` hinzugefügt, wobei der Text des JLabels dem Text im Textfeld entspricht (der Text des Textfeldes kann über die Objektmethode `getText()` von JTextField ausgelesen werden).
+		- wird der Liste `labels` ein `JLabel` hinzugefügt, wobei der Text des JLabels dem Text im Textfeld entspricht (der Text des Textfeldes kann über die Objektmethode `getText()` von JTextField ausgelesen werden).
 
-		- Die Liste `list` wird vollständig ausgelesen und jedes `JLabel` aus `list` wird dem `JPanel unten` mithilfe der `add()`-Methode von `JPanel` hinzugefügt.
+		- Die Liste `labels` wird vollständig ausgelesen und jedes `JLabel` aus `labels` wird dem `JPanel unten` mithilfe der `add()`-Methode von `JPanel` hinzugefügt.
 
 		- Rufen Sie `this.unten.revalidate();` auf – dies stößt ein Neuzeichnen des JPanels `unten` an.
 
 		Wird der „remove“-Button gedrückt,
 
-		- wird das `JLabel` aus der Liste `list` gelöscht, das den gleichen Text hat wie der Text, der im Textfeld eingegeben wurde.
+		- wird das `JLabel` aus der Liste `labels` gelöscht, das den gleichen Text hat wie der Text, der im Textfeld eingegeben wurde.
 
 		- Außerdem wird das `JLabel` aus den `JPanel unten` entfernt (Objektmethode `remove()` von `JPanel`).
 
