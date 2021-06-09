@@ -51,9 +51,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 | 7. | 24.-28.05.2021 | Abstrakte Klassen + Interfaces | Übung 7 | Aufgabe 6 | 06.06.2021 | 
 | 8. | 31.-04.06.2021 | GUI Einführung | Übung 8 | Aufgabe 7 | 13.06.2021 | 
 | 9. | 07.-11.06.2021 | GUI Ereignisse  | Übung 9 | Aufgabe 8 | 20.06.2021 | 
-| 10. | 14.-18.06.2021 | Dialoge und Graphics | Übung 10 | Aufgabe 9 | 04.07.2021 | 
-| 12. | 21.-25.06.2021 | Neuerungen in Java 10-14 | Übung 11 | - | - |
-| 13. | 28.-02.07.2021 | - | Übung 12 | - | - |
+| 10. | 14.-18.06.2021 | Graphics | Übung 10 | Aufgabe 9 | 04.07.2021 | 
+| 12. | 21.-25.06.2021 | Mauslistener | Übung 11 | - | - |
+| 13. | 28.-02.07.2021 | Model-View-Controller | Übung 12 | - | - |
 | 14. | 05.-09.07.2021 | Klausurvorbereitung | Übung 13 | - | - |
 | 15. | 12.-16.07.2021 | Klausurvorbereitung | - | - | - | 
 
@@ -767,4 +767,22 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 			```
 
 	- siehe [**Übung 8**](./uebungen/#ubung-8-gui)
-	- siehe [**Aufgabe 8**]() 
+	- siehe [**Aufgabe 8**](./aufgaben/#aufgabe-8-gui) 
+
+
+
+??? question "07.-11.06.2021 - GUI Ereignisse"
+	- siehe [**GUI Ereignisse**](./ereignisse/#ereignisse)
+	- siehe Video zu [**GUI Ereignisse**](./ereignisse/#ereignisse) - Vorlesung 09.06.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=7066a52fe2151457203128108aa7a6ec&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+	- Quellcode aus der Vorlesung vom 09.06.2021
+
+		=== "MyFirstDrawingWindow.java"
+
+			```java linenums="1"
+
+			
+			```
+
+	- siehe [**Übung 9**](./uebungen/#ubung-9-ereignisbehandlung-actionlistener)
+	- siehe [**Aufgabe 9**](./aufgaben/#aufgabe-9-ereignisbehandlung) 

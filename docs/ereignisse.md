@@ -43,7 +43,7 @@ public class Ereignisbehandlung extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mainPanel = init();
 
-		this.add(mainPanel, BorderLayout.CENTER);
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		setSize(200,150);
 		setVisible(true);
 	}
@@ -135,7 +135,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mainPanel = init();
 
-		this.add(mainPanel, BorderLayout.CENTER);
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		setSize(200,150);
 		setVisible(true);
 	}
@@ -211,7 +211,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mainPanel = init();
 
-		this.add(mainPanel, BorderLayout.CENTER);
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		setSize(200,150);
 		setVisible(true);
 	}
@@ -337,7 +337,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mainPanel = init();
 
-		this.add(mainPanel, BorderLayout.CENTER);
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		setSize(200,150);
 		setVisible(true);
 	}
@@ -453,7 +453,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mainPanel = init();
 
-		this.add(mainPanel, BorderLayout.CENTER);
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		setSize(200,150);
 		setVisible(true);
 	}
@@ -571,7 +571,7 @@ public class Ereignisbehandlung extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mainPanel = init();
 
-		this.add(mainPanel, BorderLayout.CENTER);
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		setSize(200,150);
 		setVisible(true);
 	}
