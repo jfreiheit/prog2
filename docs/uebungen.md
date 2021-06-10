@@ -2656,6 +2656,88 @@
 	6. **Tipp**: wenn Sie einem `JLabel` eine Hintergrundfarbe mit `setBackground(Color c)` setzen, dann sieht man diese nur, wenn Sie für dieses `JLabel` die Methode `setOpaque(true)` aufrufen. Nur dadurch werden für dieses `JLabel` alle Pixel gezeichnet, die in dessen *Grenzen* sind, d.h. das komplette Rechteck, das das `JLabel` ausfüllt. Ansonsten würde nur der Text "gezeichnet" und die Hintergrundfarbe wäre hinter dem Text versteckt. 
 
 
+??? question "vorkommentierte Klasse"
+	
+	=== "Uebung9.java"
+		```java linenums="1"
+		//import
+
+		public class Uebung9 // es werden JFrame und ActionListener benötigt
+		{
+			//Objektvariablen: 
+			//1. Textfeld, zwei Buttons (add und remove)
+			//2. unteres Panel
+			//4. Liste mit Labeln
+			
+			public Uebung9()
+			{		
+				super("TITEL");
+				
+				//Verhalten beim Schließen      
+		        //Größe         
+		        //Sichtbarkeit      
+		        //...
+				
+				//2. main-JPanel in JPanels unten und oben unterteilen
+				//Dem Panel oben werden das Textfeld und die beiden Buttons hinzugefügt,
+				//das lagern wir in die Methode createOben() aus
+				//oben: Hintergrundfarbe ist YELLOW
+				//unten: Hintergrundfarbe ist CYAN
+				//Das Panel unten soll ebenfalls eine Objektvariable sein.
+				
+				//4. neue ArrayList für die Label anlegen 
+			}
+			
+			private JPanel createOben()
+			{
+				//...
+				
+				return panel;
+			}
+			
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				//Quelle des Events ermitteln
+				
+				//Falls es der "add"-Button ist
+				// - Text aus dem Textfeld übernehmen
+				// - neues Label mit dem Text anlegen 
+				// - das Label formatieren (Hintergrundfarbe RED)
+				//   Tipp: wenn Sie einem JLabel eine Hintergrundfarbe mit setBackground(Color c) 
+				//   setzen, dann sieht man diese nur, wenn Sie für dieses JLabel die Methode 
+				//   setOpaque(true) aufrufen. Nur dadurch werden für dieses JLabel alle Pixel 
+				//   gezeichnet, die in dessen Grenzen sind, d.h. das komplette Rechteck, 
+				//   das das JLabel ausfüllt. Ansonsten würde nur der Text "gezeichnet" und 
+				//   die Hintergrundfarbe wäre hinter dem Text versteckt.
+				// - das Label in Label-Liste einfügen 
+				// - das Label dem unteren Panel hinzufügen
+						
+				//Falls es der "remove"-Button ist
+				// - Text aus dem Textfeld übernehmen
+				// - durch die Label-Liste iterieren, um das zu entfernende Label zu finden  
+				// 	 Tipp: Iterator nehmen
+				//   Iterator<Typ> it = variable.iterator();
+				//   while(it.hasNext()){ 
+				//   	mach irgendwas mit it.next()
+				//   } 
+				//   das Label muss sowohl aus der Liste als auch aus dem Panel entfernt werden 
+						
+				//Text im Textfeld löschen		
+				//weitere nötige Schritte requestFocus(), revalidate(), repaint()
+				
+			}
+			
+			public static void main(String[] args) 
+			{
+				new Uebung9();
+			}
+		}
+		```
+
+
 ##### Übung 10 (Zeichnen)
 
 ??? "Übung 10"

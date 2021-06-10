@@ -1084,7 +1084,7 @@ Button gedrueckt!
 </code></pre></div>
 </td></tr></table>
 <p>Nun ändert sich mit jedem Button-Klick der angezeigte Wert.</p>
-<p><img alt="ereignisse" src="../files/66_ereignisse.png" /></p>
+<p><img alt="ereignisse" src="../files/65_ereignisse.png" /></p>
 <h4 id="mehrere-buttons-actionevent">Mehrere Buttons - <code>ActionEvent</code><a class="headerlink" href="#mehrere-buttons-actionevent" title="Permanent link">&para;</a></h4>
 <p>Wir ändern unsere GUI, indem wir die <code>init()</code>-Methode ändern:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>25
@@ -1129,7 +1129,7 @@ Button gedrueckt!
 </code></pre></div>
 </td></tr></table>
 <p>Die GUI sieht dadurch nun so aus:</p>
-<p><img alt="ereignisse" src="../files/65_ereignisse.png" /></p>
+<p><img alt="ereignisse" src="../files/66_ereignisse.png" /></p>
 <p>Das heißt, wir haben zwei Buttons und wollen für diese Buttons das Klick-Ereignis unterschiedlich behandeln. Bei Klick auf den <code>-</code>-Button soll der Wert der Zahl dekrementiert werden, bei Klick auf den <code>+</code>-Button inkrementiert. Wir müssen nun also innerhalb der <code>actionPerformed()</code>-Methode unterscheiden, welcher Button gedrückt wurde, d.h. durch welchen Button das <code>ActionEvent</code> ausgelöst wurde, welches wir behandeln. Dabei hilft uns das <code>ActionEvent</code>-Objekt, das der <code>actionPerformed(ActionEvent e)</code>-Methode übergeben wird. Die Klasse <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/java/awt/event/ActionEvent.html">ActionEvent</a> hat einige nützliche Methoden. Wir verwenden jetzt zunächst eine Methode, die die Klasse <code>ActionEvent</code> von der Klasse <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/util/EventObject.html#getSource()">EventObject</a> geerbt hat, die <code>getSource()</code>-Methode:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>48
 49
@@ -1317,6 +1317,9 @@ Button gedrueckt!
 </code></pre></div>
 </td></tr></table>
 <p>Nun haben wir für die beiden Buttons eine unterschiedliche Ereignisbehandlung realisiert. </p>
+<hr />
+<p><strong><em>Im Vorlesungsvideo vom 9.6. nur bis hier. Ab hier machen wir am 16.6. weiter.</em></strong></p>
+<hr />
 <h4 id="actioncommand">ActionCommand<a class="headerlink" href="#actioncommand" title="Permanent link">&para;</a></h4>
 <p>Die Abfrage des Textes auf den Buttons zur Unterscheidung der Buttons ist nicht <em>clean code</em>. Das hat mehrere Gründe:</p>
 <ol>

@@ -4970,6 +4970,161 @@ Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</s
 </li>
 </ol>
 </details>
+<details class="question"><summary>vorkommentierte Klasse</summary><div class="tabbed-set" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><label for="__tabbed_14_1">Uebung9.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//import</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Uebung9</span> <span class="c1">// es werden JFrame und ActionListener benötigt</span>
+<span class="p">{</span>
+    <span class="c1">//Objektvariablen: </span>
+    <span class="c1">//1. Textfeld, zwei Buttons (add und remove)</span>
+    <span class="c1">//2. unteres Panel</span>
+    <span class="c1">//4. Liste mit Labeln</span>
+
+    <span class="kd">public</span> <span class="nf">Uebung9</span><span class="p">()</span>
+    <span class="p">{</span>       
+        <span class="kd">super</span><span class="p">(</span><span class="s">&quot;TITEL&quot;</span><span class="p">);</span>
+
+        <span class="c1">//Verhalten beim Schließen      </span>
+        <span class="c1">//Größe         </span>
+        <span class="c1">//Sichtbarkeit      </span>
+        <span class="c1">//...</span>
+
+        <span class="c1">//2. main-JPanel in JPanels unten und oben unterteilen</span>
+        <span class="c1">//Dem Panel oben werden das Textfeld und die beiden Buttons hinzugefügt,</span>
+        <span class="c1">//das lagern wir in die Methode createOben() aus</span>
+        <span class="c1">//oben: Hintergrundfarbe ist YELLOW</span>
+        <span class="c1">//unten: Hintergrundfarbe ist CYAN</span>
+        <span class="c1">//Das Panel unten soll ebenfalls eine Objektvariable sein.</span>
+
+        <span class="c1">//4. neue ArrayList für die Label anlegen </span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">createOben</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">//...</span>
+
+        <span class="k">return</span> <span class="n">panel</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="p">)</span> 
+    <span class="p">{</span>
+
+        <span class="c1">//Quelle des Events ermitteln</span>
+
+        <span class="c1">//Falls es der &quot;add&quot;-Button ist</span>
+        <span class="c1">// - Text aus dem Textfeld übernehmen</span>
+        <span class="c1">// - neues Label mit dem Text anlegen </span>
+        <span class="c1">// - das Label formatieren (Hintergrundfarbe RED)</span>
+        <span class="c1">//   Tipp: wenn Sie einem JLabel eine Hintergrundfarbe mit setBackground(Color c) </span>
+        <span class="c1">//   setzen, dann sieht man diese nur, wenn Sie für dieses JLabel die Methode </span>
+        <span class="c1">//   setOpaque(true) aufrufen. Nur dadurch werden für dieses JLabel alle Pixel </span>
+        <span class="c1">//   gezeichnet, die in dessen Grenzen sind, d.h. das komplette Rechteck, </span>
+        <span class="c1">//   das das JLabel ausfüllt. Ansonsten würde nur der Text &quot;gezeichnet&quot; und </span>
+        <span class="c1">//   die Hintergrundfarbe wäre hinter dem Text versteckt.</span>
+        <span class="c1">// - das Label in Label-Liste einfügen </span>
+        <span class="c1">// - das Label dem unteren Panel hinzufügen</span>
+
+        <span class="c1">//Falls es der &quot;remove&quot;-Button ist</span>
+        <span class="c1">// - Text aus dem Textfeld übernehmen</span>
+        <span class="c1">// - durch die Label-Liste iterieren, um das zu entfernende Label zu finden  </span>
+        <span class="c1">//   Tipp: Iterator nehmen</span>
+        <span class="c1">//   Iterator&lt;Typ&gt; it = variable.iterator();</span>
+        <span class="c1">//   while(it.hasNext()){ </span>
+        <span class="c1">//      mach irgendwas mit it.next()</span>
+        <span class="c1">//   } </span>
+        <span class="c1">//   das Label muss sowohl aus der Liste als auch aus dem Panel entfernt werden </span>
+
+        <span class="c1">//Text im Textfeld löschen      </span>
+        <span class="c1">//weitere nötige Schritte requestFocus(), revalidate(), repaint()</span>
+
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Uebung9</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h5 id="ubung-10-zeichnen">Übung 10 (Zeichnen)<a class="headerlink" href="#ubung-10-zeichnen" title="Permanent link">&para;</a></h5>
 <details><summary>Übung 10</summary><ol>
 <li>Zeichnen Sie ein Quadrat. Passen Sie dieses Quadrat möglichst passend in das Fenster. Da es sich um ein Quadrat handelt, kann es sich nur der Höhe oder der Breite des Fensters anpassen, je nachdem, was kleiner ist. Wenn die Höhe kleiner ist, als die Breite, dann soll das Quadrat ausgefüllt sein. Wenn die Breite kleiner als die Höhe ist, dann soll das Quadrat nicht ausgefüllt sein, aber die Linienstärke auf <code>5.0f</code> gesetzt werden. </li>

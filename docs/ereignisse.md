@@ -252,7 +252,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 
 Nun ändert sich mit jedem Button-Klick der angezeigte Wert.
 
-![ereignisse](./files/66_ereignisse.png)
+![ereignisse](./files/65_ereignisse.png)
 
 
 #### Mehrere Buttons - `ActionEvent`
@@ -284,7 +284,7 @@ Wir ändern unsere GUI, indem wir die `init()`-Methode ändern:
 
 Die GUI sieht dadurch nun so aus:
 
-![ereignisse](./files/65_ereignisse.png)
+![ereignisse](./files/66_ereignisse.png)
 
 Das heißt, wir haben zwei Buttons und wollen für diese Buttons das Klick-Ereignis unterschiedlich behandeln. Bei Klick auf den `-`-Button soll der Wert der Zahl dekrementiert werden, bei Klick auf den `+`-Button inkrementiert. Wir müssen nun also innerhalb der `actionPerformed()`-Methode unterscheiden, welcher Button gedrückt wurde, d.h. durch welchen Button das `ActionEvent` ausgelöst wurde, welches wir behandeln. Dabei hilft uns das `ActionEvent`-Objekt, das der `actionPerformed(ActionEvent e)`-Methode übergeben wird. Die Klasse [ActionEvent](https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/java/awt/event/ActionEvent.html) hat einige nützliche Methoden. Wir verwenden jetzt zunächst eine Methode, die die Klasse `ActionEvent` von der Klasse [EventObject](https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/util/EventObject.html#getSource()) geerbt hat, die `getSource()`-Methode:
 
@@ -393,6 +393,12 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 ```
 
 Nun haben wir für die beiden Buttons eine unterschiedliche Ereignisbehandlung realisiert. 
+
+---
+
+***Im Vorlesungsvideo vom 9.6. nur bis hier. Ab hier machen wir am 16.6. weiter.***
+
+---
 
 #### ActionCommand
 
