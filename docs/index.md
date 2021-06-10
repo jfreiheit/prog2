@@ -774,10 +774,10 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 ??? question "07.-11.06.2021 - GUI Ereignisse"
 	- siehe [**GUI Ereignisse**](./ereignisse/#ereignisse)
 	- siehe Video zu [**GUI Ereignisse**](./ereignisse/#ereignisse) - Vorlesung 09.06.2021
-		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=7066a52fe2151457203128108aa7a6ec&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
+		<iframe src="./files/11_Ereignisse.mp4" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no"></iframe>
 	- Quellcode aus der Vorlesung vom 09.06.2021
 
-		=== "MyFirstDrawingWindow.java"
+		=== "Ereignisbehandlung.java"
 
 			```java linenums="1"
 			import java.awt.BorderLayout;
@@ -855,9 +855,7 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 					}
 				}
 
-			}
-
-			
+			}		
 			```
 
 	- siehe [**Übung 9**](./uebungen/#ubung-9-ereignisbehandlung-actionlistener)

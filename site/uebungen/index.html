@@ -5125,6 +5125,243 @@ Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</s
 </div>
 </div>
 </details>
+<details class="question"><summary>eine mögliche Lösung (aus der Morgenübung - danke an Frau Schippl)</summary><div class="tabbed-set" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><label for="__tabbed_15_1">Uebung9.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung9</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.GridLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Uebung9</span> <span class="kd">extends</span> <span class="n">JFrame</span> <span class="kd">implements</span> <span class="n">ActionListener</span>
+<span class="p">{</span>
+    <span class="c1">//Objektvariablen hier erstellen, damit die für alle Methoden verfügbar sind, also in der initContent(), auch ActionEvent()</span>
+    <span class="n">JTextField</span> <span class="n">textfeld</span><span class="p">;</span>
+    <span class="n">JButton</span> <span class="n">b1</span><span class="p">;</span>
+    <span class="n">JButton</span> <span class="n">b2</span><span class="p">;</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">JLabel</span><span class="o">&gt;</span> <span class="n">labels</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span> <span class="c1">//Collection, Liste voll mit labels</span>
+    <span class="n">JPanel</span> <span class="n">unten</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Uebung9</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Elemente hinzufügen&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+        <span class="c1">//Steuerelemente : Buttons, Label, ...</span>
+        <span class="c1">//Container: JPanel</span>
+
+        <span class="n">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">initContent</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">panel</span><span class="p">);</span> <span class="c1">//Steuerelemente dem Container hinzufügen</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>     
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="n">JPanel</span> <span class="nf">initContent</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">main</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">main</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span> <span class="n">GridLayout</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+
+
+        <span class="c1">//Bei grid + flowLayout spielt die Reihenfolge eine Rolle!</span>
+        <span class="n">JPanel</span> <span class="n">oben</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">textfeld</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JTextField</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">b1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;add&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">b1</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="s">&quot;add&quot;</span><span class="p">);</span> <span class="c1">//doppelmoppel, aber falls Text kryptisch, dann wird setAytionCommans benutzt!!</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">b2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;remove&quot;</span><span class="p">);</span>
+        <span class="n">oben</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">YELLOW</span><span class="p">);</span>
+        <span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">textfeld</span><span class="p">);</span>
+        <span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">b1</span><span class="p">);</span>
+        <span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">b2</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">b1</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">b2</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">main</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">oben</span><span class="p">);</span>
+
+
+        <span class="k">this</span><span class="p">.</span><span class="na">unten</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">CYAN</span><span class="p">);</span>
+
+        <span class="n">main</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">unten</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">main</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Uebung9</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="p">)</span> <span class="c1">//HINZUFÜGEN ZUM PANEL!!!!</span>
+    <span class="p">{</span>
+        <span class="c1">//System.out.println(&quot;Test..&quot;); IMMER TESTEN ZUERST!!!!</span>
+        <span class="n">Object</span> <span class="n">quelle</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getSource</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">quelle</span> <span class="k">instanceof</span> <span class="n">JButton</span><span class="p">)</span> <span class="c1">//Ist es ein JBUTTON?</span>
+        <span class="p">{</span>
+            <span class="n">JButton</span> <span class="n">button</span> <span class="o">=</span> <span class="p">(</span><span class="n">JButton</span><span class="p">)</span><span class="n">quelle</span><span class="p">;</span> <span class="c1">//überprüfen, ob JButton und was für ein Button geklickt wird</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="na">getActionCommand</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;add&quot;</span><span class="p">))</span>
+            <span class="p">{</span>   
+                <span class="n">JLabel</span> <span class="n">neu</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">textfeld</span><span class="p">.</span><span class="na">getText</span><span class="p">());</span>
+                <span class="n">neu</span><span class="p">.</span><span class="na">setOpaque</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+                <span class="n">neu</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+                <span class="n">neu</span><span class="p">.</span><span class="na">setForeground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">labels</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">neu</span><span class="p">);</span> <span class="c1">//Liste hinzugefügt</span>
+                <span class="c1">//Textfeld auslesen, dannJLabel erzeugen -&gt; Liste hinzufügen</span>
+                <span class="c1">//Textfeld mit &quot;Hallo&quot; befüülen, dann add-Button -&gt; Ausgabe erscheint</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="na">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">neu</span><span class="p">);</span><span class="c1">//JPanel hinzugefügt</span>
+
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">textfeld</span><span class="p">.</span><span class="na">getText</span><span class="p">());</span> <span class="c1">//Text aus Textfeld erscheint auf konsole</span>
+
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Add - Button geklickt...&quot;</span><span class="p">);</span> <span class="c1">//Ist es ein add-Button?</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="na">getActionCommand</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;remove&quot;</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">String</span> <span class="n">inputText</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">textfeld</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span> <span class="c1">//Text aus Textfeld wird zwischen gespeichert</span>
+
+
+                  <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">JLabel</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">labels</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span> <span class="c1">//laufen durch Liste</span>
+                  <span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="c1">//Element in der Liste?</span>
+                      <span class="p">{</span> <span class="n">JLabel</span> <span class="n">aktLabel</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">//wir holen das ELement aus der Liste, wir betrachten es</span>
+
+                  <span class="k">if</span><span class="p">(</span><span class="n">aktLabel</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">inputText</span><span class="p">))</span> <span class="c1">//Was für einen text in diesem label? + vergleichen den Text mit dem Text im Textfeld</span>
+
+                     <span class="p">{</span>
+                      <span class="n">it</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span> <span class="c1">//wenn gleich/schon vorhanden, dann löschen</span>
+                      <span class="k">this</span><span class="p">.</span><span class="na">unten</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">aktLabel</span><span class="p">);</span><span class="c1">//wird auch ausJPanel gelöscht</span>
+                     <span class="p">}</span>
+             <span class="p">}</span>
+
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Remove - Button geklickt..&quot;</span><span class="p">);</span><span class="c1">//ist es ein remove Button?</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">unten</span><span class="p">.</span><span class="na">revalidate</span><span class="p">();</span> <span class="c1">//zeichnet Fenster nochmal neu</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">unten</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h5 id="ubung-10-zeichnen">Übung 10 (Zeichnen)<a class="headerlink" href="#ubung-10-zeichnen" title="Permanent link">&para;</a></h5>
 <details><summary>Übung 10</summary><ol>
 <li>Zeichnen Sie ein Quadrat. Passen Sie dieses Quadrat möglichst passend in das Fenster. Da es sich um ein Quadrat handelt, kann es sich nur der Höhe oder der Breite des Fensters anpassen, je nachdem, was kleiner ist. Wenn die Höhe kleiner ist, als die Breite, dann soll das Quadrat ausgefüllt sein. Wenn die Breite kleiner als die Höhe ist, dann soll das Quadrat nicht ausgefüllt sein, aber die Linienstärke auf <code>5.0f</code> gesetzt werden. </li>
