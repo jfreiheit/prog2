@@ -1,14 +1,14 @@
 # Graphics
 
-Wir werden unsere GUI nun um eine Komponente erweiteren, in der wir zeichnen können. Im Prinzip wird unsere GUI **immer gezeichnet**. Die Steuerelemente sind nur vorformatiert und bestehen aus lauter Linien, Polygonen und Punkten, die zusammen dann so, wie z.B. ein Button aussehen. Wenn wir eine GUI haben und dieses Fenster z.B. die Größe ändert, wird es dabei jedes Mal neu gezeichnet. Diese (Neu-)Zeichnen wird dadurch angestoßen, dass für unser `JFrame` die Methode `paint()` aufgerufen wird. Diese Methode wird z.B. auch in der Methode `setVisible(true)` aufgerufen.  
+Wir werden unsere GUI nun um eine Komponente erweitern, in der wir zeichnen können. Im Prinzip wird unsere GUI **immer gezeichnet**. Die Steuerelemente sind nur vorformatiert und bestehen aus lauter Linien, Polygonen und Punkten, die zusammen dann so, wie z.B. ein Button aussehen. Wenn wir eine GUI haben und dieses Fenster z.B. die Größe ändert, wird es dabei jedes Mal neu gezeichnet. Diese (Neu-)Zeichnen wird dadurch angestoßen, dass für unser `JFrame` die Methode `paint()` aufgerufen wird. Diese Methode wird z.B. auch in der Methode `setVisible(true)` aufgerufen.  
 
 Jede Komponente (also jedes Steuerelement und jeder Container) hat ihre eigene Objektmethode `paint()`, in der beschrieben ist, wie diese Komponente zu zeichnen ist. Genauer gesagt, werden in `paint()` folgende drei Methoden aufgerufen:
 
 - `paintBorder()` - zeichnet den Rahmen der Komponente
-- `paintChildren()` - ruft `paint()` für alle *Kindkomponenten* auf (also z.B. alle Sterelemente in einem `JPanel`)
+- `paintChildren()` - ruft `paint()` für alle *Kindkomponenten* auf (also z.B. alle Steurelemente in einem `JPanel`)
 - `paintComponent()` - zeichnet die Komponente (und ihre Kinder)
 
-Damit überhaupt Linien und Punkte dargestellt werden können, gibt es eine Klasse `Graphics`, die, etwas vereinfacht gesagt, die Schnittstelle zwischen Hardware (dem Monitor) und dem zu zeichnenden Fenster darstellt. Alle Komponenten eines Fensters teilen sich genau **ein** Objekt dieser Klasse `Graphics`. Bei diesem Objekt wird auch vom *Graphhics-Context* (*Grafikkontext*) gesprochen. Diese Klasse stellt eine Vielzahl von Methoden zur Verfügung, um einfache geoemtrische Objekte zu zeichnen, z.B.
+Damit überhaupt Linien und Punkte dargestellt werden können, gibt es eine Klasse `Graphics`, die, etwas vereinfacht gesagt, die Schnittstelle zwischen Hardware (dem Monitor) und dem zu zeichnenden Fenster darstellt. Alle Komponenten eines Fensters teilen sich genau **ein** Objekt dieser Klasse `Graphics`. Bei diesem Objekt wird auch vom *Graphics-Context* (*Grafikkontext*) gesprochen. Diese Klasse stellt eine Vielzahl von Methoden zur Verfügung, um einfache geometrische Objekte zu zeichnen, z.B.
 
 - `drawLine()`, um eine Linie zu zeichnen,
 - `drawOval()`, um eine (leere) Ellipse zu zeichnen,
@@ -19,7 +19,7 @@ Damit überhaupt Linien und Punkte dargestellt werden können, gibt es eine Klas
 - `fillRect()`, um ein (ausgefülltes) Rechteck zu zeichnen,
 - `fillPolygon()`, um ein (ausgefülltes) Polygon (also ein Vieleck) zu zeichnen. 
 
-Damit nun alls `paintX()`-Methoden (also `paint()`, `paintBorder()`, `paintComponent` und `paintChildren()`) Zugriff auf diesen Grafikkontext (das Objekt von `Graphics`) bekommen, wird es diesen Methoden übergeben. Das heißt, die Methoden sind so deklariert (alle `void`):
+Damit nun alle `paintX()`-Methoden (also `paint()`, `paintBorder()`, `paintComponent` und `paintChildren()`) Zugriff auf diesen Grafikkontext (das Objekt von `Graphics`) bekommen, wird es diesen Methoden übergeben. Das heißt, die Methoden sind so deklariert (alle `void`):
 
 - `paint(Graphics g)`
 	- `paintBorder(Graphics g)` 
@@ -31,7 +31,7 @@ Die `Graphics`-Klasse gibt es schon seit Java 1.0. Allerdings hat man bereits se
 
 ### Eigene geometrische Objekte zeichnen
 
-Bevor wir eigene geometrische Objekt zeichnen können, schauen wir zunächst nochmal auf unser "Grundgerüst" für eine GUI (siehe Kapitel [GUI Einführung](../gui/#erweitern-des-fensters-um-ein-jpanel)):
+Bevor wir eigene geometrische Objekte zeichnen können, schauen wir zunächst nochmal auf unser "Grundgerüst" für eine GUI (siehe Kapitel [GUI Einführung](../gui/#erweitern-des-fensters-um-ein-jpanel)):
 
 
 ```java linenums="1"
@@ -352,7 +352,7 @@ und die Pendants mit einem zusätzlichen *Alpha-Anteil* für die Transparenz:
 - `public Color(int r, int g, int b, int alpha)`, `0` bis `255` (`0` vollständig transparent, `255` deckend),
 - `public Color(float r, float g, float b, float alpha)`, `0.0f` bis `1.0f` (`0` vollständig transparent, `1.0` deckend).
 
-In `Color` sind darüber hinuas folgende Farben als statische Konstanten definiert:
+In `Color` sind darüber hinaus folgende Farben als statische Konstanten definiert:
 
 - `WHITE`, `BLACK`, `BLUE`, `CYAN`, `DARKGRAY`, `GRAY`, `GREEN`, `LIGHTGRAY`, `MAGENTA`, `ORANGE`, `PINK`, `RED`, `YELLOW`
 
@@ -440,7 +440,7 @@ ergibt:
 
 Angenommen, Sie wollen eine geometrischen Figur so zeichnen, dass sich ihre Größe der Größe des Fensters anpasst. Dazu stehen Ihnen die Methoden `getHeight()` und `getWidth()` von `JPanel` (und somit von Ihrem `Canvas`-Objekt) zur Verfügung. Die linke obere Ecke des `JPanels` hat die Koordinaten `[x=0, y=0]` und die rechte untere Ecke hat die Koordinaten `[x=this.getWidth(), y= this.getHeight()]`, d.h
 
-- für den linekn Rand gilt `x = 0`,
+- für den linken Rand gilt `x = 0`,
 - für den rechten Rand gilt `x = this.width()`,
 - für den oberen Rand gilt `y = 0` und
 - für den unteren Rand gilt `y = this.height()`.

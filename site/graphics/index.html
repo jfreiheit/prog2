@@ -611,14 +611,14 @@
                 
                 
                 <h1 id="graphics">Graphics<a class="headerlink" href="#graphics" title="Permanent link">&para;</a></h1>
-<p>Wir werden unsere GUI nun um eine Komponente erweiteren, in der wir zeichnen können. Im Prinzip wird unsere GUI <strong>immer gezeichnet</strong>. Die Steuerelemente sind nur vorformatiert und bestehen aus lauter Linien, Polygonen und Punkten, die zusammen dann so, wie z.B. ein Button aussehen. Wenn wir eine GUI haben und dieses Fenster z.B. die Größe ändert, wird es dabei jedes Mal neu gezeichnet. Diese (Neu-)Zeichnen wird dadurch angestoßen, dass für unser <code>JFrame</code> die Methode <code>paint()</code> aufgerufen wird. Diese Methode wird z.B. auch in der Methode <code>setVisible(true)</code> aufgerufen.  </p>
+<p>Wir werden unsere GUI nun um eine Komponente erweitern, in der wir zeichnen können. Im Prinzip wird unsere GUI <strong>immer gezeichnet</strong>. Die Steuerelemente sind nur vorformatiert und bestehen aus lauter Linien, Polygonen und Punkten, die zusammen dann so, wie z.B. ein Button aussehen. Wenn wir eine GUI haben und dieses Fenster z.B. die Größe ändert, wird es dabei jedes Mal neu gezeichnet. Diese (Neu-)Zeichnen wird dadurch angestoßen, dass für unser <code>JFrame</code> die Methode <code>paint()</code> aufgerufen wird. Diese Methode wird z.B. auch in der Methode <code>setVisible(true)</code> aufgerufen.  </p>
 <p>Jede Komponente (also jedes Steuerelement und jeder Container) hat ihre eigene Objektmethode <code>paint()</code>, in der beschrieben ist, wie diese Komponente zu zeichnen ist. Genauer gesagt, werden in <code>paint()</code> folgende drei Methoden aufgerufen:</p>
 <ul>
 <li><code>paintBorder()</code> - zeichnet den Rahmen der Komponente</li>
-<li><code>paintChildren()</code> - ruft <code>paint()</code> für alle <em>Kindkomponenten</em> auf (also z.B. alle Sterelemente in einem <code>JPanel</code>)</li>
+<li><code>paintChildren()</code> - ruft <code>paint()</code> für alle <em>Kindkomponenten</em> auf (also z.B. alle Steurelemente in einem <code>JPanel</code>)</li>
 <li><code>paintComponent()</code> - zeichnet die Komponente (und ihre Kinder)</li>
 </ul>
-<p>Damit überhaupt Linien und Punkte dargestellt werden können, gibt es eine Klasse <code>Graphics</code>, die, etwas vereinfacht gesagt, die Schnittstelle zwischen Hardware (dem Monitor) und dem zu zeichnenden Fenster darstellt. Alle Komponenten eines Fensters teilen sich genau <strong>ein</strong> Objekt dieser Klasse <code>Graphics</code>. Bei diesem Objekt wird auch vom <em>Graphhics-Context</em> (<em>Grafikkontext</em>) gesprochen. Diese Klasse stellt eine Vielzahl von Methoden zur Verfügung, um einfache geoemtrische Objekte zu zeichnen, z.B.</p>
+<p>Damit überhaupt Linien und Punkte dargestellt werden können, gibt es eine Klasse <code>Graphics</code>, die, etwas vereinfacht gesagt, die Schnittstelle zwischen Hardware (dem Monitor) und dem zu zeichnenden Fenster darstellt. Alle Komponenten eines Fensters teilen sich genau <strong>ein</strong> Objekt dieser Klasse <code>Graphics</code>. Bei diesem Objekt wird auch vom <em>Graphics-Context</em> (<em>Grafikkontext</em>) gesprochen. Diese Klasse stellt eine Vielzahl von Methoden zur Verfügung, um einfache geometrische Objekte zu zeichnen, z.B.</p>
 <ul>
 <li><code>drawLine()</code>, um eine Linie zu zeichnen,</li>
 <li><code>drawOval()</code>, um eine (leere) Ellipse zu zeichnen,</li>
@@ -629,7 +629,7 @@
 <li><code>fillRect()</code>, um ein (ausgefülltes) Rechteck zu zeichnen,</li>
 <li><code>fillPolygon()</code>, um ein (ausgefülltes) Polygon (also ein Vieleck) zu zeichnen. </li>
 </ul>
-<p>Damit nun alls <code>paintX()</code>-Methoden (also <code>paint()</code>, <code>paintBorder()</code>, <code>paintComponent</code> und <code>paintChildren()</code>) Zugriff auf diesen Grafikkontext (das Objekt von <code>Graphics</code>) bekommen, wird es diesen Methoden übergeben. Das heißt, die Methoden sind so deklariert (alle <code>void</code>):</p>
+<p>Damit nun alle <code>paintX()</code>-Methoden (also <code>paint()</code>, <code>paintBorder()</code>, <code>paintComponent</code> und <code>paintChildren()</code>) Zugriff auf diesen Grafikkontext (das Objekt von <code>Graphics</code>) bekommen, wird es diesen Methoden übergeben. Das heißt, die Methoden sind so deklariert (alle <code>void</code>):</p>
 <ul>
 <li><code>paint(Graphics g)</code><ul>
 <li><code>paintBorder(Graphics g)</code> </li>
@@ -640,7 +640,7 @@
 </ul>
 <p>Die <code>Graphics</code>-Klasse gibt es schon seit Java 1.0. Allerdings hat man bereits sehr früh festgestellt, dass die Methoden in dieser Klasse nicht genügen, um "schöne" Grafiken zu erstellen. Deshalb hat man bereits in Java 1.1 eine neue Klasse <code>Graphics2D</code> eingeführt (hat von <code>Graphics</code> geerbt), in der hauptsächlich die Darstellung der geometrischen Objekte verbessert wurde, aber in der auch einige Methoden dazukamen, um z.B. andere Linienformen (gestrichelt, gepunktet, ...) zu definieren, andere Fonts für den Text usw. Tatsächlich handelt es sich seit JDK 1.2 bei dem Grafikkontext, also dem <code>Graphics</code>-Objekt <code>g</code> um ein Objekt der Klasse <code>Graphics2D</code>. </p>
 <h3 id="eigene-geometrische-objekte-zeichnen">Eigene geometrische Objekte zeichnen<a class="headerlink" href="#eigene-geometrische-objekte-zeichnen" title="Permanent link">&para;</a></h3>
-<p>Bevor wir eigene geometrische Objekt zeichnen können, schauen wir zunächst nochmal auf unser "Grundgerüst" für eine GUI (siehe Kapitel <a href="../gui/#erweitern-des-fensters-um-ein-jpanel">GUI Einführung</a>):</p>
+<p>Bevor wir eigene geometrische Objekte zeichnen können, schauen wir zunächst nochmal auf unser "Grundgerüst" für eine GUI (siehe Kapitel <a href="../gui/#erweitern-des-fensters-um-ein-jpanel">GUI Einführung</a>):</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1118,7 +1118,7 @@
 <li><code>public Color(int r, int g, int b, int alpha)</code>, <code>0</code> bis <code>255</code> (<code>0</code> vollständig transparent, <code>255</code> deckend),</li>
 <li><code>public Color(float r, float g, float b, float alpha)</code>, <code>0.0f</code> bis <code>1.0f</code> (<code>0</code> vollständig transparent, <code>1.0</code> deckend).</li>
 </ul>
-<p>In <code>Color</code> sind darüber hinuas folgende Farben als statische Konstanten definiert:</p>
+<p>In <code>Color</code> sind darüber hinaus folgende Farben als statische Konstanten definiert:</p>
 <ul>
 <li><code>WHITE</code>, <code>BLACK</code>, <code>BLUE</code>, <code>CYAN</code>, <code>DARKGRAY</code>, <code>GRAY</code>, <code>GREEN</code>, <code>LIGHTGRAY</code>, <code>MAGENTA</code>, <code>ORANGE</code>, <code>PINK</code>, <code>RED</code>, <code>YELLOW</code></li>
 </ul>
@@ -1246,7 +1246,7 @@
 <h3 id="hohe-und-breite-abhangig-von-der-canvas-groe">Höhe und Breite abhängig von der Canvas-Größe<a class="headerlink" href="#hohe-und-breite-abhangig-von-der-canvas-groe" title="Permanent link">&para;</a></h3>
 <p>Angenommen, Sie wollen eine geometrischen Figur so zeichnen, dass sich ihre Größe der Größe des Fensters anpasst. Dazu stehen Ihnen die Methoden <code>getHeight()</code> und <code>getWidth()</code> von <code>JPanel</code> (und somit von Ihrem <code>Canvas</code>-Objekt) zur Verfügung. Die linke obere Ecke des <code>JPanels</code> hat die Koordinaten <code>[x=0, y=0]</code> und die rechte untere Ecke hat die Koordinaten <code>[x=this.getWidth(), y= this.getHeight()]</code>, d.h</p>
 <ul>
-<li>für den linekn Rand gilt <code>x = 0</code>,</li>
+<li>für den linken Rand gilt <code>x = 0</code>,</li>
 <li>für den rechten Rand gilt <code>x = this.width()</code>,</li>
 <li>für den oberen Rand gilt <code>y = 0</code> und</li>
 <li>für den unteren Rand gilt <code>y = this.height()</code>.</li>
