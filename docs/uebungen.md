@@ -2861,7 +2861,6 @@
 
 
 
-
 ##### Übung 10 (Zeichnen)
 
 ??? "Übung 10"
@@ -2872,6 +2871,59 @@
 		![uebung10](./files/84_uebung10.png)
 
 	3. Beobachten Sie anhand des Farbwechsels, wie oft die `paintComponent()`-Methode aufgerufen wird. 
+
+
+??? question "vorkommentierte Klasse"
+	
+	=== "Uebung10.java"
+		```java linenums="1"
+		//import 
+
+		public class Uebung10 extends JFrame{
+
+			public Uebung10()
+			{
+				
+				//Titel, Verhalten beim Schließen ...
+		        		
+				//neue Leinwand (Canvas) anlegen und dem Fenster hinzufügen		
+				
+				//Größe, Location, Sichtbarkeit      
+		        
+			}
+			
+			private class Canvas extends JPanel
+			{
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					// Implementierung von JPanel aufrufen
+					// Methoden von Graphics2D nutzbar machen
+					
+					//Zufällige Werte für Rot, Grün und Blau erzeugen
+					//Kleine Hilfe:
+					//https://www.tutorialspoint.com/java/util/random_nextint_inc_exc.htm
+					//public Color(int r, int g, int b)
+					
+					//falls die Höhe des Fensters kleiner ist, als die Breite
+					//Länge der Seiten an Höhe anpassen
+					//Quadrat ausgefüllt
+					
+					//sonst 
+					//Länge der Seiten an Breite anpassen
+					//Quadrat nicht ausgefüllt, Linienstärke 5.0f 
+				}			
+
+			}
+
+			public static void main(String[] args) 
+			{
+				new Uebung10();
+			}
+
+		}
+		```
+
 
 ## Zusatz
 

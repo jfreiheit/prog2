@@ -1707,6 +1707,178 @@
 	- Schauen Sie sich auch im Skript [Mengenoperationen](./collections/#mengenoperationen) an. 
 
 
+
+??? question "eine mögliche Lösung für Aufgabe 5"
+	
+	=== "SetOperations.java"
+		```java linenums="1"
+		package aufgaben.aufgabe5;
+
+		import java.util.*;
+
+		public class SetOperations {
+			Set<Integer> numbers1;
+			Set<Integer> numbers2;
+			Set<Integer> both;
+			final static int UPPER_BOUND = 100;
+			
+			public SetOperations()
+			{
+				this.numbers1 = new TreeSet<>();
+				this.numbers2 = new TreeSet<>();
+				this.both = new TreeSet<>();
+			}
+			
+			public void fill()
+			{
+				Random r = new Random();
+				int nextIntNr = 0;
+				Integer nextIntegerNr = Integer.valueOf(nextIntNr);
+				// fill numbers1
+				for(int i=0; i<UPPER_BOUND; i++)
+				{
+					nextIntNr = r.nextInt(UPPER_BOUND);
+					nextIntegerNr = Integer.valueOf(nextIntNr);
+					this.numbers1.add(nextIntegerNr);
+				}
+				// fill numbers2
+				for(int i=0; i<UPPER_BOUND; i++)
+				{
+					nextIntNr = r.nextInt(UPPER_BOUND);
+					nextIntegerNr = Integer.valueOf(nextIntNr);
+					this.numbers2.add(nextIntegerNr);
+				} 
+			}
+			
+			public void fillBothUnion()
+			{
+				System.out.println();
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("         A                           B                        A "+'\u222a'+" B ");
+				System.out.println("----------------------------------------------------------------------------");
+				this.both.addAll(numbers1);
+				this.both.addAll(numbers2);
+			}
+			
+			public void fillBothIntersection()
+			{
+				System.out.println();
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("         A                           B                        A "+'\u2229'+" B ");
+				System.out.println("----------------------------------------------------------------------------");
+				this.both.addAll(numbers1);
+				this.both.retainAll(numbers2);
+			}
+			
+			public void fillBothDifference()
+			{
+				System.out.println();
+				System.out.println("----------------------------------------------------------------------------");
+				System.out.println("         A                           B                          A-B ");
+				System.out.println("----------------------------------------------------------------------------");
+				this.both.addAll(numbers1);
+				this.both.removeAll(numbers2);
+			}
+			
+			public Integer printOneLine(Iterator<Integer> it, Integer next, int curRow)
+			{
+				int curNr = 0; // row*10+col
+				for(int col=0; col<10; col++)
+				{
+					curNr = curRow*10+col;
+					if(next!=null && next.intValue()==curNr) 
+					{
+						System.out.print('\u25cf'+" ");
+						if(it.hasNext())
+						{
+							next = it.next();
+						}
+					}
+					else
+					{
+						//System.out.print('\u25cc'+" ");
+						System.out.print('\u2009'+" ");
+					}
+				}
+				return next;
+			}
+			
+			private void printSpaces(int nrOfSpaces)
+			{
+				for(int spaces=0; spaces<nrOfSpaces; spaces++) System.out.print(" ");
+			}
+			
+			private void justTestPrint()
+			{ 
+				System.out.print(numbers1.size() + " : [ ");
+				for(Integer i : numbers1) System.out.print(i.intValue() + " ");
+				System.out.println("]");
+				System.out.println();
+				System.out.print(numbers2.size() + " : [ ");
+				for(Integer i : numbers2) System.out.print(i.intValue() + " ");
+				System.out.println("]");
+				System.out.println();
+				System.out.print(both.size() + " : [ ");
+				for(Integer i : both) System.out.print(i.intValue() + " ");
+				System.out.println("]");
+				System.out.println();
+			}
+			
+			public void print()
+			{
+				//justTestPrint();
+				System.out.println();
+			
+				Iterator<Integer> it1 = numbers1.iterator();
+				Integer next1 = (it1.hasNext()) ? it1.next() : null;
+				
+				Iterator<Integer> it2 = numbers2.iterator();
+				Integer next2 = (it2.hasNext()) ? it2.next() : null;
+				
+				Iterator<Integer> itb = both.iterator();
+				Integer nextB = (itb.hasNext()) ? itb.next() : null;
+				
+				for(int row=0; row<10; row++)
+				{
+					next1 = this.printOneLine(it1, next1, row);
+					printSpaces(8);
+					next2 = this.printOneLine(it2, next2, row);
+					printSpaces(8);
+					nextB = this.printOneLine(itb, nextB, row);
+					System.out.println();
+				}
+				System.out.println();
+				
+				
+			}
+		}
+		```
+	
+	=== "Testklasse.java"
+		```java linenums="1"
+		package aufgaben.aufgabe5;
+
+		public class Testklasse {
+
+			public static void main(String[] args) {
+				SetOperations so = new SetOperations();
+				so.fill();
+				
+				so.fillBothUnion();
+				so.print();
+				
+				so.fillBothIntersection();
+				so.print();
+				
+				so.fillBothDifference();
+				so.print();
+			}
+
+		}
+		```
+
+
+
 ##### Aufgabe 6 (Maps)
 
 ??? "Aufgabe 6"
@@ -1783,6 +1955,121 @@
 	9. Legen Sie ein zweites Menü an und kopieren Sie alle Einträge aus dem ersten Menü hinein. Löschen Sie im zweiten Menü die Pizza `Hawaii` und geben Sie die Namen aller noch verfügbaren Pizzen aus.
 
 	10. Finden Sie in Ihrem Code ein Beispiel für Auto-Boxing und schreiben Sie einen entsprechenden Kommentar.
+
+
+
+??? question "eine mögliche Lösung für Aufgabe 6"
+	
+	=== "PizzaMenu.java"
+		```java linenums="1"
+		package aufgaben.aufgabe6;
+
+		import java.util.ArrayList;
+		import java.util.HashMap;
+		import java.util.Map;
+		import java.util.Set;
+		import java.util.List;
+
+
+		public class PizzaMenu {	
+
+			//3. 
+			public static boolean existingPizza(Map<String,Double> menu, String pizza) {
+				if(menu.containsKey(pizza)){			
+					return true;
+				}		
+				return false;
+			}
+
+			//4.
+			public static void printPrice(Map<String,Double> menu, String pizza) {
+				if(existingPizza(menu, pizza)){
+					System.out.println(pizza + ": " + menu.get(pizza));
+				}else {
+					System.out.println(pizza + ": " + "Diese Pizza gibt es nicht.");
+				}
+			}
+
+			//5.
+			public static void printMenu(Map<String,Double> menu) {
+				System.out.println();
+				System.out.println("##############");
+				System.out.println("Das Menu enthält " + menu.size() + " Pizzen.");
+
+				if (!menu.isEmpty()) {
+					for(Map.Entry<String, Double> entry : menu.entrySet()) 
+					{
+						System.out.println("Pizza : " + entry.getKey() + " - " + entry.getValue());
+					}
+				}
+
+				System.out.println("##############");		
+			}
+
+			//7.
+			public static void affordablePizza(Map<String,Double> menu, double maxPrice) {
+				List<String> pizzen = new ArrayList<>();
+
+				System.out.println("Eingegebener Betrag: " + maxPrice + " Euro"); 
+				for(Map.Entry<String, Double> eintrag : menu.entrySet())
+				{
+					if (eintrag.getValue() <= maxPrice) { //Auto-Boxing von double zu Double
+						pizzen.add(eintrag.getKey());
+					}
+				}
+				if (pizzen.size() == 0) {
+					System.out.println("Leider gibt es zu diesem Preis keine Pizza.");
+				}else {			
+					System.out.println("Mögliche Pizzen: " + pizzen);
+				}	
+			}		
+
+
+			public static void main(String[] args) {
+
+				//2.
+				Map<String,Double> menu1 = new HashMap<>();
+				menu1.put("Margherita", 7.0); //Auto-Boxing von double zu Double
+				menu1.put("Veggie", 7.5); //Auto-Boxing von double zu Double
+				menu1.put("Salami", 8.5); //Auto-Boxing von double zu Double
+				menu1.put("Schinken", 8.5); //Auto-Boxing von double zu Double
+
+				//4.		
+				printPrice(menu1, "Salami");
+				printPrice(menu1, "Hawaii");
+
+				//5.
+				printMenu(menu1);
+
+				//6. 
+				menu1.put("Schinken", 8.20); //Auto-Boxing von double zu Double
+
+				//7.
+				affordablePizza(menu1, 4.0);
+				affordablePizza(menu1, 8.0);
+
+				//8. 
+				menu1.clear();
+				printMenu(menu1);
+
+				menu1.put("Verde", 7.0); //Auto-Boxing von double zu Double
+				menu1.put("Hawaii", 8.2); //Auto-Boxing von double zu Double
+				menu1.put("Tradizionale", 8.5); //Auto-Boxing von double zu Double
+
+				printMenu(menu1);
+
+				//9.
+				Map<String,Double> menu2 = new HashMap<>();
+				menu2.putAll(menu1);
+				menu2.remove("Hawaii");
+				Set<String> pizzaNames = menu2.keySet();
+				System.out.println();
+				System.out.println("Es gibt folgende Pizzen: " + pizzaNames);
+			}
+
+		}
+		```
+
 
 
 ##### Aufgabe 7 (Interfaces)
@@ -1915,6 +2202,206 @@
 
 		D received Breaking News 4
 		```
+
+
+
+??? question "eine mögliche Lösung für Aufgabe 7"
+	
+	=== "Listener.java"
+		```java linenums="1"
+		package aufgaben.aufgabe7;
+
+		public interface Listener {
+			
+			//method to update the listener, used by publisher
+			public void update();
+			
+			//attach with publisher to observe
+			public void setPublisher(Publisher publisher);
+			
+			//attach with publisher to observe
+			public void removePublisher(Publisher publisher);
+		}
+		```
+	
+	=== "Publisher.java"
+		```java linenums="1"
+		package aufgaben.aufgabe7;
+
+		public interface Publisher 
+		{
+			//methods to register and unregister listeners (observers)
+			public boolean register(Listener listener);
+			public boolean unregister(Listener listener);
+			
+			//method to notify listeners of change
+			public void notifyListeners();
+			
+			//method to get updates from publisher (subject)
+			public String getUpdate(Listener listener);
+		}
+		```
+	
+	=== "Slack.java"
+		```java linenums="1"
+		package aufgaben.aufgabe7;
+
+		import java.util.*;
+
+		public class Slack implements Publisher
+		{
+			private Set<Listener> listeners;
+			private int nrOfMessages;
+			
+			public Slack()
+			{
+				this.listeners = new HashSet<>();
+				this.nrOfMessages = 0;
+			}
+			
+			@Override
+			public boolean register(Listener listener) 
+			{
+				return listeners.add(listener);
+			}
+
+			@Override
+			public boolean unregister(Listener listener) 
+			{
+				return listeners.remove(listener);		
+			}
+
+			@Override
+			public void notifyListeners() 
+			{
+				for(Listener listener : listeners)
+				{
+					listener.update();
+				}	
+			}
+
+			@Override
+			public String getUpdate(Listener obj) 
+			{
+				return "Breaking News " + this.nrOfMessages;
+			}
+			
+			public void publishNews()
+			{
+				this.nrOfMessages++;
+				this.notifyListeners();
+			}
+
+		}
+		```
+
+	
+	=== "Student.java"
+		```java linenums="1"
+		package aufgaben.aufgabe7;
+
+		public class Student implements Listener
+		{
+			private String name;
+			private Publisher publisher;
+			
+			public Student(String name)
+			{
+				this.name = name;
+			}
+			
+			@Override
+			public void update() 
+			{
+				String msg = this.publisher.getUpdate(this);
+				System.out.println(this.name + " received " + msg);	
+			}
+
+			@Override
+			public void setPublisher(Publisher publisher) 
+			{
+				this.publisher = publisher;
+				if(this.publisher.register(this))
+				{
+					System.out.println(this.name + " registered!");
+				}
+			}
+
+			@Override
+			public void removePublisher(Publisher publisher) 
+			{
+				if(this.publisher.unregister(this)) 
+				{
+					System.out.println(this.name + " deregistered!");
+					this.publisher = null;
+				}	
+			}
+			
+			@Override
+			public boolean equals(Object o)
+			{
+				if(o==null) return false;
+				if(this==o) return true;
+				if(this.getClass()!=o.getClass()) return false;
+				
+				Student so = (Student)o;
+				return this.name.equals(so.name);
+			}
+			
+			@Override
+			public int hashCode()
+			{
+				return this.name.hashCode();
+			}
+		}
+		```
+
+	
+	=== "Testklasse.java"
+		```java linenums="1"
+		package aufgaben.aufgabe7;
+
+		public class Testklasse {
+
+			public static void main(String[] args) 
+			{		
+				final int NR_OF_STUDENTS = 5;
+				Slack slack = new Slack();
+				
+				Student[] students = new Student[NR_OF_STUDENTS];
+				Character c = 'A';
+				for(int index=0; index < students.length; index++)
+				{
+					students[index] = new Student(c.toString());
+					c++;
+					students[index].setPublisher(slack);
+				}
+				slack.publishNews();
+				
+				System.out.println();
+				students[1].removePublisher(slack);
+				students[3].removePublisher(slack);
+				System.out.println();
+				slack.publishNews();
+				
+				System.out.println();
+				students[1].setPublisher(slack);
+				students[2].removePublisher(slack);
+				students[4].removePublisher(slack);	
+				System.out.println();
+				slack.publishNews();
+				
+				System.out.println();
+				students[0].removePublisher(slack);
+				students[1].removePublisher(slack);
+				students[3].setPublisher(slack);
+				System.out.println();
+				slack.publishNews();
+			}
+
+		}
+		```
+
 
 
 ##### Aufgabe 8 (GUI)

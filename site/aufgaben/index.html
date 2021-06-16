@@ -431,6 +431,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../mausereignisse/" class="md-nav__link">
+        Mausereignisse
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../uebungen/" class="md-nav__link">
         Übungen
       </a>
@@ -3047,6 +3062,332 @@ Gestalten Sie die Ausgabe so, dass die drei Mengen <code>numbers1</code>, <code>
 <li>Schauen Sie sich auch im Skript <a href="./collections/#mengenoperationen">Mengenoperationen</a> an. </li>
 </ul>
 </details>
+<details class="question"><summary>eine mögliche Lösung für Aufgabe 5</summary><div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">SetOperations.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe5</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SetOperations</span> <span class="p">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers1</span><span class="p">;</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers2</span><span class="p">;</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">both</span><span class="p">;</span>
+    <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">UPPER_BOUND</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">SetOperations</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">numbers1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">numbers2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">both</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fill</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Random</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">nextIntNr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">Integer</span> <span class="n">nextIntegerNr</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">nextIntNr</span><span class="p">);</span>
+        <span class="c1">// fill numbers1</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">UPPER_BOUND</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">nextIntNr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">UPPER_BOUND</span><span class="p">);</span>
+            <span class="n">nextIntegerNr</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">nextIntNr</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">numbers1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nextIntegerNr</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// fill numbers2</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">UPPER_BOUND</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">nextIntNr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">UPPER_BOUND</span><span class="p">);</span>
+            <span class="n">nextIntegerNr</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">nextIntNr</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">numbers2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nextIntegerNr</span><span class="p">);</span>
+        <span class="p">}</span> 
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fillBothUnion</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------------------------------------------------------------&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;         A                           B                        A &quot;</span><span class="o">+</span><span class="sc">&#39;\u222a&#39;</span><span class="o">+</span><span class="s">&quot; B &quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------------------------------------------------------------&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">both</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">numbers1</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">both</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">numbers2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fillBothIntersection</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------------------------------------------------------------&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;         A                           B                        A &quot;</span><span class="o">+</span><span class="sc">&#39;\u2229&#39;</span><span class="o">+</span><span class="s">&quot; B &quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------------------------------------------------------------&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">both</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">numbers1</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">both</span><span class="p">.</span><span class="na">retainAll</span><span class="p">(</span><span class="n">numbers2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fillBothDifference</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------------------------------------------------------------&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;         A                           B                          A-B &quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------------------------------------------------------------&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">both</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">numbers1</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">both</span><span class="p">.</span><span class="na">removeAll</span><span class="p">(</span><span class="n">numbers2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">printOneLine</span><span class="p">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">it</span><span class="p">,</span> <span class="n">Integer</span> <span class="n">next</span><span class="p">,</span> <span class="kt">int</span> <span class="n">curRow</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">curNr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// row*10+col</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">curNr</span> <span class="o">=</span> <span class="n">curRow</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">col</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">next</span><span class="p">.</span><span class="na">intValue</span><span class="p">()</span><span class="o">==</span><span class="n">curNr</span><span class="p">)</span> 
+            <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="sc">&#39;\u25cf&#39;</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span>
+                <span class="p">{</span>
+                    <span class="n">next</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="c1">//System.out.print(&#39;\u25cc&#39;+&quot; &quot;);</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="sc">&#39;\u2009&#39;</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">printSpaces</span><span class="p">(</span><span class="kt">int</span> <span class="n">nrOfSpaces</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">spaces</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">spaces</span><span class="o">&lt;</span><span class="n">nrOfSpaces</span><span class="p">;</span> <span class="n">spaces</span><span class="o">++</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">justTestPrint</span><span class="p">()</span>
+    <span class="p">{</span> 
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">numbers1</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; : [ &quot;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">Integer</span> <span class="n">i</span> <span class="p">:</span> <span class="n">numbers1</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="na">intValue</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;]&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">numbers2</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; : [ &quot;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">Integer</span> <span class="n">i</span> <span class="p">:</span> <span class="n">numbers2</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="na">intValue</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;]&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">both</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; : [ &quot;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">Integer</span> <span class="n">i</span> <span class="p">:</span> <span class="n">both</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="na">intValue</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;]&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">//justTestPrint();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">it1</span> <span class="o">=</span> <span class="n">numbers1</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="n">Integer</span> <span class="n">next1</span> <span class="o">=</span> <span class="p">(</span><span class="n">it1</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="o">?</span> <span class="n">it1</span><span class="p">.</span><span class="na">next</span><span class="p">()</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">it2</span> <span class="o">=</span> <span class="n">numbers2</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="n">Integer</span> <span class="n">next2</span> <span class="o">=</span> <span class="p">(</span><span class="n">it2</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="o">?</span> <span class="n">it2</span><span class="p">.</span><span class="na">next</span><span class="p">()</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">itb</span> <span class="o">=</span> <span class="n">both</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="n">Integer</span> <span class="n">nextB</span> <span class="o">=</span> <span class="p">(</span><span class="n">itb</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="o">?</span> <span class="n">itb</span><span class="p">.</span><span class="na">next</span><span class="p">()</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">next1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">printOneLine</span><span class="p">(</span><span class="n">it1</span><span class="p">,</span> <span class="n">next1</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
+            <span class="n">printSpaces</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+            <span class="n">next2</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">printOneLine</span><span class="p">(</span><span class="n">it2</span><span class="p">,</span> <span class="n">next2</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
+            <span class="n">printSpaces</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+            <span class="n">nextB</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">printOneLine</span><span class="p">(</span><span class="n">itb</span><span class="p">,</span> <span class="n">nextB</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Testklasse.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe5</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Testklasse</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">SetOperations</span> <span class="n">so</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SetOperations</span><span class="p">();</span>
+        <span class="n">so</span><span class="p">.</span><span class="na">fill</span><span class="p">();</span>
+
+        <span class="n">so</span><span class="p">.</span><span class="na">fillBothUnion</span><span class="p">();</span>
+        <span class="n">so</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+
+        <span class="n">so</span><span class="p">.</span><span class="na">fillBothIntersection</span><span class="p">();</span>
+        <span class="n">so</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+
+        <span class="n">so</span><span class="p">.</span><span class="na">fillBothDifference</span><span class="p">();</span>
+        <span class="n">so</span><span class="p">.</span><span class="na">print</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h5 id="aufgabe-6-maps">Aufgabe 6 (Maps)<a class="headerlink" href="#aufgabe-6-maps" title="Permanent link">&para;</a></h5>
 <details><summary>Aufgabe 6</summary><ol>
 <li>
@@ -3157,6 +3498,223 @@ Mögliche Pizzen: <span class="o">[</span>Margherita, Veggie<span class="o">]</s
 <p>Finden Sie in Ihrem Code ein Beispiel für Auto-Boxing und schreiben Sie einen entsprechenden Kommentar.</p>
 </li>
 </ol>
+</details>
+<details class="question"><summary>eine mögliche Lösung für Aufgabe 6</summary><div class="tabbed-set" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">PizzaMenu.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe6</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PizzaMenu</span> <span class="p">{</span>    
+
+    <span class="c1">//3. </span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">existingPizza</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">menu</span><span class="p">,</span> <span class="n">String</span> <span class="n">pizza</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">menu</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">pizza</span><span class="p">)){</span>            
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>       
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//4.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printPrice</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">menu</span><span class="p">,</span> <span class="n">String</span> <span class="n">pizza</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">existingPizza</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="n">pizza</span><span class="p">)){</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">pizza</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">menu</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">pizza</span><span class="p">));</span>
+        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">pizza</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="s">&quot;Diese Pizza gibt es nicht.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//5.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printMenu</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">menu</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;##############&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Das Menu enthält &quot;</span> <span class="o">+</span> <span class="n">menu</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; Pizzen.&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">menu</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Double</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="p">:</span> <span class="n">menu</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span> 
+            <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Pizza : &quot;</span> <span class="o">+</span> <span class="n">entry</span><span class="p">.</span><span class="na">getKey</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; - &quot;</span> <span class="o">+</span> <span class="n">entry</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;##############&quot;</span><span class="p">);</span>       
+    <span class="p">}</span>
+
+    <span class="c1">//7.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">affordablePizza</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">menu</span><span class="p">,</span> <span class="kt">double</span> <span class="n">maxPrice</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pizzen</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Eingegebener Betrag: &quot;</span> <span class="o">+</span> <span class="n">maxPrice</span> <span class="o">+</span> <span class="s">&quot; Euro&quot;</span><span class="p">);</span> 
+        <span class="k">for</span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Double</span><span class="o">&gt;</span> <span class="n">eintrag</span> <span class="p">:</span> <span class="n">menu</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">eintrag</span><span class="p">.</span><span class="na">getValue</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">maxPrice</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+                <span class="n">pizzen</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">eintrag</span><span class="p">.</span><span class="na">getKey</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pizzen</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Leider gibt es zu diesem Preis keine Pizza.&quot;</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>         
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Mögliche Pizzen: &quot;</span> <span class="o">+</span> <span class="n">pizzen</span><span class="p">);</span>
+        <span class="p">}</span>   
+    <span class="p">}</span>       
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//2.</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">menu1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Margherita&quot;</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Veggie&quot;</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Salami&quot;</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Schinken&quot;</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+
+        <span class="c1">//4.        </span>
+        <span class="n">printPrice</span><span class="p">(</span><span class="n">menu1</span><span class="p">,</span> <span class="s">&quot;Salami&quot;</span><span class="p">);</span>
+        <span class="n">printPrice</span><span class="p">(</span><span class="n">menu1</span><span class="p">,</span> <span class="s">&quot;Hawaii&quot;</span><span class="p">);</span>
+
+        <span class="c1">//5.</span>
+        <span class="n">printMenu</span><span class="p">(</span><span class="n">menu1</span><span class="p">);</span>
+
+        <span class="c1">//6. </span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Schinken&quot;</span><span class="p">,</span> <span class="mf">8.20</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+
+        <span class="c1">//7.</span>
+        <span class="n">affordablePizza</span><span class="p">(</span><span class="n">menu1</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">);</span>
+        <span class="n">affordablePizza</span><span class="p">(</span><span class="n">menu1</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">);</span>
+
+        <span class="c1">//8. </span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+        <span class="n">printMenu</span><span class="p">(</span><span class="n">menu1</span><span class="p">);</span>
+
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Verde&quot;</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Hawaii&quot;</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+        <span class="n">menu1</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Tradizionale&quot;</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">);</span> <span class="c1">//Auto-Boxing von double zu Double</span>
+
+        <span class="n">printMenu</span><span class="p">(</span><span class="n">menu1</span><span class="p">);</span>
+
+        <span class="c1">//9.</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">menu2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">menu2</span><span class="p">.</span><span class="na">putAll</span><span class="p">(</span><span class="n">menu1</span><span class="p">);</span>
+        <span class="n">menu2</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;Hawaii&quot;</span><span class="p">);</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pizzaNames</span> <span class="o">=</span> <span class="n">menu2</span><span class="p">.</span><span class="na">keySet</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Es gibt folgende Pizzen: &quot;</span> <span class="o">+</span> <span class="n">pizzaNames</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
 </details>
 <h5 id="aufgabe-7-interfaces">Aufgabe 7 (Interfaces)<a class="headerlink" href="#aufgabe-7-interfaces" title="Permanent link">&para;</a></h5>
 <details><summary>Aufgabe 7</summary><ol>
@@ -3308,6 +3866,369 @@ D received Breaking News <span class="m">4</span>
 </code></pre></div>
 </li>
 </ol>
+</details>
+<details class="question"><summary>eine mögliche Lösung für Aufgabe 7</summary><div class="tabbed-set" data-tabs="6:5"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">Listener.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe7</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Listener</span> <span class="p">{</span>
+
+    <span class="c1">//method to update the listener, used by publisher</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">();</span>
+
+    <span class="c1">//attach with publisher to observe</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPublisher</span><span class="p">(</span><span class="n">Publisher</span> <span class="n">publisher</span><span class="p">);</span>
+
+    <span class="c1">//attach with publisher to observe</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removePublisher</span><span class="p">(</span><span class="n">Publisher</span> <span class="n">publisher</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><label for="__tabbed_6_2">Publisher.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe7</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Publisher</span> 
+<span class="p">{</span>
+    <span class="c1">//methods to register and unregister listeners (observers)</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">register</span><span class="p">(</span><span class="n">Listener</span> <span class="n">listener</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">unregister</span><span class="p">(</span><span class="n">Listener</span> <span class="n">listener</span><span class="p">);</span>
+
+    <span class="c1">//method to notify listeners of change</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyListeners</span><span class="p">();</span>
+
+    <span class="c1">//method to get updates from publisher (subject)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUpdate</span><span class="p">(</span><span class="n">Listener</span> <span class="n">listener</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><label for="__tabbed_6_3">Slack.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe7</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Slack</span> <span class="kd">implements</span> <span class="n">Publisher</span>
+<span class="p">{</span>
+    <span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span> <span class="n">listeners</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">nrOfMessages</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Slack</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">listeners</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">nrOfMessages</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">register</span><span class="p">(</span><span class="n">Listener</span> <span class="n">listener</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">listeners</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">unregister</span><span class="p">(</span><span class="n">Listener</span> <span class="n">listener</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">listeners</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>      
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyListeners</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">Listener</span> <span class="n">listener</span> <span class="p">:</span> <span class="n">listeners</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">listener</span><span class="p">.</span><span class="na">update</span><span class="p">();</span>
+        <span class="p">}</span>   
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUpdate</span><span class="p">(</span><span class="n">Listener</span> <span class="n">obj</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;Breaking News &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">nrOfMessages</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">publishNews</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">nrOfMessages</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">notifyListeners</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><label for="__tabbed_6_4">Student.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe7</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="kd">implements</span> <span class="n">Listener</span>
+<span class="p">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">Publisher</span> <span class="n">publisher</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Student</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">publisher</span><span class="p">.</span><span class="na">getUpdate</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">+</span> <span class="s">&quot; received &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="p">);</span> 
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPublisher</span><span class="p">(</span><span class="n">Publisher</span> <span class="n">publisher</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">publisher</span> <span class="o">=</span> <span class="n">publisher</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">publisher</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="k">this</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">+</span> <span class="s">&quot; registered!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removePublisher</span><span class="p">(</span><span class="n">Publisher</span> <span class="n">publisher</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">publisher</span><span class="p">.</span><span class="na">unregister</span><span class="p">(</span><span class="k">this</span><span class="p">))</span> 
+        <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">+</span> <span class="s">&quot; deregistered!&quot;</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">publisher</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>   
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="p">(</span><span class="n">Object</span> <span class="n">o</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">o</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="o">==</span><span class="n">o</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">getClass</span><span class="p">()</span><span class="o">!=</span><span class="n">o</span><span class="p">.</span><span class="na">getClass</span><span class="p">())</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+        <span class="n">Student</span> <span class="n">so</span> <span class="o">=</span> <span class="p">(</span><span class="n">Student</span><span class="p">)</span><span class="n">o</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">so</span><span class="p">.</span><span class="na">name</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="p">.</span><span class="na">hashCode</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_6_5" name="__tabbed_6" type="radio" /><label for="__tabbed_6_5">Testklasse.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe7</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Testklasse</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>       
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">NR_OF_STUDENTS</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="n">Slack</span> <span class="n">slack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Slack</span><span class="p">();</span>
+
+        <span class="n">Student</span><span class="o">[]</span> <span class="n">students</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="o">[</span><span class="n">NR_OF_STUDENTS</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">Character</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">students</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">index</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">students</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Student</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+            <span class="n">c</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">students</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="p">.</span><span class="na">setPublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">.</span><span class="na">setPublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span> 
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">.</span><span class="na">removePublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">students</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">.</span><span class="na">setPublisher</span><span class="p">(</span><span class="n">slack</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="n">slack</span><span class="p">.</span><span class="na">publishNews</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
 </details>
 <h5 id="aufgabe-8-gui">Aufgabe 8 (GUI)<a class="headerlink" href="#aufgabe-8-gui" title="Permanent link">&para;</a></h5>
 <details><summary>Aufgabe 8</summary><ol>

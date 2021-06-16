@@ -22,9 +22,9 @@ Damit überhaupt Linien und Punkte dargestellt werden können, gibt es eine Klas
 Damit nun alle `paintX()`-Methoden (also `paint()`, `paintBorder()`, `paintComponent` und `paintChildren()`) Zugriff auf diesen Grafikkontext (das Objekt von `Graphics`) bekommen, wird es diesen Methoden übergeben. Das heißt, die Methoden sind so deklariert (alle `void`):
 
 - `paint(Graphics g)`
-	- `paintBorder(Graphics g)` 
-	- `paintChildren(Graphics g)` 
-	- `paintComponent(Graphics g)` 
+- `paintBorder(Graphics g)` 
+- `paintChildren(Graphics g)` 
+- `paintComponent(Graphics g)` 
 
 
 Die `Graphics`-Klasse gibt es schon seit Java 1.0. Allerdings hat man bereits sehr früh festgestellt, dass die Methoden in dieser Klasse nicht genügen, um "schöne" Grafiken zu erstellen. Deshalb hat man bereits in Java 1.1 eine neue Klasse `Graphics2D` eingeführt (hat von `Graphics` geerbt), in der hauptsächlich die Darstellung der geometrischen Objekte verbessert wurde, aber in der auch einige Methoden dazukamen, um z.B. andere Linienformen (gestrichelt, gepunktet, ...) zu definieren, andere Fonts für den Text usw. Tatsächlich handelt es sich seit JDK 1.2 bei dem Grafikkontext, also dem `Graphics`-Objekt `g` um ein Objekt der Klasse `Graphics2D`. 

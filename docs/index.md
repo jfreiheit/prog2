@@ -860,3 +860,187 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 
 	- siehe [**Übung 9**](./uebungen/#ubung-9-ereignisbehandlung-actionlistener)
 	- siehe [**Aufgabe 9**](./aufgaben/#aufgabe-9-ereignisbehandlung) 
+
+
+
+??? question "14.-18.06.2021 - Graphics"
+	- siehe [**GUI Graphics**](./graphics/#graphics)
+	- siehe Video zu [**GUI Graphics**](./graphics/#graphics) - Vorlesung 16.06.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=81eb5767b2d4d993c5bf306116d03023&width=720&height=389&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="389" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+	- Quellcode aus der Vorlesung vom 16.06.2021
+
+		=== "Ereignisbehandlung.java"
+
+			```java linenums="1"
+			import java.awt.BorderLayout;
+			import java.awt.Font;
+			import java.awt.event.ActionEvent;
+			import java.awt.event.ActionListener;
+
+			import javax.swing.*;
+
+			public class Ereignisbehandlung extends JFrame
+			{
+				private Integer anzKlicks = 0;
+				private JLabel unten;
+				
+				public Ereignisbehandlung(){
+					super();
+					this.setTitle("Ereignisbehandlung");
+					this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+					JPanel content = this.initContent();
+					this.getContentPane().add(content);
+					
+					this.setSize(200, 150);
+					this.setLocation(200, 100);
+					this.setVisible(true);
+				}
+				
+				public JPanel initContent() {
+					JPanel mainPanel = new JPanel();
+					mainPanel.setLayout(new BorderLayout());
+					
+					JPanel oben = new JPanel();
+					
+					JButton minus = new JButton("-");
+					JButton plus = new JButton("+");
+					
+					oben.add(minus);
+					oben.add(plus);
+					
+					// ActionHandler ah = new ActionHandler();
+					plus.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Ereignisbehandlung.this.anzKlicks++;
+							Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+							
+						}
+						
+					});
+					
+					
+					minus.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Ereignisbehandlung.this.anzKlicks--;
+							Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+						}
+						
+					});
+					
+					this.unten = new JLabel(this.anzKlicks.toString());
+					this.unten.setFont(new Font("Verdana", Font.BOLD, 48));
+					this.unten.setHorizontalAlignment(JLabel.CENTER);
+					
+					mainPanel.add(oben, BorderLayout.NORTH);
+					mainPanel.add(unten, BorderLayout.CENTER);
+					
+					return mainPanel;
+				}
+				
+				/*
+				public class ActionHandler implements ActionListener 
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Object quelle = e.getSource(); 	// hat ActionEvent ausgeloest
+						if(quelle instanceof JButton)
+						{
+							JButton button = (JButton)quelle;
+							if(button.getText().equals("-"))
+							{
+								Ereignisbehandlung.this.anzKlicks--;
+								System.out.println("Minus-Button geklickt ... " + Ereignisbehandlung.this.anzKlicks);
+							}
+							else if(button.getText().equals("+"))
+							{
+								Ereignisbehandlung.this.anzKlicks++;
+								System.out.println("Plus-Button geklickt ... " + Ereignisbehandlung.this.anzKlicks);
+							}
+							Ereignisbehandlung.this.unten.setText(Ereignisbehandlung.this.anzKlicks.toString());
+						}
+					}
+					
+				}
+				*/
+				
+				public static void main(String[] args) {
+					new Ereignisbehandlung();
+				}
+
+			}
+			```
+
+		=== "Zeichnen.java"
+
+			```java linenums="1"
+			import java.awt.BorderLayout;
+			import java.awt.Color;
+			import java.awt.Graphics;
+			import java.awt.Graphics2D;
+			import java.awt.Shape;
+			import java.awt.geom.Arc2D;
+
+			import javax.swing.JButton;
+			import javax.swing.JFrame;
+			import javax.swing.JPanel;
+			import javax.swing.JTextField;
+
+			public class Zeichnen extends JFrame
+			{
+				
+				public Zeichnen(){
+					super();
+					this.setTitle("Wir zeichnen!");
+					this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+					JPanel oben = new JPanel();
+					JTextField tf = new JTextField(10);
+					oben.add(tf);	
+					this.getContentPane().add(oben, BorderLayout.NORTH);
+					
+					Canvas content = new Canvas();
+					this.getContentPane().add(content, BorderLayout.CENTER);
+					
+					JPanel unten = new JPanel();
+					JButton but1 = new JButton("ok");
+					unten.add(but1);
+					this.getContentPane().add(unten, BorderLayout.SOUTH);
+					
+					this.setSize(500, 500);
+					this.setLocation(200, 100);
+					this.setVisible(true);
+				}
+				
+				public class Canvas extends JPanel {
+					
+					@Override
+					protected void paintComponent(Graphics g) {
+						super.paintComponent(g);
+						Graphics2D g2 = (Graphics2D)g;
+						
+						g2.setColor(new Color(127, 127, 0));
+						g2.fillRect(20, 80, 400, 400);
+						Shape arc = new Arc2D.Double(40, 30, 300, 300, 90, -180, Arc2D.PIE);
+						
+						g2.draw(arc);
+						
+					}
+				}
+				
+				public static void main(String[] args) {
+					new Zeichnen();
+				}
+
+			}
+			```
+
+	- siehe [**Übung 10**](./uebungen/#ubung-10-zeichnen)
+	- siehe [**Aufgabe 10**](./aufgaben/#aufgabe-10-zeichnen) 
+
+
