@@ -649,7 +649,7 @@ Wir betrachten die Änderungen im Detail:
 - In Zeile `60` wird die Liste (also das *Model*) durch die Interaktionen der Nutzerin (also durch den *Controller*) befüllt. Immer dort, wohin mit der Maus geklickt wird, wird dieser `Point` in der Datenstruktur Liste (also im *Model*) gespeichert. Hier sehen wir die einzige Verbindung zwischen *Controller*  und *Model*. Der *Controller* greift auf das *Model* zu und stößt das Peichern eines Datums an. 
 - Zeile `62` ist **sehr wichtig** und wird häufig vergessen. Hier "triggert" der *Controller* die *View*. Wenn wir uns an die Einführung des Zeichnens erinnern, dann wird ein Fenster mit allen seinen Komponenten "gezeichnet". Wenn wir die `Canvas` mit neuen Kreisen "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der `Canvas`. Ein Neuzeichnen würde nur erfolgen, wenn wir bspw. die Fenstergröße ändern oder das Fenster in die Taskleiste bewegen und wieder öffnen. Um ein Neuzeichnen aus dem Programm heraus anzustoßen, benötigen wir die Methode `repaint()`. Wir hätten auch `this.repaint();` angeben können, dann wäre das gesamte Fenster neu gezeichnet worden (inkl. der `Canvas`). Mit `this.canvas.repaint();` wird "nur" die `Canvas` neu gezeichnet.  
 
-
+![maus](./files/87_maus.png)
 
 ??? Übung
 	1. Ändern Sie das Programm so, dass die Punkte als Mittelpunkte der Kreise verwendet werden! <br/>
@@ -667,7 +667,7 @@ In unserem zweiten Beispiel wollen wir Linien zeichnen. Dabei soll das Vorgehen 
 
 Für Punkt `1.` implementieren wir die Methode `mousePressed()` und wir benötigen somit den `MouseListener`. <br/>
 Für Punkt `2.` implementieren wir die Methode `mouseDragged()` und wir benötigen somit den `MouseMotionListener`. <br/>
-Für Punkt `3.` implementieren wir die Methode `mouseReleases()` aus dem `MouseListener`. <br/>
+Für Punkt `3.` implementieren wir die Methode `mouseReleased()` aus dem `MouseListener`. <br/>
 
 
 Wir starten erneut mit unserem Grundgerüst für das Zeichnen, haben dort aber bereits den `MouseListener` und den `MouseMotionListener`implementiert und die Methoden, die uns nicht interessieren, zusammengekürzt:
@@ -766,6 +766,232 @@ Wir überlegen uns nun das *Model*. Dies ist etwas komplexer, als das *Model* f�
 		public void setEnde(Point newEnde) {
 			this.ende = newEnde;
 		}
+
+		public int getXstart() {
+			return this.start.x;
+		}
+		
+		public int getYstart() {
+			return this.start.y;
+		}
+		
+		public int getXende() {
+			return this.ende.x;
+		}
+		
+		public int getYende() {
+			return this.ende.y;
+		}
 		
 	}
 	```
+
+Mit dem Konstruktor können wir uns ein Objekt von `Linie` erstellen (im *Controller* bei `mousePressed()`) und haben dann mithilfe von `setEnde()` die Möglichkeit, den Endpunkt der `Linie` noch zu ändern (im *Controller* bei `mouseDragged()`. Die *Getter* benötigen wir in der *View*, um die Werte der Start- und Endpunkte der `Linie` auszulesen. 
+
+Wir beginnen zunächst damit, **eine** Linie zu erzeugen:
+
+
+=== "LinienZeichnen.java"
+	```java linenums="1" hl_lines="15 42-50 63 69 71"
+	import java.awt.Graphics;
+	import java.awt.Graphics2D;
+	import java.awt.Point;
+	import java.awt.event.MouseEvent;
+	import java.awt.event.MouseListener;
+	import java.awt.event.MouseMotionListener;
+
+	import javax.swing.JFrame;
+	import javax.swing.JPanel;
+
+	public class LinienZeichnen extends JFrame implements MouseListener, MouseMotionListener {
+		Canvas canvas;
+		Linie aktLinie;
+		
+	    public LinienZeichnen()
+	    {
+	        super();
+	        this.setTitle("Linien zeichnen");
+	        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+	        this.canvas = new Canvas();
+	        this.canvas.addMouseListener(this);
+	        this.canvas.addMouseMotionListener(this);
+	        this.getContentPane().add(this.canvas);
+
+	        this.setSize(400, 300);
+	        this.setLocation(300,200);
+	        this.setVisible(true);
+	    }
+
+	    private class Canvas extends JPanel
+	    {
+	    	// die View
+	        @Override
+	        protected void paintComponent(Graphics g)
+	        {
+	            super.paintComponent(g);        
+	            Graphics2D g2 = (Graphics2D)g;  
+	            
+	            if(LinienZeichnen.this.aktLinie != null)
+	            {
+	            	int x1 = LinienZeichnen.this.aktLinie.getXstart();
+	            	int y1 = LinienZeichnen.this.aktLinie.getYstart();
+	            	int x2 = LinienZeichnen.this.aktLinie.getXende();
+	            	int y2 = LinienZeichnen.this.aktLinie.getYende();
+	            	
+	            	g2.drawLine(x1, y1, x2, y2);
+	            }
+	        }
+	    }
+
+	    public static void main(String[] args) 
+	    {
+	        new LinienZeichnen();
+	    }
+
+	    // der Controller
+		@Override
+		public void mousePressed(MouseEvent e) {
+			Point p = e.getPoint();
+			this.aktLinie = new Linie(p,p);
+		}
+		
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			Point p = e.getPoint();
+			this.aktLinie.setEnde(p);
+			
+			this.canvas.repaint();
+		}
+		
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			Point p = e.getPoint();
+		}
+		
+		@Override public void mouseClicked(MouseEvent e) {}
+		@Override public void mouseEntered(MouseEvent e) {}
+		@Override public void mouseExited(MouseEvent e) {}
+		@Override public void mouseMoved(MouseEvent e) {}
+	}
+	``` 
+
+- Die Variable `aktLinie` ist *global*, weil wir sowohl in den Methoden `mousepressed()` und `mouseDragged` als auch in `paintComponent()` darauf zugreifen wollen (Zeile `15`).
+- In der `paintComponent()`-Methode (unserer *View*) lesen wir diese `Linie` aus, um sie grafisch als Linie darzustellen. Der Zugriff auf die Eigenschaften des Objektes `aktLinie` erfolgt aber nur, wenn `aktLinie` auch tatsächlich auf ein Objekt zeigt. Wir prüfen deshalb zunächst, ob `aktLinie` nicht `null` ist (Zeile `42`).
+- Nachdem wir die `x`- und `y`-Werte des `start`- und des `ende`-Punktes der `aktLinie` ausgelesen haben (Zeilen `44-47`), stellen wir eine Linie grafisch mithilfe der `drawLine()`-Methode dar. 
+- Das Objekt einer `Linie` wird in der `mousePressed()`-Methode erstellt. Der `start`- und der `ende`-Punkt dieser `Linie` sind zunächst gleich (die Linie ist also am Anfang nur ein Punkt) - Zeile `63`.
+- Wenn wir bei gedrückter Maustaste die Maus bewegen, wird permanent die `mouseDragged()`-Methode aufgerufen. Dort setzen wir die aktuelle Position der Maus als neuen `ende`-Punkt von `aktLinie` (Zeile `69`).
+- Zeile `71` ist wieder **sehr wichtig** (und wird häufig vergessen). Hier "triggert" der *Controller* die *View*. Wenn wir die `Canvas` mit einer neuen Linie "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der `Canvas`. Das Neuzeichnen erfolgt erst durch den Aufruf `this.canvas.repaint();`.  
+
+Wir können nun viele Linien zeichnen, aber diese werden noch nicht gespeichert. Zum Speichern der Linien benötigen wir wieder eine Collection. Das Speichern der aktuellen Linie in diese Collection erfolgt in dem Moment, indem wir die Maustaste wieder loslassen, also in `mouseReleased()`. Die Collection muss wieder *global* verfügbar sein. 
+
+
+
+=== "LinienZeichnen.java"
+	```java linenums="1" hl_lines="7 8 16 24 54-62 89"
+	import java.awt.Graphics;
+	import java.awt.Graphics2D;
+	import java.awt.Point;
+	import java.awt.event.MouseEvent;
+	import java.awt.event.MouseListener;
+	import java.awt.event.MouseMotionListener;
+	import java.util.ArrayList;
+	import java.util.List;
+
+	import javax.swing.JFrame;
+	import javax.swing.JPanel;
+
+	public class LinienZeichnen extends JFrame implements MouseListener, MouseMotionListener {
+		Canvas canvas;
+		Linie aktLinie;
+		List<Linie> linien;
+		
+	    public LinienZeichnen()
+	    {
+	        super();
+	        this.setTitle("Linien zeichnen");
+	        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+	        this.linien = new ArrayList<>();
+	        this.canvas = new Canvas();
+	        this.canvas.addMouseListener(this);
+	        this.canvas.addMouseMotionListener(this);
+	        this.getContentPane().add(this.canvas);
+
+	        this.setSize(400, 300);
+	        this.setLocation(300,200);
+	        this.setVisible(true);
+	    }
+
+	    private class Canvas extends JPanel
+	    {
+	    	// die View
+	        @Override
+	        protected void paintComponent(Graphics g)
+	        {
+	            super.paintComponent(g);        
+	            Graphics2D g2 = (Graphics2D)g;  
+	            
+	            if(LinienZeichnen.this.aktLinie != null)
+	            {
+	            	int x1 = LinienZeichnen.this.aktLinie.getXstart();
+	            	int y1 = LinienZeichnen.this.aktLinie.getYstart();
+	            	int x2 = LinienZeichnen.this.aktLinie.getXende();
+	            	int y2 = LinienZeichnen.this.aktLinie.getYende();
+	            	
+	            	g2.drawLine(x1, y1, x2, y2);
+	            }
+	            
+	            for(Linie l : LinienZeichnen.this.linien)
+	            {
+	            	int x1 = l.getXstart();
+	            	int y1 = l.getYstart();
+	            	int x2 = l.getXende();
+	            	int y2 = l.getYende();
+	            	
+	            	g2.drawLine(x1, y1, x2, y2);
+	            }
+	        }
+	    }
+
+	    public static void main(String[] args) 
+	    {
+	        new LinienZeichnen();
+	    }
+
+	    // der Controller
+		@Override
+		public void mousePressed(MouseEvent e) {
+			Point p = e.getPoint();
+			this.aktLinie = new Linie(p,p);
+		}
+		
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			Point p = e.getPoint();
+			this.aktLinie.setEnde(p);
+			
+			this.canvas.repaint();
+		}
+		
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			Point p = e.getPoint();
+			this.linien.add(aktLinie);
+		}
+		
+		@Override public void mouseClicked(MouseEvent e) {}
+		@Override public void mouseEntered(MouseEvent e) {}
+		@Override public void mouseExited(MouseEvent e) {}
+		@Override public void mouseMoved(MouseEvent e) {}
+	}
+	``` 
+
+
+![maus](./files/88_maus.png)
+
+
+??? Übung
+	1. Ändern Sie das Programm so, dass nicht Linien gezeichnet werden, sondern Kreise! Ändern Sie aber nur die *View*, d.h. die `paintComponent()`. Die gespeicherten `Linien` geben den Durchmesser der Kreise an.  
+
+

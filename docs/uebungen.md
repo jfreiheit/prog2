@@ -2925,6 +2925,146 @@
 		```
 
 
+??? question "eine mögliche Lösung (aus der Morgenübung - danke an Frau Schippl)"
+	
+	=== "Uebung10.java"
+		```java linenums="1"
+		package uebungen.uebung10;
+		
+		import java.awt.BasicStroke;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.util.Random;
+		import javax.swing.*;
+		public class Uebung10 extends JFrame
+		{
+			public Uebung10()
+			{
+				super();
+				this.setTitle("Übung10");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				this.getContentPane().add(new Canvas());
+				this.setSize(400,300);
+				this.setLocation(300,200);
+				this.setVisible(true);
+				
+				
+			}
+			private class Canvas extends JPanel
+			{
+				@Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);
+		            Graphics2D g2 = (Graphics2D)g;
+		            //g2.drawRect(20, 130, 200, 100);
+		               int abstand = this.getHeight()/20;
+		               int hoehe = this.getHeight() - 2* abstand;
+		               int breite = this.getWidth() - 2* abstand;
+		            //Random Farben erzeugen:
+		             Random r = new Random();
+		            int rot = r.nextInt(256);
+		            int gruen = r.nextInt(256);
+		            int blau = r.nextInt(256);
+		            Color c = new Color(rot, gruen, blau);
+		            g2.setColor(c); //rot-Grün-Blau 0 bis 255
+		          // Quadrat zeichnen
+		          if(hoehe < breite)
+		          {
+		        	  int abstandLinks = (this.getWidth()- hoehe)/2;
+		        	   g2.fillRect(abstandLinks, abstand, hoehe, hoehe);
+		          }
+		          else
+		          {
+		        	  int abstandOben = (this.getHeight()- breite)/2;
+		        	  g2.setStroke(new BasicStroke(5.0f)); //dicke Linien
+		        	  g2.drawRect(abstand, abstandOben, breite, breite);
+		        	
+		          }
+		        }
+				
+			}
+			public static void main(String[] args)
+			{
+				new Uebung10();
+			}
+		}
+		```
+
+
+??? question "sehr hilfreiche Erläuterungen zur Übung von Frau Busjahn"
+	
+	1. Beispiel für Höhe < Breite
+		- Wenn man keine Abstände definiert und die gesamte Höhe als Seitenlänge nimmt:
+			```java
+			g2.fillRect(0,0,this.getHeight(),this.getHeight());
+			```
+
+			![uebung10](./files/90_uebung10.png)
+
+		- Um oben und unten gleich große Abstände einzufügen:
+			```java
+			int abstandOben = this.getHeight()/20;
+			int abstandUnten = this.getHeight()/20;
+			int seitenLaenge = this.getHeight() - abstandOben - abstandUnten;
+			g2.fillRect(0,abstandOben,seitenLaenge,seitenLaenge);
+			```
+			```
+
+			![uebung10](./files/91_uebung10.png)
+
+		- Da `abstandOben` und `abstandUnten` gleich sein sollen, lässt sich das verkürzen zu:
+			```java
+			int abstandObenUnten = this.getHeight()/20;
+			int seitenLaenge = this.getHeight() - (2*abstandObenUnten);
+			g2.fillRect(0,abstandObenUnten,seitenLaenge,seitenLaenge);
+			```
+
+		- Um das Quadrat auch horizontal mittig auszurichten, braucht man noch den Abstand **links**
+
+			![uebung10](./files/92_uebung10.png)
+
+			```java
+			int rest = this.getWidth()-seitenLaenge;
+			int links = rest/2;
+			```
+			
+			oder zusammengefasst:
+
+			```java
+			int links = (this.getWidth()-seitenLaenge)/2;
+
+			g2.fillRect(links,abstandObenUnten,seitenLaenge,seitenLaenge);
+			```
+
+
+
+
+##### Übung 11 (Mausereignisse)
+
+??? "Übung 11"
+
+	1. Zeichnen Sie mithilfe der Maus farbige Rechtecke. Das Zeichnen soll folgendermaßen funktionieren:
+		- dort, wo sie mit der Maus in die Zeichenfläche klicken, ist ein Eckpunkt des Rechtecks
+		- mit gedrückter Maustaste ziehen Sie das Rechteck groß (währenddessen soll das Rechteck dargestellt werden)
+		- durch Loslassen der Maustaste legen Sie die endgültige Größe des Rechtecks fest und speichern das Rechteck
+		- durch wiederholtes Zeichnen werden mehrere Rechtecke gezeichnet. Die zuvor gezeichneten Rechtecke bleiben dargestellt
+		- jedes Rechteck hat eine zufällig erzeugte Farbe 
+		- beachten Sie, dass das Zeichnen eines Rechtecks nicht nur von links oben nach rechts unten, sondern in alle Richtungen möglich sein soll
+		
+	2. **Tipps:** 
+		- studieren Sie dieses [Beispiel](../mausereignisse/#beispiel-2-linien-zeichnen)
+		- behandeln Sie die Mausereignisse in den Methoden `mousePressed()`, `mouseReleased()` (`MouseListener`) sowie aus dem `MouseMotionListener` `mouseDragged()`
+		- erstellen Sie sich zunächst eine Klasse, die Rechtecke repräsentiert (Objektvariablen `x`, `y`, `width`, `height`, jweils `int`)
+		- speichern Sie die Rechtecke zusammen mit ihrer Farbe in einer `Map` (untersuchen Sie den Unterschied zwischen `HashMap` und `LinkedHashMap`)
+		- zeichnen Sie in `paintComponent()` alle Rechtecke aus der `Map` und das aktuelle Rechteck (das Sie gerade zeichnen)
+
+		![uebung11](./files/89_uebung11.png)
+
+
+
 ## Zusatz
 
 

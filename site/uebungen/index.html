@@ -547,6 +547,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ubung-11-mausereignisse" class="md-nav__link">
+    Übung 11 (Mausereignisse)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#zusatz" class="md-nav__link">
     Zusatz
   </a>
@@ -694,6 +701,13 @@
         <li class="md-nav__item">
   <a href="#ubung-10-zeichnen" class="md-nav__link">
     Übung 10 (Zeichnen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-11-mausereignisse" class="md-nav__link">
+    Übung 11 (Mausereignisse)
   </a>
   
 </li>
@@ -5483,6 +5497,206 @@ Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</s
 </td></tr></table>
 </div>
 </div>
+</details>
+<details class="question"><summary>eine mögliche Lösung (aus der Morgenübung - danke an Frau Schippl)</summary><div class="tabbed-set" data-tabs="17:1"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><label for="__tabbed_17_1">Uebung10.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">uebungen.uebung10</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.awt.BasicStroke</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Uebung10</span> <span class="kd">extends</span> <span class="n">JFrame</span>
+<span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">Uebung10</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Übung10&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Canvas</span><span class="p">());</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">300</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+
+    <span class="p">}</span>
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span>
+    <span class="p">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+            <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>
+            <span class="c1">//g2.drawRect(20, 130, 200, 100);</span>
+               <span class="kt">int</span> <span class="n">abstand</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="o">/</span><span class="mi">20</span><span class="p">;</span>
+               <span class="kt">int</span> <span class="n">hoehe</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span> <span class="n">abstand</span><span class="p">;</span>
+               <span class="kt">int</span> <span class="n">breite</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span> <span class="n">abstand</span><span class="p">;</span>
+            <span class="c1">//Random Farben erzeugen:</span>
+             <span class="n">Random</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">gruen</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">blau</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">256</span><span class="p">);</span>
+            <span class="n">Color</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Color</span><span class="p">(</span><span class="n">rot</span><span class="p">,</span> <span class="n">gruen</span><span class="p">,</span> <span class="n">blau</span><span class="p">);</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">c</span><span class="p">);</span> <span class="c1">//rot-Grün-Blau 0 bis 255</span>
+          <span class="c1">// Quadrat zeichnen</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">hoehe</span> <span class="o">&lt;</span> <span class="n">breite</span><span class="p">)</span>
+          <span class="p">{</span>
+              <span class="kt">int</span> <span class="n">abstandLinks</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="o">-</span> <span class="n">hoehe</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+               <span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="n">abstandLinks</span><span class="p">,</span> <span class="n">abstand</span><span class="p">,</span> <span class="n">hoehe</span><span class="p">,</span> <span class="n">hoehe</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">else</span>
+          <span class="p">{</span>
+              <span class="kt">int</span> <span class="n">abstandOben</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="o">-</span> <span class="n">breite</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+              <span class="n">g2</span><span class="p">.</span><span class="na">setStroke</span><span class="p">(</span><span class="k">new</span> <span class="n">BasicStroke</span><span class="p">(</span><span class="mf">5.0f</span><span class="p">));</span> <span class="c1">//dicke Linien</span>
+              <span class="n">g2</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">abstand</span><span class="p">,</span> <span class="n">abstandOben</span><span class="p">,</span> <span class="n">breite</span><span class="p">,</span> <span class="n">breite</span><span class="p">);</span>
+
+          <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Uebung10</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
+<details class="question"><summary>sehr hilfreiche Erläuterungen zur Übung von Frau Busjahn</summary><ol>
+<li>
+<ul>
+<li>
+<p>Wenn man keine Abstände definiert und die gesamte Höhe als Seitenlänge nimmt:
+    <div class="highlight"><pre><span></span><code><span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">(),</span><span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">());</span>
+</code></pre></div></p>
+<p><img alt="uebung10" src="../files/90_uebung10.png" /></p>
+</li>
+</ul>
+<p>Beispiel für Höhe &lt; Breite</p>
+<ul>
+<li>
+<p>Um oben und unten gleich große Abstände einzufügen:
+        <div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">abstandOben</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="o">/</span><span class="mi">20</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">abstandUnten</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="o">/</span><span class="mi">20</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">seitenLaenge</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span> <span class="o">-</span> <span class="n">abstandOben</span> <span class="o">-</span> <span class="n">abstandUnten</span><span class="p">;</span>
+<span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">abstandOben</span><span class="p">,</span><span class="n">seitenLaenge</span><span class="p">,</span><span class="n">seitenLaenge</span><span class="p">);</span>
+</code></pre></div>
+        ```</p>
+<p><img alt="uebung10" src="../files/91_uebung10.png" /></p>
+</li>
+<li>
+<p>Da <code>abstandOben</code> und <code>abstandUnten</code> gleich sein sollen, lässt sich das verkürzen zu:
+        <div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">abstandObenUnten</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="o">/</span><span class="mi">20</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">seitenLaenge</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">abstandObenUnten</span><span class="p">);</span>
+<span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">abstandObenUnten</span><span class="p">,</span><span class="n">seitenLaenge</span><span class="p">,</span><span class="n">seitenLaenge</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Um das Quadrat auch horizontal mittig auszurichten, braucht man noch den Abstand <strong>links</strong></p>
+<p><img alt="uebung10" src="../files/92_uebung10.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">rest</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="o">-</span><span class="n">seitenLaenge</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">links</span> <span class="o">=</span> <span class="n">rest</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</code></pre></div>
+<p>oder zusammengefasst:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">links</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="o">-</span><span class="n">seitenLaenge</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="n">links</span><span class="p">,</span><span class="n">abstandObenUnten</span><span class="p">,</span><span class="n">seitenLaenge</span><span class="p">,</span><span class="n">seitenLaenge</span><span class="p">);</span>
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ol>
+</details>
+<h5 id="ubung-11-mausereignisse">Übung 11 (Mausereignisse)<a class="headerlink" href="#ubung-11-mausereignisse" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 11</summary><ol>
+<li>
+<p>Zeichnen Sie mithilfe der Maus farbige Rechtecke. Das Zeichnen soll folgendermaßen funktionieren:</p>
+<ul>
+<li>dort, wo sie mit der Maus in die Zeichenfläche klicken, ist ein Eckpunkt des Rechtecks</li>
+<li>mit gedrückter Maustaste ziehen Sie das Rechteck groß (währenddessen soll das Rechteck dargestellt werden)</li>
+<li>durch Loslassen der Maustaste legen Sie die endgültige Größe des Rechtecks fest und speichern das Rechteck</li>
+<li>durch wiederholtes Zeichnen werden mehrere Rechtecke gezeichnet. Die zuvor gezeichneten Rechtecke bleiben dargestellt</li>
+<li>jedes Rechteck hat eine zufällig erzeugte Farbe </li>
+<li>beachten Sie, dass das Zeichnen eines Rechtecks nicht nur von links oben nach rechts unten, sondern in alle Richtungen möglich sein soll</li>
+</ul>
+</li>
+<li>
+<p><strong>Tipps:</strong> </p>
+<ul>
+<li>studieren Sie dieses <a href="../mausereignisse/#beispiel-2-linien-zeichnen">Beispiel</a></li>
+<li>behandeln Sie die Mausereignisse in den Methoden <code>mousePressed()</code>, <code>mouseReleased()</code> (<code>MouseListener</code>) sowie aus dem <code>MouseMotionListener</code> <code>mouseDragged()</code></li>
+<li>erstellen Sie sich zunächst eine Klasse, die Rechtecke repräsentiert (Objektvariablen <code>x</code>, <code>y</code>, <code>width</code>, <code>height</code>, jweils <code>int</code>)</li>
+<li>speichern Sie die Rechtecke zusammen mit ihrer Farbe in einer <code>Map</code> (untersuchen Sie den Unterschied zwischen <code>HashMap</code> und <code>LinkedHashMap</code>)</li>
+<li>zeichnen Sie in <code>paintComponent()</code> alle Rechtecke aus der <code>Map</code> und das aktuelle Rechteck (das Sie gerade zeichnen)</li>
+</ul>
+<p><img alt="uebung11" src="../files/89_uebung11.png" /></p>
+</li>
+</ol>
 </details>
 <h2 id="zusatz">Zusatz<a class="headerlink" href="#zusatz" title="Permanent link">&para;</a></h2>
 <h5 id="test-driven-development">Test-driven development<a class="headerlink" href="#test-driven-development" title="Permanent link">&para;</a></h5>
