@@ -224,7 +224,7 @@ Nun ist der `MouseListener` implementiert und das `Canvas`-Objekt ist an den `Mo
 
 - `mousePressed()` wird aufgerufen, wenn die (linke) Maustaste heruntergedrückt wird. Drücken Sie die Maustaste und halten Sie sie gedrückt. In der Konsole erscheint `mousePressed`.
 - `mouseReleased()` wird aufgerufen, wenn die (linke) Maustaste nach dem Drücken wieder losgelassen wird. Lassen Sie die Maustaste, nachdem auf der Konsole `mousePressed` erschienen ist, wieder los. In der Konsole erscheint `mouseReleased`.
-- `mouseCliecked()` wird aufgerufen, wenn erst `mousePressed()` und dann `mouseReleased()` aufgerufen wurde. `mouseClicked()` beschreibt also die Kombination aus Maustaste gedrückt und Maustaste losgelassen - einen Maus-Klick also.
+- `mouseClicked()` wird aufgerufen, wenn erst `mousePressed()` und dann `mouseReleased()` aufgerufen wurde. `mouseClicked()` beschreibt also die Kombination aus Maustaste gedrückt und Maustaste losgelassen - einen Maus-Klick also.
 - `mouseEntered()` wird aufgerufen, wenn Sie den Mauszeiger auf die Komponente bewegen, die an den `MouseListener` angemeldet ist. Wenn Sie in unserem Fall also die Maus in die Zeichenfläche `canvas` bewegen, dann wird die Methode `mouseEntered()` einmalig ausgeführt. 
 - `mouseExited()` wird aufgerufen, wenn Sie den Mauszeiger von der Komponente wieder wegbewegen, die an den `MouseListener` angemeldet ist. Wenn Sie in unserem Fall also die Maus von der Zeichenfläche in die Titelleiste des Fensters oder ganz aus dem Fenster (der `ContentPane`) bewegen, dann wird die Methode `mouseExited()` einmalig ausgeführt. 
 
@@ -343,9 +343,9 @@ Wenn Sie anhand der Konsolenausgaben geprüft haben, dass die Methoden "funktion
 
 ### Objektmethoden der Klasse `MouseEvent`
 
-All diesen Methoden, sowohl vom `MouseListener` als auch vom `MouseMotionListener` wird ein `MouseEvent` als Parameter übergeben. Dieses Objekt besitzt einige nützliche Objektmethoden. Die wichtigsten dabei sind sicherlich die Auskünfte darüber, **wo** das Mausereignis ausgelöst wurde. Wir betrachten einige Objektmethoden des `MouseEvent`-Objekts am Beispiel der `mouseClicked(MouseEvent e)`-Methode (kommentieren Sie die Konsolenausgabe der beiden Methoden vom `MouseMotionListener` aus, damit Sie sich auf die Ausgabe von `mouseClkicked()` konzentrieren können). 
+All diesen Methoden, sowohl vom `MouseListener` als auch vom `MouseMotionListener` wird ein `MouseEvent` als Parameter übergeben. Dieses Objekt besitzt einige nützliche Objektmethoden. Die wichtigsten dabei sind sicherlich die Auskünfte darüber, **wo** das Mausereignis ausgelöst wurde. Wir betrachten einige Objektmethoden des `MouseEvent`-Objekts am Beispiel der `mouseClicked(MouseEvent e)`-Methode (kommentieren Sie die Konsolenausgabe der beiden Methoden vom `MouseMotionListener` aus, damit Sie sich auf die Ausgabe von `mouseClicked()` konzentrieren können). 
 
-- die Methode `getX()` gibt den `x`-Wert der Koordinate zurück, bei dem das `MouseEvent` stattgefunden hat. Die Koordinate bezieht sich auf die Komponente, die an den `MouseListener` (bzw. `MouseMotionListener`) angemeldet ist. Das ist auch der Grund, warum wir nicht da sgesamte Fenster an den `MouseListener`  (und `MouseMotionListener`) angemeldet haben. Der Punkt `[x=0, y=0]` befindet sich bei dem `Canvas`-Objekt in der linken oberen Ecke der `ContentPane`. Der Punkt mit den Koordinaten `[x=0, y=0]` beim Fenster ist der linke obere Punkt des Fensters, d.h. der linke obere Punkt der Titelleiste. 
+- die Methode `getX()` gibt den `x`-Wert der Koordinate zurück, bei dem das `MouseEvent` stattgefunden hat. Die Koordinate bezieht sich auf die Komponente, die an den `MouseListener` (bzw. `MouseMotionListener`) angemeldet ist. Das ist auch der Grund, warum wir nicht das gesamte Fenster an den `MouseListener`  (und `MouseMotionListener`) angemeldet haben. Der Punkt `[x=0, y=0]` befindet sich bei dem `Canvas`-Objekt in der linken oberen Ecke der `ContentPane`. Der Punkt mit den Koordinaten `[x=0, y=0]` beim Fenster ist der linke obere Punkt des Fensters, d.h. der linke obere Punkt der Titelleiste. 
 - die Methode `getY()` gibt den `y`-Wert der Koordinate zurück, bei dem das `MouseEvent` stattgefunden hat (Koordinate der Komponente).
 - die Methode `getPoint()` gibt ein `Point`-Objekt (von `java.awt`) zurück. Ein `Point`-Objekt besitzt die sichtbaren Objektvariablen `x` und `y` für die Koordinaten.
 
@@ -393,7 +393,7 @@ mouseMoved bei [x=309 ,y=292]
 mouseMoved bei [x=309 ,y=292]
 ```
 
-Manchmal sind die Mausbewegungen, die ein Auslösen des Ereignisses zur Folge haben, sogar so klain, dass sich die Koordinaten gar nicht ändern. 
+Manchmal sind die Mausbewegungen, die ein Auslösen des Ereignisses zur Folge haben, sogar so klein, dass sich die Koordinaten gar nicht ändern. 
 
 Weiterhin kann mithilfe des `MouseEvent`-Objektes überprüft werden, ob während des auslösenden Mausereignisses eine besondere Taste auf der Tastatur gedrückt wurde, z.B. die `Alt`-Taste (linke `option`-Taste beim Mac), die `AltGraph`-Taste (rechte `option`-Taste beim Mac), die `Ctrl`-Taste, oder die `Meta`-Taste (`Windows`-Taste bzw. `Apple`-Taste):
 
@@ -454,13 +454,13 @@ Diese beiden Fähigkeiten wollen wir nun miteinander verbinden. Dazu zunächst e
 
 ### Model-View-Controller
 
-Unter *Model-View-Controller* versteht man ein Entwurfsmuster (ein *Desgn Pattern*), welches ein wesentliches Konzept bei Anwendungen darstellt, die eine GUI besitzen. Wir werden es in diesem Semester nicht mehr schaffen, ausführlich auf dieses Konzept einzugehen, aber wir betrachten ein paar wesentliche Grundsätze daraus, die auch für unsere Anwendungen wichtig sind. Die Grundidee bei *Model-View-Controlle (MVC)* ist die Unterscheidung von drei Aufgaben:
+Unter *Model-View-Controller* versteht man ein Entwurfsmuster (ein *Design Pattern*), welches ein wesentliches Konzept bei Anwendungen darstellt, die eine GUI besitzen. Wir werden es in diesem Semester nicht mehr schaffen, ausführlich auf dieses Konzept einzugehen, aber wir betrachten ein paar wesentliche Grundsätze daraus, die auch für unsere Anwendungen wichtig sind. Die Grundidee bei *Model-View-Controlle (MVC)* ist die Unterscheidung von drei Aufgaben:
 
 - Das *Model* kümmert sich um die Datenverwaltung. Es gibt eine oder mehrere Datenstrukturen, in denen Daten gespeichert werden. Das *Model*  kümmert sich darum, diese Datenstrukturen zu erstellen und Daten in diese Datenstrukturen einzufügen, zu ändern oder zu löschen. 
-- Der *Controller* verwaltet die Nutzerinteraktionen. Auf der Basis bestimmter Aktionen, die durch die Nutzerin verurssacht werden (Mausklicks, Tatstureingaben, ...) stößt der *Controller* beim *Model* eine Änderung der der Datenverwaltung an (Daten hinzufügen, ändern oder löschen) und er stößt bei der *View*  die Darstellung der Daten an. Der *Controller* hat also Zugriff auf das *Model*  und auf die *View*. 
+- Der *Controller* verwaltet die Nutzerinteraktionen. Auf der Basis bestimmter Aktionen, die durch die Nutzerin verursacht werden (Mausklicks, Tatstureingaben, ...) stößt der *Controller* beim *Model* eine Änderung der der Datenverwaltung an (Daten hinzufügen, ändern oder löschen) und er stößt bei der *View*  die Darstellung der Daten an. Der *Controller* hat also Zugriff auf das *Model*  und auf die *View*. 
 - Die *View*  kümmert sich um die Darstellung der Daten in der GUI. Die *View* hat also Zugriff auf das *Model*, denn die *View* verwendet die vom *Model* verwalteten Daten, um diese darzustellen. 
 
-Diese drei Aufgaben sollten möglichst losgelöst voneinander gelöst werden, d.h. es sollte möglichst Überschneidungen zwischen diesen Komponenten geben. Für uns ist es in diesem Zusammenhang wichtig, dass die `paintComponent()`-Methode unsere *View* ist. In der `paintComponent()`-Methode können wir zeichnen, d.h. Daten visualisieren. Wir sollten
+Diese drei Aufgaben sollten möglichst losgelöst voneinander gelöst werden, d.h. es sollte möglichst keine Überschneidungen zwischen diesen Komponenten geben. Für uns ist es in diesem Zusammenhang wichtig, dass die `paintComponent()`-Methode unsere *View* ist. In der `paintComponent()`-Methode können wir zeichnen, d.h. Daten visualisieren. Wir sollten
 
 - keine weitere Methode (außer die `paintComponent()`-Methode) haben, die etwas zeichnet und wir sollten
 - in der `paintComponent()`-Methode keine Verwaltung von Daten durchführen. 
@@ -478,7 +478,7 @@ Unser erstes Beispiel ist einfach. Wir wollen mit der Maus in unsere `Canvas` kl
 
 - *View*: in der `paintComponenet()`-Methode können wir z.B. mithilfe der `fillOval()`-Methode Kreise zeichnen. Wir müssen nur die Koordinaten `x` und `y` kennen, an denen der jeweilige Kreis gezeichnet werden soll. 
 - *Controller*: um zu wissen, wo wir mit der Maus in die `Canvas` geklickt haben, müssen wir den `MouseListener` implementieren.
-- *Model*: wir müssen speichern Koordinaten, also entweder `int`-Werte `x` und `y` oder gleich Objekte vom Typ `Point`. Wir entscheiden uns für Letzteres. Da wir nicht wissen, wie viele `Point`-Objekte gespeichert werden sollen, kommt ein `Array` nicht in Frage. Wir benötigen Eine `Collection`. Hier ist es egal, ob `List` oder `Set`. Wir entscheiden uns für `List`. 
+- *Model*: wir müssen Koordinaten speichern, also entweder `int`-Werte `x` und `y` oder gleich Objekte vom Typ `Point`. Wir entscheiden uns für Letzteres. Da wir nicht wissen, wie viele `Point`-Objekte gespeichert werden sollen, kommt ein `Array` nicht in Frage. Wir benötigen Eine `Collection`. Hier ist es egal, ob `List` oder `Set`. Wir entscheiden uns für `List`. 
 
 
 Wir starten erneut mit unserem Grundgerüst für das Zeichnen, haben dort aber bereits den `MouseListener` implementiert:
@@ -553,7 +553,7 @@ Wir starten erneut mit unserem Grundgerüst für das Zeichnen, haben dort aber b
 
 Im Sinne des *Controllers* sind wir nur daran interessiert, die `mouseClicked()`-Methode des `MouseListener` zu implementieren, aber natürlich müssen die anderen Methoden des `MouseListener` auch "implementiert" werden, ansonsten bliben sie abstrakt und somit die ganze Klasse. Wir lassen sie aber leer. 
 
-Wir fügen nun das *Model* ein, nämlich eine Liste aus lauter Punkten, d.h. ein `List<Point`, die wir `points` nennen. Wir erzeugen die Liste im Konstruktor der Klasse, Da wir sowohl in `mouseClicked()`, als auch in `paintComponent()` auf diese Liste zugreifen wollen, deklarieren wir sie als globale Variable. 
+Wir fügen nun das *Model* ein, nämlich eine Liste aus lauter Punkten, d.h. ein `List<Point`, die wir `points` nennen. Wir erzeugen die Liste im Konstruktor der Klasse, da wir sowohl in `mouseClicked()`, als auch in `paintComponent()` auf diese Liste zugreifen wollen, deklarieren wir sie als globale Variable. 
 
 
 === "Einfügen des Models"
@@ -646,7 +646,7 @@ Wir betrachten die Änderungen im Detail:
 - In Zeile `22` erzeugen wir ein Objekt der Klasse `ArrayList` für die `points`-Referenz. 
 - In Zeile `34` erstellen wir eine Konstante `DURCHMESSER`, mit der wir den Durchmesser der Kreise festlegen, die wir durch die Maus-Klicks erzeugen wollen. Hier ist es Geschmackssache, ob sie diese Konstante als `static` deklarieren oder nicht. Die Unterscheidung liegt darin, ob Sie allen Objekten aus `Canvas` diesen Wert mitgeben sollen oder ob jedes `Canvas`-Objekt "seinen eigenen" `DURCHMESSER` haben soll. Da wir eh nur ein Objekt von `Canvas` erzeugen, macht es hier keinen Unterschied. 
 - In den Zeilen `43-46` wird die Datenstruktur `List` ausgelesen und jeder einzelne `Point` darin verwendet, um einen Kreis an diese Stelle zu zeichnen. Hier greift die *View* auf das *Model* zu (aber nur lesend!). Hier ist also unsere einzige Verbindung zwischen *Model* und *View*. Es sei an dieser Stelle angemerkt, dass die *View*  das Model auch dazu verwenden könnte, um z.B. Quadrate mit der Größe `100x100` zu zeichnen oder rote Kreise oder ... Insofern ist das *Model* unabhängig von der *View* und genau das wollen wir auch erreichen. Wir sehen hier auch den Zugriff auf eine Objekteigenschaft von der inneren in die äußere Klasse. Um auf die Objekteigenschaft `points` der äußeren Klasse zuzugreifen, schreiben wir `KreiseZeichnen.this.points` (siehe auch )
-- In Zeile `60` wird die Liste (also das *Model*) durch die Interaktionen der Nutzerin (also durch den *Controller*) befüllt. Immer dort, wohin mit der Maus geklickt wird, wird dieser `Point` in der Datenstruktur Liste (also im *Model*) gespeichert. Hier sehen wir die einzige Verbindung zwischen *Controller*  und *Model*. Der *Controller* greift auf das *Model* zu und stößt das Peichern eines Datums an. 
+- In Zeile `60` wird die Liste (also das *Model*) durch die Interaktionen der Nutzerin (also durch den *Controller*) befüllt. Immer dort, wohin mit der Maus geklickt wird, wird dieser `Point` in der Datenstruktur Liste (also im *Model*) gespeichert. Hier sehen wir die einzige Verbindung zwischen *Controller*  und *Model*. Der *Controller* greift auf das *Model* zu und stößt das Speichern eines Datums an. 
 - Zeile `62` ist **sehr wichtig** und wird häufig vergessen. Hier "triggert" der *Controller* die *View*. Wenn wir uns an die Einführung des Zeichnens erinnern, dann wird ein Fenster mit allen seinen Komponenten "gezeichnet". Wenn wir die `Canvas` mit neuen Kreisen "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der `Canvas`. Ein Neuzeichnen würde nur erfolgen, wenn wir bspw. die Fenstergröße ändern oder das Fenster in die Taskleiste bewegen und wieder öffnen. Um ein Neuzeichnen aus dem Programm heraus anzustoßen, benötigen wir die Methode `repaint()`. Wir hätten auch `this.repaint();` angeben können, dann wäre das gesamte Fenster neu gezeichnet worden (inkl. der `Canvas`). Mit `this.canvas.repaint();` wird "nur" die `Canvas` neu gezeichnet.  
 
 ![maus](./files/87_maus.png)
@@ -663,7 +663,7 @@ In unserem zweiten Beispiel wollen wir Linien zeichnen. Dabei soll das Vorgehen 
 
 1. Wir klicken mit der Maus und legen dabei den Anfangspunkt der Linie fest.
 2. Wir halten die Maustaste gedrückt und bewegen bei gedrückter Maustaste die Maus. Dabei wird die Linie bereits gezeichnet. 
-3. Wir lassen die Maustatse los. dadurch steht der Endpunkt der Linie fest. 
+3. Wir lassen die Maustaste los. dadurch steht der Endpunkt der Linie fest. 
 
 Für Punkt `1.` implementieren wir die Methode `mousePressed()` und wir benötigen somit den `MouseListener`. <br/>
 Für Punkt `2.` implementieren wir die Methode `mouseDragged()` und wir benötigen somit den `MouseMotionListener`. <br/>
@@ -792,7 +792,7 @@ Wir beginnen zunächst damit, **eine** Linie zu erzeugen:
 
 
 === "LinienZeichnen.java"
-	```java linenums="1" hl_lines="15 42-50 63 69 71"
+	```java linenums="1" hl_lines="13 40-48 61 67 69"
 	import java.awt.Graphics;
 	import java.awt.Graphics2D;
 	import java.awt.Point;
@@ -876,12 +876,12 @@ Wir beginnen zunächst damit, **eine** Linie zu erzeugen:
 	}
 	``` 
 
-- Die Variable `aktLinie` ist *global*, weil wir sowohl in den Methoden `mousepressed()` und `mouseDragged` als auch in `paintComponent()` darauf zugreifen wollen (Zeile `15`).
-- In der `paintComponent()`-Methode (unserer *View*) lesen wir diese `Linie` aus, um sie grafisch als Linie darzustellen. Der Zugriff auf die Eigenschaften des Objektes `aktLinie` erfolgt aber nur, wenn `aktLinie` auch tatsächlich auf ein Objekt zeigt. Wir prüfen deshalb zunächst, ob `aktLinie` nicht `null` ist (Zeile `42`).
-- Nachdem wir die `x`- und `y`-Werte des `start`- und des `ende`-Punktes der `aktLinie` ausgelesen haben (Zeilen `44-47`), stellen wir eine Linie grafisch mithilfe der `drawLine()`-Methode dar. 
-- Das Objekt einer `Linie` wird in der `mousePressed()`-Methode erstellt. Der `start`- und der `ende`-Punkt dieser `Linie` sind zunächst gleich (die Linie ist also am Anfang nur ein Punkt) - Zeile `63`.
-- Wenn wir bei gedrückter Maustaste die Maus bewegen, wird permanent die `mouseDragged()`-Methode aufgerufen. Dort setzen wir die aktuelle Position der Maus als neuen `ende`-Punkt von `aktLinie` (Zeile `69`).
-- Zeile `71` ist wieder **sehr wichtig** (und wird häufig vergessen). Hier "triggert" der *Controller* die *View*. Wenn wir die `Canvas` mit einer neuen Linie "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der `Canvas`. Das Neuzeichnen erfolgt erst durch den Aufruf `this.canvas.repaint();`.  
+- Die Variable `aktLinie` ist *global*, weil wir sowohl in den Methoden `mousepressed()` und `mouseDragged` als auch in `paintComponent()` darauf zugreifen wollen (Zeile `13`).
+- In der `paintComponent()`-Methode (unserer *View*) lesen wir diese `Linie` aus, um sie grafisch als Linie darzustellen. Der Zugriff auf die Eigenschaften des Objektes `aktLinie` erfolgt aber nur, wenn `aktLinie` auch tatsächlich auf ein Objekt zeigt. Wir prüfen deshalb zunächst, ob `aktLinie` nicht `null` ist (Zeile `40`).
+- Nachdem wir die `x`- und `y`-Werte des `start`- und des `ende`-Punktes der `aktLinie` ausgelesen haben (Zeilen `42-45`), stellen wir eine Linie grafisch mithilfe der `drawLine()`-Methode dar. 
+- Das Objekt einer `Linie` wird in der `mousePressed()`-Methode erstellt. Der `start`- und der `ende`-Punkt dieser `Linie` sind zunächst gleich (die Linie ist also am Anfang nur ein Punkt) - Zeile `61`.
+- Wenn wir bei gedrückter Maustaste die Maus bewegen, wird permanent die `mouseDragged()`-Methode aufgerufen. Dort setzen wir die aktuelle Position der Maus als neuen `ende`-Punkt von `aktLinie` (Zeile `67`).
+- Zeile `69` ist wieder **sehr wichtig** (und wird häufig vergessen). Hier "triggert" der *Controller* die *View*. Wenn wir die `Canvas` mit einer neuen Linie "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der `Canvas`. Das Neuzeichnen erfolgt erst durch den Aufruf `this.canvas.repaint();`.  
 
 Wir können nun viele Linien zeichnen, aber diese werden noch nicht gespeichert. Zum Speichern der Linien benötigen wir wieder eine Collection. Das Speichern der aktuellen Linie in diese Collection erfolgt in dem Moment, indem wir die Maustaste wieder loslassen, also in `mouseReleased()`. Die Collection muss wieder *global* verfügbar sein. 
 

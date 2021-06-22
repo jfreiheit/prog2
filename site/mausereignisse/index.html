@@ -1067,7 +1067,7 @@
 <ul>
 <li><code>mousePressed()</code> wird aufgerufen, wenn die (linke) Maustaste heruntergedrückt wird. Drücken Sie die Maustaste und halten Sie sie gedrückt. In der Konsole erscheint <code>mousePressed</code>.</li>
 <li><code>mouseReleased()</code> wird aufgerufen, wenn die (linke) Maustaste nach dem Drücken wieder losgelassen wird. Lassen Sie die Maustaste, nachdem auf der Konsole <code>mousePressed</code> erschienen ist, wieder los. In der Konsole erscheint <code>mouseReleased</code>.</li>
-<li><code>mouseCliecked()</code> wird aufgerufen, wenn erst <code>mousePressed()</code> und dann <code>mouseReleased()</code> aufgerufen wurde. <code>mouseClicked()</code> beschreibt also die Kombination aus Maustaste gedrückt und Maustaste losgelassen - einen Maus-Klick also.</li>
+<li><code>mouseClicked()</code> wird aufgerufen, wenn erst <code>mousePressed()</code> und dann <code>mouseReleased()</code> aufgerufen wurde. <code>mouseClicked()</code> beschreibt also die Kombination aus Maustaste gedrückt und Maustaste losgelassen - einen Maus-Klick also.</li>
 <li><code>mouseEntered()</code> wird aufgerufen, wenn Sie den Mauszeiger auf die Komponente bewegen, die an den <code>MouseListener</code> angemeldet ist. Wenn Sie in unserem Fall also die Maus in die Zeichenfläche <code>canvas</code> bewegen, dann wird die Methode <code>mouseEntered()</code> einmalig ausgeführt. </li>
 <li><code>mouseExited()</code> wird aufgerufen, wenn Sie den Mauszeiger von der Komponente wieder wegbewegen, die an den <code>MouseListener</code> angemeldet ist. Wenn Sie in unserem Fall also die Maus von der Zeichenfläche in die Titelleiste des Fensters oder ganz aus dem Fenster (der <code>ContentPane</code>) bewegen, dann wird die Methode <code>mouseExited()</code> einmalig ausgeführt. </li>
 </ul>
@@ -1263,9 +1263,9 @@
 </ul>
 <p>Wenn Sie anhand der Konsolenausgaben geprüft haben, dass die Methoden "funktionieren", dann können Sie dort die Konsolenausgaben auch wieder auskommentieren, da Ihre Konsole ansonsten zu "vollgeschreiben" wird. </p>
 <h3 id="objektmethoden-der-klasse-mouseevent">Objektmethoden der Klasse <code>MouseEvent</code><a class="headerlink" href="#objektmethoden-der-klasse-mouseevent" title="Permanent link">&para;</a></h3>
-<p>All diesen Methoden, sowohl vom <code>MouseListener</code> als auch vom <code>MouseMotionListener</code> wird ein <code>MouseEvent</code> als Parameter übergeben. Dieses Objekt besitzt einige nützliche Objektmethoden. Die wichtigsten dabei sind sicherlich die Auskünfte darüber, <strong>wo</strong> das Mausereignis ausgelöst wurde. Wir betrachten einige Objektmethoden des <code>MouseEvent</code>-Objekts am Beispiel der <code>mouseClicked(MouseEvent e)</code>-Methode (kommentieren Sie die Konsolenausgabe der beiden Methoden vom <code>MouseMotionListener</code> aus, damit Sie sich auf die Ausgabe von <code>mouseClkicked()</code> konzentrieren können). </p>
+<p>All diesen Methoden, sowohl vom <code>MouseListener</code> als auch vom <code>MouseMotionListener</code> wird ein <code>MouseEvent</code> als Parameter übergeben. Dieses Objekt besitzt einige nützliche Objektmethoden. Die wichtigsten dabei sind sicherlich die Auskünfte darüber, <strong>wo</strong> das Mausereignis ausgelöst wurde. Wir betrachten einige Objektmethoden des <code>MouseEvent</code>-Objekts am Beispiel der <code>mouseClicked(MouseEvent e)</code>-Methode (kommentieren Sie die Konsolenausgabe der beiden Methoden vom <code>MouseMotionListener</code> aus, damit Sie sich auf die Ausgabe von <code>mouseClicked()</code> konzentrieren können). </p>
 <ul>
-<li>die Methode <code>getX()</code> gibt den <code>x</code>-Wert der Koordinate zurück, bei dem das <code>MouseEvent</code> stattgefunden hat. Die Koordinate bezieht sich auf die Komponente, die an den <code>MouseListener</code> (bzw. <code>MouseMotionListener</code>) angemeldet ist. Das ist auch der Grund, warum wir nicht da sgesamte Fenster an den <code>MouseListener</code>  (und <code>MouseMotionListener</code>) angemeldet haben. Der Punkt <code>[x=0, y=0]</code> befindet sich bei dem <code>Canvas</code>-Objekt in der linken oberen Ecke der <code>ContentPane</code>. Der Punkt mit den Koordinaten <code>[x=0, y=0]</code> beim Fenster ist der linke obere Punkt des Fensters, d.h. der linke obere Punkt der Titelleiste. </li>
+<li>die Methode <code>getX()</code> gibt den <code>x</code>-Wert der Koordinate zurück, bei dem das <code>MouseEvent</code> stattgefunden hat. Die Koordinate bezieht sich auf die Komponente, die an den <code>MouseListener</code> (bzw. <code>MouseMotionListener</code>) angemeldet ist. Das ist auch der Grund, warum wir nicht das gesamte Fenster an den <code>MouseListener</code>  (und <code>MouseMotionListener</code>) angemeldet haben. Der Punkt <code>[x=0, y=0]</code> befindet sich bei dem <code>Canvas</code>-Objekt in der linken oberen Ecke der <code>ContentPane</code>. Der Punkt mit den Koordinaten <code>[x=0, y=0]</code> beim Fenster ist der linke obere Punkt des Fensters, d.h. der linke obere Punkt der Titelleiste. </li>
 <li>die Methode <code>getY()</code> gibt den <code>y</code>-Wert der Koordinate zurück, bei dem das <code>MouseEvent</code> stattgefunden hat (Koordinate der Komponente).</li>
 <li>die Methode <code>getPoint()</code> gibt ein <code>Point</code>-Objekt (von <code>java.awt</code>) zurück. Ein <code>Point</code>-Objekt besitzt die sichtbaren Objektvariablen <code>x</code> und <code>y</code> für die Koordinaten.</li>
 </ul>
@@ -1312,7 +1312,7 @@ mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">
 mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">=</span><span class="m">309</span> ,y<span class="o">=</span><span class="m">292</span><span class="o">]</span>
 mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">=</span><span class="m">309</span> ,y<span class="o">=</span><span class="m">292</span><span class="o">]</span>
 </code></pre></div>
-<p>Manchmal sind die Mausbewegungen, die ein Auslösen des Ereignisses zur Folge haben, sogar so klain, dass sich die Koordinaten gar nicht ändern. </p>
+<p>Manchmal sind die Mausbewegungen, die ein Auslösen des Ereignisses zur Folge haben, sogar so klein, dass sich die Koordinaten gar nicht ändern. </p>
 <p>Weiterhin kann mithilfe des <code>MouseEvent</code>-Objektes überprüft werden, ob während des auslösenden Mausereignisses eine besondere Taste auf der Tastatur gedrückt wurde, z.B. die <code>Alt</code>-Taste (linke <code>option</code>-Taste beim Mac), die <code>AltGraph</code>-Taste (rechte <code>option</code>-Taste beim Mac), die <code>Ctrl</code>-Taste, oder die <code>Meta</code>-Taste (<code>Windows</code>-Taste bzw. <code>Apple</code>-Taste):</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>49
 50
@@ -1387,13 +1387,13 @@ mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">
 </ul>
 <p>Diese beiden Fähigkeiten wollen wir nun miteinander verbinden. Dazu zunächst einige theoretische Vorüberlegungen.</p>
 <h3 id="model-view-controller">Model-View-Controller<a class="headerlink" href="#model-view-controller" title="Permanent link">&para;</a></h3>
-<p>Unter <em>Model-View-Controller</em> versteht man ein Entwurfsmuster (ein <em>Desgn Pattern</em>), welches ein wesentliches Konzept bei Anwendungen darstellt, die eine GUI besitzen. Wir werden es in diesem Semester nicht mehr schaffen, ausführlich auf dieses Konzept einzugehen, aber wir betrachten ein paar wesentliche Grundsätze daraus, die auch für unsere Anwendungen wichtig sind. Die Grundidee bei <em>Model-View-Controlle (MVC)</em> ist die Unterscheidung von drei Aufgaben:</p>
+<p>Unter <em>Model-View-Controller</em> versteht man ein Entwurfsmuster (ein <em>Design Pattern</em>), welches ein wesentliches Konzept bei Anwendungen darstellt, die eine GUI besitzen. Wir werden es in diesem Semester nicht mehr schaffen, ausführlich auf dieses Konzept einzugehen, aber wir betrachten ein paar wesentliche Grundsätze daraus, die auch für unsere Anwendungen wichtig sind. Die Grundidee bei <em>Model-View-Controlle (MVC)</em> ist die Unterscheidung von drei Aufgaben:</p>
 <ul>
 <li>Das <em>Model</em> kümmert sich um die Datenverwaltung. Es gibt eine oder mehrere Datenstrukturen, in denen Daten gespeichert werden. Das <em>Model</em>  kümmert sich darum, diese Datenstrukturen zu erstellen und Daten in diese Datenstrukturen einzufügen, zu ändern oder zu löschen. </li>
-<li>Der <em>Controller</em> verwaltet die Nutzerinteraktionen. Auf der Basis bestimmter Aktionen, die durch die Nutzerin verurssacht werden (Mausklicks, Tatstureingaben, ...) stößt der <em>Controller</em> beim <em>Model</em> eine Änderung der der Datenverwaltung an (Daten hinzufügen, ändern oder löschen) und er stößt bei der <em>View</em>  die Darstellung der Daten an. Der <em>Controller</em> hat also Zugriff auf das <em>Model</em>  und auf die <em>View</em>. </li>
+<li>Der <em>Controller</em> verwaltet die Nutzerinteraktionen. Auf der Basis bestimmter Aktionen, die durch die Nutzerin verursacht werden (Mausklicks, Tatstureingaben, ...) stößt der <em>Controller</em> beim <em>Model</em> eine Änderung der der Datenverwaltung an (Daten hinzufügen, ändern oder löschen) und er stößt bei der <em>View</em>  die Darstellung der Daten an. Der <em>Controller</em> hat also Zugriff auf das <em>Model</em>  und auf die <em>View</em>. </li>
 <li>Die <em>View</em>  kümmert sich um die Darstellung der Daten in der GUI. Die <em>View</em> hat also Zugriff auf das <em>Model</em>, denn die <em>View</em> verwendet die vom <em>Model</em> verwalteten Daten, um diese darzustellen. </li>
 </ul>
-<p>Diese drei Aufgaben sollten möglichst losgelöst voneinander gelöst werden, d.h. es sollte möglichst Überschneidungen zwischen diesen Komponenten geben. Für uns ist es in diesem Zusammenhang wichtig, dass die <code>paintComponent()</code>-Methode unsere <em>View</em> ist. In der <code>paintComponent()</code>-Methode können wir zeichnen, d.h. Daten visualisieren. Wir sollten</p>
+<p>Diese drei Aufgaben sollten möglichst losgelöst voneinander gelöst werden, d.h. es sollte möglichst keine Überschneidungen zwischen diesen Komponenten geben. Für uns ist es in diesem Zusammenhang wichtig, dass die <code>paintComponent()</code>-Methode unsere <em>View</em> ist. In der <code>paintComponent()</code>-Methode können wir zeichnen, d.h. Daten visualisieren. Wir sollten</p>
 <ul>
 <li>keine weitere Methode (außer die <code>paintComponent()</code>-Methode) haben, die etwas zeichnet und wir sollten</li>
 <li>in der <code>paintComponent()</code>-Methode keine Verwaltung von Daten durchführen. </li>
@@ -1406,7 +1406,7 @@ mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">
 <ul>
 <li><em>View</em>: in der <code>paintComponenet()</code>-Methode können wir z.B. mithilfe der <code>fillOval()</code>-Methode Kreise zeichnen. Wir müssen nur die Koordinaten <code>x</code> und <code>y</code> kennen, an denen der jeweilige Kreis gezeichnet werden soll. </li>
 <li><em>Controller</em>: um zu wissen, wo wir mit der Maus in die <code>Canvas</code> geklickt haben, müssen wir den <code>MouseListener</code> implementieren.</li>
-<li><em>Model</em>: wir müssen speichern Koordinaten, also entweder <code>int</code>-Werte <code>x</code> und <code>y</code> oder gleich Objekte vom Typ <code>Point</code>. Wir entscheiden uns für Letzteres. Da wir nicht wissen, wie viele <code>Point</code>-Objekte gespeichert werden sollen, kommt ein <code>Array</code> nicht in Frage. Wir benötigen Eine <code>Collection</code>. Hier ist es egal, ob <code>List</code> oder <code>Set</code>. Wir entscheiden uns für <code>List</code>. </li>
+<li><em>Model</em>: wir müssen Koordinaten speichern, also entweder <code>int</code>-Werte <code>x</code> und <code>y</code> oder gleich Objekte vom Typ <code>Point</code>. Wir entscheiden uns für Letzteres. Da wir nicht wissen, wie viele <code>Point</code>-Objekte gespeichert werden sollen, kommt ein <code>Array</code> nicht in Frage. Wir benötigen Eine <code>Collection</code>. Hier ist es egal, ob <code>List</code> oder <code>Set</code>. Wir entscheiden uns für <code>List</code>. </li>
 </ul>
 <p>Wir starten erneut mit unserem Grundgerüst für das Zeichnen, haben dort aber bereits den <code>MouseListener</code> implementiert:</p>
 <div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">KreiseZeichnen.java</label><div class="tabbed-content">
@@ -1542,7 +1542,7 @@ mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">
 </div>
 </div>
 <p>Im Sinne des <em>Controllers</em> sind wir nur daran interessiert, die <code>mouseClicked()</code>-Methode des <code>MouseListener</code> zu implementieren, aber natürlich müssen die anderen Methoden des <code>MouseListener</code> auch "implementiert" werden, ansonsten bliben sie abstrakt und somit die ganze Klasse. Wir lassen sie aber leer. </p>
-<p>Wir fügen nun das <em>Model</em> ein, nämlich eine Liste aus lauter Punkten, d.h. ein <code>List&lt;Point</code>, die wir <code>points</code> nennen. Wir erzeugen die Liste im Konstruktor der Klasse, Da wir sowohl in <code>mouseClicked()</code>, als auch in <code>paintComponent()</code> auf diese Liste zugreifen wollen, deklarieren wir sie als globale Variable. </p>
+<p>Wir fügen nun das <em>Model</em> ein, nämlich eine Liste aus lauter Punkten, d.h. ein <code>List&lt;Point</code>, die wir <code>points</code> nennen. Wir erzeugen die Liste im Konstruktor der Klasse, da wir sowohl in <code>mouseClicked()</code>, als auch in <code>paintComponent()</code> auf diese Liste zugreifen wollen, deklarieren wir sie als globale Variable. </p>
 <div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Einfügen des Models</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1710,7 +1710,7 @@ mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">
 <li>In Zeile <code>22</code> erzeugen wir ein Objekt der Klasse <code>ArrayList</code> für die <code>points</code>-Referenz. </li>
 <li>In Zeile <code>34</code> erstellen wir eine Konstante <code>DURCHMESSER</code>, mit der wir den Durchmesser der Kreise festlegen, die wir durch die Maus-Klicks erzeugen wollen. Hier ist es Geschmackssache, ob sie diese Konstante als <code>static</code> deklarieren oder nicht. Die Unterscheidung liegt darin, ob Sie allen Objekten aus <code>Canvas</code> diesen Wert mitgeben sollen oder ob jedes <code>Canvas</code>-Objekt "seinen eigenen" <code>DURCHMESSER</code> haben soll. Da wir eh nur ein Objekt von <code>Canvas</code> erzeugen, macht es hier keinen Unterschied. </li>
 <li>In den Zeilen <code>43-46</code> wird die Datenstruktur <code>List</code> ausgelesen und jeder einzelne <code>Point</code> darin verwendet, um einen Kreis an diese Stelle zu zeichnen. Hier greift die <em>View</em> auf das <em>Model</em> zu (aber nur lesend!). Hier ist also unsere einzige Verbindung zwischen <em>Model</em> und <em>View</em>. Es sei an dieser Stelle angemerkt, dass die <em>View</em>  das Model auch dazu verwenden könnte, um z.B. Quadrate mit der Größe <code>100x100</code> zu zeichnen oder rote Kreise oder ... Insofern ist das <em>Model</em> unabhängig von der <em>View</em> und genau das wollen wir auch erreichen. Wir sehen hier auch den Zugriff auf eine Objekteigenschaft von der inneren in die äußere Klasse. Um auf die Objekteigenschaft <code>points</code> der äußeren Klasse zuzugreifen, schreiben wir <code>KreiseZeichnen.this.points</code> (siehe auch )</li>
-<li>In Zeile <code>60</code> wird die Liste (also das <em>Model</em>) durch die Interaktionen der Nutzerin (also durch den <em>Controller</em>) befüllt. Immer dort, wohin mit der Maus geklickt wird, wird dieser <code>Point</code> in der Datenstruktur Liste (also im <em>Model</em>) gespeichert. Hier sehen wir die einzige Verbindung zwischen <em>Controller</em>  und <em>Model</em>. Der <em>Controller</em> greift auf das <em>Model</em> zu und stößt das Peichern eines Datums an. </li>
+<li>In Zeile <code>60</code> wird die Liste (also das <em>Model</em>) durch die Interaktionen der Nutzerin (also durch den <em>Controller</em>) befüllt. Immer dort, wohin mit der Maus geklickt wird, wird dieser <code>Point</code> in der Datenstruktur Liste (also im <em>Model</em>) gespeichert. Hier sehen wir die einzige Verbindung zwischen <em>Controller</em>  und <em>Model</em>. Der <em>Controller</em> greift auf das <em>Model</em> zu und stößt das Speichern eines Datums an. </li>
 <li>Zeile <code>62</code> ist <strong>sehr wichtig</strong> und wird häufig vergessen. Hier "triggert" der <em>Controller</em> die <em>View</em>. Wenn wir uns an die Einführung des Zeichnens erinnern, dann wird ein Fenster mit allen seinen Komponenten "gezeichnet". Wenn wir die <code>Canvas</code> mit neuen Kreisen "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der <code>Canvas</code>. Ein Neuzeichnen würde nur erfolgen, wenn wir bspw. die Fenstergröße ändern oder das Fenster in die Taskleiste bewegen und wieder öffnen. Um ein Neuzeichnen aus dem Programm heraus anzustoßen, benötigen wir die Methode <code>repaint()</code>. Wir hätten auch <code>this.repaint();</code> angeben können, dann wäre das gesamte Fenster neu gezeichnet worden (inkl. der <code>Canvas</code>). Mit <code>this.canvas.repaint();</code> wird "nur" die <code>Canvas</code> neu gezeichnet.  </li>
 </ul>
 <p><img alt="maus" src="../files/87_maus.png" /></p>
@@ -1725,7 +1725,7 @@ mouseMoved bei <span class="o">[</span><span class="nv">x</span><span class="o">
 <ol>
 <li>Wir klicken mit der Maus und legen dabei den Anfangspunkt der Linie fest.</li>
 <li>Wir halten die Maustaste gedrückt und bewegen bei gedrückter Maustaste die Maus. Dabei wird die Linie bereits gezeichnet. </li>
-<li>Wir lassen die Maustatse los. dadurch steht der Endpunkt der Linie fest. </li>
+<li>Wir lassen die Maustaste los. dadurch steht der Endpunkt der Linie fest. </li>
 </ol>
 <p>Für Punkt <code>1.</code> implementieren wir die Methode <code>mousePressed()</code> und wir benötigen somit den <code>MouseListener</code>. <br/>
 Für Punkt <code>2.</code> implementieren wir die Methode <code>mouseDragged()</code> und wir benötigen somit den <code>MouseMotionListener</code>. <br/>
@@ -2039,10 +2039,10 @@ Für Punkt <code>3.</code> implementieren wir die Methode <code>mouseReleased()<
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">LinienZeichnen</span> <span class="kd">extends</span> <span class="n">JFrame</span> <span class="kd">implements</span> <span class="n">MouseListener</span><span class="p">,</span> <span class="n">MouseMotionListener</span> <span class="p">{</span>
     <span class="n">Canvas</span> <span class="n">canvas</span><span class="p">;</span>
-    <span class="n">Linie</span> <span class="n">aktLinie</span><span class="p">;</span>
-
-<span class="hll">    <span class="kd">public</span> <span class="nf">LinienZeichnen</span><span class="p">()</span>
-</span>    <span class="p">{</span>
+<span class="hll">    <span class="n">Linie</span> <span class="n">aktLinie</span><span class="p">;</span>
+</span>
+    <span class="kd">public</span> <span class="nf">LinienZeichnen</span><span class="p">()</span>
+    <span class="p">{</span>
         <span class="kd">super</span><span class="p">();</span>
         <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Linien zeichnen&quot;</span><span class="p">);</span>
         <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>    
@@ -2066,18 +2066,18 @@ Für Punkt <code>3.</code> implementieren wir die Methode <code>mouseReleased()<
             <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>        
             <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>  
 
-            <span class="k">if</span><span class="p">(</span><span class="n">LinienZeichnen</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">aktLinie</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
-            <span class="p">{</span>
-<span class="hll">                <span class="kt">int</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">LinienZeichnen</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">aktLinie</span><span class="p">.</span><span class="na">getXstart</span><span class="p">();</span>
+<span class="hll">            <span class="k">if</span><span class="p">(</span><span class="n">LinienZeichnen</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">aktLinie</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+</span><span class="hll">            <span class="p">{</span>
+</span><span class="hll">                <span class="kt">int</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">LinienZeichnen</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">aktLinie</span><span class="p">.</span><span class="na">getXstart</span><span class="p">();</span>
 </span><span class="hll">                <span class="kt">int</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">LinienZeichnen</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">aktLinie</span><span class="p">.</span><span class="na">getYstart</span><span class="p">();</span>
 </span><span class="hll">                <span class="kt">int</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">LinienZeichnen</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">aktLinie</span><span class="p">.</span><span class="na">getXende</span><span class="p">();</span>
 </span><span class="hll">                <span class="kt">int</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">LinienZeichnen</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">aktLinie</span><span class="p">.</span><span class="na">getYende</span><span class="p">();</span>
 </span><span class="hll">
 </span><span class="hll">                <span class="n">g2</span><span class="p">.</span><span class="na">drawLine</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">);</span>
 </span><span class="hll">            <span class="p">}</span>
-</span><span class="hll">        <span class="p">}</span>
-</span><span class="hll">    <span class="p">}</span>
-</span>
+</span>        <span class="p">}</span>
+    <span class="p">}</span>
+
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
     <span class="p">{</span>
         <span class="k">new</span> <span class="n">LinienZeichnen</span><span class="p">();</span>
@@ -2087,18 +2087,18 @@ Für Punkt <code>3.</code> implementieren wir die Methode <code>mouseReleased()<
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mousePressed</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Point</span> <span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getPoint</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">aktLinie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Linie</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="hll">
-</span>    <span class="nd">@Override</span>
+<span class="hll">        <span class="k">this</span><span class="p">.</span><span class="na">aktLinie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Linie</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+</span>    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseDragged</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Point</span> <span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getPoint</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">aktLinie</span><span class="p">.</span><span class="na">setEnde</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-
+<span class="hll">        <span class="k">this</span><span class="p">.</span><span class="na">aktLinie</span><span class="p">.</span><span class="na">setEnde</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</span>
 <span class="hll">        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
 </span>    <span class="p">}</span>
-<span class="hll">
-</span>    <span class="nd">@Override</span>
+
+    <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseReleased</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Point</span> <span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getPoint</span><span class="p">();</span>
     <span class="p">}</span>
@@ -2113,12 +2113,12 @@ Für Punkt <code>3.</code> implementieren wir die Methode <code>mouseReleased()<
 </div>
 </div>
 <ul>
-<li>Die Variable <code>aktLinie</code> ist <em>global</em>, weil wir sowohl in den Methoden <code>mousepressed()</code> und <code>mouseDragged</code> als auch in <code>paintComponent()</code> darauf zugreifen wollen (Zeile <code>15</code>).</li>
-<li>In der <code>paintComponent()</code>-Methode (unserer <em>View</em>) lesen wir diese <code>Linie</code> aus, um sie grafisch als Linie darzustellen. Der Zugriff auf die Eigenschaften des Objektes <code>aktLinie</code> erfolgt aber nur, wenn <code>aktLinie</code> auch tatsächlich auf ein Objekt zeigt. Wir prüfen deshalb zunächst, ob <code>aktLinie</code> nicht <code>null</code> ist (Zeile <code>42</code>).</li>
-<li>Nachdem wir die <code>x</code>- und <code>y</code>-Werte des <code>start</code>- und des <code>ende</code>-Punktes der <code>aktLinie</code> ausgelesen haben (Zeilen <code>44-47</code>), stellen wir eine Linie grafisch mithilfe der <code>drawLine()</code>-Methode dar. </li>
-<li>Das Objekt einer <code>Linie</code> wird in der <code>mousePressed()</code>-Methode erstellt. Der <code>start</code>- und der <code>ende</code>-Punkt dieser <code>Linie</code> sind zunächst gleich (die Linie ist also am Anfang nur ein Punkt) - Zeile <code>63</code>.</li>
-<li>Wenn wir bei gedrückter Maustaste die Maus bewegen, wird permanent die <code>mouseDragged()</code>-Methode aufgerufen. Dort setzen wir die aktuelle Position der Maus als neuen <code>ende</code>-Punkt von <code>aktLinie</code> (Zeile <code>69</code>).</li>
-<li>Zeile <code>71</code> ist wieder <strong>sehr wichtig</strong> (und wird häufig vergessen). Hier "triggert" der <em>Controller</em> die <em>View</em>. Wenn wir die <code>Canvas</code> mit einer neuen Linie "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der <code>Canvas</code>. Das Neuzeichnen erfolgt erst durch den Aufruf <code>this.canvas.repaint();</code>.  </li>
+<li>Die Variable <code>aktLinie</code> ist <em>global</em>, weil wir sowohl in den Methoden <code>mousepressed()</code> und <code>mouseDragged</code> als auch in <code>paintComponent()</code> darauf zugreifen wollen (Zeile <code>13</code>).</li>
+<li>In der <code>paintComponent()</code>-Methode (unserer <em>View</em>) lesen wir diese <code>Linie</code> aus, um sie grafisch als Linie darzustellen. Der Zugriff auf die Eigenschaften des Objektes <code>aktLinie</code> erfolgt aber nur, wenn <code>aktLinie</code> auch tatsächlich auf ein Objekt zeigt. Wir prüfen deshalb zunächst, ob <code>aktLinie</code> nicht <code>null</code> ist (Zeile <code>40</code>).</li>
+<li>Nachdem wir die <code>x</code>- und <code>y</code>-Werte des <code>start</code>- und des <code>ende</code>-Punktes der <code>aktLinie</code> ausgelesen haben (Zeilen <code>42-45</code>), stellen wir eine Linie grafisch mithilfe der <code>drawLine()</code>-Methode dar. </li>
+<li>Das Objekt einer <code>Linie</code> wird in der <code>mousePressed()</code>-Methode erstellt. Der <code>start</code>- und der <code>ende</code>-Punkt dieser <code>Linie</code> sind zunächst gleich (die Linie ist also am Anfang nur ein Punkt) - Zeile <code>61</code>.</li>
+<li>Wenn wir bei gedrückter Maustaste die Maus bewegen, wird permanent die <code>mouseDragged()</code>-Methode aufgerufen. Dort setzen wir die aktuelle Position der Maus als neuen <code>ende</code>-Punkt von <code>aktLinie</code> (Zeile <code>67</code>).</li>
+<li>Zeile <code>69</code> ist wieder <strong>sehr wichtig</strong> (und wird häufig vergessen). Hier "triggert" der <em>Controller</em> die <em>View</em>. Wenn wir die <code>Canvas</code> mit einer neuen Linie "befüllen", dann bewirkt das nicht automatisch ein Neuzeichnen der <code>Canvas</code>. Das Neuzeichnen erfolgt erst durch den Aufruf <code>this.canvas.repaint();</code>.  </li>
 </ul>
 <p>Wir können nun viele Linien zeichnen, aber diese werden noch nicht gespeichert. Zum Speichern der Linien benötigen wir wieder eine Collection. Das Speichern der aktuellen Linie in diese Collection erfolgt in dem Moment, indem wir die Maustaste wieder loslassen, also in <code>mouseReleased()</code>. Die Collection muss wieder <em>global</em> verfügbar sein. </p>
 <div class="tabbed-set" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">LinienZeichnen.java</label><div class="tabbed-content">
