@@ -42,18 +42,18 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 | | Woche | Themen (Vorlesung) | Übung | Aufgabe | Abgabe Aufgabe bis | 
 |-|-------|--------------------|-------|-----------------|------------------|
 | 1. | 05.-09.04.2021 | Einführung und Organisatorisches, Wiederholung | - | - | - | 
-| 1. | 12.-16.04.2021 | Git | Übung 1 | Aufgabe 1 | 25.04.2021 | 
-| 2. | 19.-23.04.2021 | Enumerations und Exceptions | Übung 2 | Aufgabe 2 | 02.05.2021 | 
-| 3. | 26.-30.04.2021 | Testen mit JUnit | Übung 3 | Aufgabe 3 | 09.05.2021 | 
-| 4. | 03.-07.05.2021 | Collections (List und Set) | Übung 4 | Aufgabe 4 | 16.05.2021 | 
-| 5. | 10.-14.05.2021 | Wrapper-Klassen (boxing und unboxing) | Übung 5 | Aufgabe 5 | 23.05.2021 | 
+| 1. | 12.-16.04.2021 | Git | Übung 1 |Aufgabe 1 | 25.04.2021 | 
+| 2. | 19.-23.04.2021 | Enumerations und Exceptions | Übung 2 |Aufgabe 2 | 02.05.2021 | 
+| 3. | 26.-30.04.2021 | Testen mit JUnit | Übung 3 |Aufgabe 3 | 09.05.2021 | 
+| 4. | 03.-07.05.2021 | Collections (List und Set) | Übung 4 |Aufgabe 4 | 16.05.2021 | 
+| 5. | 10.-14.05.2021 | Wrapper-Klassen (boxing und unboxing) | Übung 5 |Aufgabe 5 | 23.05.2021 | 
 | 6. | 17.-21.05.2021 | Collections (Map) | Übung 6 | - | - | 
-| 7. | 24.-28.05.2021 | Abstrakte Klassen + Interfaces | Übung 7 | Aufgabe 6 | 06.06.2021 | 
-| 8. | 31.-04.06.2021 | GUI Einführung | Übung 8 | Aufgabe 7 | 13.06.2021 | 
-| 9. | 07.-11.06.2021 | GUI Ereignisse  | Übung 9 | Aufgabe 8 | 20.06.2021 | 
-| 10. | 14.-18.06.2021 | Graphics | Übung 10 | Aufgabe 9 | 04.07.2021 | 
-| 12. | 21.-25.06.2021 | Mauslistener | Übung 11 | - | - |
-| 13. | 28.-02.07.2021 | Model-View-Controller | Übung 12 | - | - |
+| 7. | 24.-28.05.2021 | Abstrakte Klassen + Interfaces | Übung 7 |Aufgabe 6 | 06.06.2021 | 
+| 8. | 31.-04.06.2021 | GUI Einführung | Übung 8 |Aufgabe 7 | 13.06.2021 | 
+| 9. | 07.-11.06.2021 | GUI Ereignisse  | Übung 9 |Aufgabe 8 | 20.06.2021 | 
+| 10. | 14.-18.06.2021 | Graphics | Übung 10 |Aufgabe 9 | 04.07.2021 | 
+| 12. | 21.-25.06.2021 | Mausereignisse | Übung 11 |Aufgabe 10 | 11.07.2021 |
+| 13. | 28.-02.07.2021 | Klausurvorbereitung | Übung 12 | - | - |
 | 14. | 05.-09.07.2021 | Klausurvorbereitung | Übung 13 | - | - |
 | 15. | 12.-16.07.2021 | Klausurvorbereitung | - | - | - | 
 
@@ -1044,3 +1044,200 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 	- siehe [**Aufgabe 10**](./aufgaben/#aufgabe-10-zeichnen) 
 
 
+
+??? question "21.-25.06.2021 - Mausereignisse"
+	- siehe [**Mausereignisse**](./mausereignisse/#mausereignisse)
+	- siehe Video zu [**Mausereignisse**](./mausereignisse/#mausereignisse) - Vorlesung 23.06.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=2afb3933f1f4547a8392829cf1ab6d56&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+	- Quellcode aus der Vorlesung vom 23.06.2021
+
+		=== "Mausereignisse.java"
+
+			```java linenums="1"
+			import java.awt.Color;
+			import java.awt.Graphics;
+			import java.awt.Graphics2D;
+			import java.awt.Point;
+			import java.awt.event.MouseEvent;
+			import java.awt.event.MouseListener;
+			import java.awt.event.MouseMotionListener;
+			import java.util.ArrayList;
+			import java.util.List;
+
+			import javax.swing.JFrame;
+			import javax.swing.JPanel;
+
+			public class Mausereignisse extends JFrame implements MouseListener, MouseMotionListener {
+				Canvas canvas;
+				List<Point> points;
+				Linie aktuelleLinie;
+				List<Linie> linien;
+				
+			    public Mausereignisse()
+			    {
+			        super();
+			        this.setTitle("Mausereignisse");
+			        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+			        this.canvas = new Canvas();
+			        this.canvas.addMouseListener(this);
+			        this.canvas.addMouseMotionListener(this);
+			        this.getContentPane().add(this.canvas);
+			        
+			        this.points = new ArrayList<>();
+			        this.linien = new ArrayList<>();
+			        
+			        this.setSize(400, 400);
+			        this.setLocation(1000,100);
+			        this.setVisible(true);
+			    }
+
+			    private class Canvas extends JPanel
+			    {
+			    	final static int DURCHMESSER = 20;
+			    	
+			        @Override
+			        protected void paintComponent(Graphics g)
+			        {
+			            super.paintComponent(g);        // Implementierung von JPanel aufrufen
+			            Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+			            // hier koennen wir zeichnen
+			            for(Point p : Mausereignisse.this.points)
+			            {
+			            	if(p.x > this.getWidth()/2)
+			            	{
+			            		g2.setColor(Color.RED);
+			            	}
+			            	else
+			            	{
+			            		g2.setColor(Color.BLUE);
+			            	}
+			            	g2.fillOval(p.x, p.y, DURCHMESSER, DURCHMESSER);	
+			            }
+			            
+			            g2.setColor(Color.GREEN);
+			            
+			            for(Linie l : Mausereignisse.this.linien) {
+			            	int x1 = l.getXStart();
+			            	int y1 = l.getYStart();
+			            	int x2 = l.getXEnde();
+			            	int y2 = l.getYEnde();
+			            	
+			            	g2.drawLine(x1, y1, x2, y2);
+			            }
+			            
+			            if(Mausereignisse.this.aktuelleLinie != null)
+			            {
+			            	int x1 = Mausereignisse.this.aktuelleLinie.getXStart();
+			            	int y1 = Mausereignisse.this.aktuelleLinie.getYStart();
+			            	int x2 = Mausereignisse.this.aktuelleLinie.getXEnde();
+			            	int y2 = Mausereignisse.this.aktuelleLinie.getYEnde();
+			            	
+			            	g2.drawLine(x1, y1, x2, y2);
+			            }
+			        }
+			    }
+
+			    public static void main(String[] args) 
+			    {
+			        new Mausereignisse();
+			    }
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+
+					/*
+					int x = e.getX();
+					int y = e.getY();
+					System.out.println("mouseClicked bei [x=" + p.x +", y=" +p.y +"]");
+					System.out.println("mouseClicked bei [x=" + x +", y=" +y +"]");
+					*/
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					Point p = e.getPoint();  // p.x p.y
+					this.points.add(p);
+					this.aktuelleLinie = new Linie(p,p);
+					
+					this.canvas.repaint();  // ruft paintComponent() von canvas auf
+					
+					System.out.println("mousePressed");
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					System.out.println("mouseReleased");
+					this.linien.add(this.aktuelleLinie);
+					
+					this.canvas.repaint();
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					System.out.println("mouseEntered");
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					System.out.println("mouseExited");
+				}
+
+				@Override
+				public void mouseDragged(MouseEvent e) {
+					Point p = e.getPoint();
+					this.aktuelleLinie.setEnde(p);
+					
+					this.canvas.repaint();
+					// System.out.println("mouseDragged");
+				}
+
+				@Override
+				public void mouseMoved(MouseEvent e) {
+					int x = e.getX();
+					int y = e.getY();
+					// System.out.println("mouseMoved bei [x=" + x + ", y= " + y + "]");
+				}
+
+			}
+			```
+
+
+		=== "Linie.java"
+
+			```java linenums="1"
+			public class Linie {
+				private Point start;
+				private Point ende;
+				
+				public Linie(Point start, Point ende) {
+					this.start = start;
+					this.ende = ende;
+				}
+				
+				public int getXStart() {
+					return this.start.x;
+				}
+				
+				public int getYStart() {
+					return this.start.y;
+				}
+				
+				public int getXEnde() {
+					return this.ende.x;
+				}
+				
+				public int getYEnde() {
+					return this.ende.y;
+				}
+				
+				public void setEnde(Point ende) {
+					this.ende = ende;
+				}
+
+			}
+			```
+
+
+	- siehe [**Übung 11**](./uebungen/#ubung-11-mausereignisse)
+	- keine neuen Aufgaben mehr, jetzt nur noch Klausurvorbereitung, sowohl in den Vorlesungen, als auch in den Übungen

@@ -444,6 +444,66 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Klausurvorbereitung
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Klausurvorbereitung
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mogliche-grundgeruste" class="md-nav__link">
+    Mögliche Grundgerüste
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schachbrett" class="md-nav__link">
+    Schachbrett
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../uebungen/" class="md-nav__link">
@@ -501,6 +561,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mogliche-grundgeruste" class="md-nav__link">
+    Mögliche Grundgerüste
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schachbrett" class="md-nav__link">
+    Schachbrett
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -517,7 +599,937 @@
                 
                 
                 <h1 id="klausurvorbereitung">Klausurvorbereitung<a class="headerlink" href="#klausurvorbereitung" title="Permanent link">&para;</a></h1>
-<p>Alle wesentlichen Konzepte, die wir für die Klausur benötigen, haben wir jetzt in diesem und im vergangenen Semester gelernt. Wir wollen diese Kenntnisse nun durch mehrere Anwendungen vertiefen. Ganz vereinzelt wird dabei auch etwas Neues auftauchen. Dabei handelt es sich aber nicht um ein neues Konzept, sondern bspw. um eine Listener, den wir noch nicht hatten. Solche "Überraschungen" werden Sie aber in der Klausur nicht erleben. </p>
+<p>Alle wesentlichen Konzepte, die wir für die Klausur benötigen, haben wir jetzt in diesem und im vergangenen Semester gelernt. Wir wollen diese Kenntnisse nun durch mehrere Anwendungen vertiefen. Ganz vereinzelt wird dabei auch etwas Neues auftauchen. Dabei handelt es sich aber nicht um ein neues Konzept, sondern bspw. um einen Listener, den wir noch nicht hatten. Solche "Überraschungen" werden Sie aber in der Klausur nicht erleben. </p>
+<p>Dieses Kapitel wird hier so aufgebaut sein, dass es immer eine Aufgabe (eine Probeklausur) gibt und die dazugehörige Lösung, die aber "aufgeklappt" werden muss. Sie können ja immer zuerst probieren, die Lösung selbständig zu entwickeln. Wenn Sie am Ende alle Aufgaben selbständig lösen können, sind Sie mit Sicherheit sehr gut auf die Klausur vorbereitet. </p>
+<p>Wir beginnen aber noch kurz mit allgemeinen Betrachtungen zum Grundgerüst. Eines der nachfolgend vorgestellten Grundgerüste werden Sie mit Sicherheit bei der Klausur verwenden können.</p>
+<h3 id="mogliche-grundgeruste">Mögliche Grundgerüste<a class="headerlink" href="#mogliche-grundgeruste" title="Permanent link">&para;</a></h3>
+<p>Wie Sie wissen, ist das Fenster (<code>JFrame</code>) im <a href="../gui/#borderlayout">BorderLayout</a>. Das bedeutet, dass das Fenster in fünf Bereiche (<code>Container</code>) unterteilt ist. Sie müssen sich bei der Konfiguration überlegen,</p>
+<ul>
+<li>ob "gezeichnet" werden soll, d.h. ob das <code>JPanel</code> im <code>CENTER</code> des Fensters eine eigene Klasse ist, oder ob es mithilfe einer Methode erzeugt werden kann und</li>
+<li>welche der fündf Bereiche Sie benötigen. </li>
+</ul>
+<p>Wir erläutern das an Beispielen und beginnen mit einem Grundgerüst, welches wir für das Zeichnen verwenden können, welches also eine <code>Canvas</code> enthält.</p>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Grundgerüst mit Canvas</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GrundgeruestMitCanvas</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+    <span class="n">Canvas</span> <span class="n">canvas</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">GrundgeruestMitCanvas</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;GrundgeruestMitCanvas&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>    
+
+        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Canvas</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="c1">// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initNorth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initSouth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initEast</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">EAST</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initWest</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">WEST</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span>
+    <span class="p">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>        <span class="c1">// Implementierung von JPanel aufrufen</span>
+            <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>  <span class="c1">// Methoden von Graphics2D nutzbar</span>
+            <span class="c1">// hier koennen wir zeichnen</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initNorth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">north</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer NORTH befuellen</span>
+        <span class="k">return</span> <span class="n">north</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initSouth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">south</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer SOUTH befuellen</span>
+        <span class="k">return</span> <span class="n">south</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initEast</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">east</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer EAST befuellen</span>
+        <span class="k">return</span> <span class="n">east</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initWest</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">west</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer WEST befuellen</span>
+        <span class="k">return</span> <span class="n">west</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">GrundgeruestMitCanvas</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>   
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+<p>In diesem Grundgerüst werden alle fünf Bereiche des Fensters mit <code>JPanel</code> befüllt. Das <code>CENTER</code> wird mit einem Objekt der Klasse <code>Canvas</code> befüllt, welche von <code>JPanel</code> erbt. Diese Klasse wird benötigt, um in die <code>paintComponent()</code>-Methode zu zeichnen. Sollten Sie z.B. kein Panel im <code>EAST</code>- und im <code>WEST</code>-Bereich des Fensters benötigen, dann löschen Sie einfach die Zeilen <code>23</code> und <code>24</code> sowei die beiden Methoden <code>initEast()</code> und <code>initWest()</code>. </p>
+<p>Ein Grundgerüst <strong>ohne</strong> <code>Canvas</code>, also ohne Zeichnen, könnte dann so aussehen:</p>
+<div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Grundgerüst ohne Canvas</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GrundgeruestOhneCanvas</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+    <span class="n">JPanel</span> <span class="n">content</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">GrundgeruestOhneCanvas</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;GrundgeruestMitCanvas&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>    
+
+        <span class="k">this</span><span class="p">.</span><span class="na">content</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">initCenter</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">content</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="c1">// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initNorth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initSouth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initEast</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">EAST</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initWest</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">WEST</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initCenter</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">center</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer CENTER befuellen</span>
+        <span class="k">return</span> <span class="n">center</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initNorth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">north</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer NORTH befuellen</span>
+        <span class="k">return</span> <span class="n">north</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initSouth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">south</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer SOUTH befuellen</span>
+        <span class="k">return</span> <span class="n">south</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initEast</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">east</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer EAST befuellen</span>
+        <span class="k">return</span> <span class="n">east</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initWest</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">west</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer WEST befuellen</span>
+        <span class="k">return</span> <span class="n">west</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">GrundgeruestOhneCanvas</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+<p>Beachten Sie, dass <code>JPanel</code> ohne Angabe eines LayoutManagers im <a href="../gui/#flowlayout">FlowLayout</a> sind. Das können Sie <a href="../gui/#layout-manager">ändern</a> und die einzelnen <code>JPanel</code> auch noch <a href="../gui/#verschachteln-von-layout-managern">weiter verschachteln</a>.</p>
+<p>Eines dieser beiden Grundgerüste können wir nun stets verwenden. Es muss dann jeweils "nur" noch angepasst werden. Wir beginnen mal mit einer Aufgabe. </p>
+<h3 id="schachbrett">Schachbrett<a class="headerlink" href="#schachbrett" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Schreiben Sie eine Klasse <code>Schachbrett</code>, die folgendes Fenster darstellt: </p>
+<p><img alt="schachbrett" src="../files/93_schachbrett.png" /></p>
+<ul>
+<li>Es werden 8x8 Rechtecke dargestellt – abwechselnd mit grauem und weißem Hintergrund </li>
+<li><strong>bitte beachten:</strong> <ul>
+<li>die dargestellten Rechtecke sind gezeichnet, es handelt sich nicht um einzelne JPanels!!! (ist für später wichtig) </li>
+<li>das 8x8-Feld der Rechtecke füllt die Zeichenfläche <em>vollständig</em>, d.h. wenn Sie die Größe des Fensters verändern, passt sich auch das 8x8-Feld entsprechend an</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Implementieren Sie den <code>MausListener</code> so, dass Sie durch Mausklick auf die Zeichenfläche einen ausgefüllten Kreis in das Rechteck malen, in das Sie geklickt haben. </p>
+<p><img alt="schachbrett" src="../files/94_schachbrett.png" /></p>
+<ul>
+<li>Die Abbildung zeigt das Schachbrett nach einem Mausklick auf das Rechteck in der 2. Zeile und 4. Spalte.</li>
+<li>Versuchen Sie, die Kreise möglichst <em>zentriert</em> in die Rechtecke zu malen. Eine gute Größe für den Durchmesser der Kreise ist &#8531; der Breite oder Höhe der Rechtecke.</li>
+</ul>
+</li>
+<li>
+<p>Klicken Sie mehrmals mit der Maus, werden entsprechend mehrere Kreise dargestellt. </p>
+<p><img alt="schachbrett" src="../files/95_schachbrett.png" /></p>
+</li>
+<li>
+<p>Fügen Sie dem Süden des Fensters ein <code>JPanel</code> hinzu. Dieses <code>JPanel</code> enthält einen <code>JButton</code> <code>'clear field'</code>. Nach Drücken dieses Buttons werden alle roten Kreise wieder gelöscht. </p>
+<p><img alt="schachbrett" src="../files/96_schachbrett.png" /></p>
+</li>
+<li>
+<p>Erweitern Sie Ihre Implementierung nun so, dass durch einen Mausklick nicht nur ein roter Kreis gezeichnet wird, sondern auch noch eine horizontale und eine vertikale Linie in der Zeile und der Spalte, in der der Kreis gezeichnet wird. </p>
+<p><img alt="schachbrett" src="../files/97_schachbrett.png" /></p>
+<ul>
+<li>in der Zeile und Spalte des Kreises erscheint jeweils mittig eine rote Linie</li>
+</ul>
+<p><img alt="schachbrett" src="../files/98_schachbrett.png" /></p>
+<ul>
+<li>Abbildung zeigt Schachbrett nach mehreren Mausklicks</li>
+<li>Die Linien müssen nicht, wie im Bild dargestellt, in der Mitte der Rechtecke anfangen. Sie können auch komplett durchgezeichnet werden, d.h. vom Beginn bis zum Ende einer Zeile bzw. Spalte.</li>
+</ul>
+</li>
+<li>
+<p>Erweitern Sie Ihre Implementierung nun so, dass es nicht mehr möglich ist, dass 2 Kreise in der gleichen Spalte oder in der gleichen Zeile erscheinen. Wenn Sie ein Rechteck anklicken, in dessen Zeile oder Spalte bereits ein anderer Kreis ist, so soll kein neuer Kreis gezeichnet werden, sondern das Rechteck als grünes Rechteck erscheinen. </p>
+<p><img alt="schachbrett" src="../files/99_schachbrett.png" /></p>
+<ul>
+<li>In das grüne Rechteck wurde geklickt - es erscheint kein Kreis, da in der Zeile bereits ein Kreis ist – stattdessen ein grünes Rechteck.</li>
+</ul>
+<p><img alt="schachbrett" src="../files/100_schachbrett.png" /></p>
+<ul>
+<li>In das grüne Rechteck wurde geklickt - es erscheint kein Kreis, da in der Zeile bereits ein Kreis ist - stattdessen ein grünes Rechteck.</li>
+<li>Das Rechteck bleibt nur bis zum nächsten Klick markiert (grün).</li>
+</ul>
+</li>
+<li>
+<p><strong>Zusatzaufgabe:</strong>: Erweitern Sie die Schritte 5 und 6 auch auf die Diagonalen, d.h. es sollen auch die jeweiligen Diagonalen der Punkte eingezeichnet werden und keine zwei Punkte dürfen in der gleichen Diagonalen liegen.</p>
+</li>
+</ol>
+<details><summary>Lösung Schachbrett</summary><ol>
+<li>
+<p>Zuerst überlegen wir uns, welches Grundgerüst wir verwenden und wie wir es anpassen. Wir müssen <strong>zeichnen*, also das Grundgerüst **mit</strong> <code>Canvas</code>. Von den Nord-, Süd-, Ost-, West-Bereichen benötigen wir nur den Süden (dort kommt der 'clear field'-Button rein). Also ist das unser Ausgangspunkt: </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Schachbrett</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+    <span class="n">Canvas</span> <span class="n">canvas</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Schachbrett</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Schachbrett&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>    
+
+        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Canvas</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="c1">// NORTH, EAST, WEST geloescht</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initSouth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span>
+    <span class="p">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>        <span class="c1">// Implementierung von JPanel aufrufen</span>
+            <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>  <span class="c1">// Methoden von Graphics2D nutzbar</span>
+            <span class="c1">// hier koennen wir zeichnen</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initSouth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">south</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer SOUTH befuellen</span>
+        <span class="k">return</span> <span class="n">south</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Schachbrett</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Von den <code>initXXX()</code>-Methoden benötigen wir auch nur noch <code>initSouth()</code>. Die anderen drei sind deshalb gelöscht. </p>
+</li>
+<li>
+<p>Jetzt können wir mit dem Zeichnen des Schachbretts beginnen. Dazu könnten wir "einfach" 64 gleich große Rechtecke in die <code>Canvas</code> zeichnen. Wir sollten hier aber unbedingt dafür ein <em>Model</em>, d.h. eine Datenstruktur erstellen und diese dann in der <em>View</em> darstellen. Für eine solche Datenstruktur (für ein <em>Model</em>) gibt es drei Gründe:</p>
+<ul>
+<li>wir wollen später erkennen, in welches Feld geklickt wurde und </li>
+<li>wir wollen erkennen können, in welches Feld bereits geklickt wurde und</li>
+<li>wir wollen erkennen können, welche Felder Nachbarfelder sind.</li>
+</ul>
+<p>Da die Dimensionen hier fest sind (8x8), kann man das in einem (zweidimensionalen) Array erledigen. Als Typ jedes einzelnen Elementes sollte <code>boolean</code> genügen - markiert oder nicht markiert. Wenn Sie sich nicht sicher sind, ob zwei Zustände genügen, können Sie auch eine <code>enum</code> als Typ verwenden. Wir machen das mal, dann bleibt die Lösung flexibler und wir üben <code>enum</code> nochmal. </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Schachbrett</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+    <span class="n">Canvas</span> <span class="n">canvas</span><span class="p">;</span>
+<span class="hll">    <span class="kd">enum</span> <span class="n">State</span> <span class="p">{</span> <span class="n">MARKIERT</span><span class="p">,</span> <span class="n">UNMARKIERT</span> <span class="p">};</span>
+</span><span class="hll">    <span class="n">State</span><span class="o">[][]</span> <span class="n">field</span><span class="p">;</span>
+</span>
+    <span class="kd">public</span> <span class="nf">Schachbrett</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Schachbrett&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>    
+
+<span class="hll">        <span class="k">this</span><span class="p">.</span><span class="na">initField</span><span class="p">();</span>
+</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Canvas</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="c1">// NORTH, EAST, WEST geloescht</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initSouth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="hll">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initField</span><span class="p">()</span> 
+</span><span class="hll">    <span class="p">{</span>
+</span><span class="hll">        <span class="k">this</span><span class="p">.</span><span class="na">field</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="o">[</span><span class="mi">8</span><span class="o">][</span><span class="mi">8</span><span class="o">]</span><span class="p">;</span>
+</span><span class="hll">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+</span><span class="hll">        <span class="p">{</span>
+</span><span class="hll">            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+</span><span class="hll">            <span class="p">{</span>
+</span><span class="hll">                <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">UNMARKIERT</span><span class="p">;</span>
+</span><span class="hll">            <span class="p">}</span>
+</span><span class="hll">        <span class="p">}</span>
+</span><span class="hll">    <span class="p">}</span>
+</span>
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span>
+    <span class="p">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>        <span class="c1">// Implementierung von JPanel aufrufen</span>
+            <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>  <span class="c1">// Methoden von Graphics2D nutzbar</span>
+            <span class="c1">// hier koennen wir zeichnen</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initSouth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">south</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer SOUTH befuellen</span>
+        <span class="k">return</span> <span class="n">south</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Schachbrett</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>Wir hätten das <code>field</code> auch im Konstruktor erzeugen und befüllen können, lagern es aber in eine eigene Methode aus und rufen diese im Konstruktor auf. Alles, was wir funktional in eine eigene Methode auslagern können, sollten wir auch auslagern - liest sich viel besser!</li>
+</ul>
+</li>
+<li>
+<p>Jetzt überlegen wir, wie wir das Schachbrett darstellen (die <em>View</em>). Die Darstellung erfolgt am besten mit der <code>fillRect()</code>-Methode. Diese erwartet die Koordinaten des linken oberen Punktes und die Breite und die Höhe des Rechtecks. Breite und Höhe ergeben sich aus der Breite und Höhe der <code>Canvas</code>, jeweils geteilt durch <code>8</code>. Aus der Position des zu zeichnenden Rechtecks in einer Zeile ergibt sich dann der <code>x</code>-Wert für den linken oberen Punkt und aus der Position des zu zeichnenden Feldes in der Spalte ergibt sich der <code>y</code>-Wert des linken oberen Punktes. Wir ändern nun nur die <code>paintComponent()</code>-Methode (die <em>View</em>), da es nur um die Darstellung geht:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span>
+<span class="p">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>        <span class="c1">// Implementierung von JPanel aufrufen</span>
+        <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>  <span class="c1">// Methoden von Graphics2D nutzbar</span>
+
+        <span class="kt">int</span> <span class="n">canvasHeight</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">canvasWidth</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">heightRect</span> <span class="o">=</span> <span class="n">canvasHeight</span> <span class="o">/</span> <span class="mi">8</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">widthRect</span> <span class="o">=</span> <span class="n">canvasWidth</span> <span class="o">/</span> <span class="mi">8</span><span class="p">;</span>
+
+        <span class="kt">boolean</span> <span class="n">grey</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="n">Schachbrett</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">row</span> <span class="o">*</span> <span class="n">heightRect</span><span class="p">;</span>       <span class="c1">// y-Wert des linken oberen Punktes</span>
+            <span class="n">grey</span> <span class="o">=</span> <span class="o">!</span><span class="n">grey</span><span class="p">;</span>                   <span class="c1">// mit gleichen Farbe anfangen, wie aufgehoert</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="n">Schachbrett</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">col</span> <span class="o">*</span> <span class="n">widthRect</span><span class="p">;</span>    <span class="c1">// x-Wert des linken oberen Punktes</span>
+
+                <span class="k">if</span><span class="p">(</span><span class="n">grey</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">LIGHT_GRAY</span><span class="p">);</span>
+                    <span class="n">grey</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span><span class="p">);</span>
+                    <span class="n">grey</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">widthRect</span><span class="p">,</span> <span class="n">heightRect</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>Wir laufen also durch das <code>field</code>-Array und ermitteln für die aktuelle Zeile den <code>y</code>-Wert und für die jeweils aktuelle Spalte den <code>x</code>-Wert.<ul>
+<li>Damit wir immer zwischen Grau und Weiß umschalten, erstellen wir uns eine boole'sche Variable <code>grey</code>, die abwechselnd <code>true</code> und <code>false</code> wird, je nachdem, ob wir als nächstes ein graues oder ein weißes Feld zeichnen wollen. </li>
+<li>Nach jeder Zeile ändert sich die Farbe jedoch nicht (wir fangen in der neuen Zeile mit der gleichen Farbe an, wie wir in der alten Zeile aufgehört haben). Deshalb mussten wir noch die Anweisung in Zeile <code>61</code> hinzufügen. </li>
+<li>Das Schachbrett wird nun so gezeichnet, wie wir das wollten. Wenn das Fenster vergrößert oder verkleinert wird, dann passen sich die Felder entsprechend an, da wir alles abhängig von der Breite und Höhe der Canvas berechnen. </li>
+<li>Wir können aber die Fenstergröße aber gleich etwas quadratischer gestalten (z.B. <code>this.setSize(400, 400);</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>jetzt kümmern wir uns um die roten Punkte inmitten des Rechtecks, falls wir mit der Maus darauf geklickt haben. Dazu benötigen wir den <code>MouseListener</code>, denn es geht um einen Mausklick (also entweder <code>mouseClicked()</code> oder <code>mousePressed()</code>) und nicht um eine Bewegung der Maus. Wir entscheiden uns für <code>mouseClicked()</code> - das ist nun also unser * Controller*. Wir implementieren zunächst den <code>MouseListener</code> und prüfen, ob damit alles funktioniert (ob wir z.B. nicht vergessen haben, an den <code>MouseListener</code> anzumelden.)</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="p">;</span>
+<span class="hll"><span class="kn">import</span> <span class="nn">java.awt.event.MouseEvent</span><span class="p">;</span>
+</span><span class="hll"><span class="kn">import</span> <span class="nn">java.awt.event.MouseListener</span><span class="p">;</span>
+</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+
+<span class="hll"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Schachbrett</span> <span class="kd">extends</span> <span class="n">JFrame</span> <span class="kd">implements</span> <span class="n">MouseListener</span><span class="p">{</span>
+</span>    <span class="n">Canvas</span> <span class="n">canvas</span><span class="p">;</span>
+    <span class="kd">enum</span> <span class="n">State</span> <span class="p">{</span> <span class="n">MARKIERT</span><span class="p">,</span> <span class="n">UNMARKIERT</span> <span class="p">};</span>
+    <span class="n">State</span><span class="o">[][]</span> <span class="n">field</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Schachbrett</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Schachbrett&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>    
+
+        <span class="k">this</span><span class="p">.</span><span class="na">initField</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Canvas</span><span class="p">();</span>
+<span class="hll">        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">addMouseListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span>        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="c1">// NORTH, EAST, WEST geloescht</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initSouth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initField</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="o">[</span><span class="mi">8</span><span class="o">][</span><span class="mi">8</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">UNMARKIERT</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span>
+    <span class="p">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>        <span class="c1">// Implementierung von JPanel aufrufen</span>
+            <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>  <span class="c1">// Methoden von Graphics2D nutzbar</span>
+
+            <span class="kt">int</span> <span class="n">canvasHeight</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">canvasWidth</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">heightRect</span> <span class="o">=</span> <span class="n">canvasHeight</span> <span class="o">/</span> <span class="mi">8</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">widthRect</span> <span class="o">=</span> <span class="n">canvasWidth</span> <span class="o">/</span> <span class="mi">8</span><span class="p">;</span>
+
+            <span class="kt">boolean</span> <span class="n">grey</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="n">Schachbrett</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">field</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">row</span> <span class="o">*</span> <span class="n">heightRect</span><span class="p">;</span>       <span class="c1">// y-Wert des linken oberen Punktes</span>
+                <span class="n">grey</span> <span class="o">=</span> <span class="o">!</span><span class="n">grey</span><span class="p">;</span>                   <span class="c1">// mit einer anderen Farbe anfangen, als aufgehoert</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">col</span><span class="o">&lt;</span><span class="n">Schachbrett</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">row</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">col</span> <span class="o">*</span> <span class="n">widthRect</span><span class="p">;</span>    <span class="c1">// x-Wert des linken oberen Punktes</span>
+
+                    <span class="k">if</span><span class="p">(</span><span class="n">grey</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">LIGHT_GRAY</span><span class="p">);</span>
+                        <span class="n">grey</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span><span class="p">);</span>
+                        <span class="n">grey</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">widthRect</span><span class="p">,</span> <span class="n">heightRect</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initSouth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">south</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="c1">// hier das JPanel fuer SOUTH befuellen</span>
+        <span class="k">return</span> <span class="n">south</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Schachbrett</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="hll">    <span class="nd">@Override</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseClicked</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+</span><span class="hll">        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+</span><span class="hll">        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;mouseClicked: [x=&quot;</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span><span class="p">);</span>   
+</span><span class="hll">    <span class="p">}</span>
+</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mousePressed</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseReleased</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseEntered</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseExited</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>Wir fügen das <code>implements MouseListener</code> im Klassenkopf ein und importieren den <code>MouseListener</code> aus dem <code>java.awt.event</code>-Paket (lassen wir natürlich Eclipse erledigen). <ul>
+<li>Wir lassen Eclipse durch <code>Add unimplemented methods</code> die Methoden aus dem <code>MouseListener</code> hinzufügen. Dabei wird auch <code>MouseEvent</code> importiert. </li>
+<li>Da wir uns für die Implementierung von <code>mouseClicked()</code> entschieden haben, können wir die anderen Methoden ein wenig verkleinern, um Übersicht zu bewahren. </li>
+<li>In <code>mouseClicked()</code> können wir schonmal die Koordinaten des <code>MouseEvent</code> abfragen und eine Ausgabe auf die Konsole durchführen, um zu kontrollieren, ob alles funktioniert.</li>
+<li><strong>Unbedingt</strong> müssen wir natürlich <code>canvas</code> an den <code>MouseListener</code> anmelden (Zeile <code>25</code>). </li>
+<li><code>mouseClicked()</code> wird aufgerufen, wenn wir in das Feld klicken - die Koordinaten des Klicks in die <code>Canvas</code> werden auf der Konsole ausgegeben. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Nun müssten wir uns überlegen, auf welches Rechteck aus dem <code>field</code>-Array wir durch die Mausklick geklickt haben. Dieses Rechteck wollen wir als <code>MARKIERT</code> speichern. </p>
+</li>
+</ol>
+</details>
                 
               
               
@@ -532,6 +1544,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../mausereignisse/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Zurück
+                </span>
+                Mausereignisse
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../uebungen/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Weiter
+                </span>
+                Übungen
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

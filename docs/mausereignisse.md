@@ -476,7 +476,7 @@ Wir wollen diese theoretischen Überlegungen an einigen Beispielen erläutern.
 
 Unser erstes Beispiel ist einfach. Wir wollen mit der Maus in unsere `Canvas` klicken und dort, wo wir hingeklickt haben, soll ein schwarzer, ausgefüllter Kreis erscheinen. Alle Kreise haben den gleichen (einen festen) Durchmesser. Dazu folgende Überlegungen:
 
-- *View*: in der `paintComponenet()`-Methode können wir z.B. mithilfe der `fillOval()`-Methode Kreise zeichnen. Wir müssen nur die Koordinaten `x` und `y` kennen, an denen der jeweilige Kreis gezeichnet werden soll. 
+- *View*: in der `paintComponent()`-Methode können wir z.B. mithilfe der `fillOval()`-Methode Kreise zeichnen. Wir müssen nur die Koordinaten `x` und `y` kennen, an denen der jeweilige Kreis gezeichnet werden soll. 
 - *Controller*: um zu wissen, wo wir mit der Maus in die `Canvas` geklickt haben, müssen wir den `MouseListener` implementieren.
 - *Model*: wir müssen Koordinaten speichern, also entweder `int`-Werte `x` und `y` oder gleich Objekte vom Typ `Point`. Wir entscheiden uns für Letzteres. Da wir nicht wissen, wie viele `Point`-Objekte gespeichert werden sollen, kommt ein `Array` nicht in Frage. Wir benötigen Eine `Collection`. Hier ist es egal, ob `List` oder `Set`. Wir entscheiden uns für `List`. 
 

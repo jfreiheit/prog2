@@ -3171,6 +3171,211 @@
 		```
 
 
+??? question "eine mögliche Lösung für Übung 11"
+	
+	=== "RechteckeZeichnen.java"
+		```java linenums="1"
+		package uebungen.uebung11;
+		
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.HashMap;
+		import java.util.Map;
+		import java.util.Random;
+
+		import javax.swing.JFrame;
+		import javax.swing.JPanel;
+
+		public class RechteckeZeichnen extends JFrame implements MouseListener, MouseMotionListener {
+			Canvas canvas;
+			Rechteck aktRechteck;
+			Color aktColor;
+			Map<Rechteck, Color> rechtecke;
+			
+		    public RechteckeZeichnen()
+		    {
+		        super();
+		        this.setTitle("Rechtecke zeichnen");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+		        this.rechtecke = new HashMap<>();
+		        this.canvas = new Canvas();
+		        this.canvas.addMouseListener(this);
+		        this.canvas.addMouseMotionListener(this);
+		        this.getContentPane().add(this.canvas);
+
+		        this.setSize(400, 300);
+		        this.setLocation(300,200);
+		        this.setVisible(true);
+		    }
+
+		    private class Canvas extends JPanel
+		    {
+		    	// die View
+		        @Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);        
+		            Graphics2D g2 = (Graphics2D)g;  
+		            
+		            if(RechteckeZeichnen.this.aktRechteck != null)
+		            {
+		            	g2.setColor(aktColor);
+		            	int x = RechteckeZeichnen.this.aktRechteck.getX();
+		            	int y = RechteckeZeichnen.this.aktRechteck.getY();
+		            	int width = RechteckeZeichnen.this.aktRechteck.getWidth();
+		            	int height = RechteckeZeichnen.this.aktRechteck.getHeight();
+		            	
+		            	g2.fillRect(x, y, width, height);
+		            }
+		            
+		            for(Map.Entry<Rechteck, Color> eintrag : RechteckeZeichnen.this.rechtecke.entrySet())
+		            {
+		            	Rechteck r = eintrag.getKey();
+		            	Color c = eintrag.getValue();
+		            	
+		            	g2.setColor(c);
+		            	int x = r.getX();
+		            	int y = r.getY();
+		            	int width = r.getWidth();
+		            	int height = r.getHeight();
+		            	
+		            	g2.fillRect(x, y, width, height);
+		            }
+		        }
+		    }
+
+		    public static void main(String[] args) 
+		    {
+		        new RechteckeZeichnen();
+		    }
+
+		    // der Controller
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Point p = e.getPoint();
+				this.aktRechteck = new Rechteck(p.x,p.y,0,0);
+				
+				Random zuf = new Random();
+				int r = zuf.nextInt(256);
+				int g = zuf.nextInt(256);
+				int b = zuf.nextInt(256);
+				
+				this.aktColor = new Color(r,g,b);
+			}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				Point p = e.getPoint();
+				if(p.x > this.aktRechteck.getX()) // Maus nach rechts
+				{
+					int width = p.x - this.aktRechteck.getX();
+					this.aktRechteck.setWidth(width);
+				}
+				else // Maus nach links
+				{
+					int width = (this.aktRechteck.getX() - p.x) + this.aktRechteck.getWidth();
+					this.aktRechteck.setWidth(width);
+					this.aktRechteck.setX(p.x);
+				}
+				
+				if(p.y > this.aktRechteck.getY()) // Maus nach unten
+				{
+					int height = p.y - this.aktRechteck.getY();
+					this.aktRechteck.setHeight(height);
+				}
+				else // Maus nach oben
+				{
+					int height = (this.aktRechteck.getY() - p.y) + this.aktRechteck.getHeight();
+					this.aktRechteck.setHeight(height);
+					this.aktRechteck.setY(p.y);
+				}
+				
+				this.canvas.repaint();
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				Point p = e.getPoint();
+				this.rechtecke.put(this.aktRechteck, this.aktColor);
+			}
+			
+			@Override public void mouseClicked(MouseEvent e) {}
+			@Override public void mouseEntered(MouseEvent e) {}
+			@Override public void mouseExited(MouseEvent e) {}
+			@Override public void mouseMoved(MouseEvent e) {}
+		}
+		```
+	
+	=== "Rechteck.java"
+		```java linenums="1"
+		package uebungen.uebung11;
+				
+		public class Rechteck {
+			private int x;
+			private int y;
+			private int width;
+			private int height;
+			
+			public Rechteck(int x, int y, int width, int height) 
+			{
+				this.x = x;
+				this.y = y;
+				this.width = width;
+				this.height = height;
+			}
+
+			public int getX() {
+				return x;
+			}
+
+			public void setX(int x) {
+				this.x = x;
+			}
+
+			public int getY() {
+				return y;
+			}
+
+			public void setY(int y) {
+				this.y = y;
+			}
+
+			public int getWidth() {
+				return width;
+			}
+
+			public void setWidth(int width) {
+				this.width = width;
+			}
+
+			public int getHeight() {
+				return height;
+			}
+
+			public void setHeight(int height) {
+				this.height = height;
+			}
+				
+		}	
+		```
+
+??? question "sehr hilfreiche Erläuterungen zur Übung von Frau Busjahn"
+	
+	![uebung11](./files/101_uebung11.png)
+	
+	![uebung11](./files/102_uebung11.png)
+
+	![uebung11](./files/103_uebung11.png)
+
+	![uebung11](./files/104_uebung11.png)
+
+
 
 
 ## Zusatz
