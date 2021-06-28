@@ -569,6 +569,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ubung-12-klicks-zahlen" class="md-nav__link">
+    Übung 12 (Klicks zählen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#zusatz" class="md-nav__link">
     Zusatz
   </a>
@@ -723,6 +730,13 @@
         <li class="md-nav__item">
   <a href="#ubung-11-mausereignisse" class="md-nav__link">
     Übung 11 (Mausereignisse)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-12-klicks-zahlen" class="md-nav__link">
+    Übung 12 (Klicks zählen)
   </a>
   
 </li>
@@ -6289,6 +6303,53 @@ Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</s
 <p><img alt="uebung11" src="../files/102_uebung11.png" /></p>
 <p><img alt="uebung11" src="../files/103_uebung11.png" /></p>
 <p><img alt="uebung11" src="../files/104_uebung11.png" /></p>
+</details>
+<h5 id="ubung-12-klicks-zahlen">Übung 12 (Klicks zählen)<a class="headerlink" href="#ubung-12-klicks-zahlen" title="Permanent link">&para;</a></h5>
+<details><summary>Übung 12</summary><ol>
+<li>
+<p>Erstellen Sie eine solche GUI:</p>
+<p><img alt="uebung12" src="../files/105_uebung12.png" /></p>
+<ul>
+<li>
+<p>Es handelt sich im Prinzip um ein Gitter aus <code>JPanel</code>s (siehe auch <strong>Tipps</strong> unten). Beachten Sie: Dem Konstruktor für das Fenster wird eine <code>hoehe</code> (int) und eine <code>breite</code> (int) übergeben. Aus der <code>hoehe</code> und der <code>breite</code> ergibt sich die Anzahl der JPanels. In der Abbildung ist also <code>hoehe=4</code> und <code>breite=3</code>. </p>
+</li>
+<li>
+<p>Jedes <code>JPanel</code> soll ein <code>JLabel</code> enthalten, das der Anzahl der (Maus-)Klicks auf dieses <code>JPanel</code> entspricht. Am Anfang sind die Anzahl der Klicks für alle JPanels 0.</p>
+</li>
+<li>
+<p>Implementieren Sie den <code>MouseListener</code> so, dass bei Klick auf ein <code>JPanel</code> automatisch die Anzahl der Klicks um 1 erhöht und die neue Anzahl im <code>JLabel</code> dargestellt wird.</p>
+</li>
+<li>
+<p>Außerdem soll das (oder die) JPanel(s) mit den meisten Klicks rot dargestellt werden.</p>
+</li>
+</ul>
+<p><img alt="uebung12" src="../files/107_uebung12.png" /></p>
+<ul>
+<li>Die Abbildung zeigt das Fenster nach einigen Mausklicks auf die einzelnen Panels. Es gibt drei Panels mit den meisten Klicks.</li>
+</ul>
+<p><img alt="uebung12" src="../files/108_uebung12.png" /></p>
+<ul>
+<li>Nach einem weiteren Klick gibt es nur noch ein Panel mit dem meisten Klicks. </li>
+</ul>
+</li>
+<li>
+<p>Wird auf den <code>reset</code>-Button geklickt, ist alles wieder auf <code>0</code> (und grau) gestellt.</p>
+</li>
+<li>
+<p><strong>Tipps:</strong> </p>
+<ul>
+<li>
+<p>Für die "JPanels" eigenen sich tatsächlich <code>JPanels</code>, da diese ja eine Hintergrundfarbe haben, einen Rand (<code>Border</code>) haben können, ein <code>JLabel</code> aufnehmen können usw. Es wäre ja aber auch sinnvoll, dass jedes <code>JPanel</code> z.B. auch eine Eigenschaft <code>anzahlKlicks</code> o.ä. hat. Insofern wäre der Vorschlag, eine eigene Klasse <code>MyPanel</code> zu erstellen, die von <code>JPanel</code> erbt, somit alle Eigenschaften eines <code>JPanel</code> hat und aber auch noch zusätzliche Eigenschaften haben kann. </p>
+</li>
+<li>
+<p>Als Datenstruktur für das <em>Model</em> bietet sich sicherlich ein zweidimensionales Array an. </p>
+</li>
+<li>
+<p>Wenn Sie jedes <code>MyPanel</code> an den <code>MouseListener</code> anmelden, dann müssen Sie gar nicht die Koordinaten des Mausklicks betrachten, sondern nur abfragen, welches der <code>MyPanel</code> das Mausereignis ausgelöst hat (oder Sie verwenden sogar für jedes dieser <code>MyPanel</code> eine anonyme Klasse des <code>MouseListener</code>). Probieren Sie mal ein wenig herum, es gibt sehr viele verschiedene Lösungsmöglichkeiten hier.  </p>
+</li>
+</ul>
+</li>
+</ol>
 </details>
 <h2 id="zusatz">Zusatz<a class="headerlink" href="#zusatz" title="Permanent link">&para;</a></h2>
 <h5 id="test-driven-development">Test-driven development<a class="headerlink" href="#test-driven-development" title="Permanent link">&para;</a></h5>

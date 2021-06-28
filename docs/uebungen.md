@@ -3378,6 +3378,43 @@
 
 
 
+##### Übung 12 (Klicks zählen)
+
+??? "Übung 12"
+
+	1. Erstellen Sie eine solche GUI:
+		
+		![uebung12](./files/105_uebung12.png)
+
+		- Es handelt sich im Prinzip um ein Gitter aus `JPanel`s (siehe auch **Tipps** unten). Beachten Sie: Dem Konstruktor für das Fenster wird eine `hoehe` (int) und eine `breite` (int) übergeben. Aus der `hoehe` und der `breite` ergibt sich die Anzahl der JPanels. In der Abbildung ist also `hoehe=4` und `breite=3`. 
+
+		- Jedes `JPanel` soll ein `JLabel` enthalten, das der Anzahl der (Maus-)Klicks auf dieses `JPanel` entspricht. Am Anfang sind die Anzahl der Klicks für alle JPanels 0.
+
+		- Implementieren Sie den `MouseListener` so, dass bei Klick auf ein `JPanel` automatisch die Anzahl der Klicks um 1 erhöht und die neue Anzahl im `JLabel` dargestellt wird.
+
+		- Außerdem soll das (oder die) JPanel(s) mit den meisten Klicks rot dargestellt werden.
+
+		![uebung12](./files/107_uebung12.png)
+
+		- Die Abbildung zeigt das Fenster nach einigen Mausklicks auf die einzelnen Panels. Es gibt drei Panels mit den meisten Klicks.
+
+		![uebung12](./files/108_uebung12.png)
+
+		- Nach einem weiteren Klick gibt es nur noch ein Panel mit dem meisten Klicks. 
+
+
+	2. Wird auf den `reset`-Button geklickt, ist alles wieder auf `0` (und grau) gestellt.
+
+	3. **Tipps:** 
+		- Für die "JPanels" eigenen sich tatsächlich `JPanels`, da diese ja eine Hintergrundfarbe haben, einen Rand (`Border`) haben können, ein `JLabel` aufnehmen können usw. Es wäre ja aber auch sinnvoll, dass jedes `JPanel` z.B. auch eine Eigenschaft `anzahlKlicks` o.ä. hat. Insofern wäre der Vorschlag, eine eigene Klasse `MyPanel` zu erstellen, die von `JPanel` erbt, somit alle Eigenschaften eines `JPanel` hat und aber auch noch zusätzliche Eigenschaften haben kann. 
+
+		- Als Datenstruktur für das *Model* bietet sich sicherlich ein zweidimensionales Array an. 
+
+		- Wenn Sie jedes `MyPanel` an den `MouseListener` anmelden, dann müssen Sie gar nicht die Koordinaten des Mausklicks betrachten, sondern nur abfragen, welches der `MyPanel` das Mausereignis ausgelöst hat (oder Sie verwenden sogar für jedes dieser `MyPanel` eine anonyme Klasse des `MouseListener`). Probieren Sie mal ein wenig herum, es gibt sehr viele verschiedene Lösungsmöglichkeiten hier.  
+
+
+
+
 ## Zusatz
 
 
