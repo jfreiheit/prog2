@@ -497,6 +497,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#schiebepuzzle" class="md-nav__link">
+    Schiebepuzzle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rechtecke-anordnen" class="md-nav__link">
+    Rechtecke anordnen
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -591,6 +605,20 @@
         <li class="md-nav__item">
   <a href="#schachbrett" class="md-nav__link">
     Schachbrett
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schiebepuzzle" class="md-nav__link">
+    Schiebepuzzle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rechtecke-anordnen" class="md-nav__link">
+    Rechtecke anordnen
   </a>
   
 </li>
@@ -4737,6 +4765,666 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+</li>
+</ol>
+</details>
+<h3 id="schiebepuzzle">Schiebepuzzle<a class="headerlink" href="#schiebepuzzle" title="Permanent link">&para;</a></h3>
+<details><summary>Aufgabe Schiebepuzzle</summary><ol>
+<li>
+<p>Implementieren Sie folgendes Puzzle: </p>
+<p><img alt="schachbrett" src="../files/115_puzzle.png" /></p>
+<ul>
+<li>obige Abbildung zeigt den Anfangszustand des Puzzles (<code>2</code> über <code>1</code> links)</li>
+</ul>
+<p><img alt="schachbrett" src="../files/116_puzzle.png" /></p>
+<ul>
+<li>
+<p>obige Abbildung zeigt den Endzustand des Puzzles (<code>1</code> über <code>2</code> links)</p>
+</li>
+<li>
+<p>Das Puzzle besteht aus 5 „Kacheln“, 3 gelben und 2 roten. Die roten Kacheln sind mit einer <code>1</code> und einer <code>2</code> nummeriert. Am Anfang steht die rote Kachel mit der <code>2</code> über der roten Kachel mit der <code>1</code>. (siehe erste Abb.) Ziel des Puzzles ist es, die beiden roten Kacheln zu vertauschen. Wenn links die <code>1</code> über der <code>2</code> steht, ist das Puzzle beendet. Wo die gelben Kacheln im Endzustand sind, ist egal (siehe zweite Abb.). Ein Feld ist stets frei (grau dargestellt). In dieses Feld kann eine benachbarte Kachel geschoben werden.</p>
+</li>
+<li>
+<p>Zeigen Sie oben die Anzahl der Züge an. Wenn der Endzustand erreicht ist, kann nicht mehr gezogen werden! Der Button <code>Neustart</code> setzt alles wieder auf Anfang. </p>
+</li>
+<li>
+<p>Die Programmierung bleibt ganz Ihnen überlassen. Zum Schieben einer Kachel auf das leere Feld, klickt man auf die Kachel selbst. Diese „bewegt“ sich dann auf das leere (graue) Feld und hinterlässt ein leeres (graues) Feld (siehe folgende Abb.)</p>
+</li>
+</ul>
+<p><img alt="schachbrett" src="../files/117_puzzle.png" /></p>
+</li>
+<li>
+<p><strong>Tipps:</strong> </p>
+<ul>
+<li>
+<p>Sie benötigen keine <code>Canvas</code> und kein Überschreiben der <code>paintComponent()</code>-Methode!   </p>
+</li>
+<li>
+<p>Am einfachsten bekommt man ein Label in die Mitte eines Panels gesetzt, wenn das Panel im <code>GridLayout(1,1)</code> (oder sogar parameterlos) ist und Sie für das Label <code>label.setHorizontalAlignment(JLabel.CENTER);</code> definieren</p>
+</li>
+<li>
+<p>die (Schrift-)Farbe eines Labels setzt man mit <code>label.setForeground(Color);</code></p>
+</li>
+<li>
+<p>die (Hintergrund-Farbe eines Panels setzt man mit <code>panel.setBackground(Color);</code></p>
+</li>
+<li>
+<p>für das Identifizieren des entsprechenden Panels, auf das man geklickt hat, könnte es hilfreich sein, sich dafür eine eigene Klasse zu schreiben (die von JPanel erbt). Muss aber nicht.</p>
+</li>
+<li>
+<p>wahrscheinlich ist es am einfachsten, ein zweidimensionales Array 2x3 als Datenstruktur für Ihr Puzzle zu verwenden</p>
+</li>
+</ul>
+</li>
+</ol>
+</details>
+<details class="question"><summary>Lösung Schiebepuzzle</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Font</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.GridLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.MouseEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.MouseListener</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Puzzle</span> <span class="kd">extends</span> <span class="n">JFrame</span>
+<span class="p">{</span>
+    <span class="n">JLabel</span> <span class="n">infoLabel</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">anzMoves</span><span class="p">;</span>
+    <span class="kd">enum</span> <span class="n">State</span> <span class="p">{</span><span class="n">EINS</span><span class="p">,</span> <span class="n">ZWEI</span><span class="p">,</span> <span class="n">LEER</span><span class="p">,</span> <span class="n">GELB</span><span class="p">}</span>
+    <span class="n">State</span><span class="o">[][]</span> <span class="n">field</span><span class="p">;</span>
+    <span class="n">MyPanel</span><span class="o">[][]</span> <span class="n">panels</span><span class="p">;</span>
+    <span class="n">JPanel</span> <span class="n">mainPanel</span><span class="p">;</span>
+
+    <span class="n">Puzzle</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="s">&quot;Puzzle&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">infoLabelPanel</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">mainPanelStart</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">buttonPanel</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/****************************************</span>
+<span class="cm">     * erstmal alles fuer das Model</span>
+<span class="cm">     * initiale Belegung von field</span>
+<span class="cm">     */</span>
+    <span class="kt">void</span> <span class="nf">initialisiereField</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">ZWEI</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">LEER</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">GELB</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">EINS</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">GELB</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">State</span><span class="p">.</span><span class="na">GELB</span><span class="p">;</span>  
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Hilfsmethode, um zu wissen, in welcher Zeile sich das leere Feld befindet</span>
+<span class="cm">     * damit ist makeMove() etwas kuerzer</span>
+<span class="cm">     * @return zeile von LEER</span>
+<span class="cm">     */</span>
+    <span class="kt">int</span> <span class="nf">getLeerZeile</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">zeile</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">zeile</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span> <span class="n">zeile</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">spalte</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">spalte</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="n">spalte</span><span class="o">++</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">LEER</span><span class="p">)</span> <span class="k">return</span> <span class="n">zeile</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// fehlerfall - kommt aber nicht vor</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Hilfsmethode, um zu wissen, in welcher Zeile sich das leere Feld befindet</span>
+<span class="cm">     * damit ist makeMove() etwas kuerzer</span>
+<span class="cm">     * @return spalte von LEER</span>
+<span class="cm">     */</span>
+    <span class="kt">int</span> <span class="nf">getLeerSpalte</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">zeile</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">zeile</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span> <span class="n">zeile</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">spalte</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">spalte</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="n">spalte</span><span class="o">++</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">LEER</span><span class="p">)</span> <span class="k">return</span> <span class="n">spalte</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// fehlerfall - kommt aber nicht vor</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * von field[fromZeile][fromSpalte] aus wird gezogen</span>
+<span class="cm">     * es wird geprueft, ob die leere Kachel entweder in der gleichen zeile </span>
+<span class="cm">     * ist --&gt; dann muss die spalte von LEER entweder links oder rechts sein (+/+ 1)</span>
+<span class="cm">     * oder in der gleichen spalte --&gt; dann muss die zeile von LEER entweder</span>
+<span class="cm">     * darueber oder darunter sein (+/+ 1)</span>
+<span class="cm">     * @param fromZeile</span>
+<span class="cm">     * @param fromSpalte</span>
+<span class="cm">     * @return ob zug ausgefuehrt wurde oder nicht</span>
+<span class="cm">     */</span>
+    <span class="kt">boolean</span> <span class="nf">makeMove</span><span class="p">(</span><span class="kt">int</span> <span class="n">fromZeile</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fromSpalte</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">fromZeile</span><span class="o">][</span><span class="n">fromSpalte</span><span class="o">]!=</span><span class="n">State</span><span class="p">.</span><span class="na">LEER</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">zeileLeer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getLeerZeile</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">spalteLeer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getLeerSpalte</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">((</span><span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">zeileLeer</span><span class="o">-</span><span class="n">fromZeile</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">spalteLeer</span><span class="o">-</span><span class="n">fromSpalte</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">zeileLeer</span><span class="o">-</span><span class="n">fromZeile</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span>  <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">spalteLeer</span><span class="o">-</span><span class="n">fromSpalte</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeileLeer</span><span class="o">][</span><span class="n">spalteLeer</span><span class="o">]=</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">fromZeile</span><span class="o">][</span><span class="n">fromSpalte</span><span class="o">]</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">fromZeile</span><span class="o">][</span><span class="n">fromSpalte</span><span class="o">]=</span><span class="n">State</span><span class="p">.</span><span class="na">LEER</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">printField</span><span class="p">();</span>  <span class="c1">// nur zum debuggen</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">anzMoves</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * definition des endzustands (links oben EINS, links unten ZWEI)</span>
+<span class="cm">     * @return ob endzustand erreicht oder nicht</span>
+<span class="cm">     */</span>
+    <span class="kt">boolean</span> <span class="nf">ende</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">EINS</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">ZWEI</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/*********************************************</span>
+<span class="cm">     * jetzt alles fuer die View - ganz zu Anfang</span>
+<span class="cm">     */</span>
+
+    <span class="n">JPanel</span> <span class="nf">initialiserePanels</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">panels</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyPanel</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">zeile</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">zeile</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span> <span class="n">zeile</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">spalte</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">spalte</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="n">spalte</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">panels</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyPanel</span><span class="p">(</span><span class="n">zeile</span><span class="p">,</span> <span class="n">spalte</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">panels</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]</span><span class="p">.</span><span class="na">view</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">panels</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">mainPanel</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">JPanel</span> <span class="nf">mainPanelStart</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">mainPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">mainPanel</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span> <span class="n">GridLayout</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">initialisiereField</span><span class="p">();</span>      <span class="c1">// model</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">initialiserePanels</span><span class="p">();</span>      <span class="c1">// view</span>
+        <span class="k">return</span> <span class="n">mainPanel</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">JPanel</span> <span class="nf">infoLabelPanel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">infoPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">infoLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;Anzahl Zuege : &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">anzMoves</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">infoLabel</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span> <span class="n">Font</span><span class="p">(</span><span class="s">&quot;Verdana&quot;</span><span class="p">,</span> <span class="n">Font</span><span class="p">.</span><span class="na">ITALIC</span><span class="p">,</span> <span class="mi">18</span><span class="p">));</span>
+        <span class="n">infoPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">infoLabel</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">infoPanel</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">JPanel</span> <span class="nf">buttonPanel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">buttonPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">JButton</span> <span class="n">neuStart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Neustart&quot;</span><span class="p">);</span>
+        <span class="n">neuStart</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span> <span class="n">ActionListener</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Puzzle</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">restart</span><span class="p">();</span>          
+            <span class="p">}</span>
+
+        <span class="p">});</span>
+        <span class="n">buttonPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">neuStart</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">buttonPanel</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * jetzt für Restart und Update</span>
+<span class="cm">     * Restart: nach Druecken des Buttons &quot;Neustart&quot;</span>
+<span class="cm">     * Update: nach jedem Zug</span>
+<span class="cm">     */</span>
+    <span class="kt">void</span> <span class="nf">restart</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">anzMoves</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">infoLabel</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span> <span class="n">Font</span><span class="p">(</span><span class="s">&quot;Verdana&quot;</span><span class="p">,</span> <span class="n">Font</span><span class="p">.</span><span class="na">ITALIC</span><span class="p">,</span> <span class="mi">18</span><span class="p">));</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">initialisiereField</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">updatePanels</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">updateLabel</span><span class="p">(</span><span class="kt">boolean</span> <span class="n">ende</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ende</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">infoLabel</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span> <span class="n">Font</span><span class="p">(</span><span class="s">&quot;Verdana&quot;</span><span class="p">,</span> <span class="n">Font</span><span class="p">.</span><span class="na">ITALIC</span><span class="o">|</span><span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span> <span class="mi">18</span><span class="p">));</span> 
+            <span class="k">this</span><span class="p">.</span><span class="na">infoLabel</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Ende! Anzahl Zuege : &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">anzMoves</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">infoLabel</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Anzahl Zuege : &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">anzMoves</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">updatePanels</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">zeile</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">zeile</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span> <span class="n">zeile</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">spalte</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">spalte</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="n">spalte</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="na">panels</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]</span><span class="p">.</span><span class="na">view</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">updateLabel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">ende</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * das ist nur zum &quot;Debuggen&quot; - aber ganz nuetzlich</span>
+<span class="cm">     */</span>
+    <span class="kt">void</span> <span class="nf">printField</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">zeile</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">zeile</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span> <span class="n">zeile</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">spalte</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">spalte</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="n">spalte</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">LEER</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot; -&quot;</span><span class="p">);</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">EINS</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot; 1&quot;</span><span class="p">);</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">ZWEI</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot; 2&quot;</span><span class="p">);</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">field</span><span class="o">[</span><span class="n">zeile</span><span class="o">][</span><span class="n">spalte</span><span class="o">]==</span><span class="n">State</span><span class="p">.</span><span class="na">GELB</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot; o&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * die Klasse für die &quot;Kacheln&quot;</span>
+<span class="cm">     * die &quot;Kacheln&quot; sind JPanels (mit allen JPanel-Methoden)</span>
+<span class="cm">     * ausserdem noch nuetzliche Objekteigenschaften: zeile, spalte und das Label, </span>
+<span class="cm">     * das auf der Kachel ist (für GELB und LEER ist das Label leer)</span>
+<span class="cm">     */</span>
+    <span class="kd">class</span> <span class="nc">MyPanel</span> <span class="kd">extends</span> <span class="n">JPanel</span> <span class="kd">implements</span> <span class="n">MouseListener</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">zeile</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">spalte</span><span class="p">;</span>
+        <span class="n">JLabel</span> <span class="n">label</span><span class="p">;</span>
+
+        <span class="n">MyPanel</span><span class="p">(</span><span class="kt">int</span> <span class="n">zeile</span><span class="p">,</span> <span class="kt">int</span> <span class="n">spalte</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">zeile</span> <span class="o">=</span> <span class="n">zeile</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">spalte</span> <span class="o">=</span> <span class="n">spalte</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span> <span class="n">GridLayout</span><span class="p">());</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">label</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setHorizontalAlignment</span><span class="p">(</span><span class="n">JLabel</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setForeground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span> <span class="n">Font</span><span class="p">(</span><span class="s">&quot;Verdana&quot;</span><span class="p">,</span> <span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span> <span class="mi">48</span><span class="p">));</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">addMouseListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kt">void</span> <span class="nf">view</span><span class="p">(</span><span class="n">State</span> <span class="n">state</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">switch</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>   <span class="c1">// geht natuerlich auch mit if(state==State.EINS) usw.</span>
+            <span class="p">{</span>
+                <span class="k">case</span> <span class="n">EINS</span> <span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+                            <span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span>        <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="n">ZWEI</span> <span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+                            <span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">);</span>        <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="n">LEER</span> <span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">LIGHT_GRAY</span><span class="p">);</span>
+                            <span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>         <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="n">GELB</span> <span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">YELLOW</span><span class="p">);</span>
+                            <span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>         <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseClicked</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">Puzzle</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">ende</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">Puzzle</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">makeMove</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">zeile</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">spalte</span><span class="p">))</span> <span class="n">Puzzle</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">updatePanels</span><span class="p">();</span>        
+        <span class="p">}</span>
+
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mousePressed</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseReleased</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseEntered</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseExited</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Puzzle</span><span class="p">();</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>   
+</code></pre></div>
+</td></tr></table>
+</details>
+<h3 id="rechtecke-anordnen">Rechtecke anordnen<a class="headerlink" href="#rechtecke-anordnen" title="Permanent link">&para;</a></h3>
+<details><summary>Aufgabe Rechtecke anordnen</summary><ol>
+<li>
+<p>Implementieren Sie folgende GUI: </p>
+<p><img alt="schachbrett" src="../files/118_rechtecke.png" /></p>
+<ul>
+<li>die Abbildung zeigt die Ausgangssituation</li>
+</ul>
+<p><img alt="schachbrett" src="../files/119_rechtecke.png" /></p>
+<ul>
+<li>Die Zeichenfläche ist in 4 gleichgroße Teile unterteilt. Diese Unterteilung wird durch Linien dargestellt. </li>
+</ul>
+</li>
+<li>
+<p>Durch Drücken des Buttons <code>rectangle</code> erscheint (beim ersten Mal ein grünes) Rechteck. Dieses Rechteck kann dann mit gedrückter Maustaste verschoben werden. Sobald es im linken oberen Feld ist, wird es dort fixiert und kann nicht mehr bewegt werden. </p>
+<p><img alt="schachbrett" src="../files/120_rechtecke.png" /></p>
+<ul>
+<li>die obige Abbildung zeigt die Situation, in der das grüne Rechteck fixiert ist und nicht mehr bewegt werden kann</li>
+</ul>
+</li>
+<li>
+<p>Nachdem das grüne (erste) Rechteck fixiert ist, kann der Button <code>rectangle</code> ein weiteres Mal gedrückt werden. Es erscheint ein rotes Rechteck. Das rote Rechteck soll in das rechte obere Feld.</p>
+<p><img alt="schachbrett" src="../files/121_rechtecke.png" /></p>
+</li>
+<li>
+<p>Nachdem auch das rote Rechteck fixiert ist, kann der Button <code>rectangle</code> ein weiteres Mal gedrückt werden. Es erscheint ein gelbes Rechteck. Das gelbe Rechteck soll in das linke untere Feld.</p>
+<p><img alt="schachbrett" src="../files/122_rechtecke.png" /></p>
+</li>
+<li>
+<p>Nun kann der Button <code>rectangle</code> ein weiteres Mal gedrückt werden. Es erscheint ein dunkelgraues Rechteck. Das dunkelgraue Rechteck soll in das rechte untere Feld.</p>
+<p><img alt="schachbrett" src="../files/123_rechtecke.png" /></p>
+</li>
+<li>
+<p>Wenn auch das graue Rechteck fixiert ist, ist die Endesituation erreicht (siehe  Label oben in der folgenden Abbildung):</p>
+<p><img alt="schachbrett" src="../files/124_rechtecke.png" /></p>
+</li>
+<li>
+<p>Nach Klick auf den Button <code>clear</code> wird wieder die Ausgangssituation hergestellt: </p>
+<p><img alt="schachbrett" src="../files/118_rechtecke.png" /></p>
 </li>
 </ol>
 </details>
