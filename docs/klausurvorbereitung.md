@@ -2617,6 +2617,324 @@ Eines dieser beiden Grundgerüste können wir nun stets verwenden. Es muss dann 
 
 	
 
+??? question "Lösung Rechtecke anordnen"
+
+	=== "MyRectangle.java"
+		```java linenums="1"
+		import java.awt.Color;
+		import java.awt.Point;
+
+		public class MyRectangle
+		{
+			int x1, y1, x2, y2;
+			Color color;
+			boolean fixed;
+			
+			MyRectangle(int x1, int y1, int x2, int y2, Color color)
+			{
+				this.x1 = x1;
+				this.y1 = y1;
+				this.x2 = x2;
+				this.y2 = y2;
+				this.color = color;
+				this.fixed = false;
+			}
+			
+			boolean inside(int x, int y)
+			{
+				return (this.x1<=x && this.x2>=x && this.y1<=y && this.y2>=y);
+			}
+			
+			boolean inside(Point p)
+			{
+				return inside(p.x, p.y);
+			}
+			
+			void move(int diffX, int diffY)
+			{
+				if(!this.fixed)
+				{
+					this.x1=this.x1+diffX;
+					this.y1=this.y1+diffY;
+					this.x2=this.x2+diffX;
+					this.y2=this.y2+diffY;
+				}
+			}
+			
+			Color getColor()
+			{
+				return this.color;
+			}
+			
+			Point getLinksOben()
+			{
+				return new Point(this.x1, this.y1);
+			}
+			
+			Point getRechtsOben()
+			{
+				return new Point(this.x2, this.y1);
+			}
+			
+			Point getLinksUnten()
+			{
+				return new Point(this.x1, this.y2);
+			}
+			
+			Point getRechtsUnten()
+			{
+				return new Point(this.x2, this.y2);
+			}
+		}
+		```
+
+	=== "RechteckeAnordnen.java"
+		```java linenums="1"
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.ArrayList;
+		import java.util.List;
+
+		import javax.swing.*;
+
+		public class RechteckeAnordnen  extends JFrame
+		{
+			JButton resetButton, newRectButton;
+			MyRectangle aktRechteck = null;
+			List<MyRectangle> rectangles = new ArrayList<>();
+			Canvas canvas;
+			JLabel infoLabel;
+			int anzRectFixed = 0;
+			
+			RechteckeAnordnen()
+			{
+				super("Rechtecke fixieren");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.canvas = new Canvas();
+				this.getContentPane().add(this.createInfoPanel(), BorderLayout.NORTH);
+				this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+				this.getContentPane().add(this.createButtons(), BorderLayout.SOUTH);
+				this.setSize(400, 400);
+				this.setVisible(true);
+			}
+			
+			JPanel createInfoPanel()
+			{
+				JPanel infoPanel = new JPanel();
+				this.infoLabel = new JLabel(this.anzRectFixed + " Rechtecke fixiert");
+				this.infoLabel.setFont(new Font("Verdana", Font.ITALIC, 18));
+				infoPanel.add(this.infoLabel);
+				return infoPanel;
+			}
+			
+			JPanel createButtons()
+			{
+				JPanel buttonPanel = new JPanel();
+				this.resetButton = new JButton("clear");
+				this.resetButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						RechteckeAnordnen.this.aktRechteck = null;
+						RechteckeAnordnen.this.anzRectFixed = 0;
+						RechteckeAnordnen.this.rectangles.clear();
+						RechteckeAnordnen.this.infoLabel.setFont(new Font("Verdana", Font.ITALIC, 18));
+						RechteckeAnordnen.this.infoLabel.setText(RechteckeAnordnen.this.anzRectFixed + " Rechtecke fixiert");	
+						RechteckeAnordnen.this.canvas.repaint();
+					}
+					
+				});
+				buttonPanel.add(resetButton);
+				this.newRectButton = new JButton("rectangle");
+				this.newRectButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						if(RechteckeAnordnen.this.aktRechteck==null && RechteckeAnordnen.this.anzRectFixed<4)
+						{
+							int x = RechteckeAnordnen.this.canvas.getWidth()/4;
+							int y = RechteckeAnordnen.this.canvas.getHeight()/4;
+							Color color = null;
+							switch(RechteckeAnordnen.this.rectangles.size())
+							{
+								case 0 : color = Color.GREEN; break;
+								case 1 : color = Color.RED; break;
+								case 2 : color = Color.YELLOW; break;
+								case 3 : color = Color.DARK_GRAY; break;
+								default : color = Color.WHITE; break;
+							}
+							RechteckeAnordnen.this.aktRechteck = new MyRectangle(x,y,x+2*x, y+2*y, color);
+							RechteckeAnordnen.this.canvas.repaint();
+						}
+					}
+					
+				});
+				buttonPanel.add(newRectButton);
+				return buttonPanel;
+			}
+			
+			class Canvas extends JPanel implements MouseListener, MouseMotionListener
+			{
+				boolean move = false;
+				Point from;
+				
+				Canvas()
+				{
+					this.setBorder(BorderFactory.createLineBorder(Color.black));
+					this.addMouseListener(this);
+					this.addMouseMotionListener(this);
+				}
+				
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					Graphics2D g2 = (Graphics2D)g;
+					int widthPanel = this.getWidth(); 		// Breite der Canvas
+					int heightPanel = this.getHeight();  	// Hoehe der Canvas
+					g2.drawLine(widthPanel/2, 0, widthPanel/2, heightPanel);
+					g2.drawLine(0, heightPanel/2, widthPanel, heightPanel/2);
+
+					for(MyRectangle rect : RechteckeAnordnen.this.rectangles)
+					{
+						g2.setColor(rect.color);
+						int x = rect.x1;
+						int y = rect.y1;
+						int width = rect.x2-rect.x1;
+						int height = rect.y2-rect.y1;
+						g2.fill3DRect(x, y, width, height, true);
+					}
+					
+					if(RechteckeAnordnen.this.aktRechteck != null)
+					{
+						g2.setColor(RechteckeAnordnen.this.aktRechteck.color);
+						int x = RechteckeAnordnen.this.aktRechteck.x1;
+						int y = RechteckeAnordnen.this.aktRechteck.y1;
+						int width = RechteckeAnordnen.this.aktRechteck.x2-RechteckeAnordnen.this.aktRechteck.x1;
+						int height = RechteckeAnordnen.this.aktRechteck.y2-RechteckeAnordnen.this.aktRechteck.y1;
+						g2.fill3DRect(x, y, width, height, true);
+					}
+				}
+
+				@Override
+				public void mouseClicked(MouseEvent e) {}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					this.from = e.getPoint();
+					if(RechteckeAnordnen.this.aktRechteck != null && RechteckeAnordnen.this.aktRechteck.inside(from))
+					{
+						this.move = true;
+					}
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					this.move=false;		
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+
+				}
+
+				@Override
+				public void mouseDragged(MouseEvent e) {
+					Point here = e.getPoint();
+					if(move)
+					{
+						int diffX = here.x-this.from.x;
+						int diffY = here.y-this.from.y;
+						RechteckeAnordnen.this.aktRechteck.move(diffX, diffY);
+						this.from = here;
+						int diff = 15;
+
+						switch(RechteckeAnordnen.this.anzRectFixed)
+						{
+							case 0 : 	Point goal = new Point(0,0); 
+										Point corner = RechteckeAnordnen.this.aktRechteck.getLinksOben();
+										if(Math.abs(goal.x-corner.x)<5 && Math.abs(goal.y-corner.y)<diff)
+										{
+											this.move=false;
+											RechteckeAnordnen.this.rectangles.add(new MyRectangle(0,0,this.getWidth()/2, this.getHeight()/2, RechteckeAnordnen.this.aktRechteck.getColor()));
+											RechteckeAnordnen.this.aktRechteck = null;
+											RechteckeAnordnen.this.anzRectFixed++;
+											RechteckeAnordnen.this.infoLabel.setText(RechteckeAnordnen.this.anzRectFixed + " Rechtecke fixiert");
+										}
+										break;
+							case 1 : 	goal = new Point(this.getWidth(), 0); 
+										corner = RechteckeAnordnen.this.aktRechteck.getRechtsOben();
+										if(Math.abs(goal.x-corner.x)<5 && Math.abs(goal.y-corner.y)<diff)
+										{
+											this.move=false;
+											RechteckeAnordnen.this.rectangles.add(new MyRectangle(this.getWidth()/2+1, 0, this.getWidth(), this.getHeight()/2, RechteckeAnordnen.this.aktRechteck.getColor()));
+											RechteckeAnordnen.this.aktRechteck = null;
+											RechteckeAnordnen.this.anzRectFixed++;
+											RechteckeAnordnen.this.infoLabel.setText(RechteckeAnordnen.this.anzRectFixed + " Rechtecke fixiert");
+										}
+										break;	
+							case 2 : 	goal = new Point(0, this.getHeight()); 
+										corner = RechteckeAnordnen.this.aktRechteck.getLinksUnten();
+										if(Math.abs(goal.x-corner.x)<5 && Math.abs(goal.y-corner.y)<diff)
+										{
+											this.move=false;
+											RechteckeAnordnen.this.rectangles.add(new MyRectangle(0, this.getHeight()/2+1, this.getWidth()/2, this.getHeight(), RechteckeAnordnen.this.aktRechteck.getColor()));
+											RechteckeAnordnen.this.aktRechteck = null;
+											RechteckeAnordnen.this.anzRectFixed++;
+											RechteckeAnordnen.this.infoLabel.setText(RechteckeAnordnen.this.anzRectFixed + " Rechtecke fixiert");
+										}
+										break;		
+							case 3 : 	goal = new Point(this.getWidth(), this.getHeight()); 
+										corner = RechteckeAnordnen.this.aktRechteck.getRechtsUnten();
+										if(Math.abs(goal.x-corner.x)<5 && Math.abs(goal.y-corner.y)<diff)
+										{
+											this.move=false;
+											RechteckeAnordnen.this.rectangles.add(new MyRectangle(this.getWidth()/2+1, this.getHeight()/2+1, this.getWidth(), this.getHeight(), RechteckeAnordnen.this.aktRechteck.getColor()));
+											RechteckeAnordnen.this.aktRechteck = null;
+											RechteckeAnordnen.this.anzRectFixed++;
+											RechteckeAnordnen.this.infoLabel.setFont(new Font("Verdana", Font.ITALIC|Font.BOLD, 18));
+											RechteckeAnordnen.this.infoLabel.setText(RechteckeAnordnen.this.anzRectFixed + " Rechtecke fixiert -- ENDE");
+										}
+										break;	
+						}
+						this.repaint();
+						
+					}
+					
+					
+				}
+
+				@Override
+				public void mouseMoved(MouseEvent e) {
+			
+				}
+			}
+			
+			public static void main(String[] args) {
+				new RechteckeAnordnen();
+
+			}
+
+		}
+		```
+
+
 
 
 
