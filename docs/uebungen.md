@@ -3413,6 +3413,215 @@
 		- Wenn Sie jedes `MyPanel` an den `MouseListener` anmelden, dann müssen Sie gar nicht die Koordinaten des Mausklicks betrachten, sondern nur abfragen, welches der `MyPanel` das Mausereignis ausgelöst hat (oder Sie verwenden sogar für jedes dieser `MyPanel` eine anonyme Klasse des `MouseListener`). Probieren Sie mal ein wenig herum, es gibt sehr viele verschiedene Lösungsmöglichkeiten hier.  
 
 
+??? question "eine mögliche Lösung für Übung 12 (Morgenübung)"
+	
+	=== "Uebung12.java"
+		```java linenums="1"
+		package uebungen.uebung12;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.ItemEvent;
+		import java.awt.event.ItemListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.WindowEvent;
+		import java.awt.event.WindowListener;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+		import javax.swing.JToggleButton;
+
+		public class Uebung12 extends JFrame
+		{
+		    JPanel content;
+		    MyPanel[][] panels;
+		    int meistenClicks = 0;
+		    JToggleButton blau;
+
+		    public Uebung12(int hoehe, int breite)
+		    {
+		        super();
+		        this.setTitle("Klicks zaehlen");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+		        this.content = this.initCenter(hoehe, breite);
+		        this.getContentPane().add(this.content, BorderLayout.CENTER);
+
+		        // von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+		        this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+
+		        this.setSize(400, 400);
+		        this.setLocation(300,200);
+		        this.setVisible(true);
+		    }
+
+		    private JPanel initCenter(int hoehe, int breite) 
+		    {
+		        JPanel center = new JPanel();
+		        center.setBackground(Color.BLACK);
+		        center.setLayout(new GridLayout(hoehe, breite, 2, 2));
+		        
+		        this.panels = new MyPanel[hoehe][breite];
+		        for(int row = 0; row < hoehe; row++)
+		        {
+		            for(int col = 0; col < breite; col++)
+		            {
+		            	panels[row][col] = new MyPanel();
+		            	panels[row][col].setBackground(Color.RED);
+		            	//panels[row][col].addMouseListener(panels[row][col]);
+		            	center.add(panels[row][col]);
+		            }
+		        }
+		        return center;
+		    }
+
+		    private JPanel initSouth() 
+		    {
+		        JPanel south = new JPanel();
+		        JButton resetBtn = new JButton("reset");
+		        
+		        resetBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) 
+					{
+						for(int zeile = 0; zeile < Uebung12.this.panels.length; zeile++)
+						{
+							for(int spalte = 0; spalte < Uebung12.this.panels[zeile].length; spalte++)
+							{
+								Uebung12.this.panels[zeile][spalte].nrOfClicks = 0;
+								Uebung12.this.panels[zeile][spalte].label.setText("0");	
+								// "Anwendung" des ToggleButtons - gehoert nicht zur Aufgabe
+								if(Uebung12.this.blau.isSelected())
+								{
+									Uebung12.this.panels[zeile][spalte].setBackground(Color.BLUE);
+								}
+								else
+								{
+									Uebung12.this.panels[zeile][spalte].setBackground(Color.LIGHT_GRAY);
+								}
+								Uebung12.this.meistenClicks = 0;
+							}
+						}
+						
+					}
+		        	
+		        });
+		        
+		        // gehoert nicht zur Aufgabe, nur "Spielerei"
+		        this.blau = new JToggleButton("blau");
+		        this.blau.addItemListener(new ItemListener() {
+
+					@Override
+					public void itemStateChanged(ItemEvent e) {
+						JToggleButton tb = (JToggleButton)e.getSource();
+						if(tb.getText().equals("blau")) tb.setText("grau");
+						else if(tb.getText().equals("grau")) tb.setText("blau");			
+					}
+		        	
+		        });
+		        
+		        south.add(resetBtn);
+		        south.add(blau);
+		        return south;
+		    }
+		    
+		    class MyPanel extends JPanel implements MouseListener
+		    {
+		    	int nrOfClicks;
+		    	JLabel label;
+		    	
+		    	MyPanel()
+		    	{
+		    		this.nrOfClicks = 0;
+		    		this.setLayout(new GridLayout(1,1));
+		    		this.label = new JLabel("0");
+		    		this.label.setFont(new Font("Verdana", Font.BOLD, 48));
+		    		this.label.setForeground(Color.WHITE);
+		    		this.label.setHorizontalAlignment(JLabel.CENTER);
+		    		
+		    		this.add(label);
+		    		
+		    		this.addMouseListener(this);
+		    	}
+
+				@Override
+				public void mouseClicked(MouseEvent e) 
+				{
+					MyPanel mp = (MyPanel)e.getSource();
+					mp.nrOfClicks++;
+					mp.label.setText(String.valueOf(nrOfClicks));
+					
+					if(mp.nrOfClicks > Uebung12.this.meistenClicks) 
+					{
+						Uebung12.this.meistenClicks = mp.nrOfClicks;
+					}
+					
+					for(int zeile = 0; zeile < Uebung12.this.panels.length; zeile++)
+					{
+						for(int spalte = 0; spalte < Uebung12.this.panels[zeile].length; spalte++)
+						{
+							if(Uebung12.this.panels[zeile][spalte].nrOfClicks == Uebung12.this.meistenClicks)
+							{
+								Uebung12.this.panels[zeile][spalte].setBackground(Color.RED);
+							}
+							else
+							{
+								Uebung12.this.panels[zeile][spalte].setBackground(Color.LIGHT_GRAY);
+							}
+						}
+					}
+				}
+
+				@Override public void mousePressed(MouseEvent e) {}
+				@Override public void mouseReleased(MouseEvent e) {}
+				@Override public void mouseEntered(MouseEvent e) {}
+				@Override public void mouseExited(MouseEvent e) {}
+		    }
+
+		    public static void main(String[] args) 
+		    {
+		        new Uebung12(4,3);
+		    }
+
+		}
+		```
+
+
+##### Übung 13 (Graphen)
+
+??? "Übung 13"
+
+	1. Erstellen Sie ein Fenster zum Zeichnen. Implementieren Sie den Mauslistener so, dass für jeden Mausklick an der Stelle des Mausklicks ein schwarzer ausgefüllter Kreis mit dem `DURCHMESSER = 30` angezeigt wird:
+
+		![uebung13](./files/125_uebung13.png)
+
+		- Für das *Model* genügt es, sich die Punkte in einer Collection zu merken (am einfachsten ist wohl eine `ArrayList`). 
+
+		- Für den *Controller* hätten wir hier die Wahl zwischen `mouseClicked()` und `mousePressed()`. Wegen der späteren Erweiterung (Bewegen der Punkte), sollten wir hier `mouseClicked()` wählen. 
+
+	2. Passen Sie die *View* nun so an, dass die Punkte durch Linien der Strichstärke `2.0f` miteinander verbunden werden. 
+
+		![uebung13](./files/126_uebung13.png)
+
+		- Sie können auch gleich (oder später) den ersten und letzten Punkt mit einer Linie verbinden (so wie in der Abbildung).
+
+	3. Implementieren sie den `MouseMotionListener` so, dass wenn Sie mit der Maus **auf** einen Punkt (Kreis) klicken (oder knapp daneben) und bei gedrückter Maustaste die Maus bewegen, sich auch der Punkt mitbewegt. 
+
+		- Zur Erinnerung: die Methode `mouseClicked()` wird aufgerufen, nachdem `mousePressed()` und `mouseReleased()` aufgerufen wurden. Ändert sich die Mausposition zwischen den Aufrufen von `mousePressed()` und `mouseReleased()`, wird `mouseClicked()` gar nicht aufgerufen. 
+
+		- Es empfiehlt sich also, in `mousePressed()` zu bestimmen, ob durch den Mausklick ein Kreis getroffen wurde. Das muss natürlich kein genauer "Treffer" sein, bauen Sie ruhig eine Toleranz von z.B. `20` ein. Den Punkt, den Sie "getroffen" haben, sollten Sie sich merken, denn seine Koordinaten werden ja durch die Mausbewegung verändert. 
+
+		- Wenn Sie in `mousePressed()` einen Punkt "getroffen" haben, dann sollten Sie das Verschieben des Punktes in `mouseDragged()` behandeln. Beachten Sie, dass `mouseDragged()` (bei gedrückter Maustaste) permanent aufgerufen wird. Wir können Sie die Änderung der Mausposition zwischen zwei Aufrufen von `mouseDragged()` ermitteln?
+
+
 
 
 ## Zusatz
