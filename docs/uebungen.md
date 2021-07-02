@@ -3595,6 +3595,106 @@
 		```
 
 
+??? question "sehr hilfreiche Erläuterungen zu JPanels von Frau Busjahn"
+	
+	- Die folgenden drei Programme machen letztlich alle das Gleiche. Sie erzeugen alle ein Panel, das in die Mitte des Fenster platziert wird, nur die Stelle im Quelltext, an der das Panel angelegt wird, variiert.
+
+	```java linenums="1"
+	import java.awt.BorderLayout;
+	import javax.swing.*;
+
+	public class PanelsVarianteA extends JFrame{
+		
+		public PanelsVarianteA() {
+			super("Variante A");		
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			JPanel panelCenter = new JPanel();
+			JLabel labelCenter = new JLabel("A");
+			panelCenter.add(labelCenter);
+			this.getContentPane().add(panelCenter, BorderLayout.CENTER);
+			this.setSize(400,200);
+			this.setVisible(true);		
+		}
+		
+		public static void main(String[] args)
+		{
+			new PanelsVarianteA();
+		}
+	}
+	```
+
+	```java linenums="1"
+	import java.awt.BorderLayout;
+	import javax.swing.*;
+
+	public class PanelsVarianteB extends JFrame{
+		
+		public PanelsVarianteB() {
+			super("Variante B");		
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			JPanel panelCenter = initCenter();
+			this.getContentPane().add(panelCenter, BorderLayout.CENTER);
+			this.setSize(400,200);
+			this.setVisible(true);		
+		}
+		
+		JPanel initCenter() {
+			JPanel panelCenter = new JPanel();
+			JLabel labelCenter = new JLabel("B");
+			panelCenter.add(labelCenter);
+			return panelCenter;
+		}
+		
+		public static void main(String[] args)
+		{
+			new PanelsVarianteB();
+		}
+	}
+	```
+
+	```java linenums="1"
+	import java.awt.BorderLayout;
+	import javax.swing.*;
+
+	public class PanelsVarianteC extends JFrame{
+		
+		public PanelsVarianteC() {
+			super("Variante C");		
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			this.getContentPane().add(initCenter(), BorderLayout.CENTER);
+			this.setSize(400,200);
+			this.setVisible(true);		
+		}
+		
+		JPanel initCenter() {
+			JPanel panelCenter = new JPanel();
+			JLabel labelCenter = new JLabel("C");
+			panelCenter.add(labelCenter);
+			return panelCenter;
+		}
+		
+		public static void main(String[] args)
+		{
+			new PanelsVarianteC();
+		}
+	}
+	```
+	
+	![uebung12](./files/127_panels1.png)
+	
+	![uebung12](./files/128_panels2.png)
+
+	![uebung12](./files/129_panels3.png)
+
+	![uebung12](./files/130_panels4.png)
+
+	![uebung12](./files/131_panels5.png)
+
+
+
 ##### Übung 13 (Graphen)
 
 ??? "Übung 13"

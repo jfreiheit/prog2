@@ -6720,6 +6720,168 @@ Frankfurt/Main     <span class="m">248</span>,31 km2      <span class="m">648</s
 </div>
 </div>
 </details>
+<details class="question"><summary>sehr hilfreiche Erläuterungen zu JPanels von Frau Busjahn</summary><ul>
+<li>Die folgenden drei Programme machen letztlich alle das Gleiche. Sie erzeugen alle ein Panel, das in die Mitte des Fenster platziert wird, nur die Stelle im Quelltext, an der das Panel angelegt wird, variiert.</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PanelsVarianteA</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">PanelsVarianteA</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="s">&quot;Variante A&quot;</span><span class="p">);</span>        
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+        <span class="n">JPanel</span> <span class="n">panelCenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">JLabel</span> <span class="n">labelCenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">);</span>
+        <span class="n">panelCenter</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">labelCenter</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">panelCenter</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>      
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">PanelsVarianteA</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PanelsVarianteB</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">PanelsVarianteB</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="s">&quot;Variante B&quot;</span><span class="p">);</span>        
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+        <span class="n">JPanel</span> <span class="n">panelCenter</span> <span class="o">=</span> <span class="n">initCenter</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">panelCenter</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>      
+    <span class="p">}</span>
+
+    <span class="n">JPanel</span> <span class="nf">initCenter</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">panelCenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">JLabel</span> <span class="n">labelCenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">);</span>
+        <span class="n">panelCenter</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">labelCenter</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">panelCenter</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">PanelsVarianteB</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PanelsVarianteC</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">PanelsVarianteC</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="s">&quot;Variante C&quot;</span><span class="p">);</span>        
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">initCenter</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>      
+    <span class="p">}</span>
+
+    <span class="n">JPanel</span> <span class="nf">initCenter</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">panelCenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">JLabel</span> <span class="n">labelCenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">);</span>
+        <span class="n">panelCenter</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">labelCenter</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">panelCenter</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">PanelsVarianteC</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="uebung12" src="../files/127_panels1.png" /></p>
+<p><img alt="uebung12" src="../files/128_panels2.png" /></p>
+<p><img alt="uebung12" src="../files/129_panels3.png" /></p>
+<p><img alt="uebung12" src="../files/130_panels4.png" /></p>
+<p><img alt="uebung12" src="../files/131_panels5.png" /></p>
+</details>
 <h5 id="ubung-13-graphen">Übung 13 (Graphen)<a class="headerlink" href="#ubung-13-graphen" title="Permanent link">&para;</a></h5>
 <details><summary>Übung 13</summary><ol>
 <li>
