@@ -3722,6 +3722,209 @@
 		- Wenn Sie in `mousePressed()` einen Punkt "getroffen" haben, dann sollten Sie das Verschieben des Punktes in `mouseDragged()` behandeln. Beachten Sie, dass `mouseDragged()` (bei gedrückter Maustaste) permanent aufgerufen wird. Wir können Sie die Änderung der Mausposition zwischen zwei Aufrufen von `mouseDragged()` ermitteln?
 
 
+??? question "eine mögliche Lösung (aus der Morgenübung - danke an Frau Schippl)"
+	
+	=== "Uebung13.java"
+		```java linenums="1"
+		package uebungen.uebung13;
+		
+		import java.awt.BorderLayout;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.ArrayList;
+		import java.util.List;
+		import javax.swing.JFrame;
+		import javax.swing.JPanel;
+		public class Uebung13 extends JFrame implements MouseListener, MouseMotionListener{
+		    Canvas canvas;
+		    List<Point> points; //für uns = Java.util!
+		    Point movepoint;
+		    Point remember;
+
+		    public Uebung13()
+		    {
+		        super();
+		        this.setTitle("Uebung13");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        this.canvas = new Canvas();
+		        this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+		        this.canvas.addMouseListener(this);//MOUSELISTENER ANMELDEN NICHT VERGESSEN!!!!
+		        this.canvas.addMouseMotionListener(this);//MOUSEMOTIONLISTENER ANMELDEN NICHT VERGESSEN!!!!
+		        this.setSize(400, 300);
+		        this.setLocation(300,200);
+		        this.setVisible(true);
+		        this.points = new ArrayList<>();
+		    }
+
+		    private class Canvas extends JPanel
+		    {
+		    	final static int DURCHM = 30;
+		    	final static int RADIUS = DURCHM / 2;
+
+		        @Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);        	// Implementierung von JPanel aufrufen
+		            Graphics2D g2 = (Graphics2D)g;  	// Methoden von Graphics2D nutzbar
+
+		            // hier zeichnen wir die Punkte:
+		            for(Point p : Uebung13.this.points) // anstatt "points" = Uebung13.this.points
+		            {
+		            	int x = p.x;
+		            	int y = p.y;
+		            	g2.fillOval(x, y, DURCHM, DURCHM);	
+		            }
+
+		            for (int i = 0; i < Uebung13.this.points.size()-1; i++)  //.size wegen Liste
+		            {
+						Point p1 = Uebung13.this.points.get(i);
+						Point p2 = Uebung13.this.points.get(i+1); 	// "i+1" => Nachbarpunkt von p1
+						
+						g2.drawLine(p1.x + RADIUS, p1.y+ RADIUS, p2.x+ RADIUS, p2.y+ RADIUS); // "+ Radius" -> damit die Linien ab der Mitte des Punktes beginnen
+						if(i == Uebung13.this.points.size()-2)		// vorletzte Position=> HIER verbinden wir den ersten und letzten Punkt
+						{
+							Point p = Uebung13.this.points.get(0);
+							g2.drawLine(p2.x + RADIUS, p2.y + RADIUS, p.x + RADIUS, p.y + RADIUS);
+						}
+					}
+		        }
+		    }
+
+		    public static void main(String[] args)
+		    {
+		        new Uebung13();
+		    }
+
+			@Override
+			public void mouseClicked(MouseEvent e) //wir klicken -> Kreis wird gezeichnet -> Liste wird befüllt
+			{
+				Point p = e.getPoint();		// speichern den Punkt beim Ort des Klickens
+				this.points.add(p); 		// in der Liste speichern
+				this.canvas.repaint();		// canvas wird nochmal gezeichnet-- wichtig!!
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) //ermitteln, ob wir punkt getroffen haben
+			{
+				int x = e.getX();
+				int y = e.getY();
+				final int ABSTAND = 20; //Abstand festlegen
+				for(Point p : this.points)
+				{
+					if(Math.abs(x-p.x)< ABSTAND && Math.abs(y-p.y)< ABSTAND) // Abstand von Punkt ermitteln 
+																			 // MINUS den Punkt, den wir betrachten
+					{
+						this.movepoint=p;
+						this.remember=e.getPoint(); 	// Speichern die Koordinate des Mausklicks
+					}
+				}
+				
+			}
+
+			@Override public void mouseReleased(MouseEvent e) {}
+			@Override public void mouseEntered(MouseEvent e) {}
+			@Override public void mouseExited(MouseEvent e)	{}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) //Kreise bewegen:
+			{
+				int x = e.getX();
+				int y = e.getY();
+				int x1 = this.remember.x;
+				int y1 = this.remember.y;
+				int xDif = x-x1; //Wohin und um wie viel haben wir uns bewegt?
+				int yDif = y-y1;
+				this.movepoint.x = this.movepoint.x+xDif; 	// wir verschieben den Punkt um die Differenz, 
+				this.movepoint.y = this.movepoint.y+yDif;	// die wir ermittelt haben
+				this.canvas.repaint();//WICHTIG
+				this.remember = e.getPoint(); 				// rememberPunkt wird gespeichert		
+			}
+		}
+		```
+
+
+??? question "sehr hilfreiche Erläuterungen zu this von Frau Busjahn"
+	
+	```java linenums="1"
+	//Achtung, dieser Code dient nur dazu, zu zeigen, wie man an 
+	//verschiedenen Stellen auf die Methoden und Variablen zugreifen 
+	//kann und ist nicht unbedingt der beste Stil
+	public class A {
+		int variableInA;
+		B bInA;
+			
+		A(int wertA) {
+			this.variableInA = wertA;
+			this.bInA = new B(wertA+10);
+			this.printA("Konstruktor A"); 
+			this.bInA.printB("Konstruktor A");
+		}
+		
+		void printA(String aufrufIn) {
+			System.out.println("printA - " + aufrufIn + " - Variable der Klasse A: " + this.variableInA);
+			System.out.println("printA - " + aufrufIn + " - Variable der Klasse B: " + this.bInA.variableInB);		
+		}
+		
+		class B 
+		{		
+			int variableInB; 
+			
+			B(int wertB) {
+				this.variableInB = wertB;				
+				this.printB("Konstruktor B");
+			}
+			
+			void printB(String aufrufIn) {
+				System.out.println("printB - " + aufrufIn + " - Variable der Klasse A: " + A.this.variableInA);
+				System.out.println("printB - " + aufrufIn + " - Variable der Klasse B: " + this.variableInB);			
+			}
+		}	
+		
+		
+		public static void main(String[] args) {
+			A a1 = new A(2);		
+			a1.variableInA = 6;
+			a1.printA("main");
+			a1.bInA.variableInB = 16;
+			a1.bInA.printB("main");		
+		}
+	}
+	```
+	
+	![uebung13](./files/this1.png)
+	
+	![uebung13](./files/this2.png)
+
+
+##### Übung 14 (Quadrat)
+
+??? "Übung 14"
+
+	1. Erstellen Sie ein Fenster zum Zeichnen. Passen Sie zunächst ein Quadrat mit Strichstärke `3.0f` in das Fenster ein und zwar so, dass es 1/3 von entweder der Breite der `canvas` oder der Höhe der `canvas` groß ist, je nachdem, was **kleiner** ist. Es muss aber nicht mittig sein:
+
+		![uebung13](./files/132_uebung14.png)
+
+		- In der folgenden Abbildung ist die Höhe kleiner als die Breite. Also ist die Höhe korrekt gedrittelt, aber die gleiche Länge wurde für `x` verwendet, also für den Abstand vom linken Rand zum Quadrat. Deshalb ist der Abstand vom Quadrat zum rechten Rand größer. Sie können aber das Quadrat auch gerne komplett in die Mitte setzen.  
+
+		![uebung13](./files/133_uebung14.png)
+
+	2. Wenn der `create square`-Button gedrückt wird, erscheint ein farbiges Quadrat, das genau so groß ist, wie das zuvor gezeichnete nichtausgefüllte schwarze Quadrat. 
+
+		![uebung13](./files/134_uebung14.png)
+
+		- Die Position des Quadrates wird zufällig bestimmt. Es passt aber auf jeden Fall vollständig in die Canvas!
+
+		- Auch die Farbe des Quadrates wird zufällig bestimmt. Es behält die ganze Zeit über seine Farbe. 
+
+	3. Das farbige Quadrat kann nun durch Bewegen der Maus bei gedrückter Maustaste bewegt werden. Wenn das Quadrat (fast) vollständig in dem schwarzen Quadrat ist, dann bleibt es genau dort und kann nicht weiter bewegt werden.   
+
+		![uebung13](./files/135_uebung14.png)
+
 
 
 ## Zusatz
