@@ -1349,6 +1349,369 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst). Die Vorlesung
 
 
 
+??? question "12.-16.07.2021 - Klausurvorbereitung"
+	- siehe [**Klausurvorbereitung**](./klausurvorbereitung/#klausurvorbereitung)
+	- siehe Video zu [**Klausurvorbereitung**](./klausurvorbereitung/#klausurvorbereitung) - Vorlesung 14.07.2021
+		<iframe src="https://mediathek.htw-berlin.de/media/embed?key=61af1bfbde19610e702aa37f4a0a9ac1&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+	- Quellcode aus der Vorlesung vom 14.07.2021
+
+		=== "RechteckeAnordnen.java"
+
+			```java linenums="1"
+			import java.awt.BorderLayout;
+			import java.awt.Color;
+			import java.awt.Font;
+			import java.awt.Graphics;
+			import java.awt.Graphics2D;
+			import java.awt.Point;
+			import java.awt.event.ActionEvent;
+			import java.awt.event.ActionListener;
+			import java.awt.event.MouseEvent;
+			import java.awt.event.MouseListener;
+			import java.awt.event.MouseMotionListener;
+			import java.util.ArrayList;
+			import java.util.List;
+
+			import javax.swing.BorderFactory;
+			import javax.swing.JButton;
+			import javax.swing.JFrame;
+			import javax.swing.JLabel;
+			import javax.swing.JPanel;
+
+			public class RechteckeAnordnen extends JFrame implements MouseListener, MouseMotionListener{
+				Canvas canvas;
+				JLabel fixLabel;
+				MyRectangle curRect;
+				Point remember;
+				boolean move = false;
+				List<MyRectangle> fixierteRect;
+
+				public RechteckeAnordnen()
+				{
+					super();
+					this.setTitle("Rechtecke fixieren");
+					this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+
+					this.fixierteRect = new ArrayList<>();
+
+					this.canvas = new Canvas();
+					this.canvas.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+					this.canvas.addMouseListener(this);
+					this.canvas.addMouseMotionListener(this);
+					this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+
+					// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+					this.getContentPane().add(this.initNorth(), BorderLayout.NORTH);
+					this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+
+					this.setSize(400, 400);
+					this.setLocation(300,200);
+					this.setVisible(true);
+				}
+
+				// start inner class
+				private class Canvas extends JPanel
+				{
+
+					@Override
+					protected void paintComponent(Graphics g)
+					{
+						super.paintComponent(g);        // Implementierung von JPanel aufrufen
+						Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+
+						int widthPanel = this.getWidth();
+						int heightPanel = this.getHeight();
+						g2.drawLine(widthPanel/2, 0, widthPanel/2, heightPanel);
+						g2.drawLine(0, heightPanel/2, widthPanel, heightPanel/2);
+
+						for(MyRectangle mr : RechteckeAnordnen.this.fixierteRect)
+						{
+							int x = mr.getX();
+							int y = mr.getY();
+							int width = mr.getWidth();
+							int height = mr.getHeight();
+
+							Color curColor = mr.getColor();
+							g2.setColor(curColor);
+							g2.fillRect(x, y, width, height);
+						}
+
+						if(RechteckeAnordnen.this.curRect != null)
+						{
+							int x = RechteckeAnordnen.this.curRect.getX();
+							int y = RechteckeAnordnen.this.curRect.getY();
+							int width = RechteckeAnordnen.this.curRect.getWidth();
+							int height = RechteckeAnordnen.this.curRect.getHeight();
+
+							Color curColor = RechteckeAnordnen.this.curRect.getColor();
+							g2.setColor(curColor);
+							g2.fillRect(x, y, width, height);
+
+
+						}
+					}
+				}
+				// ende innere Klasse
+
+				private JPanel initNorth() 
+				{
+					JPanel north = new JPanel();
+
+					this.fixLabel = new JLabel("0 Rechtecke fixiert");
+					this.fixLabel.setFont(new Font("Verdana", Font.ITALIC, 16));
+					north.add(this.fixLabel);
+					return north;
+				}
+
+				private JPanel initSouth() 
+				{
+					JPanel south = new JPanel();
+					JButton btnClear = new JButton("clear");
+					
+					btnClear.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							RechteckeAnordnen.this.curRect = null;
+							RechteckeAnordnen.this.fixierteRect.clear();
+							RechteckeAnordnen.this.move = false;
+							RechteckeAnordnen.this.fixLabel.setText("0 Rechtecke fixiert");
+							RechteckeAnordnen.this.canvas.repaint();
+						}
+						
+					});
+
+					south.add(btnClear);
+
+					JButton btnRect = new JButton("rectangle");
+
+					btnRect.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) 
+						{
+							int widthCanvas = RechteckeAnordnen.this.canvas.getWidth();
+							int heightCanvas = RechteckeAnordnen.this.canvas.getHeight();
+							int widthRect = widthCanvas/2;
+							int heightRect = heightCanvas/2;
+							int xRect = widthCanvas/4;
+							int yRect = heightCanvas/4;
+							Color curColor;
+
+							switch(RechteckeAnordnen.this.fixierteRect.size()) {
+							case 0: curColor = Color.GREEN; break;
+							case 1: curColor = Color.RED; break;
+							case 2: curColor = Color.YELLOW; break;
+							case 3: curColor = Color.DARK_GRAY; break;
+							default: curColor = Color.WHITE;
+							}
+							RechteckeAnordnen.this.curRect = new MyRectangle(xRect, yRect, widthRect, heightRect, curColor);
+
+							RechteckeAnordnen.this.canvas.repaint();
+						}
+
+					});
+
+					south.add(btnRect);
+					return south;
+				}
+
+				public static void main(String[] args) 
+				{
+					new RechteckeAnordnen();
+				}
+
+				@Override
+				public void mouseDragged(MouseEvent e) 
+				{
+
+					if(this.move) 
+					{
+						// bewegen
+						int x = e.getX();
+						int y = e.getY();
+
+						int xLast = this.remember.x;
+						int yLast = this.remember.y;
+
+						int xDiff = x - xLast;
+						int yDiff = y - yLast;
+
+						this.curRect.move(xDiff, yDiff);
+						this.remember = e.getPoint();
+
+						// fixieren
+						int xRect = this.curRect.getX();
+						int yRect = this.curRect.getY();
+						final int ABSTAND = 25;
+
+						int xGoal = 0;
+						int yGoal = 0;
+
+						int widthCanvas = this.canvas.getWidth();
+						int heightCanvas = this.canvas.getHeight();
+
+						switch(this.fixierteRect.size()) {
+							case 0: xGoal = 0; yGoal = 0; break;
+							case 1: xGoal = widthCanvas/2; yGoal = 0;  break;
+							case 2: xGoal = 0; yGoal = heightCanvas/2; break;
+							case 3: xGoal = widthCanvas/2; yGoal = heightCanvas/2; break;
+						}
+
+						if(Math.abs(xRect - xGoal) < ABSTAND && Math.abs(yRect - yGoal) < ABSTAND)
+						{
+							this.curRect.setFix(true);
+							this.curRect.setX(xGoal);
+							this.curRect.setY(yGoal);
+							this.fixierteRect.add(this.curRect);
+							int anzFix = this.fixierteRect.size();
+							if(anzFix == 1) 
+							{
+								this.fixLabel.setText(anzFix + " Rechteck fixiert");
+							}
+							else if(anzFix == 4) 
+							{
+								this.fixLabel.setFont(new Font("Verdana", Font.ITALIC|Font.BOLD, 18));
+								this.fixLabel.setText(anzFix + " Rechtecke fixiert -- Ende");
+							}
+							else
+							{
+								this.fixLabel.setText(anzFix + " Rechtecke fixiert");
+							}
+
+							this.curRect = null;
+							this.move = false;
+						}
+						this.canvas.repaint();
+					}
+
+				}
+
+				@Override
+				public void mouseMoved(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) 
+				{
+					int x = e.getX();
+					int y = e.getY();
+
+					if(this.curRect != null && !this.curRect.isFix() && this.curRect.inside(x, y)) {
+						this.remember = new Point(x,y);
+						this.move = true;
+					}
+
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) 
+				{
+					this.move = false;
+
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+			}
+			```
+
+		=== "MyRectangle.java"
+
+			```java linenums="1"
+			import java.awt.Color;
+
+			public class MyRectangle {
+				
+				private int x;
+				private int y;
+				private int width;
+				private int height;
+				private Color color;
+				private boolean fix;
+				
+				public MyRectangle(int x, int y, int width, int height, Color color) 
+				{
+					this.x = x;
+					this.y = y;
+					this.width = width;
+					this.height = height;
+					this.color = color;
+					this.fix = false;
+				}
+
+				public int getX() {
+					return this.x;
+				}
+
+				public int getY() {
+					return this.y;
+				}
+
+				public int getWidth() {
+					return this.width;
+				}
+
+				public int getHeight() {
+					return this.height;
+				}
+
+				public Color getColor() {
+					return this.color;
+				}
+				
+				public boolean inside(int x, int y) {
+					return (x >= this.x && x <= this.x+this.width && y >= this.y && y <= this.y+this.height);
+				}
+				
+				public void move(int xDiff, int yDiff) {
+					this.x = this.x + xDiff;
+					this.y = this.y + yDiff;
+				}
+
+				public boolean isFix() {
+					return this.fix;
+				}
+
+				public void setFix(boolean fix) {
+					this.fix = fix;
+				}
+				
+				public void setX(int x) {
+					this.x = x;
+				}
+				
+				public void setY(int y) {
+					this.y = y;
+				}
+
+				
+			}
+			```
+
+	- siehe [**Übung 14**](./uebungen/#ubung-14-quadrat)
+
+
+
+
 
 
 
