@@ -3925,7 +3925,265 @@
 
 		![uebung13](./files/135_uebung14.png)
 
+??? question "Video zu Übung 14"
 
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=1f9039549a4e0e1e929c7cf5390ce026&width=720&height=450&autoplay=false&autolightsoff=false&loop=false&chapters=false&related=false&responsive=false&t=0" data-src="" class="iframeLoaded" width="720" height="450" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+
+??? question "eine mögliche Lösung zu Übung 14 (zum Video)"
+
+	=== "Uebung14.java"
+		```java linenums="1"
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.Random;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JPanel;
+
+		public class Uebung14  extends JFrame implements MouseListener, MouseMotionListener
+		{
+			Canvas canvas;
+			Point posSquare;
+			Color colorSquare;
+			boolean move = false;
+			Point remember;
+			boolean fixiert = false;
+			
+		    public Uebung14()
+		    {
+		        super();
+		        this.setTitle("Quadrat");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+		        this.canvas = new Canvas();
+		        this.canvas.addMouseListener(this);
+		        this.canvas.addMouseMotionListener(this);
+		        this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+		        
+		        // von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+		        this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+
+		        this.setSize(400, 300);
+		        this.setLocation(300,200);
+		        this.setVisible(true);
+		    }
+
+		    // start inner class
+		    private class Canvas extends JPanel
+		    {
+		    	
+		        @Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);        // Implementierung von JPanel aufrufen
+		            Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+		            
+		            int width = this.getWidth();
+		            int height = this.getHeight();
+		            
+		            // int smaller = (width < height) ? width : height;
+		            int smaller = 0;
+		            int length = 0;
+		            int x = 0;
+		            int y = 0;
+		            if(width < height) {
+		            	smaller = width;
+		            	length = smaller/3;
+		            	x = smaller/3;
+		            	y = (height - length)/2;
+		            } else {
+		            	smaller = height;
+		            	length = smaller/3;
+		            	y = smaller/3;
+		            	x = (width - length)/2;
+		            }
+		            
+		            g2.setStroke(new BasicStroke(3.0f));
+		            g2.drawRect(x, y, length, length);
+		            
+		            if(Uebung14.this.posSquare != null  && Uebung14.this.colorSquare != null) 
+		            {
+			            int xSquare = Uebung14.this.posSquare.x;
+			            int ySquare = Uebung14.this.posSquare.y;
+			            
+			            Color cSquare = Uebung14.this.colorSquare;
+			            
+			            g2.setColor(cSquare);
+			            g2.fillRect(xSquare, ySquare, length, length);
+		            }
+		        }
+		    }
+		    // ende innere Klasse
+		    
+		      
+		    private JPanel initSouth() 
+		    {
+		    	JPanel south = new JPanel();
+		    	JButton btnCreate = new JButton("create square");
+		    	
+		    	btnCreate.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Random r = new Random();
+						int widthCanvas = Uebung14.this.canvas.getWidth();
+						int heightCanvas = Uebung14.this.canvas.getHeight();
+						int lengthSquare = (widthCanvas < heightCanvas) ? widthCanvas/3 : heightCanvas/3;
+						
+						int x = r.nextInt(widthCanvas - lengthSquare);
+						int y = r.nextInt(heightCanvas - lengthSquare);
+						Uebung14.this.posSquare = new Point(x,y);
+						
+						int rot = r.nextInt(256);
+						int gruen = r.nextInt(256);
+						int blau = r.nextInt(256);
+						Uebung14.this.colorSquare = new Color(rot, gruen, blau);
+						
+						Uebung14.this.canvas.repaint();			
+					}
+		    		
+		    	});
+		    	
+		    	south.add(btnCreate);
+		    	return south;
+		    }
+		    
+
+		    public static void main(String[] args) 
+		    {
+		        new Uebung14();
+		    }
+
+
+			@Override
+			public void mouseDragged(MouseEvent e) 
+			{
+				if(move)
+				{
+					int xMouse = e.getX();
+					int yMouse = e.getY();
+					
+					int xLast = this.remember.x;
+					int yLast = this.remember.y;
+					
+					int xDiff = xMouse - xLast;
+					int yDiff = yMouse - yLast;
+					
+					this.posSquare.x = this.posSquare.x + xDiff;
+					this.posSquare.y = this.posSquare.y + yDiff;
+					
+					
+					// ab hier: im schwarzen Quadrat?
+					int widthCanvas = this.canvas.getWidth();
+					int heightCanvas = this.canvas.getHeight();
+					int xBlack, yBlack; 
+					if(widthCanvas < heightCanvas)
+					{
+						int lengthSquare = widthCanvas/3;
+						xBlack = widthCanvas/3;
+						yBlack = (heightCanvas - lengthSquare)/2;
+					}
+					else
+					{
+						int lengthSquare = heightCanvas/3;
+						yBlack = heightCanvas/3;
+						xBlack = (widthCanvas - lengthSquare)/2;
+					}
+					
+					int xSquare = this.posSquare.x;
+					int ySquare = this.posSquare.y;
+					
+					final int ABSTAND = 20;
+					
+					if(Math.abs(xSquare-xBlack) < ABSTAND && Math.abs(ySquare-yBlack) < ABSTAND)
+					{
+						// farbiges Quadrat genau im schwarzen
+						System.out.println("im schwarzen");
+						this.move = false;
+						this.posSquare.x = xBlack;
+						this.posSquare.y = yBlack;
+					}
+					
+					this.canvas.repaint();
+					this.remember = e.getPoint();
+				}	
+			}
+
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+			@Override
+			public void mousePressed(MouseEvent e) 
+			{
+				int xMouse = e.getX();
+				int yMouse = e.getY();
+				
+				if(!this.fixiert && this.posSquare != null)
+				{
+					int xSquare = this.posSquare.x;
+					int ySquare = this.posSquare.y;
+					
+					int widthCanvas = this.canvas.getWidth();
+					int heightCanvas = this.canvas.getHeight();
+					
+					int lengthSquare = (widthCanvas < heightCanvas) ? widthCanvas/3 : heightCanvas/3;
+					
+					if(xMouse >= xSquare && xMouse <= (xSquare + lengthSquare) && 
+							yMouse >= ySquare && yMouse <= (ySquare + lengthSquare))
+					{
+						this.move = true;
+						this.remember = e.getPoint();
+						System.out.println("im Quadrat");
+					}
+				}
+				
+			}
+
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				this.move = false;
+				
+			}
+
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
+
+		```
 
 ## Zusatz
 
