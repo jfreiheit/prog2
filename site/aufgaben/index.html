@@ -576,6 +576,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#klausur-1pz" class="md-nav__link">
+    Klausur 1.PZ
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -689,6 +696,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-10-zeichnen" class="md-nav__link">
     Aufgabe 10 (Zeichnen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#klausur-1pz" class="md-nav__link">
+    Klausur 1.PZ
   </a>
   
 </li>
@@ -4254,6 +4268,185 @@ D received Breaking News <span class="m">4</span>
 </li>
 </ol>
 </details>
+<details class="question"><summary>eine mögliche Lösung für Aufgabe 8</summary><div class="tabbed-set" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><label for="__tabbed_7_1">Taschenrechner.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe8</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Taschenrechner</span> <span class="kd">extends</span> <span class="n">JFrame</span> 
+<span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">Taschenrechner</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="n">setTitle</span><span class="p">(</span><span class="s">&quot;Taschenrechner&quot;</span><span class="p">);</span>
+        <span class="n">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+        <span class="n">JPanel</span> <span class="n">mainPanel</span> <span class="o">=</span> <span class="n">init</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">mainPanel</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+        <span class="n">setSize</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span><span class="mi">350</span><span class="p">);</span>
+        <span class="n">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">init</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">panel</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span> <span class="n">BorderLayout</span><span class="p">());</span>
+
+        <span class="n">JPanel</span> <span class="n">oben</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">oben</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span> <span class="n">FlowLayout</span><span class="p">(</span><span class="n">FlowLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+        <span class="n">JTextField</span> <span class="n">tf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JTextField</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+        <span class="n">tf</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span> <span class="n">Font</span><span class="p">(</span><span class="s">&quot;Verdana&quot;</span><span class="p">,</span> <span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span> <span class="mi">24</span><span class="p">));</span>
+        <span class="n">tf</span><span class="p">.</span><span class="na">setHorizontalAlignment</span><span class="p">(</span><span class="n">JTextField</span><span class="p">.</span><span class="na">RIGHT</span><span class="p">);</span>
+        <span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tf</span><span class="p">);</span>
+
+        <span class="n">JPanel</span> <span class="n">unten</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span> <span class="n">GridLayout</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
+
+        <span class="n">JButton</span> <span class="n">b0</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;5&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b6</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;6&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b7</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;7&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b8</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;8&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">b9</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;9&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bMal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bDurch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bPlus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;+&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bMinus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bKlauf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;(&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bKlzu</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;)&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bKomma</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bC</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;CE&quot;</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">bErg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;=&quot;</span><span class="p">);</span>
+
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b1</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b2</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b3</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b4</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b5</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b6</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b7</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b8</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b9</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bKlauf</span><span class="p">);</span>      
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">b0</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bKlzu</span><span class="p">);</span>       
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bMal</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bDurch</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bPlus</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bMinus</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bKomma</span><span class="p">);</span>
+        <span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">bErg</span><span class="p">);</span>
+
+        <span class="n">panel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">oben</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+        <span class="n">panel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">unten</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">panel</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Taschenrechner</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
 <h5 id="aufgabe-9-ereignisbehandlung">Aufgabe 9 (Ereignisbehandlung)<a class="headerlink" href="#aufgabe-9-ereignisbehandlung" title="Permanent link">&para;</a></h5>
 <details><summary>Aufgabe 9</summary><ol>
 <li>Implementieren Sie für den Taschenrechner aus Aufgabe 8 das <code>ActionListener</code>-Interface, so dass der Taschenrechner über möglichst viel Funktionalität verfügt. </li>
@@ -4279,6 +4472,831 @@ D received Breaking News <span class="m">4</span>
 <p>Der Quotient aus der Anzahl der roten Punkte und der Gesamtanzahl der Punkte ist eine Näherung von PI/4. Geben Sie Ihre Annäherung von PI auf der Konsole aus.</p>
 </li>
 </ol>
+</details>
+<details class="question"><summary>eine mögliche Lösung für Aufgabe 10</summary><div class="tabbed-set" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><label for="__tabbed_8_1">ComputePI.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">aufgaben.aufgabe10</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComputePI</span> <span class="kd">extends</span> <span class="n">JFrame</span><span class="p">{</span>
+
+    <span class="n">ComputePI</span><span class="p">(){</span>
+        <span class="kd">super</span><span class="p">(</span><span class="s">&quot;Berechne PI&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Canvas</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>  
+    <span class="p">}</span>
+
+    <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span><span class="p">{</span>
+
+        <span class="kd">private</span> <span class="n">Random</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">anzahlPunkte</span> <span class="o">=</span> <span class="mi">50000</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">rotePunkte</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">x0</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">y0</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">quadLength</span> <span class="o">=</span> <span class="mi">440</span><span class="p">;</span>
+            <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span> <span class="n">g</span><span class="p">;</span>
+
+            <span class="n">g2</span><span class="p">.</span><span class="na">setStroke</span><span class="p">(</span><span class="k">new</span> <span class="n">BasicStroke</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+            <span class="c1">// Quadrat</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span><span class="p">);</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">quadLength</span><span class="p">,</span> <span class="n">quadLength</span><span class="p">);</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">BLACK</span><span class="p">);</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">quadLength</span><span class="p">,</span> <span class="n">quadLength</span><span class="p">);</span>
+            <span class="c1">//Kreisbogen</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">drawArc</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">quadLength</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">quadLength</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+
+            <span class="n">g2</span><span class="p">.</span><span class="na">setStroke</span><span class="p">(</span><span class="k">new</span> <span class="n">BasicStroke</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+
+            <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">xM</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">quadLength</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">yM</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">quadLength</span><span class="p">;</span>
+
+            <span class="c1">//counting variables for keeping track of red/blue dots</span>
+            <span class="n">rotePunkte</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="c1">//draws all the points</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">anzahlPunkte</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+                <span class="c1">//random coordinates f the dot</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">quadLength</span><span class="p">)</span><span class="o">+</span><span class="n">x0</span><span class="p">;</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">quadLength</span><span class="p">)</span><span class="o">+</span><span class="n">y0</span><span class="p">;</span>
+                <span class="c1">//set the color of the dot</span>
+                <span class="k">if</span><span class="p">(((</span><span class="n">x</span><span class="o">-</span><span class="n">xM</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">xM</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yM</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yM</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">quadLength</span><span class="o">*</span><span class="n">quadLength</span><span class="p">)){</span>
+                    <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+                    <span class="n">rotePunkte</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                    <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">BLUE</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="c1">//draw the dot</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">fillOval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+
+                <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">rotePunkte</span><span class="o">/</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">anzahlPunkte</span> <span class="o">*</span> <span class="mf">4.0</span><span class="p">;</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;PI ist &quot;</span> <span class="o">+</span> <span class="n">pi</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ComputePI</span> <span class="n">pi</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ComputePI</span><span class="p">();</span>
+        <span class="c1">//pi.canvas.repaint();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</details>
+<h5 id="klausur-1pz">Klausur 1.PZ<a class="headerlink" href="#klausur-1pz" title="Permanent link">&para;</a></h5>
+<p>Hier die Aufgabe als <a href="../files/2021-07-21_Klausur_ProgI_PZ1.pdf">pdf</a>.</p>
+<details class="question"><summary>eine mögliche Lösung für Klausur 1PZ</summary><div class="tabbed-set" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><label for="__tabbed_9_1">Klausur1PZ.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">klausur</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.awt.BasicStroke</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Font</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Graphics2D</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Point</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.MouseEvent</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.MouseListener</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.MouseMotionListener</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Klausur1PZ</span>  <span class="kd">extends</span> <span class="n">JFrame</span> <span class="kd">implements</span> <span class="n">MouseListener</span><span class="p">,</span> <span class="n">MouseMotionListener</span>
+<span class="p">{</span>
+    <span class="n">Canvas</span> <span class="n">canvas</span><span class="p">;</span>
+    <span class="n">JLabel</span> <span class="n">lOben</span><span class="p">;</span>
+    <span class="n">Figure</span> <span class="n">circle</span><span class="p">;</span>
+    <span class="n">Figure</span> <span class="n">square</span><span class="p">;</span>
+    <span class="kt">boolean</span> <span class="n">circleMoved</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="kt">boolean</span> <span class="n">squareMoved</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="n">Point</span> <span class="n">rememberLastPoint</span><span class="p">;</span>
+    <span class="kt">boolean</span> <span class="n">fixed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+
+    <span class="kd">public</span> <span class="nf">Klausur1PZ</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">super</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Klausur&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>    
+
+        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Canvas</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">addMouseListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">addMouseMotionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">,</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+        <span class="c1">// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initNorth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">initSouth</span><span class="p">(),</span> <span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// start inner class</span>
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Canvas</span> <span class="kd">extends</span> <span class="n">JPanel</span>
+    <span class="p">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>        <span class="c1">// Implementierung von JPanel aufrufen</span>
+            <span class="n">Graphics2D</span> <span class="n">g2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>  <span class="c1">// Methoden von Graphics2D nutzbar</span>
+            <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">();</span>
+            <span class="n">g2</span><span class="p">.</span><span class="na">setStroke</span><span class="p">(</span><span class="k">new</span> <span class="n">BasicStroke</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">));</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">mitteY</span> <span class="o">=</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">drawLine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mitteY</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">mitteY</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">mitteX</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">drawLine</span><span class="p">(</span><span class="n">mitteX</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mitteX</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">)</span> <span class="o">?</span> <span class="s">&quot;hoeher : &quot;</span> <span class="p">:</span> <span class="s">&quot;breiter : &quot;</span><span class="p">;</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s">&quot;( &quot;</span> <span class="o">+</span> <span class="n">width</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">height</span> <span class="o">+</span> <span class="s">&quot; )&quot;</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">fixed</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;fixiert&quot;</span><span class="p">;</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">lOben</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span> <span class="n">Font</span><span class="p">(</span><span class="s">&quot;Verdana&quot;</span><span class="p">,</span> <span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span> <span class="mi">14</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">lOben</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">YELLOW</span><span class="p">);</span>
+                <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+                <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+                <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getLength</span><span class="p">();</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">fillRect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">length</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">GREEN</span><span class="p">);</span>
+                <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+                <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+                <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getLength</span><span class="p">();</span>
+                <span class="n">g2</span><span class="p">.</span><span class="na">fillOval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">length</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// ende innere Klasse</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initNorth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">north</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">north</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">LIGHT_GRAY</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">lOben</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="p">();</span>
+        <span class="n">north</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">lOben</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">north</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">JPanel</span> <span class="nf">initSouth</span><span class="p">()</span> 
+    <span class="p">{</span>
+        <span class="n">JPanel</span> <span class="n">south</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPanel</span><span class="p">();</span>
+        <span class="n">south</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">LIGHT_GRAY</span><span class="p">);</span>
+        <span class="n">JButton</span> <span class="n">btnNew</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JButton</span><span class="p">(</span><span class="s">&quot;new&quot;</span><span class="p">);</span>
+        <span class="n">btnNew</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span> <span class="n">ActionListener</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">getWidth</span><span class="p">();</span>
+                <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">getHeight</span><span class="p">();</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">width</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">)</span> <span class="c1">// hoeher --&gt; untereinander</span>
+                <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">height2</span> <span class="o">=</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">smallest</span> <span class="o">=</span> <span class="p">(</span><span class="n">height2</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">)</span> <span class="o">?</span> <span class="n">height2</span> <span class="p">:</span> <span class="n">width</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">smallest</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">);</span>
+                    <span class="kt">int</span> <span class="n">oben</span> <span class="o">=</span> <span class="p">(</span><span class="n">height2</span><span class="o">-</span><span class="n">length</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">links</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span><span class="o">-</span><span class="n">length</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Figure</span><span class="p">(</span><span class="n">links</span><span class="p">,</span> <span class="n">oben</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Figure</span><span class="p">(</span><span class="n">links</span><span class="p">,</span> <span class="n">height2</span> <span class="o">+</span> <span class="n">oben</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="c1">// breiter --&gt; nebeneinander</span>
+                <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">width2</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">smallest</span> <span class="o">=</span> <span class="p">(</span><span class="n">width2</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">)</span> <span class="o">?</span> <span class="n">width2</span> <span class="p">:</span> <span class="n">height</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">smallest</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">);</span>
+                    <span class="kt">int</span> <span class="n">links</span> <span class="o">=</span> <span class="p">(</span><span class="n">width2</span><span class="o">-</span><span class="n">length</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">oben</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="n">length</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Figure</span><span class="p">(</span><span class="n">links</span><span class="p">,</span> <span class="n">oben</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Figure</span><span class="p">(</span><span class="n">width2</span> <span class="o">+</span> <span class="n">links</span><span class="p">,</span> <span class="n">oben</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>                  
+                <span class="p">}</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">squareMoved</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circleMoved</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">fixed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">rememberLastPoint</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+
+        <span class="p">});</span>
+
+        <span class="n">south</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">btnNew</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">south</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="n">Klausur1PZ</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseDragged</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circleMoved</span> <span class="o">||</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">squareMoved</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">fixed</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+
+            <span class="kt">int</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">rememberLastPoint</span><span class="p">.</span><span class="na">x</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">rememberLastPoint</span><span class="p">.</span><span class="na">y</span><span class="p">;</span>
+
+            <span class="kt">int</span> <span class="n">xDiff</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">yDiff</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y1</span><span class="p">;</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circleMoved</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">newX</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span> <span class="o">+</span> <span class="n">xDiff</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">newY</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getY</span><span class="p">()</span> <span class="o">+</span> <span class="n">yDiff</span><span class="p">;</span>
+
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">setX</span><span class="p">(</span><span class="n">newX</span><span class="p">);</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">setY</span><span class="p">(</span><span class="n">newY</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">squareMoved</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">newX</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span> <span class="o">+</span> <span class="n">xDiff</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">newY</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getY</span><span class="p">()</span> <span class="o">+</span> <span class="n">yDiff</span><span class="p">;</span>
+
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">setX</span><span class="p">(</span><span class="n">newX</span><span class="p">);</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">setY</span><span class="p">(</span><span class="n">newY</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="c1">// ab hier erkennen, ob uebereinander</span>
+
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">ABSTAND</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+
+            <span class="kt">int</span> <span class="n">xAbstand</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span> <span class="o">-</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getX</span><span class="p">());</span>
+            <span class="kt">int</span> <span class="n">yAbstand</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getY</span><span class="p">()</span> <span class="o">-</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getY</span><span class="p">());</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">xAbstand</span> <span class="o">&lt;=</span> <span class="n">ABSTAND</span> <span class="o">&amp;&amp;</span> <span class="n">yAbstand</span> <span class="o">&lt;=</span> <span class="n">ABSTAND</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circleMoved</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">newX</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+                    <span class="kt">int</span> <span class="n">newY</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">setX</span><span class="p">(</span><span class="n">newX</span><span class="p">);</span>
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">setY</span><span class="p">(</span><span class="n">newY</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">squareMoved</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">newX</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+                    <span class="kt">int</span> <span class="n">newY</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">setX</span><span class="p">(</span><span class="n">newX</span><span class="p">);</span>
+                    <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">setY</span><span class="p">(</span><span class="n">newY</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">fixed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">.</span><span class="na">repaint</span><span class="p">();</span>
+            <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">rememberLastPoint</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getPoint</span><span class="p">();</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseMoved</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseClicked</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mousePressed</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">fixed</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+
+            <span class="kt">int</span> <span class="n">xC</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">yC</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circle</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+
+            <span class="kt">int</span> <span class="n">xS</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">yS</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span> 
+
+            <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">square</span><span class="p">.</span><span class="na">getLength</span><span class="p">();</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">xC</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">xC</span><span class="o">+</span><span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">yC</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">yC</span><span class="o">+</span><span class="n">length</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circleMoved</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">rememberLastPoint</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getPoint</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">xS</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">xS</span><span class="o">+</span><span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">yS</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">yS</span><span class="o">+</span><span class="n">length</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">squareMoved</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">rememberLastPoint</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">getPoint</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseReleased</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">squareMoved</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">circleMoved</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="n">Klausur1PZ</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">rememberLastPoint</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseEntered</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseExited</span><span class="p">(</span><span class="n">MouseEvent</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><label for="__tabbed_9_2">Figure.java</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">klausur</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Figure</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Figure</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">length</span> <span class="o">=</span> <span class="n">length</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getX</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setX</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getY</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">y</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setY</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getLength</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLength</span><span class="p">(</span><span class="kt">int</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">length</span> <span class="o">=</span> <span class="n">length</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
 </details>
                 
               

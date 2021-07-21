@@ -2415,6 +2415,99 @@
 		Kann auch schicker sein :-) Viel Spaß!
 
 
+??? question "eine mögliche Lösung für Aufgabe 8"
+	
+	=== "Taschenrechner.java"
+		```java linenums="1"
+		package aufgaben.aufgabe8;
+
+		import java.awt.*;
+
+		import javax.swing.*;
+
+		public class Taschenrechner extends JFrame 
+		{
+
+			public Taschenrechner()
+			{
+				super();
+				setTitle("Taschenrechner");
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				JPanel mainPanel = init();
+
+				this.add(mainPanel, BorderLayout.CENTER);
+				setSize(250,350);
+				setVisible(true);
+			}
+
+			private JPanel init()
+			{
+				JPanel panel = new JPanel();
+				panel.setLayout(new BorderLayout());
+				
+				JPanel oben = new JPanel();
+				oben.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+				JTextField tf = new JTextField(8);
+				tf.setFont(new Font("Verdana", Font.BOLD, 24));
+				tf.setHorizontalAlignment(JTextField.RIGHT);
+				oben.add(tf);
+				
+				JPanel unten = new JPanel();
+				unten.setLayout(new GridLayout(6,3,10,10));
+				
+				JButton b0 = new JButton("0");
+				JButton b1 = new JButton("1");
+				JButton b2 = new JButton("2");
+				JButton b3 = new JButton("3");
+				JButton b4 = new JButton("4");
+				JButton b5 = new JButton("5");
+				JButton b6 = new JButton("6");
+				JButton b7 = new JButton("7");
+				JButton b8 = new JButton("8");
+				JButton b9 = new JButton("9");
+				JButton bMal = new JButton("*");
+				JButton bDurch = new JButton("/");
+				JButton bPlus = new JButton("+");
+				JButton bMinus = new JButton("-");
+				JButton bKlauf = new JButton("(");
+				JButton bKlzu = new JButton(")");
+				JButton bKomma = new JButton(".");
+				JButton bC = new JButton("C");
+				JButton bCE = new JButton("CE");
+				JButton bErg = new JButton("=");
+
+				unten.add(b1);
+				unten.add(b2);
+				unten.add(b3);
+				unten.add(b4);
+				unten.add(b5);
+				unten.add(b6);
+				unten.add(b7);
+				unten.add(b8);
+				unten.add(b9);
+				unten.add(bKlauf);		
+				unten.add(b0);
+				unten.add(bKlzu);		
+				unten.add(bMal);
+				unten.add(bDurch);
+				unten.add(bPlus);
+				unten.add(bMinus);
+				unten.add(bKomma);
+				unten.add(bErg);
+				
+				panel.add(oben, BorderLayout.NORTH);
+				panel.add(unten, BorderLayout.CENTER);
+				
+				return panel;
+			}
+
+			public static void main(String[] args) {
+				new Taschenrechner();
+			}
+
+		}
+		```
+
 
 ##### Aufgabe 9 (Ereignisbehandlung)
 
@@ -2443,5 +2536,431 @@
 
 	4. Der Quotient aus der Anzahl der roten Punkte und der Gesamtanzahl der Punkte ist eine Näherung von PI/4. Geben Sie Ihre Annäherung von PI auf der Konsole aus.
 
+
+??? question "eine mögliche Lösung für Aufgabe 10"
+	
+	=== "ComputePI.java"
+		```java linenums="1"
+		package aufgaben.aufgabe10;
+		
+		import java.awt.*;
+		import java.util.Random;
+
+		import javax.swing.*;
+
+		public class ComputePI extends JFrame{
+
+			ComputePI(){
+				super("Berechne PI");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.add(new Canvas(), BorderLayout.CENTER);
+
+				this.setSize(500,500);
+				this.setVisible(true);	
+			}
+
+			class Canvas extends JPanel{
+				
+				private Random r = new Random();
+				private int anzahlPunkte = 50000;
+				private int rotePunkte = 0;
+
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					int x0=20;
+					int y0=20;
+					int quadLength = 440;
+					Graphics2D g2 = (Graphics2D) g;
+
+					g2.setStroke(new BasicStroke(3));
+					// Quadrat
+					g2.setColor(Color.WHITE);
+					g2.fillRect(x0, y0, quadLength, quadLength);
+					g2.setColor(Color.BLACK);
+					g2.drawRect(x0, y0, quadLength, quadLength);
+					//Kreisbogen
+					g2.drawArc(x0, y0, 2*quadLength, 2*quadLength, 90, 90);
+
+					g2.setStroke(new BasicStroke(1));
+					g2.setColor(Color.RED);
+
+					int x, y;
+					int xM = x0 + quadLength;
+					int yM = y0 + quadLength;
+
+					//counting variables for keeping track of red/blue dots
+					rotePunkte = 0;
+					//draws all the points
+					for (int i=0; i<anzahlPunkte; i++){
+						//random coordinates f the dot
+						x = r.nextInt(quadLength)+x0;
+						y = r.nextInt(quadLength)+y0;
+						//set the color of the dot
+						if(((x-xM)*(x-xM)+(y-yM)*(y-yM)) <= (quadLength*quadLength)){
+							g2.setColor(Color.RED);
+							rotePunkte++;
+						}else{
+							g2.setColor(Color.BLUE);
+						}
+						//draw the dot
+						g2.fillOval(x,y,2,2);
+						
+						double pi = (double)rotePunkte/(double)anzahlPunkte * 4.0;
+						System.out.println("PI ist " + pi);
+					}
+				}
+			}
+			
+			public static void main(String[] args) {
+				ComputePI pi = new ComputePI();
+				//pi.canvas.repaint();
+			}
+
+		}
+		```
+
+
+##### Klausur 1.PZ
+
+Hier die Aufgabe als [pdf](./files/2021-07-21_Klausur_ProgI_PZ1.pdf).
+
+??? question "eine mögliche Lösung für Klausur 1PZ"
+	
+	=== "Klausur1PZ.java"
+		```java linenums="1"
+		package klausur;
+
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+
+		import javax.swing.*;
+
+		public class Klausur1PZ  extends JFrame implements MouseListener, MouseMotionListener
+		{
+			Canvas canvas;
+			JLabel lOben;
+			Figure circle;
+			Figure square;
+			boolean circleMoved = false;
+			boolean squareMoved = false;
+			Point rememberLastPoint;
+			boolean fixed = false;
+
+
+			public Klausur1PZ()
+			{
+				super();
+				this.setTitle("Klausur");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+				this.canvas = new Canvas();
+				this.canvas.addMouseListener(this);
+				this.canvas.addMouseMotionListener(this);
+				this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+
+				// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+				this.getContentPane().add(this.initNorth(), BorderLayout.NORTH);
+				this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+
+				this.setSize(400, 300);
+				this.setLocation(300,200);
+				this.setVisible(true);
+			}
+
+			// start inner class
+			private class Canvas extends JPanel
+			{
+
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);        // Implementierung von JPanel aufrufen
+					Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+					int width = this.getWidth();
+					int height = this.getHeight();
+					g2.setStroke(new BasicStroke(2.0f));
+					if(width < height)
+					{
+						int mitteY = height/2;
+						g2.drawLine(0, mitteY, width, mitteY);
+					}
+					else
+					{
+						int mitteX = width/2;
+						g2.drawLine(mitteX, 0, mitteX, height);
+					}
+
+					String message = (width < height) ? "hoeher : " : "breiter : ";
+					message = message + "( " + width + ", " + height + " )";
+					if(Klausur1PZ.this.fixed)
+					{
+						message = "fixiert";
+						Klausur1PZ.this.lOben.setFont(new Font("Verdana", Font.BOLD, 14));
+					}
+					Klausur1PZ.this.lOben.setText(message);
+
+					if(Klausur1PZ.this.square != null)
+					{
+						g2.setColor(Color.YELLOW);
+						int x = Klausur1PZ.this.square.getX();
+						int y = Klausur1PZ.this.square.getY();
+						int length = Klausur1PZ.this.square.getLength();
+						g2.fillRect(x,y,length,length);
+					}
+					if(Klausur1PZ.this.circle != null)
+					{
+						g2.setColor(Color.GREEN);
+						int x = Klausur1PZ.this.circle.getX();
+						int y = Klausur1PZ.this.circle.getY();
+						int length = Klausur1PZ.this.circle.getLength();
+						g2.fillOval(x,y,length,length);
+					}
+				}
+			}
+			// ende innere Klasse
+
+			private JPanel initNorth() 
+			{
+				JPanel north = new JPanel();
+				north.setBackground(Color.LIGHT_GRAY);
+				this.lOben = new JLabel();
+				north.add(this.lOben);
+				return north;
+			}
+
+			private JPanel initSouth() 
+			{
+				JPanel south = new JPanel();
+				south.setBackground(Color.LIGHT_GRAY);
+				JButton btnNew = new JButton("new");
+				btnNew.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int width = Klausur1PZ.this.canvas.getWidth();
+						int height = Klausur1PZ.this.canvas.getHeight();
+						if(width < height) // hoeher --> untereinander
+						{
+							int height2 = height/2;
+							int smallest = (height2 < width) ? height2 : width;
+							int length = (int)(smallest * 0.9);
+							int oben = (height2-length)/2;
+							int links = (width-length)/2;
+
+							Klausur1PZ.this.square = new Figure(links, oben, length);
+							Klausur1PZ.this.circle = new Figure(links, height2 + oben, length);
+						}
+						else // breiter --> nebeneinander
+						{
+							int width2 = width/2;
+							int smallest = (width2 < height) ? width2 : height;
+							int length = (int)(smallest * 0.9);
+							int links = (width2-length)/2;
+							int oben = (height-length)/2;
+							Klausur1PZ.this.square = new Figure(links, oben, length);
+							Klausur1PZ.this.circle = new Figure(width2 + links, oben, length);	        		
+						}
+						Klausur1PZ.this.canvas.repaint();
+						
+						Klausur1PZ.this.squareMoved = false;
+						Klausur1PZ.this.circleMoved = false;
+						Klausur1PZ.this.fixed = false;
+						Klausur1PZ.this.rememberLastPoint = null;
+					}
+
+				});
+
+				south.add(btnNew);
+
+				return south;
+			}
+
+			public static void main(String[] args) 
+			{
+				new Klausur1PZ();
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) 
+			{
+				if((Klausur1PZ.this.circleMoved || Klausur1PZ.this.squareMoved) && !Klausur1PZ.this.fixed)
+				{
+					int x = e.getX();
+					int y = e.getY();
+
+					int x1 = Klausur1PZ.this.rememberLastPoint.x;
+					int y1 = Klausur1PZ.this.rememberLastPoint.y;
+
+					int xDiff = x - x1;
+					int yDiff = y - y1;
+
+					if(Klausur1PZ.this.circleMoved)
+					{
+						int newX = Klausur1PZ.this.circle.getX() + xDiff;
+						int newY = Klausur1PZ.this.circle.getY() + yDiff;
+
+						Klausur1PZ.this.circle.setX(newX);
+						Klausur1PZ.this.circle.setY(newY);
+					}
+					else if(Klausur1PZ.this.squareMoved)
+					{
+						int newX = Klausur1PZ.this.square.getX() + xDiff;
+						int newY = Klausur1PZ.this.square.getY() + yDiff;
+
+						Klausur1PZ.this.square.setX(newX);
+						Klausur1PZ.this.square.setY(newY);
+					}
+
+					// ab hier erkennen, ob uebereinander
+
+					final int ABSTAND = 30;
+
+					int xAbstand = Math.abs(Klausur1PZ.this.square.getX() - Klausur1PZ.this.circle.getX());
+					int yAbstand = Math.abs(Klausur1PZ.this.square.getY() - Klausur1PZ.this.circle.getY());
+
+					if(xAbstand <= ABSTAND && yAbstand <= ABSTAND)
+					{
+						if(Klausur1PZ.this.circleMoved)
+						{
+							int newX = Klausur1PZ.this.square.getX();
+							int newY = Klausur1PZ.this.square.getY();
+
+							Klausur1PZ.this.circle.setX(newX);
+							Klausur1PZ.this.circle.setY(newY);
+						}
+						else if(Klausur1PZ.this.squareMoved)
+						{
+							int newX = Klausur1PZ.this.circle.getX();
+							int newY = Klausur1PZ.this.circle.getY();
+
+							Klausur1PZ.this.square.setX(newX);
+							Klausur1PZ.this.square.setY(newY);
+						}
+						Klausur1PZ.this.fixed = true;
+					}
+
+					Klausur1PZ.this.canvas.repaint();
+					Klausur1PZ.this.rememberLastPoint = e.getPoint();
+				}
+
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) 
+			{
+				if(!Klausur1PZ.this.fixed)
+				{
+					int x = e.getX();
+					int y = e.getY();
+
+					int xC = Klausur1PZ.this.circle.getX();
+					int yC = Klausur1PZ.this.circle.getY();
+
+					int xS = Klausur1PZ.this.square.getX();
+					int yS = Klausur1PZ.this.square.getY();	
+
+					int length = Klausur1PZ.this.square.getLength();
+
+					if(x >= xC && x <= xC+length && y >= yC && y <= yC+length)
+					{
+						Klausur1PZ.this.circleMoved = true;
+						Klausur1PZ.this.rememberLastPoint = e.getPoint();
+					}
+					else if(x >= xS && x <= xS+length && y >= yS && y <= yS+length)
+					{
+						Klausur1PZ.this.squareMoved = true;
+						Klausur1PZ.this.rememberLastPoint = e.getPoint();
+					}
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) 
+			{
+				Klausur1PZ.this.squareMoved = false;
+				Klausur1PZ.this.circleMoved = false;
+				Klausur1PZ.this.rememberLastPoint = null;
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		}
+		```
+
+	=== "Figure.java"
+		```java linenums="1"
+		package klausur;
+
+		public class Figure {
+			private int x;
+			private int y;
+			private int length;
+			
+			public Figure(int x, int y, int length) 
+			{
+				this.x = x;
+				this.y = y;
+				this.length = length;
+			}
+
+			public int getX() {
+				return this.x;
+			}
+
+			public void setX(int x) {
+				this.x = x;
+			}
+
+			public int getY() {
+				return this.y;
+			}
+
+			public void setY(int y) {
+				this.y = y;
+			}
+
+			public int getLength() {
+				return this.length;
+			}
+
+			public void setLength(int length) {
+				this.length = length;
+			}
+
+		}
+		```
 
 
